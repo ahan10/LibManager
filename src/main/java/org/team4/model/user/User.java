@@ -9,12 +9,16 @@ public class User {
 //    - credentials: Credentials
 
 
-    public User(String email, String password, String name, String type, boolean validated) {
+    public User(String email, String password, String name, String type) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.type = type;
-        this.validated = false;
+        if(type.equals("Visitor")){
+            this.validated = true;
+        }else{
+            this.validated = false;
+        }
     }
 
 }
