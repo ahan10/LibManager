@@ -6,8 +6,8 @@ public class Faculty extends User {
     private long facultyID;
     private ArrayList<String> courses;
 
-    public Faculty(String email, String password, String name, String type, boolean validated, long facultyID, ArrayList<String> courses) {
-        super(email, password, name, type, validated);
+    public Faculty(String email, String password, String name, String type, long facultyID, ArrayList<String> courses) {
+        super(email, password, name, type);
         this.facultyID = facultyID;
         this.courses = courses;
     }

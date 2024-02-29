@@ -3,8 +3,8 @@ package org.team4.model.user;
 public class NonFaculty extends User {
     private long universityID;
 
-    public NonFaculty(String email, String password, String name, String type, boolean validated, long universityID) {
-        super(email, password, name, type, validated);
+    public NonFaculty(String email, String password, String name, String type, long universityID) {
+        super(email, password, name, type);
         this.universityID = universityID;
     }
 
