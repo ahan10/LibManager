@@ -6,7 +6,7 @@ import org.team4.model.user.User;
 import java.util.Date;
 import java.util.Random;
 
-public class Purcahse implements Payment{
+public class Purchase implements Payment{
     private long purchaseID;
     private Date purchaseDate;
     private double amount;
@@ -14,7 +14,7 @@ public class Purcahse implements Payment{
     private Item item;
     private String mode;
 
-    public Purcahse(double amount, User user, Item item, String mode) {
+    public Purchase(double amount, User user, Item item, String mode) {
         this.purchaseID = new Random().nextLong();
         this.purchaseDate = new Date();
         this.amount = amount;
@@ -27,7 +27,7 @@ public class Purcahse implements Payment{
         return MODE.contains(mode);
     }
 
-    public Purcahse getPayment(){
+    public Purchase getPayment(){
         if(this.processPayment(this.mode)){
             return this;
         }
