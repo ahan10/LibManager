@@ -1,5 +1,6 @@
 package org.team4.model.course;
 
+import org.team4.model.items.Item;
 import org.team4.model.user.*;
 
 import java.util.ArrayList;
