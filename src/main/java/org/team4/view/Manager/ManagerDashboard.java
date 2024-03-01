@@ -1,4 +1,4 @@
-package org.team4.view;
+package org.team4.view.Manager;
 
 import java.awt.CardLayout;
 import java.awt.EventQueue;
