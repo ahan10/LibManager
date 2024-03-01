@@ -13,9 +13,9 @@ public class User {
         this.setName(name);
         this.setType(type);
         if(type.equals("VISITOR")){
-            this.setValidated(true);
+            this.validated = true;
         }else{
-            this.setValidated(false);
+            this.validated = false;
         }
     }
 
@@ -49,14 +49,6 @@ public class User {
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public boolean isValidated() {
-		return validated;
-	}
-
-	public void setValidated(boolean validated) {
-		this.validated = validated;
 	}
 
 }
