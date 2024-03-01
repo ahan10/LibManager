@@ -27,9 +27,10 @@ public class MaintainUser {
 	public void addUser(User user) {
 		boolean flag = false;
 		for (User u: users) {
-			if (u.getEmail() == user.getEmail()) {
+			if (u.getEmail().equals(user.getEmail())) {
 				System.out.println(user.toString() + " already exists");
 				flag = true;
+				break;
 			}
 		}
 		if (flag == false) {
@@ -69,22 +70,22 @@ public class MaintainUser {
 	/**
 	 * Example of how to access database and write users to database
 	 * 
-	 * 
+	 */
 	public static void main(String [] args) throws Exception{
-		String path = "C:\\Users\\swix\\Downloads\\csv-example\\user.csv";
-		MaintainUser maintain = new MaintainUser();
+		String path = "database\\users.csv";
+		MaintainUser userMaintainer = new MaintainUser();
 	
-		maintain.load(path);
-		for(User u: maintain.users){
+		userMaintainer.load(path);
+		for(User u: userMaintainer.users){
 			System.out.println(u.toString());
 		}
 		
 		User newUser = new User("user1@example.com", "password1", "John Doe", "STUDENT");
-		maintain.addUser(newUser);
+		userMaintainer.addUser(newUser);
 		
-		maintain.update(path);
+		userMaintainer.update(path);
 	}
 	
-	**/
+	/**/
 }
 

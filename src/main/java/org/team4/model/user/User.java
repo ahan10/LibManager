@@ -58,5 +58,10 @@ public class User {
 	public void setValidated(boolean validated) {
 		this.validated = validated;
 	}
+	
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", password=" + password + ", name=" + name + ", type=" + type + "]";
+	}
 
 }
