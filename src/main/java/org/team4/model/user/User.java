@@ -6,8 +6,6 @@ public class User {
     private String name;
     private String type;
     private boolean validated;
-//    - credentials: Credentials
-
 
     public User(String email, String password, String name, String type) {
         this.email = email;

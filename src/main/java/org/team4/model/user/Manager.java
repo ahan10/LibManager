@@ -11,4 +11,12 @@ public class Manager extends User{
         super(email, password, name, type);
         this.managerID = managerID;
     }
+
+    public long getManagerID() {
+        return managerID;
+    }
+
+    public void setManagerID(long managerID) {
+        this.managerID = managerID;
+    }
 }

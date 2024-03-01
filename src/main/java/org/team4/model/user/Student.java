@@ -15,4 +15,20 @@ public class Student extends User{
     public Student(String email, String password, String name, String type) {
         super(email, password, name, type);
     }
+
+    public long getStudentID() {
+        return studentID;
+    }
+
+    public ArrayList<String> getCourses() {
+        return courses;
+    }
+
+    public void setStudentID(long studentID) {
+        this.studentID = studentID;
+    }
+
+    public void setCourses(ArrayList<String> courses) {
+        this.courses = courses;
+    }
 }
