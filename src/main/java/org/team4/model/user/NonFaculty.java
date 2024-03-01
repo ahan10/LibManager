@@ -8,6 +8,9 @@ public class NonFaculty extends User {
         this.universityID = universityID;
     }
 
+    public NonFaculty(String email, String password, String name, String type) {
+        super(email, password, name, type);
+    }
 
     public long getUniversityID() {
         return universityID;

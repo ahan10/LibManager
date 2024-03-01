@@ -11,4 +11,8 @@ public class Student extends User{
         this.studentID = studentID;
         this.courses = courses;
     }
+
+    public Student(String email, String password, String name, String type) {
+        super(email, password, name, type);
+    }
 }

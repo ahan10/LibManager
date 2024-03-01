@@ -1,7 +1,7 @@
 package org.team4.model.items;
 
 public class Book extends Item{
-    private String genre;
+    private String genere;
     private int noOfPages;
     private String author;
     private long ISBN;
@@ -10,7 +10,7 @@ public class Book extends Item{
 
     public Book(Item item, String genre, int noOfPages, String author, long ISBN, String publisherName, String edition) {
         super(item);
-        this.genre = genre;
+        this.genere = genre;
         this.noOfPages = noOfPages;
         this.author = author;
         this.ISBN = ISBN;

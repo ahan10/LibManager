@@ -12,6 +12,9 @@ public class Faculty extends User {
         this.courses = courses;
     }
 
+    public Faculty(String email, String password, String name, String type) {
+        super(email, password, name, type);
+    }
 
     public long getFacultyID() {
         return facultyID;

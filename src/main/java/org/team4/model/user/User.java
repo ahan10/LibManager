@@ -14,7 +14,7 @@ public class User {
         this.password = password;
         this.name = name;
         this.type = type;
-        if(type.equals("Visitor")){
+        if(type.equals("VISITOR")){
             this.validated = true;
         }else{
             this.validated = false;
