@@ -19,6 +19,15 @@ public class User {
         }
     }
 
+	//ONLY TO BE USED BY MAINTAIN USER
+    public User(String email, String password, String name, String type, boolean validated) {
+    	this.setEmail(email);
+    	this.setPassword(password);
+    	this.setName(name);
+    	this.setType(type);
+    	this.setValidated(validated);
+    }
+
 	public String getEmail() {
 		return email;
 	}
@@ -61,7 +70,7 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", password=" + password + ", name=" + name + ", type=" + type + "]";
+		return "User [email=" + email + ", password=" + password + ", name=" + name + ", type=" + type + ", validated=" + validated + "]";
 	}
 
 }

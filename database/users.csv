@@ -3,8 +3,8 @@ user1@example.com,password1,John Doe,STUDENT,false
 user2@example.com,password2,Jane Smith,FACULTY,false
 user3@example.com,password3,Alice Johnson,VISITOR,true
 user4@example.com,password4,Bob Johnson,FACULTY,false
-user5@example.com,password5,Emma Brown,MANAGER,false
-user6@example.com,password6,Michael Smith,MANAGER,false
+user5@example.com,password5,Emma Brown,MANAGER,true
+user6@example.com,password6,Michael Smith,MANAGER,true
 user7@example.com,password7,Sarah Johnson,FACULTY,false
 user8@example.com,password8,David Brown,VISITOR,true
 user9@example.com,password9,Emily Smith,NONFACULTY,false

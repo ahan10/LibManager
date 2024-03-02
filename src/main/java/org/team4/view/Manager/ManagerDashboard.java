@@ -1,16 +1,16 @@
 package org.team4.view.Manager;
 
+import org.team4.controller.managerdashboard.ManagerController;
+
 import java.awt.CardLayout;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
-public class ManagerDashboard extends JFrame implements ActionListener{
+public class ManagerDashboard extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -40,7 +40,10 @@ public class ManagerDashboard extends JFrame implements ActionListener{
 			public void run() {
 				try {
 					ManagerDashboard frame = new ManagerDashboard();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
+
+					ManagerController controller = new ManagerController(frame);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -62,7 +65,6 @@ public class ManagerDashboard extends JFrame implements ActionListener{
         contentPane.setLayout(null);
         
         this.setTitle("Manager Dashboard");
-        setLocationRelativeTo(null);
         
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -80,22 +82,18 @@ public class ManagerDashboard extends JFrame implements ActionListener{
 	public void addButtons() {
 		LogOutButton = new JButton("Log Out");
 		LogOutButton.setBounds(700, 6, 94, 29);
-		LogOutButton.addActionListener(this);
 		contentPane.add(LogOutButton);
 		
 		AddItemButton = new JButton("Add Item");
 		AddItemButton.setBounds(264, 6, 117, 29);
-		AddItemButton.addActionListener(this);
 		contentPane.add(AddItemButton);
 		
 		ManageItemButton = new JButton("Manage Item");
 		ManageItemButton.setBounds(135, 6, 117, 29);
-		ManageItemButton.addActionListener(this);
 		contentPane.add(ManageItemButton);
 		
 		ValidateUserButton = new JButton("Validate User");
 		ValidateUserButton.setBounds(6, 6, 117, 29);
-		ValidateUserButton.addActionListener(this);
 		contentPane.add(ValidateUserButton);
 	}
 	
@@ -108,16 +106,32 @@ public class ManagerDashboard extends JFrame implements ActionListener{
 		
 		cardLayout.show(activityPanel, VALIDATE_PANEL);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == ValidateUserButton) {
-			cardLayout.show(activityPanel, VALIDATE_PANEL);
-		}else if(e.getSource() == AddItemButton) {
-			cardLayout.show(activityPanel, ADD_PANEL);
-		}else if(e.getSource() == ManageItemButton) {
-			cardLayout.show(activityPanel, MANAGE_PANEL);
-		}
+	public JButton getLogOutButton() {
+		return LogOutButton;
 	}
-	
+
+	public JButton getAddItemButton() {
+		return AddItemButton;
+	}
+
+	public JButton getManageItemButton() {
+		return ManageItemButton;
+	}
+
+	public JButton getValidateUserButton() {
+		return ValidateUserButton;
+	}
+
+	public void showValidateUserPanel() {
+		cardLayout.show(activityPanel, VALIDATE_PANEL);
+	}
+
+	public void showAddItemPanel() {
+		cardLayout.show(activityPanel, ADD_PANEL);
+	}
+
+	public void showManageItemPanel() {
+		cardLayout.show(activityPanel, MANAGE_PANEL);
+	}
+
 }
