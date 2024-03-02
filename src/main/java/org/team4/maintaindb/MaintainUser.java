@@ -11,10 +11,11 @@ import com.csvreader.CsvWriter;
 
 public class MaintainUser {
 	public ArrayList<User> users = new ArrayList<User>();
-	public String path;
+
+	private static final String FILE_PATH = "database/users.csv";
 	
-	public void load(String path) throws Exception{
-		CsvReader reader = new CsvReader(path); 
+	public void load() throws Exception{
+		CsvReader reader = new CsvReader(FILE_PATH);
 		reader.readHeaders();
 		UserFactory uFactory = new UserFactory();
 		
@@ -39,9 +40,9 @@ public class MaintainUser {
 		}
 	}
 	
-	public void update(String path) throws Exception{
+	public void update() throws Exception{
 		try {		
-				CsvWriter csvOutput = new CsvWriter(new FileWriter(path, false), ',');
+				CsvWriter csvOutput = new CsvWriter(new FileWriter(FILE_PATH, false), ',');
 				//email,password,name,type,validated
 				
 				//set header
@@ -72,10 +73,9 @@ public class MaintainUser {
 	 * 
 	 */
 	public static void main(String [] args) throws Exception{
-		String path = "database/users.csv";
 		MaintainUser userMaintainer = new MaintainUser();
 	
-		userMaintainer.load(path);
+		userMaintainer.load();
 		for(User u: userMaintainer.users){
 			System.out.println(u.toString());
 		}
@@ -83,7 +83,7 @@ public class MaintainUser {
 		User newUser = new User("user1@example.com", "password1", "John Doe", "STUDENT");
 		userMaintainer.addUser(newUser);
 		
-		userMaintainer.update(path);
+		userMaintainer.update();
 	}
 	
 	/**/
