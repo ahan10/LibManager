@@ -40,6 +40,7 @@ public class ManagerDashboard extends JFrame implements ActionListener{
 			public void run() {
 				try {
 					ManagerDashboard frame = new ManagerDashboard();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +63,6 @@ public class ManagerDashboard extends JFrame implements ActionListener{
         contentPane.setLayout(null);
         
         this.setTitle("Manager Dashboard");
-        setLocationRelativeTo(null);
         
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);

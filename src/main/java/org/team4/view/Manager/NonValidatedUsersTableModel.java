@@ -13,7 +13,6 @@ public class NonValidatedUsersTableModel extends DefaultTableModel{
 	
 	private String[] columnNames = {
 			"email",
-			"password",
 			"name",
 			"type",
 			"validated"
@@ -29,7 +28,6 @@ public class NonValidatedUsersTableModel extends DefaultTableModel{
 		for(User u: nonValidateUserList) {
 			addRow(new Object[] {
 					u.getEmail(),
-					u.getPassword(),
 					u.getName(),
 					u.getType(),
 					u.isValidated()
@@ -40,7 +38,7 @@ public class NonValidatedUsersTableModel extends DefaultTableModel{
 	
 	@Override
     public Class<?> getColumnClass(int columnIndex) {
-        if (columnIndex == 4) {
+        if (columnIndex == 3) {
             return Boolean.class;
         }
         return super.getColumnClass(columnIndex);
@@ -49,7 +47,7 @@ public class NonValidatedUsersTableModel extends DefaultTableModel{
     // Override the isCellEditable method to make "validated" column editable
     @Override
     public boolean isCellEditable(int row, int column) {
-        return column == 4;
+        return column == 3;
     }
 
 }

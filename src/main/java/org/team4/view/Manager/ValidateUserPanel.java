@@ -4,9 +4,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 import javax.swing.DefaultCellEditor;
-import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
-import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -31,10 +30,7 @@ public class ValidateUserPanel extends JPanel {
 	
 	private NonValidatedUsersTableModel nonValidatedUsersTableModel;
 
-	private JScrollPane usersPane;
-	private JTable nonValidatedUsersTable;
-
-	/**
+    /**
 	 * Create the panel.
 	 */
 	public ValidateUserPanel() {
@@ -62,13 +58,13 @@ public class ValidateUserPanel extends JPanel {
 		add(panel, BorderLayout.CENTER);
 		
 		nonValidatedUsersTableModel = new NonValidatedUsersTableModel(this.nonValidatedUsers);
-		nonValidatedUsersTable = new JTable(nonValidatedUsersTableModel);
+        JTable nonValidatedUsersTable = new JTable(nonValidatedUsersTableModel);
 		
-		TableColumn validatedColumn = nonValidatedUsersTable.getColumnModel().getColumn(4);
+		TableColumn validatedColumn = nonValidatedUsersTable.getColumnModel().getColumn(3);
         JComboBox<Boolean> comboBox = new JComboBox<>(new Boolean[]{true, false});
         validatedColumn.setCellEditor(new DefaultCellEditor(comboBox));
-        
-		usersPane = new JScrollPane(nonValidatedUsersTable);
+
+        JScrollPane usersPane = new JScrollPane(nonValidatedUsersTable);
 		usersPane.setBounds(35, 63, 718, 404);
 		panel.add(usersPane);
 		
@@ -78,7 +74,8 @@ public class ValidateUserPanel extends JPanel {
 		updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateSelectedUsers();
+				updateSelectedUsers();
+				JOptionPane.showMessageDialog(null, "Data Updated.");
             }
         });
 		
@@ -88,7 +85,7 @@ public class ValidateUserPanel extends JPanel {
 	private void updateSelectedUsers() {
         int rowCount = nonValidatedUsersTableModel.getRowCount();
         for (int i = 0; i < rowCount; i++) {
-            Boolean validatedStatus = (Boolean) nonValidatedUsersTableModel.getValueAt(i, 4);
+            Boolean validatedStatus = (Boolean) nonValidatedUsersTableModel.getValueAt(i, 3);
             User user = nonValidatedUsers.get(i);
             user.setValidated(validatedStatus);
         }
