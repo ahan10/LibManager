@@ -2,8 +2,8 @@ package org.team4.model.items;
 
 //Concrete builder for DVD
 public class DVDBuilder extends ItemBuilder<DVD> {
- private String genre = "DefaultGenre";
- private double duration = 0.0;
+ private String genre;
+ private double duration;
 
  public DVDBuilder genre(String genre) {
      this.genre = genre;

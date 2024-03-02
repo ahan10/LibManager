@@ -3,12 +3,12 @@ package org.team4.model.items;
 
 //Concrete builder for Book
 public class BookBuilder extends ItemBuilder<Book> {
- protected String genre = "DefaultGenre";
- protected int noOfPages = 0;
- protected String author = "DefaultAuthor";
+ protected String genre;
+ protected int noOfPages;
+ protected String author;
  protected long ISBN = 0L;
- protected String publisher = "DefaultPublisher";
- protected String edition = "DefaultEdition";
+ protected String publisher;
+ protected String edition;
 
  public BookBuilder genre(String genre) {
      this.genre = genre;

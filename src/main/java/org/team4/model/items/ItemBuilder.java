@@ -4,14 +4,8 @@ import java.util.Date;
 
 //Abstract builder with common parameters
 public abstract class ItemBuilder<T extends Item> {
- protected String type;
  protected String title;
  protected Date yearPublished;
-
- public ItemBuilder<T> type(String type) {
-     this.type = type;
-     return this;
- }
 
  public ItemBuilder<T> title(String title) {
      this.title = title;

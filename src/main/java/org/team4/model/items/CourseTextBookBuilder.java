@@ -6,11 +6,6 @@ public class CourseTextBookBuilder extends BookBuilder {
     private Course course;
     private boolean isVirtual;
 
-    public CourseTextBookBuilder() {
-        // Call the constructor of the superclass (BookBuilder)
-        super();
-    }
-
     public CourseTextBookBuilder course(Course course) {
         this.course = course;
         return this;
@@ -20,7 +15,6 @@ public class CourseTextBookBuilder extends BookBuilder {
         this.isVirtual = isVirtual;
         return this;
     }
-
 
     @Override
     public CourseTextBook build() {
