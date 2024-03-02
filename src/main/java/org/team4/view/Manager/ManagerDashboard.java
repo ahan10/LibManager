@@ -13,12 +13,9 @@ import javax.swing.JButton;
 public class ManagerDashboard extends JFrame{
 
 	private static final long serialVersionUID = 1L;
-	
 	private JPanel contentPane;
 	private JPanel activityPanel;
-	
 	private CardLayout cardLayout;
-	
 	private JButton LogOutButton;
 	private JButton AddItemButton;
 	private JButton ManageItemButton;
@@ -27,7 +24,6 @@ public class ManagerDashboard extends JFrame{
 	private final String VALIDATE_PANEL = "Validate User Panel";
 	private final String ADD_PANEL = "Add Item Panel";
 	private final String MANAGE_PANEL = "Manage ItemPanel";
-
 	private JPanel validateUserPanel = new ValidateUserPanel();
 	private JPanel addItemPanel = new AddItemPanel();
 	private JPanel manageItemPanel = new ManageItemPanel();
