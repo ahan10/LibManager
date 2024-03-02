@@ -72,7 +72,7 @@ public class MaintainUser {
 	 * 
 	 */
 	public static void main(String [] args) throws Exception{
-		String path = "database\\users.csv";
+		String path = "database/users.csv";
 		MaintainUser userMaintainer = new MaintainUser();
 	
 		userMaintainer.load(path);
