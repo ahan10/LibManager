@@ -95,7 +95,7 @@ public class MaintainUser {
 			UserFactory userFactory = new UserFactory();
 
 			while (reader.readRecord()) {
-				User user = userFactory.getUser(reader.get("email"), reader.get("password"), reader.get("name"), reader.get("type"));
+				User user = userFactory.getUser(reader.get("email"), reader.get("password"), reader.get("name"), reader.get("type"), Boolean.parseBoolean(reader.get("validated")));
 				existingUsers.add(user);
 			}
 			reader.close();
