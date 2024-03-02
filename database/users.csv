@@ -1,6 +1,6 @@
 email,password,name,type,validated
 user1@example.com,password1,John Doe,STUDENT,true
-user2@example.com,password2,Jane Smith,FACULTY,false
+user2@example.com,password2,Jane Smith,FACULTY,true
 user3@example.com,password3,Alice Johnson,VISITOR,true
 user4@example.com,password4,Bob Johnson,FACULTY,false
 user5@example.com,password5,Emma Brown,MANAGER,true
