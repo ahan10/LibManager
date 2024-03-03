@@ -134,6 +134,7 @@ public class LoginController implements ActionListener {
 						System.out.println("Password Strong");
 						maintainUser.addUser(new User(loginPage.getRegisterEmailInput(), loginPage.getRegisterPasswordInput(), loginPage.getUserNameInput(), loginPage.getRegisterAccountType()));
 						System.out.println("New User Registered");
+						JOptionPane.showMessageDialog(loginPage, "Account Registered!\nAuthentication from management still required to access certain features");
 					} else {
 						System.out.println("Password Weak");
 						JOptionPane.showMessageDialog(loginPage,
