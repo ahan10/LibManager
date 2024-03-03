@@ -7,6 +7,9 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -15,7 +18,13 @@ import java.awt.event.FocusEvent;
 import java.util.Arrays;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+
 import javax.swing.ImageIcon;
+import javax.swing.JTextPane;
 
 public class LoginPage extends JFrame {
 
@@ -24,6 +33,7 @@ public class LoginPage extends JFrame {
 	private JTextField txtEmail;
 	private JPasswordField pwdPassword;
 	private JButton btnShowPassword;
+	private JButton btnRegister;
 
 	
 	
@@ -41,6 +51,32 @@ public class LoginPage extends JFrame {
 		textField.setFont(font);
 		textField.setForeground(Color.black);
 	}
+	
+	/**
+	 * Create Fancy Gradient Buttons
+	 */
+	@SuppressWarnings("serial")
+	private static final class JGradientButton extends JButton{
+	    private JGradientButton(String text){
+	        super(text);
+	        setContentAreaFilled(false);
+	    }
+
+	    @Override
+	    protected void paintComponent(Graphics g){
+	        Graphics2D g2 = (Graphics2D)g.create();
+	        g2.setPaint(new GradientPaint(
+                    new Point(0, 0), 
+                    Color.CYAN.brighter(), 
+                    new Point(getWidth(), 0), 
+                    Color.MAGENTA.brighter()));
+	        g2.fillRect(0, 0, getWidth(), getHeight());
+	        g2.dispose();
+
+	        super.paintComponent(g);
+	    }
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -66,24 +102,12 @@ public class LoginPage extends JFrame {
 		addPlaceholderStyle(txtEmail);
 		addPlaceholderStyle(pwdPassword);
 		
-		btnShowPassword = new JButton("");
-		btnShowPassword.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (pwdPassword.getForeground() != Color.gray) {
-					if (pwdPassword.getEchoChar() == '\u2022') {
-						pwdPassword.setEchoChar((char) 0);
-					}
-					else {
-						pwdPassword.setEchoChar('\u2022');
-					}
-				}
-			}
-		});
-		btnShowPassword.setIcon(new ImageIcon("C:\\Users\\swix\\Pictures\\showPasswordIconReScaled.png"));
-		btnShowPassword.setBounds(193, 105, 21, 20);
-		contentPane.add(btnShowPassword);
 	}
 
+	
+	/**
+	 * Create frame components
+	 */
 	private void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 400);
@@ -111,9 +135,20 @@ public class LoginPage extends JFrame {
 				}
 			}
 		});
+		
+		JTextPane txtpnWelcome = new JTextPane();
+		StyledDocument doc = txtpnWelcome.getStyledDocument();
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		txtpnWelcome.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtpnWelcome.setBackground(new Color(240, 240, 240));
+		txtpnWelcome.setText("Welcome");
+		txtpnWelcome.setBounds(0, 20, 284, 20);
+		contentPane.add(txtpnWelcome);
 		txtEmail.setText("Email");
 		txtEmail.setToolTipText("Email");
-		txtEmail.setBounds(92, 34, 100, 20);
+		txtEmail.setBounds(57, 70, 170, 30);
 		contentPane.add(txtEmail);
 		txtEmail.setColumns(10);
 		
@@ -139,13 +174,34 @@ public class LoginPage extends JFrame {
 		});
 		pwdPassword.setText("Password");
 		pwdPassword.setToolTipText("Password");
-		pwdPassword.setBounds(92, 105, 100, 20);
+		pwdPassword.setBounds(57, 130, 170, 30);
 		pwdPassword.setEchoChar((char) 0);
 		contentPane.add(pwdPassword);
 		
-		JButton btnNewButton = new JButton("Log In");
-		btnNewButton.setBounds(109, 194, 73, 23);
-		contentPane.add(btnNewButton);
+		btnShowPassword = new JButton();
+		btnShowPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (pwdPassword.getForeground() != Color.gray) {
+					if (pwdPassword.getEchoChar() == '\u2022') {
+						pwdPassword.setEchoChar((char) 0);
+					}
+					else {
+						pwdPassword.setEchoChar('\u2022');
+					}
+				}
+			}
+		});
+		btnShowPassword.setIcon(new ImageIcon("C:\\Users\\swix\\Pictures\\showPasswordIconReScaled.png"));
+		btnShowPassword.setBounds(226, 135, 21, 20);
+		contentPane.add(btnShowPassword);
 		
+		JButton btnLogin = new JGradientButton("Log In");
+		btnLogin.setBounds(42, 200, 200, 43);
+		btnLogin.setForeground(Color.WHITE);
+		contentPane.add(btnLogin);
+		
+		btnRegister = new JButton("Don't have an account? Sign Up");
+		btnRegister.setBounds(10, 311, 264, 23);
+		contentPane.add(btnRegister);
 	}
 }
