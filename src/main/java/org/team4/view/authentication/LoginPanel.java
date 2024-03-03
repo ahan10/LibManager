@@ -14,6 +14,8 @@ public class LoginPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField emailField;
 	private JPasswordField passwordField;
+	private JButton loginButton;
+	private JButton registerationButton;
 
 	/**
 	 * Create the panel.
@@ -54,13 +56,22 @@ public class LoginPanel extends JPanel {
 		passwordLabel.setBounds(157, 160, 106, 16);
 		panel.add(passwordLabel);
 		
-		JButton loginButton = new JButton("Login");
+		loginButton = new JButton("Login");
 		loginButton.setBounds(157, 240, 435, 29);
 		panel.add(loginButton);
 		
-		JButton registerationButton = new JButton("Register");
+		registerationButton = new JButton("Register");
 		registerationButton.setBounds(157, 281, 435, 29);
 		panel.add(registerationButton);
-	    
 	}
+	
+
+	public JButton getLoginButton() {
+		return loginButton;
+	}
+
+	public JButton getRegisterationButton() {
+		return registerationButton;
+	}
+	
 }
