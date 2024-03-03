@@ -1,7 +1,10 @@
 package org.team4.model.items;
 
+import java.util.Objects;
+
 public class Book extends Item{
-    private String genre;
+
+	private String genre;
     private int noOfPages;
     private String author;
     private long ISBN;
@@ -29,4 +32,27 @@ public class Book extends Item{
                 ", edition='" + edition + '\'' +
                 '}';
     }
+    
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(ISBN, author, edition, genre, noOfPages, publisher);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		return ISBN == other.ISBN && Objects.equals(author, other.author) && Objects.equals(edition, other.edition)
+				&& Objects.equals(genre, other.genre) && noOfPages == other.noOfPages
+				&& Objects.equals(publisher, other.publisher);
+	}
+    
 }
