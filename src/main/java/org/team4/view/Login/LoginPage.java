@@ -29,6 +29,8 @@ import java.awt.Point;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class LoginPage extends JFrame {
 

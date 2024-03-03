@@ -3,9 +3,11 @@ package org.team4.controller.Login;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import org.team4.controller.managerdashboard.ManagerController;
 import org.team4.maintaindb.MaintainUser;
 import org.team4.model.user.User;
 import org.team4.view.Login.LoginPage;
+import org.team4.view.Manager.ManagerDashboard;
 
 public class LoginController implements ActionListener{
 	private LoginPage loginPage;
@@ -45,6 +47,12 @@ public class LoginController implements ActionListener{
 							break;
 						case "MANAGER":
 							System.out.println(u.toString() + " Logged in Successfully as Manager");
+							// TEMPORARY METHOD FOR OPENING MANAGERDASHBOARD
+							ManagerDashboard frame = new ManagerDashboard();
+							frame.setLocationRelativeTo(null);
+							frame.setVisible(true);
+							ManagerController controller = new ManagerController(frame);
+							loginPage.setVisible(false);
 							break;
 						case "VISITOR":
 							System.out.println(u.toString() + " Logged in Successfully as Visitor");
