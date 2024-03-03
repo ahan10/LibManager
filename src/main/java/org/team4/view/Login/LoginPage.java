@@ -10,6 +10,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+
+import org.team4.controller.Login.LoginController;
+import org.team4.maintaindb.MaintainUser;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -34,6 +38,7 @@ public class LoginPage extends JFrame {
 	private JPasswordField pwdPassword;
 	private JButton btnShowPassword;
 	private JButton btnRegister;
+	private JButton btnLogin;
 
 	
 	
@@ -87,6 +92,10 @@ public class LoginPage extends JFrame {
 					LoginPage frame = new LoginPage();
 					frame.setVisible(true);
 					frame.requestFocus();
+					
+					MaintainUser maintainUser = new MaintainUser();
+					maintainUser.load();
+					LoginController controller = new LoginController(frame, maintainUser);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -103,7 +112,6 @@ public class LoginPage extends JFrame {
 		addPlaceholderStyle(pwdPassword);
 		
 	}
-
 	
 	/**
 	 * Create frame components
@@ -195,7 +203,7 @@ public class LoginPage extends JFrame {
 		btnShowPassword.setBounds(226, 135, 21, 20);
 		contentPane.add(btnShowPassword);
 		
-		JButton btnLogin = new JGradientButton("Log In");
+		btnLogin = new JGradientButton("Log In");
 		btnLogin.setBounds(42, 200, 200, 43);
 		btnLogin.setForeground(Color.WHITE);
 		contentPane.add(btnLogin);
@@ -203,5 +211,24 @@ public class LoginPage extends JFrame {
 		btnRegister = new JButton("Don't have an account? Sign Up");
 		btnRegister.setBounds(10, 311, 264, 23);
 		contentPane.add(btnRegister);
+	}
+	
+	/**
+	 * Getters and Setters
+	 */
+	public JButton getLoginButton() {
+		return btnLogin;
+	}
+	
+	public JButton getRegisterButton() {
+		return btnRegister;
+	}
+	
+	public String getEmailInput() {
+		return txtEmail.getText();
+	}
+	
+	public String getPasswordInput() {
+		return new String(pwdPassword.getPassword());
 	}
 }
