@@ -2,6 +2,8 @@ package org.team4.controller.Login;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
@@ -48,6 +50,14 @@ public class LoginController implements ActionListener {
 		}
 
 		return upperCaseFlag & lowerCaseFlag & numberFlag & symbolFlag;
+	}
+	
+	private boolean checkEmailValid(String email) {
+		Pattern regexPatternForEmail = Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" 
+		        + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
+		Matcher match = regexPatternForEmail.matcher(email);
+		
+		return match.matches();
 	}
 
 	private void addListeners() {
@@ -117,7 +127,13 @@ public class LoginController implements ActionListener {
 				System.out.println("Missing Input Fields");
 				JOptionPane.showMessageDialog(loginPage,
 						"Registration Failed!\nPlease ensure all fields are filled in properly");
-			} else {
+			} 
+			else if (!checkEmailValid(loginPage.getRegisterEmailInput())){
+				System.out.println(loginPage.getRegisterEmailInput() + " does not follow the format xxxx@yyyy.com");
+				JOptionPane.showMessageDialog(loginPage, "Registration Failed!\nPlease enter a valid email address!");
+			}
+			else {
+				
 				boolean flag = false;
 				for (User u : maintainUser.users) {
 					if (u.getEmail().equals(loginPage.getRegisterEmailInput())) {
