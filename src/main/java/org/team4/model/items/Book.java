@@ -17,4 +17,16 @@ public class Book extends Item{
         this.publisher = publisherName;
         this.edition = edition;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "genre='" + genre + '\'' +
+                ", noOfPages=" + noOfPages +
+                ", author='" + author + '\'' +
+                ", ISBN=" + ISBN +
+                ", publisher='" + publisher + '\'' +
+                ", edition='" + edition + '\'' +
+                '}';
+    }
 }
