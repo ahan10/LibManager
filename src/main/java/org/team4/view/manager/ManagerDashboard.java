@@ -1,4 +1,4 @@
-package org.team4.view.Manager;
+package org.team4.view.manager;
 
 import org.team4.controller.managerdashboard.ManagerController;
 

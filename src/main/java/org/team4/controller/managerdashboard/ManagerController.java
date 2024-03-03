@@ -1,6 +1,6 @@
 package org.team4.controller.managerdashboard;
 
-import org.team4.view.Manager.*;
+import org.team4.view.manager.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
