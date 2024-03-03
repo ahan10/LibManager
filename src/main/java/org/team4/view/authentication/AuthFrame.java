@@ -2,21 +2,21 @@ package org.team4.view.authentication;
 
 import java.awt.CardLayout;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class AuthFrame extends JFrame implements ActionListener{
+import org.team4.controller.authentication.AuthController;
+
+public class AuthFrame extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private CardLayout cardLayout;
 	private LoginPanel loginPanel = new LoginPanel();
 	private RegisterPanel registerationPanel = new RegisterPanel();
-
+	private AuthController authController;
 	/**
 	 * Launch the application.
 	 */
@@ -46,6 +46,8 @@ public class AuthFrame extends JFrame implements ActionListener{
 		setBounds(100, 100, 750, 500);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
+		authController = new AuthController(this);
+		
 		setContentPane(contentPane);
 		
 		setLocationRelativeTo(null);
@@ -55,24 +57,29 @@ public class AuthFrame extends JFrame implements ActionListener{
 		
 		cardLayout.show(contentPane, "login");
 		
-		loginPanel.getLoginButton().addActionListener(this);
-		loginPanel.getRegisterationButton().addActionListener(this);
+		loginPanel.getLoginButton().addActionListener(authController);
+		loginPanel.getRegisterationButton().addActionListener(authController);
 		
-		registerationPanel.getLoginButton().addActionListener(this);
-		registerationPanel.getLoginButton().addActionListener(this);
+		registerationPanel.getLoginButton().addActionListener(authController);
+		registerationPanel.getLoginButton().addActionListener(authController);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == loginPanel.getLoginButton()) {
-			// add iumplementation
-		}else if(e.getSource() == loginPanel.getRegisterationButton()) {
-			cardLayout.show(contentPane, "register");
-		}else if(e.getSource() == registerationPanel.getLoginButton()) {
-			cardLayout.show(contentPane, "login");
-		}else if(e.getSource() == registerationPanel.getRegisterButton()) {
-			//add implementation
-		}
+	public LoginPanel getLoginPanel() {
+		return loginPanel;
 	}
+
+	public RegisterPanel getRegisterationPanel() {
+		return registerationPanel;
+	}
+
+	public void showRegisterPanel() {
+		cardLayout.show(contentPane, "register");
+	}
+
+	public void showLoginPanel() {
+		cardLayout.show(contentPane, "login");
+	}
+	
+	
 
 }
