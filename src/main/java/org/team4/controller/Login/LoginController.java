@@ -22,6 +22,8 @@ public class LoginController implements ActionListener{
 	private void addListeners() {
 		loginPage.getLoginButton().addActionListener(this);
 		loginPage.getRegisterButton().addActionListener(this);
+		loginPage.getCreateAccountButton().addActionListener(this);
+		loginPage.getAlreadyHaveAccountButton().addActionListener(this);
 	}
 
 	@Override
@@ -35,6 +37,7 @@ public class LoginController implements ActionListener{
 						/**
 						 * Email found and Correct Password Provided Move to home page
 						 */
+						loginPage.getPasswordWarning().setVisible(false);
 						switch (u.getType()) {
 						case "STUDENT":
 							System.out.println(u.toString() + " Logged in Successfully as Student");
@@ -60,18 +63,41 @@ public class LoginController implements ActionListener{
 						}
 
 					} else {
+						loginPage.getPasswordWarning().setVisible(true);
+						loginPage.getEmailWarning().setVisible(false);
 						System.out.println(u.toString() + " Incorrect Password");
 					}
 				}
 
 			}
 			if (flag == false) {
+				loginPage.getEmailWarning().setVisible(true);
 				System.out.println("Account not found\nPlease make sure you have entered the correct Email");
 			}
 		}
 		
-		if (e.getSource() == loginPage.getRegisterButton()) {
+		else if (e.getSource() == loginPage.getCreateAccountButton()) {
+			boolean flag = false;
+			for (User u : maintainUser.users) {
+				if (u.getEmail().equals(loginPage.getRegisterEmailInput())) {
+					flag = true;
+					System.out.println("Account with email " + u.getEmail() + " already exists");
+				}
+			}
+			if (flag == false) {
+				System.out.println("Email doesnt already exist, still need to check other credentials");
+			}
+
+			}
+		
+		else if (e.getSource() == loginPage.getRegisterButton()) {
 			System.out.println("User attempted to Register");
+			loginPage.showRegistrationPage();
+		}
+		
+		else if (e.getSource() == loginPage.getAlreadyHaveAccountButton()) {
+			System.out.println("User wishes to login to existing account");
+			loginPage.showLoginPage();
 		}
 
 	}
