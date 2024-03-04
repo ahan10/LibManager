@@ -93,11 +93,12 @@ public class LoginController implements ActionListener {
 						case "MANAGER":
 							System.out.println(u.toString() + " Logged in Successfully as Manager");
 							// TEMPORARY METHOD FOR OPENING MANAGERDASHBOARD
-							frame = new ManagerDashboard();
+							System.out.println("login button clicked for manager");
+							frame = new ManagerDashboard(u);
 							frame.setLocationRelativeTo(null);
 							frame.setVisible(true);
 							@SuppressWarnings("unused") ManagerController controller = new ManagerController(frame);
-							loginPage.setVisible(false);
+							loginPage.dispose();
 							break;
 						case "VISITOR":
 							System.out.println(u.toString() + " Logged in Successfully as Visitor");
