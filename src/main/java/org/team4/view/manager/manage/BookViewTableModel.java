@@ -16,7 +16,7 @@ public class BookViewTableModel extends DefaultTableModel{
 			"Genre",
 			"Author",
 			"Publisher",
-			"Purchase"
+			"Rent"
 	};
 	
 	public BookViewTableModel(ArrayList<Book> books) {
