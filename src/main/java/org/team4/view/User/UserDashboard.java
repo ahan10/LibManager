@@ -116,7 +116,7 @@ public class UserDashboard extends JFrame implements ActionListener {
 		activityPanel.add(purchasePanel, PURCHASE_PANEL);
 		activityPanel.add(subscribePanel, SUBSCRIBE_PANEL);
 
-		cardLayout.show(activityPanel, RENT_PANEL);
+		cardLayout.show(activityPanel, RENT_PANEL);// default panel have a user/home page
 
 
 
