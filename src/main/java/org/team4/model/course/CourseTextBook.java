@@ -16,7 +16,7 @@ public class CourseTextBook extends Book {
     private List<Student> studentsWithCopies;
     private Date currentDay;
 
-    public CourseTextBook(Item item, String genre, int noOfPages, String author, long ISBN, String publisherName, String edition, Course course, boolean isVirtual) {
+    public CourseTextBook(Item item, String genre, int noOfPages, String author, String ISBN, String publisherName, int edition, Course course, boolean isVirtual) {
         super(item, genre, noOfPages, author, ISBN, publisherName, edition);
         this.course = course;
         this.isVirtual = isVirtual;

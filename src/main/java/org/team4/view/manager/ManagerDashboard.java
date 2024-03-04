@@ -2,6 +2,8 @@ package org.team4.view.manager;
 
 import org.team4.controller.managerdashboard.ManagerController;
 import org.team4.model.user.User;
+import org.team4.view.manager.manage.ManageItemPanel;
+import org.team4.view.manager.validate.ValidateUserPanel;
 
 import java.awt.CardLayout;
 import java.awt.EventQueue;
@@ -44,6 +46,7 @@ public class ManagerDashboard extends JFrame{
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 
+					@SuppressWarnings("unused")
 					ManagerController controller = new ManagerController(frame);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,13 +78,13 @@ public class ManagerDashboard extends JFrame{
         this.setTitle("Manager Dashboard");
         
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 1000, 800);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		
 		activityPanel = new JPanel();
-		activityPanel.setBounds(6, 46, 788, 520);
+		activityPanel.setBounds(6, 46, 988, 720);
 		
 		cardLayout = new CardLayout();
 		activityPanel.setLayout(cardLayout);
@@ -89,7 +92,7 @@ public class ManagerDashboard extends JFrame{
 	
 	public void addButtons() {
 		LogOutButton = new JButton("Log Out");
-		LogOutButton.setBounds(700, 6, 94, 29);
+		LogOutButton.setBounds(900, 6, 94, 29);
 		contentPane.add(LogOutButton);
 		
 		AddItemButton = new JButton("Add Item");
@@ -104,9 +107,14 @@ public class ManagerDashboard extends JFrame{
 		ValidateUserButton.setBounds(6, 6, 117, 29);
 		contentPane.add(ValidateUserButton);
 		
-		JLabel nameLabel = new JLabel(this.manager.getName());
+//		JLabel nameLabel = new JLabel(this.manager.getName());
+//		nameLabel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+//		nameLabel.setBounds(677, 11, 211, 16);
+//		contentPane.add(nameLabel);
+		
+		JLabel nameLabel = new JLabel("TEST_NAME");
 		nameLabel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		nameLabel.setBounds(485, 11, 211, 16);
+		nameLabel.setBounds(677, 11, 211, 16);
 		contentPane.add(nameLabel);
 	}
 	

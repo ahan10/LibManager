@@ -18,22 +18,20 @@ class BookTest {
 	void init(){
 		 actual = ((BookBuilder) new BookBuilder()
 				.title("Title")
-				.yearPublished(new Date()))
-				.genre("Fiction")
+				.yearPublished(1999))
 				.noOfPages(300)
 				.author("John Doe")
-				.ISBN(123456789L)
+				.ISBN(123456789L + "")
 				.publisher("Book Publisher")
-				 .edition("12")
+				 .edition(12)
 				 .genre("genre")
-				 .yearPublished(new Date())
 				 .build();
 	}
 	
 	@Test
 	void test() {
-		Item item = new Item("Title", new Date(), true, true);
-		Book expected = new Book(item, "genre", 300, "John Doe", 123456789L, "Book Publisher", "12");
+		Item item = new Item("Title", 2003, true, true);
+		Book expected = new Book(item, "genre", 300, "John Doe", "123456789", "Book Publisher", 12);
 		assertNotEquals(actual, expected);
 	}
 

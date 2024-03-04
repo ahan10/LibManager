@@ -5,14 +5,14 @@ import java.util.Date;
 //Abstract builder with common parameters
 public abstract class ItemBuilder<T extends Item> {
  protected String title;
- protected Date yearPublished;
+ protected int yearPublished;
 
  public ItemBuilder<T> title(String title) {
      this.title = title;
      return this;
  }
 
- public ItemBuilder<T> yearPublished(Date yearPublished) {
+ public ItemBuilder<T> yearPublished(int yearPublished) {
      this.yearPublished = yearPublished;
      return this;
  }

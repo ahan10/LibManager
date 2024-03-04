@@ -6,9 +6,9 @@ public class BookBuilder extends ItemBuilder<Book> {
  protected String genre;
  protected int noOfPages;
  protected String author;
- protected long ISBN = 0L;
+ protected String ISBN;
  protected String publisher;
- protected String edition;
+ protected int edition;
 
  public BookBuilder genre(String genre) {
      this.genre = genre;
@@ -25,7 +25,7 @@ public class BookBuilder extends ItemBuilder<Book> {
      return this;
  }
 
- public BookBuilder ISBN(long ISBN) {
+ public BookBuilder ISBN(String ISBN) {
      this.ISBN = ISBN;
      return this;
  }
@@ -35,7 +35,7 @@ public class BookBuilder extends ItemBuilder<Book> {
      return this;
  }
 
- public BookBuilder edition(String edition) {
+ public BookBuilder edition(int edition) {
      this.edition = edition;
      return this;
  }

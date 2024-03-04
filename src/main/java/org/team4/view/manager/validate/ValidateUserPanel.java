@@ -1,4 +1,4 @@
-package org.team4.view.manager;
+package org.team4.view.manager.validate;
 
 import java.awt.BorderLayout;
 
@@ -18,6 +18,8 @@ import javax.swing.table.TableColumn;
 
 import org.team4.maintaindb.MaintainUser;
 import org.team4.model.user.User;
+import org.team4.view.manager.validate.NonValidatedUsersTableModel;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -44,16 +46,11 @@ public class ValidateUserPanel extends JPanel {
 	}
 	
 	public void initValidate() {
-		setBounds(100, 100, 788, 520);
+		setBounds(100, 100, 988, 720);
 		setLayout(new BorderLayout());
 		
 		JPanel panel = new JPanel();
 	    panel.setLayout(null);
-		
-		JLabel TitleLabel = new JLabel("Validate User");
-		TitleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		TitleLabel.setBounds(328, 28, 132, 16);
-		add(TitleLabel);
 		
 		add(panel, BorderLayout.CENTER);
 		
@@ -65,11 +62,11 @@ public class ValidateUserPanel extends JPanel {
         validatedColumn.setCellEditor(new DefaultCellEditor(comboBox));
 
         JScrollPane usersPane = new JScrollPane(nonValidatedUsersTable);
-		usersPane.setBounds(35, 63, 718, 404);
+		usersPane.setBounds(35, 63, 916, 593);
 		panel.add(usersPane);
 		
 		JButton updateButton = new JButton("Update Users");
-		updateButton.setBounds(635, 479, 117, 29);
+		updateButton.setBounds(834, 668, 117, 29);
 		
 		updateButton.addActionListener(new ActionListener() {
             @Override
@@ -80,6 +77,11 @@ public class ValidateUserPanel extends JPanel {
         });
 		
 		panel.add(updateButton);	
+		
+		JLabel TitleLabel = new JLabel("Validate User");
+		panel.add(TitleLabel);
+		TitleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		TitleLabel.setBounds(428, 25, 132, 16);
 	}
 	
 	private void updateSelectedUsers() {
