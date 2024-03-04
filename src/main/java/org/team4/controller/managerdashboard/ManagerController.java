@@ -1,8 +1,8 @@
 package org.team4.controller.managerdashboard;
 
-import org.team4.controller.Login.LoginController;
+import org.team4.controller.login.LoginController;
 import org.team4.maintaindb.MaintainUser;
-import org.team4.view.Login.LoginPage;
+import org.team4.view.login.LoginPage;
 import org.team4.view.manager.*;
 
 import java.awt.event.ActionEvent;

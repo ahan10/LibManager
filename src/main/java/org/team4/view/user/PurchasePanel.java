@@ -1,4 +1,4 @@
-package org.team4.view.User;
+package org.team4.view.user;
 
 import java.awt.Font;
 

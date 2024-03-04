@@ -1,4 +1,4 @@
-package org.team4.controller.Login;
+package org.team4.controller.login;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import org.team4.controller.managerdashboard.ManagerController;
 import org.team4.maintaindb.MaintainUser;
 import org.team4.model.user.User;
-import org.team4.view.Login.LoginPage;
+import org.team4.view.login.LoginPage;
 import org.team4.view.manager.ManagerDashboard;
 
 public class LoginController implements ActionListener {

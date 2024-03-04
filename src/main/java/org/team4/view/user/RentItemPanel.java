@@ -1,12 +1,10 @@
-package org.team4.view.User;
+package org.team4.view.user;
 
 import javax.swing.JPanel;
 
 import java.awt.Font;
 
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 class RentItemPanel extends JPanel {
 	
