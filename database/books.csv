@@ -1,0 +1,30 @@
+title,yearPublished,isBorrowable,isPurchaseable,genre,noOfPages,author,ISBN,publisherName,edition
+The Great Gatsby,1925,TRUE,TRUE,Fiction,180,F. Scott Fitzgerald,9781234567890.00,Random House,First Edition
+Introduction to Java Programming,2019,TRUE,TRUE,Textbook,700,Y. Daniel Liang,9780135166307.00,Pearson,12th Edition
+The Catcher in the Rye,1951,TRUE,TRUE,Fiction,214,J.D. Salinger,9780060931957.00,Little Brown and Company,Reprint Edition
+Data Structures and Algorithms,2020,TRUE,TRUE,Textbook,550,Robert Lafore,9780134894281.00,Sams Publishing,2nd Edition
+To Kill a Mockingbird,1960,TRUE,TRUE,Fiction,281,Harper Lee,9780061120084.00,HarperCollins,Special Edition
+1984,1949,TRUE,TRUE,Dystopian,328,George Orwell,9780451524935.00,Signet Classics,Reissue Edition
+Artificial Intelligence: A Modern Approach,2009,TRUE,TRUE,Textbook,1132,Stuart Russell & Peter Norvig,9780136042594.00,Pearson,3rd Edition
+The Hobbit,1937,TRUE,TRUE,Fantasy,310,J.R.R. Tolkien,9780345339683.00,Houghton Mifflin Harcourt,75th Anniversary Edition
+Clean Code: A Handbook of Agile Software Craftsmanship,2008,TRUE,TRUE,Non-fiction,464,Robert C. Martin,9780132350884.00,Prentice Hall,1st Edition
+Pride and Prejudice,1813,TRUE,TRUE,Romance,279,Jane Austen,9780141439518.00,Penguin Classics,Reissue Edition
+Introduction to Algorithms,2009,TRUE,TRUE,Textbook,1292,Thomas H. Cormen et al.,9780262033848.00,MIT Press,3rd Edition
+The Da Vinci Code,2003,TRUE,TRUE,Mystery,489,Dan Brown,9780307474278.00,Anchor Books,Special Illustrated Edition
+Thinking Fast and Slow,2011,TRUE,TRUE,Psychology,499,Daniel Kahneman,9780374533557.00,Farrar Straus and Giroux,1st Edition
+Java: The Complete Reference,2017,TRUE,TRUE,Textbook,1248,Herbert Schildt,9781259589331.00,McGraw-Hill Education,10th Edition
+The Lord of the Rings,1954,TRUE,TRUE,Fantasy,1178,J.R.R. Tolkien,9780544003415.00,Houghton Mifflin Harcourt,Deluxe Edition
+Cracking the Coding Interview,2015,TRUE,TRUE,Non-fiction,708,Gayle Laakmann McDowell,9780984782857.00,CareerCup,6th Edition
+Brave New World,1932,TRUE,TRUE,Dystopian,311,Aldous Huxley,9780060850524.00,Harper Perennial Modern Classics,Reprint Edition
+Database Management Systems,2021,TRUE,TRUE,Textbook,800,Raghu Ramakrishnan & Johannes Gehrke,9780072465631.00,McGraw-Hill Education,4th Edition
+The Art of War,1765,TRUE,TRUE,Philosophy,92,Sun Tzu,9781590302255.00,Shambhala,Reissue Edition
+Effective Java,2017,TRUE,TRUE,Non-fiction,412,Joshua Bloch,9780134685991.00,Addison-Wesley,3rd Edition
+Harry Potter and the Sorcerer's Stone,1997,TRUE,TRUE,Fantasy,309,J.K. Rowling,9780590353427.00,Scholastic,1st American Edition
+Python Crash Course,2015,TRUE,TRUE,Textbook,544,Eric Matthes,9781593276034.00,No Starch Press,2nd Edition
+Animal Farm,1945,TRUE,TRUE,Allegory,141,George Orwell,9780451526342.00,Signet Classics,Centennial Edition
+Design Patterns: Elements of Reusable Object-Oriented Software,1994,TRUE,TRUE,Non-fiction,416,Erich Gamma et al.,9780201633610.00,Addison-Wesley,1st Edition
+Moby-Dick,1851,TRUE,TRUE,Adventure,654,Herman Melville,9781503280786.00,CreateSpace Independent Publishing Platform,Reprint Edition
+Algorithms,2022,TRUE,TRUE,Textbook,736,Jeff Erickson,9781718501774.00,Independently published,1st Edition
+The Shining,1977,TRUE,TRUE,Horror,688,Stephen King,9780307743657.00,Anchor,Reissue Edition
+Eloquent JavaScript,2018,TRUE,TRUE,Textbook,472,Marijn Haverbeke,9781593279509.00,No Starch Press,3rd Edition
+A Tale of Two Cities,1859,TRUE,TRUE,Historical Fiction,489,Charles Dickens,9780141439600.00,Penguin Classics,Reissue Edition
