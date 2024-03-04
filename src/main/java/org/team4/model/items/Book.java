@@ -20,6 +20,30 @@ public class Book extends Item{
         this.publisher = publisherName;
         this.edition = edition;
     }
+    
+	public String getGenre() {
+		return genre;
+	}
+
+	public int getNoOfPages() {
+		return noOfPages;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public long getISBN() {
+		return ISBN;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public String getEdition() {
+		return edition;
+	}
 
     @Override
     public String toString() {
