@@ -1,5 +1,7 @@
 package org.team4.controller.managerdashboard;
 
+import org.team4.controller.Login.LoginController;
+import org.team4.maintaindb.MaintainUser;
 import org.team4.view.Login.LoginPage;
 import org.team4.view.manager.*;
 
@@ -31,8 +33,16 @@ public class ManagerController implements ActionListener {
             managerDashboard.showManageItemPanel();
         } else if (e.getSource() == managerDashboard.getLogOutButton()) {
             managerDashboard.dispose();
-            LoginPage loginPage = new LoginPage();
-            loginPage.setVisible(true);
+            LoginPage frame = new LoginPage();
+            MaintainUser maintainUser = new MaintainUser();
+			try {
+				maintainUser.load();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        	@SuppressWarnings("unused") LoginController controller = new LoginController(frame, maintainUser);
+            frame.setVisible(true);
         }
     }
 }
