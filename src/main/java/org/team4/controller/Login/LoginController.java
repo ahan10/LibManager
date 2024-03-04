@@ -11,11 +11,12 @@ import org.team4.controller.managerdashboard.ManagerController;
 import org.team4.maintaindb.MaintainUser;
 import org.team4.model.user.User;
 import org.team4.view.Login.LoginPage;
-import org.team4.view.Manager.ManagerDashboard;
+import org.team4.view.manager.ManagerDashboard;
 
 public class LoginController implements ActionListener {
 	private LoginPage loginPage;
 	private MaintainUser maintainUser;
+	private ManagerDashboard frame;
 
 	public LoginController(LoginPage loginPage, MaintainUser maintainUser) {
 		this.loginPage = loginPage;
@@ -92,7 +93,7 @@ public class LoginController implements ActionListener {
 						case "MANAGER":
 							System.out.println(u.toString() + " Logged in Successfully as Manager");
 							// TEMPORARY METHOD FOR OPENING MANAGERDASHBOARD
-							ManagerDashboard frame = new ManagerDashboard();
+							frame = new ManagerDashboard();
 							frame.setLocationRelativeTo(null);
 							frame.setVisible(true);
 							@SuppressWarnings("unused") ManagerController controller = new ManagerController(frame);
