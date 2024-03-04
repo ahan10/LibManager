@@ -7,11 +7,11 @@ public class Book extends Item{
 	private String genre;
     private int noOfPages;
     private String author;
-    private long ISBN;
+    private String ISBN;
     private String publisher;
     private String edition;
 
-    public Book(Item item, String genre, int noOfPages, String author, long ISBN, String publisherName, String edition) {
+    public Book(Item item, String genre, int noOfPages, String author, String ISBN, String publisherName, String edition) {
         super(item);
         this.genre = genre;
         this.noOfPages = noOfPages;
@@ -33,7 +33,7 @@ public class Book extends Item{
 		return author;
 	}
 
-	public long getISBN() {
+	public String getISBN() {
 		return ISBN;
 	}
 

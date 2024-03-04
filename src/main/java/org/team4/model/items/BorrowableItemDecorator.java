@@ -7,7 +7,7 @@ public class BorrowableItemDecorator extends ItemDecorator {
     }
 	
 	@Override
-    public boolean isBorrowable() {
+    public boolean isRentable() {
         return true;
     }
 

@@ -6,17 +6,17 @@ import java.util.Objects;
 public class Item {
 
 	private String title;
-    private Date yearPublished;
+    private int yearPublished;
     protected boolean isRentable;
     protected boolean isPurchaseable;
     
-    public Item(String title, Date yearPublished) {
+    public Item(String title, int yearPublished) {
     	this.title = title;
         this.yearPublished = yearPublished;
     }
     
    
-    public Item(String title, Date yearPublished, boolean isPurchaseable, boolean isRentable) {
+    public Item(String title, int yearPublished, boolean isPurchaseable, boolean isRentable) {
 		super();
 		this.title = title;
 		this.yearPublished = yearPublished;
@@ -32,7 +32,7 @@ public class Item {
 		return title;
 	}
 
-	public Date getYearPublished() {
+	public int getYearPublished() {
 		return yearPublished;
 	}
     
