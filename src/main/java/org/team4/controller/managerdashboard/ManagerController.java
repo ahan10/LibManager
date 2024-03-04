@@ -1,5 +1,6 @@
 package org.team4.controller.managerdashboard;
 
+import org.team4.view.Login.LoginPage;
 import org.team4.view.manager.*;
 
 import java.awt.event.ActionEvent;
@@ -29,7 +30,9 @@ public class ManagerController implements ActionListener {
         } else if (e.getSource() == managerDashboard.getManageItemButton()) {
             managerDashboard.showManageItemPanel();
         } else if (e.getSource() == managerDashboard.getLogOutButton()) {
-            // Handle logout logic here
+            managerDashboard.dispose();
+            LoginPage loginPage = new LoginPage();
+            loginPage.setVisible(true);
         }
     }
 }
