@@ -1,6 +1,7 @@
-package org.team4.view.Manager;
+package org.team4.view.manager;
 
 import org.team4.controller.managerdashboard.ManagerController;
+import org.team4.model.user.User;
 
 import java.awt.CardLayout;
 import java.awt.EventQueue;
@@ -9,16 +10,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.ComponentOrientation;
 
 public class ManagerDashboard extends JFrame{
 
 	private static final long serialVersionUID = 1L;
-	
 	private JPanel contentPane;
 	private JPanel activityPanel;
-	
 	private CardLayout cardLayout;
-	
 	private JButton LogOutButton;
 	private JButton AddItemButton;
 	private JButton ManageItemButton;
@@ -27,10 +27,11 @@ public class ManagerDashboard extends JFrame{
 	private final String VALIDATE_PANEL = "Validate User Panel";
 	private final String ADD_PANEL = "Add Item Panel";
 	private final String MANAGE_PANEL = "Manage ItemPanel";
-
 	private JPanel validateUserPanel = new ValidateUserPanel();
 	private JPanel addItemPanel = new AddItemPanel();
 	private JPanel manageItemPanel = new ManageItemPanel();
+	
+	private User manager;
 	
 	/**
 	 * Launch the application.
@@ -55,6 +56,13 @@ public class ManagerDashboard extends JFrame{
 	 * Create the frame.
 	 */
 	public ManagerDashboard() {
+		initPanel();
+		addButtons();
+		addPanels();
+	}
+	
+	public ManagerDashboard(User user) {
+		this.manager = user;
 		initPanel();
 		addButtons();
 		addPanels();
@@ -95,6 +103,11 @@ public class ManagerDashboard extends JFrame{
 		ValidateUserButton = new JButton("Validate User");
 		ValidateUserButton.setBounds(6, 6, 117, 29);
 		contentPane.add(ValidateUserButton);
+		
+		JLabel nameLabel = new JLabel(this.manager.getName());
+		nameLabel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		nameLabel.setBounds(485, 11, 211, 16);
+		contentPane.add(nameLabel);
 	}
 	
 	public void addPanels() {
@@ -133,5 +146,4 @@ public class ManagerDashboard extends JFrame{
 	public void showManageItemPanel() {
 		cardLayout.show(activityPanel, MANAGE_PANEL);
 	}
-
 }
