@@ -32,8 +32,8 @@ public class MaintainBooks {
                        .author(reader.get("author"))
                        .ISBN(reader.get("ISBN"))
                        .publisher(reader.get("publisherName"))
-                       .edition(reader.get("edition"))
-                       .genre(reader.get("genre")) // parse int
+                       .edition(Integer.parseInt(reader.get("edition")))
+                       .genre(reader.get("genre"))
                        .build();
 
                allBooks.add(b);

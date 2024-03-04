@@ -23,7 +23,7 @@ class BookTest {
 				.author("John Doe")
 				.ISBN(123456789L + "")
 				.publisher("Book Publisher")
-				 .edition("12")
+				 .edition(12)
 				 .genre("genre")
 				 .build();
 	}
@@ -31,7 +31,7 @@ class BookTest {
 	@Test
 	void test() {
 		Item item = new Item("Title", 2003, true, true);
-		Book expected = new Book(item, "genre", 300, "John Doe", "123456789", "Book Publisher", "12");
+		Book expected = new Book(item, "genre", 300, "John Doe", "123456789", "Book Publisher", 12);
 		assertNotEquals(actual, expected);
 	}
 
