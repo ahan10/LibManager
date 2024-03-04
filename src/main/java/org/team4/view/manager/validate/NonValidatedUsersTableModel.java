@@ -1,4 +1,4 @@
-package org.team4.view.manager;
+package org.team4.view.manager.validate;
 
 import java.util.ArrayList;
 
