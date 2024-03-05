@@ -1,4 +1,7 @@
-package org.team4.model.items;
+package org.team4.model.items.builder;
+
+import org.team4.model.items.DVD;
+import org.team4.model.items.Item;
 
 //Concrete builder for DVD
 public class DVDBuilder extends ItemBuilder<DVD> {
@@ -17,6 +20,6 @@ public class DVDBuilder extends ItemBuilder<DVD> {
 
  @Override
  public DVD build() {
-     return new DVD(new Item (title, yearPublished), genre, duration);
+     return new DVD(new Item(title, yearPublished), genre, duration);
  }
 }

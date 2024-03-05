@@ -1,6 +1,7 @@
-package org.team4.model.items;
+package org.team4.model.items.builder;
 import org.team4.model.course.Course;
 import org.team4.model.course.CourseTextBook;
+import org.team4.model.items.Item;
 
 public class CourseTextBookBuilder extends BookBuilder {
     private Course course;

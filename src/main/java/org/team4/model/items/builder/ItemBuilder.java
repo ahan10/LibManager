@@ -1,6 +1,6 @@
-package org.team4.model.items;
+package org.team4.model.items.builder;
 
-import java.util.Date;
+import org.team4.model.items.Item;
 
 //Abstract builder with common parameters
 public abstract class ItemBuilder<T extends Item> {

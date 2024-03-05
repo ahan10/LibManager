@@ -1,5 +1,8 @@
-package org.team4.model.items;
+package org.team4.model.items.builder;
 
+
+import org.team4.model.items.Book;
+import org.team4.model.items.Item;
 
 //Concrete builder for Book
 public class BookBuilder extends ItemBuilder<Book> {

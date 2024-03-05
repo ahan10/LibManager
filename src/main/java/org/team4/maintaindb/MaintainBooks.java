@@ -2,17 +2,15 @@ package org.team4.maintaindb;
 
 import com.csvreader.CsvReader;
 import org.team4.model.items.Book;
-import org.team4.model.items.BookBuilder;
-import org.team4.model.user.User;
+import org.team4.model.items.builder.BookBuilder;
 
 import org.team4.model.items.Item;
-import org.team4.model.items.PurchasableItemDecorator;
-import org.team4.model.items.RentableItemDecorator;
+import org.team4.model.items.decorator.PurchasableItemDecorator;
+import org.team4.model.items.decorator.RentableItemDecorator;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 public class MaintainBooks {
