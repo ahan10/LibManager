@@ -49,6 +49,13 @@ public class Item {
 		return Objects.hash(isPurchaseable, isRentable, title, yearPublished);
 	}
 
+	public void setRentable(boolean rentable) {
+		isRentable = rentable;
+	}
+
+	public void setPurchaseable(boolean purchaseable) {
+		isPurchaseable = purchaseable;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
