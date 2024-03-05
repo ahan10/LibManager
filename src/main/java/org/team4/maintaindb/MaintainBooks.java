@@ -11,13 +11,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 public class MaintainBooks {
     private static final String FILE_PATH = "database/books.csv";
 
     public MaintainBooks(){}
 
-    public ArrayList<Book> getAllBooks(){
+    public static ArrayList<Book> getAllBooks(){
         ArrayList<Book> allBooks = new ArrayList<Book>();
         CsvReader reader = null;
 
@@ -46,4 +47,18 @@ public class MaintainBooks {
 
         return allBooks;
     }
+    public static ArrayList<Book> searchBooks(String query) {
+        ArrayList<Book> books = getAllBooks();
+        ArrayList<Book> searchedBooks = new ArrayList<>();
+
+        for (Book book: books) {
+            if (book.getTitle().toLowerCase().contains(query.toLowerCase())) {
+            	searchedBooks.add(book);
+            }
+        }
+        return searchedBooks;
+    }
+
+    
+   
 }
