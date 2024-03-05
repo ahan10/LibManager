@@ -8,10 +8,12 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 import org.team4.controller.managerdashboard.ManagerController;
+import org.team4.controller.userdashboard.UserController;
 import org.team4.maintaindb.MaintainUser;
 import org.team4.model.user.User;
 import org.team4.view.login.LoginPage;
 import org.team4.view.manager.ManagerDashboard;
+import org.team4.view.user.UserDashboard;
 
 public class LoginController implements ActionListener {
 	private LoginPage loginPage;
@@ -83,6 +85,10 @@ public class LoginController implements ActionListener {
 						switch (u.getType()) {
 						case "STUDENT":
 							System.out.println(u.toString() + " Logged in Successfully as Student");
+							UserDashboard userDashboard = new UserDashboard();
+							UserController userController = new UserController(userDashboard);
+							userDashboard.setVisible(true);
+							loginPage.dispose();
 							break;
 						case "FACULTY":
 							System.out.println(u.toString() + " Logged in Successfully as Faculty");
