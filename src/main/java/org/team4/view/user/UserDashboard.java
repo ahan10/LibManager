@@ -1,9 +1,13 @@
 package org.team4.view.user;
+import org.team4.maintaindb.MaintainBooks;
+import org.team4.model.items.Book;
 
 import java.awt.CardLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -27,10 +31,13 @@ public class UserDashboard extends JFrame implements ActionListener {
 	private final String RENT_PANEL = "Rent Item Panel";
 	private final String SUBSCRIBE_PANEL = "Subscribe Panel";
 	private final String PURCHASE_PANEL = "Purchase Panel";
+	private final String SEARCH_RESULTS_PANEL = "Search Panel";
+	
 
 	private JPanel rentItemPanel = new RentItemPanel(); 
 	private JPanel subscribePanel = new SubscribePanel(); 
 	private JPanel purchasePanel = new PurchasePanel(); 
+	private SearchResultsPanel searchResultsPanel = new SearchResultsPanel();
 
 
 	public static void main(String[] args) {
@@ -58,7 +65,7 @@ public class UserDashboard extends JFrame implements ActionListener {
 		contentPane = new JPanel();
 
 		this.setTitle("User Dashboard");
-		setLocationRelativeTo(null);
+		this.setLocationRelativeTo(null);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -83,7 +90,30 @@ public class UserDashboard extends JFrame implements ActionListener {
 		SearchTextField.setBounds(60, 1, 300, 26);
 		SearchTextField.setColumns(10);
 		contentPane.add(SearchTextField);
+		 SearchTextField.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	                performSearch(SearchTextField.getText());
+	            }
+	        });
 	}
+	private void performSearch(String query) {
+	    ArrayList<Book> searchResults = null;
+	    try {
+	        searchResults = MaintainBooks.searchBooks(query);
+	        updateSearchResultsPanel(searchResults);
+	        cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	       
+	    }
+	}
+	 
+	 private void updateSearchResultsPanel(ArrayList<Book> results) {
+		    searchResultsPanel = new SearchResultsPanel(results);
+		    activityPanel.add(searchResultsPanel, SEARCH_RESULTS_PANEL);
+		    cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL); 
+		}
 
 	public void addButtons() {
 		RentItemButton = new JButton("Rent an Item");
