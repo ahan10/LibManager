@@ -1,5 +1,4 @@
 package org.team4.view.user;
-import org.team4.*;
 import org.team4.maintaindb.MaintainBooks;
 import org.team4.model.items.Book;
 
@@ -38,7 +37,7 @@ public class UserDashboard extends JFrame implements ActionListener {
 	private JPanel rentItemPanel = new RentItemPanel(); 
 	private JPanel subscribePanel = new SubscribePanel(); 
 	private JPanel purchasePanel = new PurchasePanel(); 
-	private SearchResultsPanel searchResultsPanel;
+	private SearchResultsPanel searchResultsPanel = new SearchResultsPanel();
 
 
 	public static void main(String[] args) {
@@ -66,7 +65,7 @@ public class UserDashboard extends JFrame implements ActionListener {
 		contentPane = new JPanel();
 
 		this.setTitle("User Dashboard");
-		setLocationRelativeTo(null);
+		this.setLocationRelativeTo(null);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
