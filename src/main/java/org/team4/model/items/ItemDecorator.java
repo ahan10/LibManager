@@ -4,12 +4,12 @@ public class ItemDecorator extends Item {
     protected Item item;
 
     public Item getItem() {
-		return item;
-	}
+        return item;
+    }
 
-	public ItemDecorator(Item item) {
+    public ItemDecorator(Item item) {
         super(item);
-    	this.item = item;
+        this.item = item;
     }
 
 }

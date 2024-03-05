@@ -1,30 +1,30 @@
 title,yearPublished,isRentable,isPurchaseable,genre,noOfPages,author,ISBN,publisherName,edition
-The Great Gatsby,1925,TRUE,FALSE,Fiction,180,F. Scott Fitzgerald,9.78E+12,Random House,1
-Introduction to Java Programming,2019,TRUE,TRUE,Textbook,700,Y. Daniel Liang,9.78E+12,Pearson,12
-The Catcher in the Rye,1951,TRUE,TRUE,Fiction,214,J.D. Salinger,9.78E+12,Little Brown and Company,0
-Data Structures and Algorithms,2020,TRUE,TRUE,Textbook,550,Robert Lafore,9.78E+12,Sams Publishing,2
-To Kill a Mockingbird,1960,TRUE,TRUE,Fiction,281,Harper Lee,9.78E+12,HarperCollins,0
-1984,1949,TRUE,TRUE,Dystopian,328,George Orwell,9.78E+12,Signet Classics,0
-Artificial Intelligence: A Modern Approach,2009,TRUE,TRUE,Textbook,1132,Stuart Russell & Peter Norvig,9.78E+12,Pearson,3
-The Hobbit,1937,TRUE,TRUE,Fantasy,310,J.R.R. Tolkien,9.78E+12,Houghton Mifflin Harcourt,75
-Clean Code: A Handbook of Agile Software Craftsmanship,2008,TRUE,TRUE,Non-fiction,464,Robert C. Martin,9.78E+12,Prentice Hall,1
-Pride and Prejudice,1813,TRUE,TRUE,Romance,279,Jane Austen,9.78E+12,Penguin Classics,0
-Introduction to Algorithms,2009,TRUE,TRUE,Textbook,1292,Thomas H. Cormen et al.,9.78E+12,MIT Press,3
-The Da Vinci Code,2003,TRUE,TRUE,Mystery,489,Dan Brown,9.78E+12,Anchor Books,0
-Thinking Fast and Slow,2011,TRUE,TRUE,Psychology,499,Daniel Kahneman,9.78E+12,Farrar Straus and Giroux,1
-Java: The Complete Reference,2017,TRUE,TRUE,Textbook,1248,Herbert Schildt,9.78E+12,McGraw-Hill Education,10
-The Lord of the Rings,1954,TRUE,TRUE,Fantasy,1178,J.R.R. Tolkien,9.78E+12,Houghton Mifflin Harcourt,0
-Cracking the Coding Interview,2015,TRUE,TRUE,Non-fiction,708,Gayle Laakmann McDowell,9.78E+12,CareerCup,6
-Brave New World,1932,TRUE,TRUE,Dystopian,311,Aldous Huxley,9.78E+12,Harper Perennial Modern Classics,0
-Database Management Systems,2021,TRUE,TRUE,Textbook,800,Raghu Ramakrishnan & Johannes Gehrke,9.78E+12,McGraw-Hill Education,4
-The Art of War,475,TRUE,TRUE,Philosophy,92,Sun Tzu,9.78E+12,Shambhala,0
-Effective Java,2017,TRUE,TRUE,Non-fiction,412,Joshua Bloch,9.78E+12,Addison-Wesley,3
-Harry Potter and the Sorcerer's Stone,1997,TRUE,TRUE,Fantasy,309,J.K. Rowling,9.78E+12,Scholastic,1
-Python Crash Course,2015,TRUE,TRUE,Textbook,544,Eric Matthes,9.78E+12,No Starch Press,2
-Animal Farm,1945,TRUE,TRUE,Allegory,141,George Orwell,9.78E+12,Signet Classics,10
-Design Patterns: Elements of Reusable Object-Oriented Software,1994,FALSE,TRUE,Non-fiction,416,Erich Gamma et al.,9.78E+12,Addison-Wesley,1
-Moby-Dick,1851,TRUE,TRUE,Adventure,654,Herman Melville,9.78E+12,CreateSpace Independent Publishing Platform,0
-Algorithms,2022,TRUE,TRUE,Textbook,736,Jeff Erickson,9.78E+12,Independently published,1
-The Shining,1977,TRUE,TRUE,Horror,688,Stephen King,9.78E+12,Anchor,0
-Eloquent JavaScript,2018,TRUE,TRUE,Textbook,472,Marijn Haverbeke,9.78E+12,No Starch Press,3
-A Tale of Two Cities,1859,TRUE,FALSE,Historical Fiction,489,Charles Dickens,9.78E+12,Penguin Classics,0
+The Great Gatsby,1925,false,true,Fiction,180,F. Scott Fitzgerald,9781234567890,Random House,1
+Introduction to Java Programming,2019,true,true,Textbook,700,Y. Daniel Liang,9780135166307,Pearson,12
+The Catcher in the Rye,1951,true,true,Fiction,214,J.D. Salinger,9780060931957,Little Brown and Company,0
+Data Structures and Algorithms,2020,true,true,Textbook,550,Robert Lafore,9780134894281,Sams Publishing,2
+To Kill a Mockingbird,1960,true,true,Fiction,281,Harper Lee,9780061120084,HarperCollins,0
+1984,1949,true,true,Dystopian,328,George Orwell,9780451524935,Signet Classics,0
+Artificial Intelligence: A Modern Approach,2009,true,true,Textbook,1132,Stuart Russell & Peter Norvig,9780136042594,Pearson,3
+The Hobbit,1937,true,true,Fantasy,310,J.R.R. Tolkien,9780345339683,Houghton Mifflin Harcourt,75
+Clean Code: A Handbook of Agile Software Craftsmanship,2008,true,true,Non-fiction,464,Robert C. Martin,9780132350884,Prentice Hall,1
+Pride and Prejudice,1813,true,true,Romance,279,Jane Austen,9780141439518,Penguin Classics,0
+Introduction to Algorithms,2009,true,true,Textbook,1292,Thomas H. Cormen et al.,9780262033848,MIT Press,3
+The Da Vinci Code,2003,true,true,Mystery,489,Dan Brown,9780307474278,Anchor Books,0
+Thinking Fast and Slow,2011,true,true,Psychology,499,Daniel Kahneman,9780374533557,Farrar Straus and Giroux,1
+Java: The Complete Reference,2017,true,true,Textbook,1248,Herbert Schildt,9781259589331,McGraw-Hill Education,10
+The Lord of the Rings,1954,true,true,Fantasy,1178,J.R.R. Tolkien,9780544003415,Houghton Mifflin Harcourt,0
+Cracking the Coding Interview,2015,true,true,Non-fiction,708,Gayle Laakmann McDowell,9780984782857,CareerCup,6
+Brave New World,1932,true,true,Dystopian,311,Aldous Huxley,9780060850524,Harper Perennial Modern Classics,0
+Database Management Systems,2021,true,true,Textbook,800,Raghu Ramakrishnan & Johannes Gehrke,9780072465631,McGraw-Hill Education,4
+The Art of War,1932,true,true,Philosophy,92,Sun Tzu,9781590302255,Shambhala,0
+Effective Java,2017,true,true,Non-fiction,412,Joshua Bloch,9780134685991,Addison-Wesley,3
+Harry Potter and the Sorcerer's Stone,1997,true,true,Fantasy,309,J.K. Rowling,9780590353427,Scholastic,1
+Python Crash Course,2015,true,true,Textbook,544,Eric Matthes,9781593276034,No Starch Press,2
+Animal Farm,1945,true,true,Allegory,141,George Orwell,9780451526342,Signet Classics,10
+Design Patterns: Elements of Reusable Object-Oriented Software,1994,true,true,Non-fiction,416,Erich Gamma et al.,9780201633610,Addison-Wesley,1
+Moby-Dick,1851,true,true,Adventure,654,Herman Melville,9781503280786,CreateSpace Independent Publishing Platform,0
+Algorithms,2022,true,true,Textbook,736,Jeff Erickson,9781718501774,Independently published,1
+The Shining,1977,true,true,Horror,688,Stephen King,9780307743657,Anchor,0
+Eloquent JavaScript,2018,true,true,Textbook,472,Marijn Haverbeke,9781593279509,No Starch Press,3
+A Tale of Two Cities,1859,true,true,Historical Fiction,489,Charles Dickens,9780141439600,Penguin Classics,0
