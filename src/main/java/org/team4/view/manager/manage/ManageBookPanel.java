@@ -8,6 +8,7 @@ import javax.swing.table.TableColumn;
 
 import org.team4.maintaindb.MaintainBooks;
 import org.team4.model.items.Book;
+import org.team4.model.items.Item;
 
 
 import javax.swing.DefaultCellEditor;
@@ -21,7 +22,7 @@ public class ManageBookPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private BookViewTableModel bookViewTableModel;
-	private ArrayList<Book> allBooks = new ArrayList<Book>();
+	private ArrayList<Item> allBooks = new ArrayList<>();
 	private MaintainBooks maintainBooks = new MaintainBooks();
 	private JPanel panel;
 
@@ -29,7 +30,7 @@ public class ManageBookPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public ManageBookPanel() {
-		allBooks = maintainBooks.getAllBooks();
+		allBooks = MaintainBooks.getAllBooks();
 		initComponents();
 	}
 
