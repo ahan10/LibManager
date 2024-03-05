@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 public class MaintainBooks {
     private static final String FILE_PATH = "database/books.csv";
 
@@ -46,10 +47,7 @@ public class MaintainBooks {
             	   b = rb.getItem();
 
                }
-        	   System.out.println("Rentable Book: " + b.getTitle() + " " + b.isRentable());
-        	   System.out.println("Purchaseable Book: " + b.getTitle() + " " + b.isPurchaseable());
 
-              
                allBooks.add(b);
                
             }
@@ -61,4 +59,19 @@ public class MaintainBooks {
 
         return allBooks;
     }
+    public static ArrayList<Book> searchBooks(String query) {
+        ArrayList<Item> books = getAllBooks();
+        ArrayList<Book> searchedBooks = new ArrayList<>();
+
+        for (Item item: books) {
+            if (item.getTitle().toLowerCase().contains(query.toLowerCase())) {
+            	Book book = (Book)item;
+            	searchedBooks.add(book);
+            }
+        }
+        return searchedBooks;
+    }
+
+    
+   
 }
