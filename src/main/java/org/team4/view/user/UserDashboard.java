@@ -1,4 +1,5 @@
 package org.team4.view.user;
+import org.team4.controller.userdashboard.UserController;
 import org.team4.maintaindb.MaintainBooks;
 import org.team4.model.items.Book;
 
@@ -15,7 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-public class UserDashboard extends JFrame implements ActionListener {
+public class UserDashboard extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
@@ -46,6 +47,7 @@ public class UserDashboard extends JFrame implements ActionListener {
 				try {
 					UserDashboard frame = new UserDashboard();
 					frame.setVisible(true);
+					UserController userController = new UserController(frame);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -90,23 +92,15 @@ public class UserDashboard extends JFrame implements ActionListener {
 		SearchTextField.setBounds(60, 1, 300, 26);
 		SearchTextField.setColumns(10);
 		contentPane.add(SearchTextField);
-		 SearchTextField.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-	                performSearch(SearchTextField.getText());
-	            }
-	        });
+
 	}
-	private void performSearch(String query) {
+	public void performSearch(String query) {
 	    ArrayList<Book> searchResults = null;
-	    try {
-	        searchResults = MaintainBooks.searchBooks(query);
-	        updateSearchResultsPanel(searchResults);
-	        cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	       
-	    }
+
+		searchResults = MaintainBooks.searchBooks(query);
+		updateSearchResultsPanel(searchResults);
+		cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL);
+
 	}
 	 
 	 private void updateSearchResultsPanel(ArrayList<Book> results) {
@@ -126,16 +120,10 @@ public class UserDashboard extends JFrame implements ActionListener {
 		PurchaseButton = new JButton("Purchase");
 		PurchaseButton.setBounds(616, 521, 117, 29);
 		contentPane.add(PurchaseButton);
-		//		contentPane.add(purchasePanel);
-		PurchaseButton.addActionListener(this);
-		SubscribeButton.addActionListener(this);
-		RentItemButton.addActionListener(this);
 
 		subscribePanel.setBounds(0, 33, 788, 490);
 
 		purchasePanel.setBounds(0, 33, 788, 490);
-
-
 	}
 
 	public void addPanels() {
@@ -148,20 +136,35 @@ public class UserDashboard extends JFrame implements ActionListener {
 
 		cardLayout.show(activityPanel, RENT_PANEL);// default panel have a user/home page
 
-
-
-
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == RentItemButton) {
-			cardLayout.show(activityPanel, RENT_PANEL);
-		} else if (e.getSource() == SubscribeButton) {
-			cardLayout.show(activityPanel, SUBSCRIBE_PANEL);
-		} else if (e.getSource() == PurchaseButton) {
-			cardLayout.show(activityPanel, PURCHASE_PANEL);
-		}
+	public JButton getRentItemButton() {
+		return RentItemButton;
 	}
+
+	public JButton getSubscribeButton() {
+		return SubscribeButton;
+	}
+
+	public JButton getPurchaseButton() {
+		return PurchaseButton;
+	}
+
+	public JTextField getSearchTextField(){
+		return this.SearchTextField;
+	}
+
+	public void changeToRentPanel(){
+		cardLayout.show(activityPanel, RENT_PANEL);
+	}
+
+	public void changeToPurchasePanel(){
+		cardLayout.show(activityPanel, PURCHASE_PANEL);
+	}
+
+	public void changeToSubscribePanel(){
+		cardLayout.show(activityPanel, SUBSCRIBE_PANEL);
+	}
+
 }
 
