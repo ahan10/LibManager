@@ -18,7 +18,6 @@ import javax.swing.table.TableColumn;
 
 import org.team4.maintaindb.MaintainUser;
 import org.team4.model.user.User;
-import org.team4.view.manager.validate.NonValidatedUsersTableModel;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
