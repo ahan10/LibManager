@@ -1,6 +1,5 @@
 package org.team4.model.items;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class Item {
@@ -25,7 +24,7 @@ public class Item {
 	}
 
 	public Item(Item item){
-        this(item.title, item.yearPublished);
+        this(item.title, item.yearPublished, item.isPurchaseable, item.isRentable);
     }
 	
 	public String getTitle() {
