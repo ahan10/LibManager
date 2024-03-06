@@ -18,6 +18,7 @@ public class UserController implements ActionListener {
         userDashboard.getPurchaseButton().addActionListener(this);
         userDashboard.getRentItemButton().addActionListener(this);
         userDashboard.getSubscribeButton().addActionListener(this);
+        userDashboard.getRequestButton().addActionListener(this);
 
         userDashboard.getSearchTextField().addActionListener(new ActionListener() {
             @Override
@@ -35,6 +36,8 @@ public class UserController implements ActionListener {
             userDashboard.changeToSubscribePanel();
         } else if (e.getSource() == userDashboard.getPurchaseButton()) {
             userDashboard.changeToPurchasePanel();
+        }else if (e.getSource() == userDashboard.getRequestButton()) {
+            userDashboard.changeToRequestPanel();
         }
     }
 }

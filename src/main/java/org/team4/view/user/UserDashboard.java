@@ -27,18 +27,22 @@ public class UserDashboard extends JFrame {
 	private JButton RentItemButton;
 	private JButton SubscribeButton;
 	private JButton PurchaseButton;
+	private JButton RequestButton; 
 	private JTextField SearchTextField;
 
 	private final String RENT_PANEL = "Rent Item Panel";
 	private final String SUBSCRIBE_PANEL = "Subscribe Panel";
 	private final String PURCHASE_PANEL = "Purchase Panel";
 	private final String SEARCH_RESULTS_PANEL = "Search Panel";
-	
+	private final String REQUEST_PANEL = "Request Panel";
+
 
 	private JPanel rentItemPanel = new RentItemPanel(); 
 	private JPanel subscribePanel = new SubscribePanel(); 
 	private JPanel purchasePanel = new PurchasePanel(); 
 	private SearchResultsPanel searchResultsPanel = new SearchResultsPanel();
+	private JPanel requestPanel = new RequestPanel();
+
 
 
 	public static void main(String[] args) {
@@ -114,11 +118,24 @@ public class UserDashboard extends JFrame {
 		RentItemButton.setBounds(23, 521, 117, 29);
 		contentPane.add(RentItemButton);
 		SubscribeButton = new JButton("Subscribe");
-		SubscribeButton.setBounds(354, 521, 117, 29);
+		SubscribeButton.setBounds(230, 521, 117, 29);
 		contentPane.add(SubscribeButton);
 
 		PurchaseButton = new JButton("Purchase");
-		PurchaseButton.setBounds(616, 521, 117, 29);
+		PurchaseButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		RequestButton = new JButton("Request Book");
+		RequestButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		RequestButton.setBounds(426, 521, 117, 29);
+		contentPane.add(RequestButton);
+		
+		PurchaseButton.setBounds(637, 521, 117, 29);
 		contentPane.add(PurchaseButton);
 
 		subscribePanel.setBounds(0, 33, 788, 490);
@@ -133,9 +150,15 @@ public class UserDashboard extends JFrame {
 		activityPanel.add(rentItemPanel, RENT_PANEL);
 		activityPanel.add(purchasePanel, PURCHASE_PANEL);
 		activityPanel.add(subscribePanel, SUBSCRIBE_PANEL);
+		activityPanel.add(requestPanel, REQUEST_PANEL);
 
 		cardLayout.show(activityPanel, RENT_PANEL);// default panel have a user/home page
+		
+	}
+	
 
+	public JButton getRequestButton() {
+		return RequestButton;
 	}
 
 	public JButton getRentItemButton() {
@@ -165,6 +188,10 @@ public class UserDashboard extends JFrame {
 	public void changeToSubscribePanel(){
 		cardLayout.show(activityPanel, SUBSCRIBE_PANEL);
 	}
-
+	
+	public void changeToRequestPanel(){
+		cardLayout.show(activityPanel, REQUEST_PANEL);
+	}
 }
+
 
