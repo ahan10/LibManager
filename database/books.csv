@@ -1,30 +1,60 @@
-title,yearPublished,isRentable,isPurchaseable,genre,noOfPages,author,ISBN,publisherName,edition,quantity
-The Great Gatsby,1925,false,true,Fiction,180,F. Scott Fitzgerald,9781234567890,Random House,1,15
-Introduction to Java Programming,2019,true,true,Textbook,700,Y. Daniel Liang,9780135166307,Pearson,12,8
-The Catcher in the Rye,1951,true,true,Fiction,214,J.D. Salinger,9780060931957,Little Brown and Company,0,20
-Data Structures and Algorithms,2020,true,true,Textbook,550,Robert Lafore,9780134894281,Sams Publishing,2,5
-To Kill a Mockingbird,1960,true,true,Fiction,281,Harper Lee,9780061120084,HarperCollins,0,10
-1984,1949,true,true,Dystopian,328,George Orwell,9780451524935,Signet Classics,0,18
-Artificial Intelligence: A Modern Approach,2009,true,true,Textbook,1132,Stuart Russell & Peter Norvig,9780136042594,Pearson,3,12
-The Hobbit,1937,true,true,Fantasy,310,J.R.R. Tolkien,9780345339683,Houghton Mifflin Harcourt,75,6
-Clean Code: A Handbook of Agile Software Craftsmanship,2008,true,true,Non-fiction,464,Robert C. Martin,9780132350884,Prentice Hall,1,15
-Pride and Prejudice,1813,true,true,Romance,279,Jane Austen,9780141439518,Penguin Classics,0,8
-Introduction to Algorithms,2009,true,true,Textbook,1292,Thomas H. Cormen et al.,9780262033848,MIT Press,3,10
-The Da Vinci Code,2003,true,true,Mystery,489,Dan Brown,9780307474278,Anchor Books,0,20
-Thinking Fast and Slow,2011,true,true,Psychology,499,Daniel Kahneman,9780374533557,Farrar Straus and Giroux,1,5
-Java: The Complete Reference,2017,true,true,Textbook,1248,Herbert Schildt,9781259589331,McGraw-Hill Education,10,12
-The Lord of the Rings,1954,true,true,Fantasy,1178,J.R.R. Tolkien,9780544003415,Houghton Mifflin Harcourt,0,15
-Cracking the Coding Interview,2015,true,true,Non-fiction,708,Gayle Laakmann McDowell,9780984782857,CareerCup,6,18
-Brave New World,1932,true,true,Dystopian,311,Aldous Huxley,9780060850524,Harper Perennial Modern Classics,0,10
-Database Management Systems,2021,true,true,Textbook,800,Raghu Ramakrishnan & Johannes Gehrke,9780072465631,McGraw-Hill Education,4,8
-The Art of War,1932,true,true,Philosophy,92,Sun Tzu,9781590302255,Shambhala,0,20
-Effective Java,2017,true,true,Non-fiction,412,Joshua Bloch,9780134685991,Addison-Wesley,3,15
-Harry Potter and the Sorcerer's Stone,1997,true,true,Fantasy,309,J.K. Rowling,9780590353427,Scholastic,1,12
-Python Crash Course,2015,true,true,Textbook,544,Eric Matthes,9781593276034,No Starch Press,2,8
-Animal Farm,1945,true,true,Allegory,141,George Orwell,9780451526342,Signet Classics,10,10
-Design Patterns: Elements of Reusable Object-Oriented Software,1994,true,true,Non-fiction,416,Erich Gamma et al.,9780201633610,Addison-Wesley,1,18
-Moby-Dick,1851,true,true,Adventure,654,Herman Melville,9781503280786,CreateSpace Independent Publishing Platform,0,15
-Algorithms,2022,true,true,Textbook,736,Jeff Erickson,9781718501774,Independently published,1,12
-The Shining,1977,true,true,Horror,688,Stephen King,9780307743657,Anchor,0,8
-Eloquent JavaScript,2018,true,true,Textbook,472,Marijn Haverbeke,9781593279509,No Starch Press,3,10
-A Tale of Two Cities,1859,true,true,Historical Fiction,489,Charles Dickens,9780141439600,Penguin Classics,0,20
+title,yearPublished,isRentable,isPurchaseable,genre,noOfPages,author,ISBN,publisherName,edition,quantity,hardcopy,softcopy,price
+The Great Gatsby,1925,false,false,Fiction,180,F. Scott Fitzgerald,9781234567890,Random House,1,15,true,false,
+Introduction to Java Programming,2019,true,true,Textbook,700,Y. Daniel Liang,9780135166307,Pearson,12,8,true,true,100.0
+The Catcher in the Rye,1951,true,false,Fiction,214,J.D. Salinger,9780060931957,Little Brown and Company,0,20,true,false,
+Data Structures and Algorithms,2020,true,true,Textbook,550,Robert Lafore,9780134894281,Sams Publishing,2,5,true,true,80.0
+To Kill a Mockingbird,1960,true,false,Fiction,281,Harper Lee,9780061120084,HarperCollins,0,10,true,false,
+1984,1949,true,true,Dystopian,328,George Orwell,9780451524935,Signet Classics,0,18,true,true,25.0
+Artificial Intelligence: A Modern Approach,2009,true,true,Textbook,1132,Stuart Russell & Peter Norvig,9780136042594,Pearson,3,12,true,true,120.0
+The Hobbit,1937,true,false,Fantasy,310,J.R.R. Tolkien,9780345339683,Houghton Mifflin Harcourt,75,6,true,false,
+Clean Code: A Handbook of Agile Software Craftsmanship,2008,true,true,Non-fiction,464,Robert C. Martin,9780132350884,Prentice Hall,1,15,true,true,40.0
+Pride and Prejudice,1813,true,false,Romance,279,Jane Austen,9780141439518,Penguin Classics,0,8,true,false,
+Introduction to Algorithms,2009,true,true,Textbook,1292,Thomas H. Cormen et al.,9780262033848,MIT Press,3,10,true,true,90.0
+The Da Vinci Code,2003,true,true,Mystery,489,Dan Brown,9780307474278,Anchor Books,0,20,true,true,20.0
+Thinking Fast and Slow,2011,true,true,Psychology,499,Daniel Kahneman,9780374533557,Farrar Straus and Giroux,1,5,true,true,35.0
+Java: The Complete Reference,2017,true,true,Textbook,1248,Herbert Schildt,9781259589331,McGraw-Hill Education,10,12,true,true,110.0
+The Lord of the Rings,1954,true,false,Fantasy,1178,J.R.R. Tolkien,9780544003415,Houghton Mifflin Harcourt,0,15,true,false,
+Cracking the Coding Interview,2015,true,true,Non-fiction,708,Gayle Laakmann McDowell,9780984782857,CareerCup,6,18,true,true,45.0
+Brave New World,1932,true,false,Dystopian,311,Aldous Huxley,9780060850524,Harper Perennial Modern Classics,0,10,true,false,
+Database Management Systems,2021,true,true,Textbook,800,Raghu Ramakrishnan & Johannes Gehrke,9780072465631,McGraw-Hill Education,4,8,true,true,85.0
+The Art of War,1932,true,false,Philosophy,92,Sun Tzu,9781590302255,Shambhala,0,20,true,false,
+Effective Java,2017,true,true,Non-fiction,412,Joshua Bloch,9780134685991,Addison-Wesley,3,15,true,true,50.0
+Harry Potter and the Sorcerer's Stone,1997,true,true,Fantasy,309,J.K. Rowling,9780590353427,Scholastic,1,12,true,true,30.0
+Python Crash Course,2015,true,true,Textbook,544,Eric Matthes,9781593276034,No Starch Press,2,8,true,true,75.0
+Animal Farm,1945,true,false,Allegory,141,George Orwell,9780451526342,Signet Classics,10,10,true,false,
+Design Patterns: Elements of Reusable Object-Oriented Software,1994,true,true,Non-fiction,416,Erich Gamma et al.,9780201633610,Addison-Wesley,1,18,true,true,55.0
+Moby-Dick,1851,true,false,Adventure,654,Herman Melville,9781503280786,CreateSpace Independent Publishing Platform,0,15,true,false,
+Algorithms,2022,true,true,Textbook,736,Jeff Erickson,9781718501774,Independently published,1,12,true,true,95.0
+The Shining,1977,true,false,Horror,688,Stephen King,9780307743657,Anchor,0,8,true,false,
+Eloquent JavaScript,2018,true,true,Textbook,472,Marijn Haverbeke,9781593279509,No Starch Press,3,10,true,true,60.0
+A Tale of Two Cities,1859,true,false,Historical Fiction,489,Charles Dickens,9780141439600,Penguin Classics,0,20,true,false,
+The Hitchhiker's Guide to the Galaxy,1979,true,true,Science Fiction,224,Douglas Adams,9780345391803,Del Rey,1,20,true,true,15.0
+The Sun Also Rises,1926,true,false,Fiction,251,Ernest Hemingway,9780743297332,Scribner,0,15,true,false,
+Introduction to Machine Learning,2018,true,true,Textbook,560,Andrew Ng,9780136036341,Pearson,2,10,true,true,70.0
+Wuthering Heights,1847,true,false,Romance,342,Emily Brontë,9780141439555,Penguin Classics,0,12,true,false,
+Computer Networks,2019,true,true,Textbook,832,Andrew S. Tanenbaum,9780133594140,Pearson,4,8,true,true,95.0
+The Picture of Dorian Gray,1890,true,false,Classic,254,Oscar Wilde,9780486278070,Dover Publications,0,18,true,false,
+Web Development with Django,2021,true,true,Programming,400,William S. Vincent,9781642012053,Pragmatic Bookshelf,3,6,true,true,50.0
+The Count of Monte Cristo,1844,true,false,Adventure,1184,Alexandre Dumas,9780140449266,Penguin Classics,0,10,true,false,
+Introduction to Psychology,2022,true,true,Textbook,720,James W. Kalat,9781337565691,Cengage Learning,5,12,true,true,85.0
+The Road,2006,true,true,Dystopian,287,Cormac McCarthy,9780307387899,Vintage Books,0,15,true,true,22.0
+Artificial Neural Networks,2016,true,true,Textbook,480,Simon Haykin,9780131471399,Prentice Hall,1,5,true,true,75.0
+The Three Musketeers,1844,true,false,Adventure,786,Alexandre Dumas,9780140437645,Penguin Classics,0,8,true,false,
+Game of Thrones,1996,true,true,Fantasy,694,George R.R. Martin,9780553593716,Bantam Books,2,20,true,true,28.0
+Introduction to Economics,2023,true,true,Textbook,600,Paul Krugman,9781319066604,Worth Publishers,4,10,true,true,65.0
+Sapiens: A Brief History of Humankind,2014,true,true,History,464,Yuval Noah Harari,9780062316110,Harper,1,15,true,true,30.0
+The Code Book: The Science of Secrecy from Ancient Egypt to Quantum Cryptography,1999,true,true,Non-fiction,432,Simon Singh,9780385495325,Doubleday,1,18,true,true,40.0
+Introduction to Robotics,2020,true,true,Textbook,704,John J. Craig,9780133489798,Pearson,3,12,true,true,90.0
+The Grapes of Wrath,1939,true,false,Fiction,464,John Steinbeck,9780143039433,Penguin Classics,0,20,true,false,
+Machine Learning Yearning,2018,true,true,Programming,165,Andrew Ng,9781544503491,Andrew Ng,1,8,true,true,20.0
+The Wind in the Willows,1908,true,false,Children's Literature,256,Kenneth Grahame,9780143039099,Penguin Classics,0,10,true,false,
+Introduction to Astrophysics,2021,true,true,Textbook,672,Benjamin A. Stickler,9780367357897,Routledge,2,15,true,true,80.0
+The Silence of the Lambs,1988,true,true,Thriller,352,Thomas Harris,9780312924584,St. Martin's Press,0,18,true,true,18.0
+The Elements of Style,1918,true,true,Non-fiction,105,William Strunk Jr. & E.B. White,9780205309023,Pearson,5,12,true,true,15.0
+The Secret Garden,1911,true,false,Children's Literature,331,Frances Hodgson Burnett,9780062696868,HarperCollins,0,15,true,false,
+Introduction to Sociology,2022,true,true,Textbook,600,Anthony Giddens,9780393645768,W. W. Norton & Company,4,10,true,true,70.0
+The Alchemist,1988,true,true,Fiction,177,Paulo Coelho,9780061120087,HarperOne,0,8,true,true,25.0
+Artificial Intelligence: Foundations of Computational Agents,2010,true,true,Textbook,536,David L. Poole & Alan K. Mackworth,9781107195394,Cambridge University Press,2,12,true,true,100.0
+The Hound of the Baskervilles,1902,true,false,Mystery,256,Arthur Conan Doyle,9780141439600,Penguin Classics,0,10,true,false,
+Introduction to Political Science,2023,true,true,Textbook,550,Robert Garner et al.,9780198820644,Oxford University Press,3,8,true,true,60.0
+The Adventures of Tom Sawyer,1876,true,false,Adventure,272,Mark Twain,9780199536473,Oxford University Press,0,5,true,false,
