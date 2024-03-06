@@ -7,7 +7,8 @@ public class RentableItemDecorator extends ItemDecorator {
         super(item);
         item.setRentable(true);
     }
-
+    
+    @Override
     public boolean isRentable() {
         return item.isRentable();
     }

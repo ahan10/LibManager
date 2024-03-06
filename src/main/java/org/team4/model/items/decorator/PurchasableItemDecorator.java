@@ -6,11 +6,12 @@ public class PurchasableItemDecorator extends ItemDecorator {
 
     public PurchasableItemDecorator(Item item) {
         super(item);
-        item.setRentable(true);
+        item.setPurchaseable(true);
     }
-
+    
+    @Override
     public boolean isPurchasable() {
-        return item.isPurchaseable();
+        return item.isPurchasable();
     }
 
 }
