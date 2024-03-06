@@ -1,12 +1,13 @@
 package org.team4.model.items;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class Item {
 
 	private String title;
     private int yearPublished;
+    private int quantity;
+    private double price;
     protected boolean isRentable;
     protected boolean isPurchaseable;
     
@@ -16,16 +17,18 @@ public class Item {
     }
     
    
-    public Item(String title, int yearPublished, boolean isPurchaseable, boolean isRentable) {
+    public Item(String title, int yearPublished, int quantity, double price, boolean isPurchaseable, boolean isRentable) {
 		super();
 		this.title = title;
 		this.yearPublished = yearPublished;
+		this.quantity = quantity;
+		this.price = price;
 		this.isPurchaseable = isPurchaseable;
 		this.isRentable = isRentable;
 	}
 
 	public Item(Item item){
-        this(item.title, item.yearPublished);
+        this(item.title, item.yearPublished, item.quantity, item.price, item.isPurchaseable, item.isRentable);
     }
 	
 	public String getTitle() {
@@ -36,7 +39,7 @@ public class Item {
 		return yearPublished;
 	}
     
-    public boolean isPurchaseable() {
+    public boolean isPurchasable() {
     	return isPurchaseable;
     }
 
@@ -69,5 +72,6 @@ public class Item {
 		return isPurchaseable == other.isPurchaseable && isRentable == other.isRentable
 				&& Objects.equals(title, other.title) && Objects.equals(yearPublished, other.yearPublished);
 	}
+
 	
 }

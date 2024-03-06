@@ -9,4 +9,12 @@ public class DVD extends Item{
         this.genre = genre;
         this.duration = duration;
     }
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public double getDuration() {
+		return duration;
+	}
 }
