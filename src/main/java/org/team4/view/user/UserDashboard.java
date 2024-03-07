@@ -2,6 +2,7 @@ package org.team4.view.user;
 import org.team4.controller.userdashboard.UserController;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Book;
+import org.team4.model.user.User;
 
 import java.awt.CardLayout;
 import java.awt.EventQueue;
@@ -43,8 +44,8 @@ public class UserDashboard extends JFrame {
 	private SearchResultsPanel searchResultsPanel = new SearchResultsPanel();
 	private JPanel requestPanel = new RequestPanel();
 
-
-
+	private User user;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -62,6 +63,14 @@ public class UserDashboard extends JFrame {
 
 
 	public UserDashboard() {
+		initPanel();
+		addSearchBar();
+		addButtons();
+		addPanels();
+	}
+	
+	public UserDashboard(User u) {
+		this.user = u;
 		initPanel();
 		addSearchBar();
 		addButtons();

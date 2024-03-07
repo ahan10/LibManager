@@ -10,13 +10,7 @@ public class Item {
     private double price;
     protected boolean isRentable;
     protected boolean isPurchaseable;
-    
-    public Item(String title, int yearPublished) {
-    	this.title = title;
-        this.yearPublished = yearPublished;
-    }
-    
-   
+       
     public Item(String title, int yearPublished, int quantity, double price, boolean isPurchaseable, boolean isRentable) {
 		super();
 		this.title = title;
@@ -46,9 +40,24 @@ public class Item {
     public boolean isRentable() {
         return isRentable;
     }
-	public int getQuantity(){return quantity;}
+    
+    
+	public int getQuantity(){
+		return quantity;
+	}
 
-	public void setQuantity(int quantity){this.quantity = quantity;}
+	public void setQuantity(int quantity){
+		this.quantity = quantity;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
     @Override
 	public int hashCode() {
 		return Objects.hash(isPurchaseable, isRentable, title, yearPublished);
