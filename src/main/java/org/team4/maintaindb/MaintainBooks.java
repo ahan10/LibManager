@@ -63,9 +63,6 @@ public class MaintainBooks {
                     .hasHardCopy(Boolean.parseBoolean(reader.get("hardcopy")))
                     .hasSoftCopy(Boolean.parseBoolean(reader.get("softcopy")))
                     .build();
-			if (((Book) newBook).isPurchasable()) {
-				((Book) newBook).setPrice(Float.parseFloat(reader.get("price")));
-			}
 			if(Boolean.parseBoolean(reader.get("isPurchasable"))) {
                 PurchasableItemDecorator purchasableDecorator = new PurchasableItemDecorator(newBook);
                 newBook = purchasableDecorator.getItem();
@@ -73,9 +70,11 @@ public class MaintainBooks {
             if(Boolean.parseBoolean(reader.get("isRentable"))) {
                 RentableItemDecorator rentableDecorator = new RentableItemDecorator(newBook);
                 newBook = rentableDecorator.getItem();
+            }if (((Book) newBook).isPurchasable()) {
+				((Book) newBook).setPrice(Float.parseFloat(reader.get("price")));
+			}
+			((Book) newBook).setQuantity(Integer.parseInt(reader.get("quantity")));
 
-            }
-            
             books.add((Book) newBook);
 		}
 	}

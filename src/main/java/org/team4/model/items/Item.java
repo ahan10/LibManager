@@ -47,7 +47,8 @@ public class Item {
         return isRentable;
     }
 	public int getQuantity(){return quantity;}
-    
+
+	public void setQuantity(int quantity){this.quantity = quantity;}
     @Override
 	public int hashCode() {
 		return Objects.hash(isPurchaseable, isRentable, title, yearPublished);
