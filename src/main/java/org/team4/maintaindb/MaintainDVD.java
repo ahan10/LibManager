@@ -3,10 +3,8 @@ package org.team4.maintaindb;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
-import org.team4.model.items.Book;
 import org.team4.model.items.DVD;
 import org.team4.model.items.Item;
-import org.team4.model.items.builder.BookBuilder;
 import org.team4.model.items.builder.DVDBuilder;
 import org.team4.model.items.decorator.PurchasableItemDecorator;
 import org.team4.model.items.decorator.RentableItemDecorator;

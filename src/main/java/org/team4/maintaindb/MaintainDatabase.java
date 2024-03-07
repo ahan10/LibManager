@@ -5,10 +5,12 @@ public class MaintainDatabase {
 	private static MaintainDatabase instance;
 	private static MaintainUser userMaintainer;
 	private static MaintainBooks bookMaintainer;
+	private static MaintainDVD dvdMaintainer;
 	
 	private MaintainDatabase() {
 		userMaintainer = MaintainUser.getInstance();
 		bookMaintainer = MaintainBooks.getInstance();
+		dvdMaintainer = MaintainDVD.getInstance();
 	}
 	
 	public static MaintainDatabase getInstance() {
@@ -40,9 +42,22 @@ public class MaintainDatabase {
 		return MaintainBooks.getInstance();
 	}
 	
+	/**
+	 * Used to get an instance of the DVD database
+	 * @return
+	 */
+	public MaintainDVD getDVDDatabase() {
+		return MaintainDVD.getInstance();
+	}
+	
+	/**
+	 * Update all databases
+	 * @throws Exception
+	 */
 	public void update() throws Exception {
 		userMaintainer.update();
 		bookMaintainer.update();
+		dvdMaintainer.update();
 	}
 
 }
