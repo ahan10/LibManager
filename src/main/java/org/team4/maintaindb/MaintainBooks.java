@@ -112,6 +112,7 @@ public class MaintainBooks {
 				csvOutput.write(((Book) b).getAuthor());
 				csvOutput.write(((Book) b).getISBN());
 				csvOutput.write(((Book) b).getPublisher());
+				csvOutput.write(String.valueOf(((Book) b).getQuantity()));
 				csvOutput.write(String.valueOf(((Book) b).getEdition()));
 				csvOutput.write(String.valueOf(((Book) b).hasHardCopy()));
 				csvOutput.write(String.valueOf(((Book) b).hasSoftCopy()));
@@ -142,6 +143,27 @@ public class MaintainBooks {
         return searchedBooks;
     }
 
-
+    public boolean canRentBook(String title) {
+        for (Item book : this.books) {
+            if (((Book) book).getTitle().equalsIgnoreCase(title) && ((Book) book).isRentable() && ((Book) book).getQuantity() >=1) {
+                return true;
+            }
+        }
+        return false;
+    }
+ // In the MaintainBooks class
+    public void rentBook(String title) {
+        for (Item book : this.books) {
+            if (((Book) book).getTitle().equalsIgnoreCase(title)) {
+                ((Book) book).setQuantity(((Book) book).getQuantity() - 1); // Assuming there's a setQuantity method in the Book class
+                try {
+                    update(); // Update CSV file with new book quantity
+                } catch (Exception e) {
+                    e.printStackTrace(); // Handle exceptions properly in your code
+                }
+                break;
+            }
+        }
+    }
 
 }

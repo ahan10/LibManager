@@ -1,5 +1,6 @@
 package org.team4.view.user;
 import org.team4.controller.userdashboard.UserController;
+import org.team4.maintaindb.MaintainBooks;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Book;
 
@@ -15,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class UserDashboard extends JFrame {
 
@@ -117,6 +119,26 @@ public class UserDashboard extends JFrame {
 	public void addButtons() {
 		RentItemButton = new JButton("Rent an Item");
 		RentItemButton.setBounds(23, 521, 117, 29);
+		
+		RentItemButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		        // Get the selected row from the table
+		        int selectedRow = SearchResultsPanel.getTable().getSelectedRow();
+		        if(selectedRow >= 0) {
+		            String title = SearchResultsPanel.getTable().getValueAt(selectedRow, 0).toString(); // Assumes title is in the first column
+		            if (MaintainBooks.getInstance().canRentBook(title)) {
+		                MaintainBooks.getInstance().rentBook(title);
+		                JOptionPane.showMessageDialog(null, "Book rented successfully!");
+		                // Refresh the search panel to reflect the updated quantity
+		                performSearch(SearchTextField.getText());
+		            } else {
+		                JOptionPane.showMessageDialog(null, "This book cannot be rented.");
+		            }
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Please select a book to rent.");
+		        }
+		    }
+		});
 		contentPane.add(RentItemButton);
 		SubscribeButton = new JButton("Subscribe");
 		SubscribeButton.setBounds(230, 521, 117, 29);
@@ -143,6 +165,7 @@ public class UserDashboard extends JFrame {
 
 		purchasePanel.setBounds(0, 33, 788, 490);
 	}
+	
 
 	public void addPanels() {
 
