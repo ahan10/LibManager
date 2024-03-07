@@ -1,4 +1,3 @@
-title,yearPublished,isRentable,isPurchaseable,genre,noOfPages,author,ISBN,publisherName,edition,quantity,hardcopy,softcopy,price
 The Great Gatsby,1925,false,false,Fiction,180,F. Scott Fitzgerald,9781234567890,Random House,1,15,true,false,
 Introduction to Java Programming,2019,true,true,Textbook,700,Y. Daniel Liang,9780135166307,Pearson,12,8,true,true,100.0
 The Catcher in the Rye,1951,true,false,Fiction,214,J.D. Salinger,9780060931957,Little Brown and Company,0,20,true,false,
@@ -25,17 +24,13 @@ Animal Farm,1945,true,false,Allegory,141,George Orwell,9780451526342,Signet Clas
 Design Patterns: Elements of Reusable Object-Oriented Software,1994,true,true,Non-fiction,416,Erich Gamma et al.,9780201633610,Addison-Wesley,1,18,true,true,55.0
 Moby-Dick,1851,true,false,Adventure,654,Herman Melville,9781503280786,CreateSpace Independent Publishing Platform,0,15,true,false,
 Algorithms,2022,true,true,Textbook,736,Jeff Erickson,9781718501774,Independently published,1,12,true,true,95.0
-The Shining,1977,true,false,Horror,688,Stephen King,9780307743657,Anchor,0,8,true,false,
-Eloquent JavaScript,2018,true,true,Textbook,472,Marijn Haverbeke,9781593279509,No Starch Press,3,10,true,true,60.0
-A Tale of Two Cities,1859,true,false,Historical Fiction,489,Charles Dickens,9780141439600,Penguin Classics,0,20,true,false,
-The Hitchhiker's Guide to the Galaxy,1979,true,true,Science Fiction,224,Douglas Adams,9780345391803,Del Rey,1,20,true,true,15.0
-The Sun Also Rises,1926,true,false,Fiction,251,Ernest Hemingway,9780743297332,Scribner,0,15,true,false,
+The Sun Also Rises,1926,true,true,Fiction,251,Ernest Hemingway,9780743297332,Scribner,0,15,true,false,
 Introduction to Machine Learning,2018,true,true,Textbook,560,Andrew Ng,9780136036341,Pearson,2,10,true,true,70.0
-Wuthering Heights,1847,true,false,Romance,342,Emily Brontë,9780141439555,Penguin Classics,0,12,true,false,
+Wuthering Heights,1847,true,true,Romance,342,Emily Brontë,9780141439555,Penguin Classics,0,12,true,false,
 Computer Networks,2019,true,true,Textbook,832,Andrew S. Tanenbaum,9780133594140,Pearson,4,8,true,true,95.0
-The Picture of Dorian Gray,1890,true,false,Classic,254,Oscar Wilde,9780486278070,Dover Publications,0,18,true,false,
+The Picture of Dorian Gray,1890,true,true,Classic,254,Oscar Wilde,9780486278070,Dover Publications,0,18,true,false,
 Web Development with Django,2021,true,true,Programming,400,William S. Vincent,9781642012053,Pragmatic Bookshelf,3,6,true,true,50.0
-The Count of Monte Cristo,1844,true,false,Adventure,1184,Alexandre Dumas,9780140449266,Penguin Classics,0,10,true,false,
+The Count of Monte Cristo,1844,true,true,Adventure,1184,Alexandre Dumas,9780140449266,Penguin Classics,0,10,true,false,
 Introduction to Psychology,2022,true,true,Textbook,720,James W. Kalat,9781337565691,Cengage Learning,5,12,true,true,85.0
 The Road,2006,true,true,Dystopian,287,Cormac McCarthy,9780307387899,Vintage Books,0,15,true,true,22.0
 Artificial Neural Networks,2016,true,true,Textbook,480,Simon Haykin,9780131471399,Prentice Hall,1,5,true,true,75.0
@@ -51,10 +46,3 @@ The Wind in the Willows,1908,true,false,Children's Literature,256,Kenneth Graham
 Introduction to Astrophysics,2021,true,true,Textbook,672,Benjamin A. Stickler,9780367357897,Routledge,2,15,true,true,80.0
 The Silence of the Lambs,1988,true,true,Thriller,352,Thomas Harris,9780312924584,St. Martin's Press,0,18,true,true,18.0
 The Elements of Style,1918,true,true,Non-fiction,105,William Strunk Jr. & E.B. White,9780205309023,Pearson,5,12,true,true,15.0
-The Secret Garden,1911,true,false,Children's Literature,331,Frances Hodgson Burnett,9780062696868,HarperCollins,0,15,true,false,
-Introduction to Sociology,2022,true,true,Textbook,600,Anthony Giddens,9780393645768,W. W. Norton & Company,4,10,true,true,70.0
-The Alchemist,1988,true,true,Fiction,177,Paulo Coelho,9780061120087,HarperOne,0,8,true,true,25.0
-Artificial Intelligence: Foundations of Computational Agents,2010,true,true,Textbook,536,David L. Poole & Alan K. Mackworth,9781107195394,Cambridge University Press,2,12,true,true,100.0
-The Hound of the Baskervilles,1902,true,false,Mystery,256,Arthur Conan Doyle,9780141439600,Penguin Classics,0,10,true,false,
-Introduction to Political Science,2023,true,true,Textbook,550,Robert Garner et al.,9780198820644,Oxford University Press,3,8,true,true,60.0
-The Adventures of Tom Sawyer,1876,true,false,Adventure,272,Mark Twain,9780199536473,Oxford University Press,0,5,true,false,
