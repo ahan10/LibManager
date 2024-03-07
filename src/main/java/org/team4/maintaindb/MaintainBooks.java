@@ -1,12 +1,15 @@
 package org.team4.maintaindb;
 
 import com.csvreader.CsvReader;
+import com.csvreader.CsvWriter;
+
 import org.team4.model.items.Book;
 import org.team4.model.items.builder.BookBuilder;
 
 import org.team4.model.items.Item;
 import org.team4.model.items.decorator.PurchasableItemDecorator;
 import org.team4.model.items.decorator.RentableItemDecorator;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 
@@ -56,6 +59,9 @@ public class MaintainBooks {
                     .publisher(reader.get("publisherName"))
                     .edition(Integer.parseInt(reader.get("edition")))
                     .genre(reader.get("genre"))
+                    .hasHardCopy(Boolean.getBoolean(reader.get("hardcopy")))
+                    .hasSoftCopy(Boolean.getBoolean(reader.get("softcopy")))
+                    .price(Float.parseFloat(reader.get("price")))
                     .build();
 			if(Boolean.parseBoolean(reader.get("isPurchaseable"))) {
                 PurchasableItemDecorator purchasableDecorator = new PurchasableItemDecorator(newBook);
@@ -67,7 +73,53 @@ public class MaintainBooks {
 
             }
             
-            books.add(newBook);
+            books.add((Book) newBook);
+		}
+	}
+    
+    public void update() throws Exception{
+		try {
+			CsvWriter csvOutput = new CsvWriter(new FileWriter(FILE_PATH, false), ',');
+			//email,password,name,type,validated
+
+			//set header
+			csvOutput.write("title");
+			csvOutput.write("yearPublished");
+			csvOutput.write("isRentable");
+			csvOutput.write("isPurchaseable");
+			csvOutput.write("genre");
+			csvOutput.write("noOfPages");
+			csvOutput.write("author");
+			csvOutput.write("ISBN");
+			csvOutput.write("publisherName");
+			csvOutput.write("edition");
+			csvOutput.write("quantity");
+			csvOutput.write("hardcopy");
+			csvOutput.write("softcopy");
+			csvOutput.write("price");
+			csvOutput.endRecord();
+
+			// write out records
+			for(Item b: books){
+				csvOutput.write(b.getTitle());
+				csvOutput.write(String.valueOf(b.getYearPublished()));
+				csvOutput.write(String.valueOf(b.isRentable()));
+				csvOutput.write(String.valueOf(b.isPurchasable()));
+				csvOutput.write(((Book) b).getGenre());
+				csvOutput.write(String.valueOf(((Book) b).getNoOfPages()));
+				csvOutput.write(((Book) b).getAuthor());
+				csvOutput.write(((Book) b).getISBN());
+				csvOutput.write(((Book) b).getPublisher());
+				csvOutput.write(String.valueOf(((Book) b).getEdition()));
+				csvOutput.write(String.valueOf(((Book) b).hasHardCopy()));
+				csvOutput.write(String.valueOf(((Book) b).hasSoftCopy()));
+				csvOutput.write(String.valueOf(((Book) b).getPrice()));
+				csvOutput.endRecord();
+			}
+			csvOutput.close();
+
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
     

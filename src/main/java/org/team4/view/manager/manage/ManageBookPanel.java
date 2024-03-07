@@ -7,6 +7,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
 import org.team4.maintaindb.MaintainDatabase;
+import org.team4.model.items.Book;
 import org.team4.model.items.Item;
 
 

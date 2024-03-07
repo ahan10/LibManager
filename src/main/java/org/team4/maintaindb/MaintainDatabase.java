@@ -48,5 +48,10 @@ public class MaintainDatabase {
 		userMaintainer.load();
 		bookMaintainer.load();
 	}
+	
+	public void update() throws Exception {
+		userMaintainer.update();
+		bookMaintainer.update();
+	}
 
 }

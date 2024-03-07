@@ -12,6 +12,9 @@ public class BookBuilder extends ItemBuilder<Book> {
  protected String ISBN;
  protected String publisher;
  protected int edition;
+ protected boolean hasHardCopy;
+ protected boolean hasSoftCopy;
+ protected float price;
 
  public BookBuilder genre(String genre) {
      this.genre = genre;
@@ -42,9 +45,24 @@ public class BookBuilder extends ItemBuilder<Book> {
      this.edition = edition;
      return this;
  }
+ 
+ public BookBuilder hasHardCopy(boolean hasHardCopy) {
+	 this.hasHardCopy(hasHardCopy);
+	 return this;
+ }
+ 
+ public BookBuilder hasSoftCopy(boolean hasSoftCopy) {
+	 this.hasSoftCopy(hasSoftCopy);
+	 return this;
+ }
+ 
+ public BookBuilder price(float price) {
+	 this.price(price);
+	 return this;
+ }
 
  @Override
  public Book build() {
-     return new Book(new Item(title, yearPublished), genre, noOfPages, author, ISBN, publisher, edition);
+     return new Book(new Item(title, yearPublished), genre, noOfPages, author, ISBN, publisher, edition, hasHardCopy, hasSoftCopy, price);
  }
 }
