@@ -7,8 +7,8 @@ public class MaintainDatabase {
 	private static MaintainBooks bookMaintainer;
 	
 	private MaintainDatabase() {
-		userMaintainer = new MaintainUser();
-		bookMaintainer = new MaintainBooks();
+		userMaintainer = MaintainUser.getInstance();
+		bookMaintainer = MaintainBooks.getInstance();
 	}
 	
 	public static MaintainDatabase getInstance() {
@@ -24,6 +24,26 @@ public class MaintainDatabase {
 		return instance;
 	}
 	
+	/**
+	 * Used to get an instance of the user database
+	 * @return
+	 */
+	public MaintainUser getUserDatabase() {
+		return MaintainUser.getInstance();
+	}
+	
+	/**
+	 * Used to get an instance of the books database
+	 * @return
+	 */
+	public MaintainBooks getBookDatabase() {
+		return MaintainBooks.getInstance();
+	}
+	
+	/**
+	 * Used to initialize the databases by requesting to load their data
+	 * @throws Exception
+	 */
 	public void load() throws Exception {
 		userMaintainer.load();
 		bookMaintainer.load();

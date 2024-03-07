@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
-import org.team4.maintaindb.MaintainBooks;
+import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Item;
 
 
@@ -28,7 +28,7 @@ public class ManageBookPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public ManageBookPanel() {
-		allBooks = MaintainBooks.getAllBooks();
+		allBooks = MaintainDatabase.getInstance().getBookDatabase().getAllBooks();
 		initComponents();
 	}
 

@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
+import org.team4.maintaindb.MaintainDatabase;
 import org.team4.maintaindb.MaintainUser;
 import org.team4.model.user.User;
 
@@ -27,7 +28,7 @@ public class ValidateUserPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<User> nonValidatedUsers;
-	private MaintainUser maintainUser = new MaintainUser();
+	private MaintainUser maintainUser = MaintainDatabase.getInstance().getUserDatabase();
 	
 	private NonValidatedUsersTableModel nonValidatedUsersTableModel;
 

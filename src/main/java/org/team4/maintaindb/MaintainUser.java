@@ -1,6 +1,5 @@
 package org.team4.maintaindb;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
@@ -11,12 +10,35 @@ import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
 public class MaintainUser {
+	private static MaintainUser instance;
 	
-	public ArrayList<User> users = new ArrayList<User>();
+	public ArrayList<User> users;
 
 	private static final String FILE_PATH = "database/users.csv";
 
-	public MaintainUser() {}
+	private MaintainUser() {
+		users = new ArrayList<User>();
+		try {
+			this.load();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Failed to Initialize User Database");
+		}
+	}
+	
+	public static MaintainUser getInstance() {
+		if (instance == null) {
+			// Extra check for Multi-threaded applications
+			synchronized (MaintainUser.class) {
+				if (instance == null) {
+					instance = new MaintainUser();
+				}
+			}
+		}
+		
+		return instance;
+	}
 
 	public void load() throws Exception{
 		CsvReader reader = new CsvReader(FILE_PATH);
@@ -29,19 +51,14 @@ public class MaintainUser {
 		}
 	}
 
-	public ArrayList<User> getAllUsers() throws Exception{
-		CsvReader reader = new CsvReader(FILE_PATH);
-		reader.readHeaders();
-		UserFactory userFactory = new UserFactory();
-
-		ArrayList<User> nonValidatedUsers = new ArrayList<User>();
-
-		while (reader.readRecord()) {
-			User user = userFactory.getUser(reader.get("email"), reader.get("password"), reader.get("name"), reader.get("type"), Boolean.parseBoolean(reader.get("validated")));
-			nonValidatedUsers.add(user);
+	public ArrayList<User> getAllUsers() {
+		try {
+			load();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		return nonValidatedUsers;
+		return this.users;
 	}
 
 	public void addUser(User user) {
