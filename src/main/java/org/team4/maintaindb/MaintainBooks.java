@@ -151,15 +151,15 @@ public class MaintainBooks {
         }
         return false;
     }
- // In the MaintainBooks class
+
     public void rentBook(String title) {
         for (Item book : this.books) {
             if (((Book) book).getTitle().equalsIgnoreCase(title)) {
-                ((Book) book).setQuantity(((Book) book).getQuantity() - 1); // Assuming there's a setQuantity method in the Book class
+                ((Book) book).setQuantity(((Book) book).getQuantity() - 1); 
                 try {
-                    update(); // Update CSV file with new book quantity
+                    update(); 
                 } catch (Exception e) {
-                    e.printStackTrace(); // Handle exceptions properly in your code
+                    e.printStackTrace(); 
                 }
                 break;
             }
