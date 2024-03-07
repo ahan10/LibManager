@@ -112,8 +112,8 @@ public class MaintainBooks {
 				csvOutput.write(((Book) b).getAuthor());
 				csvOutput.write(((Book) b).getISBN());
 				csvOutput.write(((Book) b).getPublisher());
-				csvOutput.write(String.valueOf(((Book) b).getQuantity()));
 				csvOutput.write(String.valueOf(((Book) b).getEdition()));
+				csvOutput.write(String.valueOf(((Book) b).getQuantity()));
 				csvOutput.write(String.valueOf(((Book) b).hasHardCopy()));
 				csvOutput.write(String.valueOf(((Book) b).hasSoftCopy()));
 				csvOutput.write(String.valueOf(((Book) b).getPrice()));
@@ -155,15 +155,10 @@ public class MaintainBooks {
     public void rentBook(String title) {
         for (Item book : this.books) {
             if (((Book) book).getTitle().equalsIgnoreCase(title)) {
+            	
                 ((Book) book).setQuantity(((Book) book).getQuantity() - 1); 
-                try {
-                    update(); 
-                } catch (Exception e) {
-                    e.printStackTrace(); 
-                }
-                break;
-            }
+                
         }
     }
-
+    }
 }

@@ -122,14 +122,14 @@ public class UserDashboard extends JFrame {
 		
 		RentItemButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        // Get the selected row from the table
+		       
 		        int selectedRow = SearchResultsPanel.getTable().getSelectedRow();
 		        if(selectedRow >= 0) {
-		            String title = SearchResultsPanel.getTable().getValueAt(selectedRow, 0).toString(); // Assumes title is in the first column
+		            String title = SearchResultsPanel.getTable().getValueAt(selectedRow, 0).toString(); 
 		            if (MaintainBooks.getInstance().canRentBook(title)) {
 		                MaintainBooks.getInstance().rentBook(title);
 		                JOptionPane.showMessageDialog(null, "Book rented successfully!");
-		                // Refresh the search panel to reflect the updated quantity
+		               
 		                performSearch(SearchTextField.getText());
 		            } else {
 		                JOptionPane.showMessageDialog(null, "This book cannot be rented.");
