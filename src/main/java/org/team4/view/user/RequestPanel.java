@@ -31,60 +31,60 @@ public class RequestPanel extends JPanel {
 
 		
 		 JLabel lblRequestBook = new JLabel("Request Book");
-		 lblRequestBook.setBounds(330, 5, 127, 26);
+		 lblRequestBook.setBounds(314, 5, 160, 26);
 		 lblRequestBook.setHorizontalAlignment(SwingConstants.CENTER);
 		 lblRequestBook.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		 add(lblRequestBook);
 		
 		JLabel lblTitle = new JLabel("Title:");
-		lblTitle.setBounds(31, 70, 24, 13);
+		lblTitle.setBounds(246, 140, 66, 13);
 		add(lblTitle);
 		
 		textFieldTitle = new JTextField();
-		textFieldTitle.setBounds(75, 67, 96, 19);
+		textFieldTitle.setBounds(340, 136, 186, 19);
 		add(textFieldTitle);
 		textFieldTitle.setColumns(10);
 		
 		JLabel lblISBN = new JLabel("ISBN:");
-		lblISBN.setBounds(31, 132, 26, 13);
-		lblISBN.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblISBN.setBounds(246, 196, 50, 13);
+		lblISBN.setHorizontalAlignment(SwingConstants.LEFT);
 		add(lblISBN);
 		
 		textFieldAuthor = new JTextField();
-		textFieldAuthor.setBounds(75, 96, 96, 19);
+		textFieldAuthor.setBounds(340, 164, 186, 19);
 		textFieldAuthor.setColumns(10);
 		add(textFieldAuthor);
 		
 		JLabel lblEdition = new JLabel("Edition:");
-		lblEdition.setBounds(31, 164, 34, 13);
+		lblEdition.setBounds(246, 221, 66, 13);
 		add(lblEdition);
 		
 		lblAuthor = new JLabel("Author:");
-		lblAuthor.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblAuthor.setBounds(31, 93, 34, 19);
+		lblAuthor.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAuthor.setBounds(246, 165, 66, 19);
 		add(lblAuthor);
 		
 		JComboBox comboBoxBookType = new JComboBox();
 		comboBoxBookType.setModel(new DefaultComboBoxModel(new String[] {"TextBook", "General Book"}));
-		comboBoxBookType.setBounds(75, 202, 96, 21);
+		comboBoxBookType.setBounds(340, 248, 186, 21);
 		add(comboBoxBookType);
 		
 		textFieldISBN = new JTextField();
 		textFieldISBN.setColumns(10);
-		textFieldISBN.setBounds(75, 129, 96, 19);
+		textFieldISBN.setBounds(340, 192, 186, 19);
 		add(textFieldISBN);
 		
 		textFieldEdition = new JTextField();
 		textFieldEdition.setColumns(10);
-		textFieldEdition.setBounds(75, 161, 96, 19);
+		textFieldEdition.setBounds(340, 217, 186, 19);
 		add(textFieldEdition);
 		
 		JLabel lblBookType = new JLabel("Book Type:");
-		lblBookType.setBounds(10, 206, 62, 13);
+		lblBookType.setBounds(246, 251, 78, 13);
 		add(lblBookType);
 		
-		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(63, 258, 85, 21);
-		add(btnSubmit);
+		JButton submitButton = new JButton("Submit");
+		submitButton.setBounds(335, 375, 117, 29);
+		add(submitButton);
     }
 }
