@@ -63,10 +63,10 @@ public class MaintainBooks {
                     .hasHardCopy(Boolean.parseBoolean(reader.get("hardcopy")))
                     .hasSoftCopy(Boolean.parseBoolean(reader.get("softcopy")))
                     .build();
-			if (((Book) newBook).hasSoftCopy()) {
+			if (((Book) newBook).isPurchasable()) {
 				((Book) newBook).setPrice(Float.parseFloat(reader.get("price")));
 			}
-			if(Boolean.parseBoolean(reader.get("isPurchaseable"))) {
+			if(Boolean.parseBoolean(reader.get("isPurchasable"))) {
                 PurchasableItemDecorator purchasableDecorator = new PurchasableItemDecorator(newBook);
                 newBook = purchasableDecorator.getItem();
             }

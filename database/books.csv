@@ -1,4 +1,4 @@
-title,yearPublished,isRentable,isPurchaseable,genre,noOfPages,author,ISBN,publisherName,edition,quantity,hardcopy,softcopy,price
+title,yearPublished,isRentable,isPurchasable,genre,noOfPages,author,ISBN,publisherName,edition,quantity,hardcopy,softcopy,price
 The Great Gatsby,1925,false,false,Fiction,180,F. Scott Fitzgerald,9781234567890,Random House,1,15,true,false,
 Introduction to Java Programming,2019,true,true,Textbook,700,Y. Daniel Liang,9780135166307,Pearson,12,8,true,true,100.0
 The Catcher in the Rye,1951,true,false,Fiction,214,J.D. Salinger,9780060931957,Little Brown and Company,0,20,true,false,
