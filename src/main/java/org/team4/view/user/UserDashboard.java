@@ -120,41 +120,17 @@ public class UserDashboard extends JFrame {
 		RentItemButton = new JButton("Rent an Item");
 		RentItemButton.setBounds(23, 521, 117, 29);
 		
-		RentItemButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		       
-		        int selectedRow = SearchResultsPanel.getTable().getSelectedRow();
-		        if(selectedRow >= 0) {
-		            String title = SearchResultsPanel.getTable().getValueAt(selectedRow, 0).toString(); 
-		            if (MaintainBooks.getInstance().canRentBook(title)) {
-		                MaintainBooks.getInstance().rentBook(title);
-		                JOptionPane.showMessageDialog(null, "Book rented successfully!");
-		               
-		                performSearch(SearchTextField.getText());
-		            } else {
-		                JOptionPane.showMessageDialog(null, "This book cannot be rented.");
-		            }
-		        } else {
-		            JOptionPane.showMessageDialog(null, "Please select a book to rent.");
-		        }
-		    }
-		});
+	
 		contentPane.add(RentItemButton);
 		SubscribeButton = new JButton("Subscribe");
 		SubscribeButton.setBounds(230, 521, 117, 29);
 		contentPane.add(SubscribeButton);
 
 		PurchaseButton = new JButton("Purchase");
-		PurchaseButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		
 		RequestButton = new JButton("Request Book");
-		RequestButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		RequestButton.setBounds(426, 521, 117, 29);
 		contentPane.add(RequestButton);
 		

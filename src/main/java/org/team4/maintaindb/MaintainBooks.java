@@ -157,7 +157,12 @@ public class MaintainBooks {
             if (((Book) book).getTitle().equalsIgnoreCase(title)) {
             	
                 ((Book) book).setQuantity(((Book) book).getQuantity() - 1); 
-                
+                try {
+					update();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         }
     }
     }
