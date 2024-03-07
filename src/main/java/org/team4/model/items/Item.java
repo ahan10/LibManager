@@ -46,6 +46,7 @@ public class Item {
     public boolean isRentable() {
         return isRentable;
     }
+	public int getQuantity(){return quantity;}
     
     @Override
 	public int hashCode() {

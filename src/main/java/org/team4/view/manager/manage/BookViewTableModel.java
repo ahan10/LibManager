@@ -17,6 +17,8 @@ public class BookViewTableModel extends DefaultTableModel{
 			"Genre",
 			"Author",
 			"Publisher",
+			"Edition",
+			"Quantity",
 			"Rent"
 	};
 	
@@ -34,6 +36,8 @@ public class BookViewTableModel extends DefaultTableModel{
 					b.getGenre(),
 					b.getAuthor(),
 					b.getPublisher(),
+					b.getEdition(),
+					b.getQuantity(),
 					b.isRentable()
 			});
 		}
@@ -42,7 +46,7 @@ public class BookViewTableModel extends DefaultTableModel{
 	
 	@Override
     public Class<?> getColumnClass(int columnIndex) {
-        if (columnIndex == 4) {
+        if (columnIndex == 6) {
             return Boolean.class;
         }
         return super.getColumnClass(columnIndex);
@@ -51,7 +55,7 @@ public class BookViewTableModel extends DefaultTableModel{
     // Override the isCellEditable method to make "validated" column editable
     @Override
     public boolean isCellEditable(int row, int column) {
-        return column == 4;
+        return column == 6;
     }
 
 }

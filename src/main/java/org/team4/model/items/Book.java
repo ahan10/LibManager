@@ -67,6 +67,7 @@ public class Book extends Item{
 		this.price = price;
 	}
 
+
     @Override
     public String toString() {
         return "Book{" +
