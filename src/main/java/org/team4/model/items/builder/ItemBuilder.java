@@ -24,7 +24,7 @@ public abstract class ItemBuilder<T extends Item> {
      return this;
  }
  
- public ItemBuilder<T> yearPublished(double price) {
+ public ItemBuilder<T> price(double price) {
      this.price = price;
      return this;
  }
