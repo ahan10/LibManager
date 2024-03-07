@@ -25,8 +25,27 @@ public class MaintainBooks {
 		reader.readHeaders();
 
 		while (reader.readRecord()) {
-			BookBuilder bookBuilder = new BookBuilder();
-			bookBuilder.title(reader.get("title"));
+			Item newBook = ((BookBuilder) new BookBuilder()
+                    .title(reader.get("title"))
+                    .yearPublished(Integer.parseInt(reader.get("yearPublished"))))
+                    .noOfPages(Integer.parseInt(reader.get("noOfPages")))
+                    .author(reader.get("author"))
+                    .ISBN(reader.get("ISBN"))
+                    .publisher(reader.get("publisherName"))
+                    .edition(Integer.parseInt(reader.get("edition")))
+                    .genre(reader.get("genre"))
+                    .build();
+			if(Boolean.parseBoolean(reader.get("isPurchaseable"))) {
+                PurchasableItemDecorator purchasableDecorator = new PurchasableItemDecorator(newBook);
+                newBook = purchasableDecorator.getItem();
+            }
+            if(Boolean.parseBoolean(reader.get("isRentable"))) {
+                RentableItemDecorator rentableDecorator = new RentableItemDecorator(newBook);
+                newBook = rentableDecorator.getItem();
+
+            }
+            
+            books.add(newBook);
 		}
 	}
     
