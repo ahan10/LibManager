@@ -36,7 +36,7 @@ public class ValidateUserPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public ValidateUserPanel() {
-		nonValidatedUsers = new ArrayList<User>();
+		this.nonValidatedUsers = null;
 		try {
 			this.nonValidatedUsers = maintainUser.getAllUsers();
 		} catch (Exception e) {
@@ -94,7 +94,7 @@ public class ValidateUserPanel extends JPanel {
 
         // Now, update the CSV with changed fields
         try {
-            maintainUser.updateChangedFields(nonValidatedUsers);
+        	maintainUser.update();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

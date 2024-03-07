@@ -22,7 +22,6 @@ public class MaintainUser {
 			//LOAD ONLY ONCE WHEN DATABASE CREATED
 			this.load();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Failed to Initialize User Database");
 		}
@@ -56,6 +55,10 @@ public class MaintainUser {
 		return this.users;
 	}
 
+	/**
+	 * Call whenever a new user should be added to the database
+	 * @param user
+	 */
 	public void addUser(User user) {
 		boolean flag = false;
 		for (User u: users) {
@@ -71,6 +74,10 @@ public class MaintainUser {
 		}
 	}
 
+	/**
+	 * Call whenever the database should be updated with new data
+	 * @throws Exception
+	 */
 	public void update() throws Exception{
 		try {
 			CsvWriter csvOutput = new CsvWriter(new FileWriter(FILE_PATH, false), ',');
@@ -94,12 +101,19 @@ public class MaintainUser {
 				csvOutput.endRecord();
 			}
 			csvOutput.close();
+			System.out.println("User Database Updated");
 
 		}catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("User Database Failed to Update");
 		}
 	}
 
+	/**
+	 * This Function is not needed. All Database updates should be done by calling the above update()
+	 * @param updatedUsers
+	 * @throws Exception
+	 */
 	public void updateChangedFields(ArrayList<User> updatedUsers) throws Exception {
 		try {
 			CsvReader reader = new CsvReader(FILE_PATH);
