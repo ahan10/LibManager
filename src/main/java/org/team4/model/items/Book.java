@@ -12,9 +12,8 @@ public class Book extends Item{
     private int edition;
     private boolean hasHardCopy;
     private boolean hasSoftCopy;
-    private float price;
 
-    public Book(Item item, String genre, int noOfPages, String author, String ISBN, String publisherName, int edition, boolean hasHardCopy, boolean hasSoftCopy, float price) {
+    public Book(Item item, String genre, int noOfPages, String author, String ISBN, String publisherName, int edition, boolean hasHardCopy, boolean hasSoftCopy) {
         super(item);
         this.genre = genre;
         this.noOfPages = noOfPages;
@@ -24,7 +23,6 @@ public class Book extends Item{
         this.edition = edition;
         this.hasHardCopy = hasHardCopy;
         this.hasSoftCopy = hasSoftCopy;
-        this.price = price;
     }
     
 	public String getGenre() {
@@ -59,14 +57,6 @@ public class Book extends Item{
 		return hasSoftCopy;
 	}
 	
-	public float getPrice() {
-		return price;
-	}
-	
-	public void setPrice(float price) {
-		this.price = price;
-	}
-
 
     @Override
     public String toString() {
