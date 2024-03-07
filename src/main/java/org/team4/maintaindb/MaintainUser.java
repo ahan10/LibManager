@@ -11,6 +11,7 @@ import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
 public class MaintainUser {
+	
 	public ArrayList<User> users = new ArrayList<User>();
 
 	private static final String FILE_PATH = "database/users.csv";

@@ -7,17 +7,29 @@ import org.team4.model.items.builder.BookBuilder;
 import org.team4.model.items.Item;
 import org.team4.model.items.decorator.PurchasableItemDecorator;
 import org.team4.model.items.decorator.RentableItemDecorator;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class MaintainBooks {
+	
+	public ArrayList<Item> books = new ArrayList<Item>();
+	
     private static final String FILE_PATH = "database/books.csv";
 
     public MaintainBooks(){}
 
+    public void load() throws Exception{
+		CsvReader reader = new CsvReader(FILE_PATH);
+		reader.readHeaders();
+
+		while (reader.readRecord()) {
+			BookBuilder bookBuilder = new BookBuilder();
+			bookBuilder.title(reader.get("title"));
+		}
+	}
+    
     public static ArrayList<Item> getAllBooks(){
         ArrayList<Item> allBooks = new ArrayList<>();
         CsvReader reader = null;
