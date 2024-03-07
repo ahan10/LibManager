@@ -7,6 +7,7 @@ import org.team4.model.items.Book;
 import org.team4.model.items.DVD;
 import org.team4.model.items.Item;
 import org.team4.model.items.builder.BookBuilder;
+import org.team4.model.items.builder.DVDBuilder;
 import org.team4.model.items.decorator.PurchasableItemDecorator;
 import org.team4.model.items.decorator.RentableItemDecorator;
 
@@ -60,24 +61,25 @@ public class MaintainDVD {
 		reader.readHeaders();
 
 		while (reader.readRecord()) {
-			Item newBook = ((BookBuilder) new BookBuilder().title(reader.get("title"))
-					.yearPublished(Integer.parseInt(reader.get("yearPublished")))
-					.price(Double.parseDouble(reader.get("price"))).quantity(Integer.parseInt(reader.get("quantity"))))
-					.noOfPages(Integer.parseInt(reader.get("noOfPages"))).author(reader.get("author"))
-					.ISBN(reader.get("ISBN")).publisher(reader.get("publisherName"))
-					.edition(Integer.parseInt(reader.get("edition"))).genre(reader.get("genre"))
-					.hasHardCopy(Boolean.parseBoolean(reader.get("hardcopy")))
-					.hasSoftCopy(Boolean.parseBoolean(reader.get("softcopy"))).build();
-			if (Boolean.parseBoolean(reader.get("isPurchasable"))) {
-				PurchasableItemDecorator purchasableDecorator = new PurchasableItemDecorator(newBook);
-				newBook = purchasableDecorator.getItem();
-			}
-			if (Boolean.parseBoolean(reader.get("isRentable"))) {
-				RentableItemDecorator rentableDecorator = new RentableItemDecorator(newBook);
-				newBook = rentableDecorator.getItem();
-			}
-
-			dvd.add(newBook);
+			Item newDVD = ((DVDBuilder) new DVDBuilder()
+					.title(reader.get("title"))
+					.yearPublished(Integer.parseInt(reader.get("yearPublished"))))
+					.genre(reader.get("genre"))
+					.duration(Double.parseDouble(reader.get("duration")))
+					.price(Double.parseDouble(reader.get("price")))
+					.quantity(Integer.parseInt(reader.get("quantity")))
+					.build();
+			if(Boolean.parseBoolean(reader.get("isPurchasable"))) {
+                PurchasableItemDecorator purchasableDecorator = new PurchasableItemDecorator(newDVD);
+                newDVD = purchasableDecorator.getItem();
+            }
+			if(Boolean.parseBoolean(reader.get("isRentable"))) {
+                RentableItemDecorator rentableDecorator = new RentableItemDecorator(newDVD);
+                newDVD = rentableDecorator.getItem();
+            }
+			
+			
+			dvd.add(newDVD);
 		}
 	}
 	
