@@ -143,6 +143,16 @@ public class MaintainBooks {
         return searchedBooks;
     }
 
-
+    public boolean searchExactBook(Book searchedBook) {
+        ArrayList<Item> books = getAllBooks();
+        boolean found = false;
+        for (Item item: books) {
+        	Book book = (Book)item;
+            if (book.getISBN().equalsIgnoreCase(searchedBook.getISBN())) {
+                found = true;
+            }
+        }
+        return found;
+    }
 
 }
