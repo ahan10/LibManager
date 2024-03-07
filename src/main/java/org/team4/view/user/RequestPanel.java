@@ -56,7 +56,7 @@ public class RequestPanel extends JPanel {
 		add(textFieldAuthor);
 		
 		JLabel lblEdition = new JLabel("Edition:");
-		lblEdition.setBounds(246, 221, 66, 13);
+		lblEdition.setBounds(246, 223, 66, 13);
 		add(lblEdition);
 		
 		lblAuthor = new JLabel("Author:");
