@@ -122,7 +122,7 @@ public class MaintainMagazine {
 	 * Get list of magazines from storage
 	 * @return
 	 */
-	public ArrayList<Item> getAllDVDs(){
+	public ArrayList<Item> getAllMagazines(){
     	return this.magazine;
     }
 	
