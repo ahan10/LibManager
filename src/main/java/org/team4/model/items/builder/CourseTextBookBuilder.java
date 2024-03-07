@@ -19,6 +19,6 @@ public class CourseTextBookBuilder extends BookBuilder {
 
     @Override
     public CourseTextBook build() {
-        return new CourseTextBook(new Item(title, yearPublished), genre, noOfPages, author, ISBN, publisher, edition, course, isVirtual, price);
+        return new CourseTextBook(new Item(title, yearPublished, quantity, price, false, false), genre, noOfPages, author, ISBN, publisher, edition, course, isVirtual);
     }
 }

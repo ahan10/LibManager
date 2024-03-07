@@ -85,7 +85,7 @@ public class LoginController implements ActionListener {
 						switch (u.getType()) {
 						case "STUDENT":
 							System.out.println(u.toString() + " Logged in Successfully as Student");
-							UserDashboard userDashboard = new UserDashboard();
+							UserDashboard userDashboard = new UserDashboard(u);
 							@SuppressWarnings("unused") UserController userController = new UserController(userDashboard);
 							userDashboard.setVisible(true);
 							loginPage.dispose();

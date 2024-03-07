@@ -56,7 +56,11 @@ public class ManageItemPanel extends JPanel {
 		
 		addPanels();
 	}
-	
+
+	public ManageBookPanel getManageBookPanel() {
+		return manageBookPanel;
+	}
+
 	private void addPanels() {
 		viewPanel.add(manageBookPanel, BOOK_VIEW);
 		cardLayout.show(viewPanel, BOOK_VIEW);

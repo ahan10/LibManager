@@ -3,6 +3,7 @@ import org.team4.controller.userdashboard.UserController;
 import org.team4.maintaindb.MaintainBooks;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Book;
+import org.team4.model.user.User;
 
 import java.awt.CardLayout;
 import java.awt.EventQueue;
@@ -43,10 +44,10 @@ public class UserDashboard extends JFrame {
 	private JPanel subscribePanel = new SubscribePanel(); 
 	private JPanel purchasePanel = new PurchasePanel(); 
 	private SearchResultsPanel searchResultsPanel = new SearchResultsPanel();
-	private JPanel requestPanel = new RequestPanel();
+	private JPanel requestPanel;
 
-
-
+	private User user;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -64,6 +65,14 @@ public class UserDashboard extends JFrame {
 
 
 	public UserDashboard() {
+		initPanel();
+		addSearchBar();
+		addButtons();
+		addPanels();
+	}
+	
+	public UserDashboard(User u) {
+		this.user = u;
 		initPanel();
 		addSearchBar();
 		addButtons();
@@ -87,6 +96,8 @@ public class UserDashboard extends JFrame {
 
 		cardLayout = new CardLayout();
 		activityPanel.setLayout(cardLayout);
+		
+		requestPanel = new RequestPanel();
 	}
 
 	public void addSearchBar() {

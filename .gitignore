@@ -13,7 +13,7 @@ target/
 *.iws
 *.iml
 *.ipr
-database/*
+database/
 
 ### Eclipse ###
 .apt_generated

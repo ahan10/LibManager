@@ -53,7 +53,9 @@ public class MaintainBooks {
 		while (reader.readRecord()) {
 			Item newBook = ((BookBuilder) new BookBuilder()
                     .title(reader.get("title"))
-                    .yearPublished(Integer.parseInt(reader.get("yearPublished"))))
+                    .yearPublished(Integer.parseInt(reader.get("yearPublished")))
+                    .price(Double.parseDouble(reader.get("price")))
+                    .quantity(Integer.parseInt(reader.get("quantity"))))
                     .noOfPages(Integer.parseInt(reader.get("noOfPages")))
                     .author(reader.get("author"))
                     .ISBN(reader.get("ISBN"))
@@ -70,12 +72,9 @@ public class MaintainBooks {
             if(Boolean.parseBoolean(reader.get("isRentable"))) {
                 RentableItemDecorator rentableDecorator = new RentableItemDecorator(newBook);
                 newBook = rentableDecorator.getItem();
-            }if (((Book) newBook).isPurchasable()) {
-				((Book) newBook).setPrice(Float.parseFloat(reader.get("price")));
-			}
-			((Book) newBook).setQuantity(Integer.parseInt(reader.get("quantity")));
-
-            books.add((Book) newBook);
+            }
+			
+            books.add(newBook);
 		}
 	}
     
@@ -88,7 +87,7 @@ public class MaintainBooks {
 			csvOutput.write("title");
 			csvOutput.write("yearPublished");
 			csvOutput.write("isRentable");
-			csvOutput.write("isPurchaseable");
+			csvOutput.write("isPurchasable");
 			csvOutput.write("genre");
 			csvOutput.write("noOfPages");
 			csvOutput.write("author");
@@ -143,27 +142,16 @@ public class MaintainBooks {
         return searchedBooks;
     }
 
-    public boolean canRentBook(String title) {
-        for (Item book : this.books) {
-            if (((Book) book).getTitle().equalsIgnoreCase(title) && ((Book) book).isRentable() && ((Book) book).getQuantity() >=1) {
-                return true;
+    public boolean searchExactBook(Book searchedBook) {
+        ArrayList<Item> books = getAllBooks();
+        boolean found = false;
+        for (Item item: books) {
+        	Book book = (Book)item;
+            if (book.getISBN().equalsIgnoreCase(searchedBook.getISBN())) {
+                found = true;
             }
         }
-        return false;
+        return found;
     }
 
-    public void rentBook(String title) {
-        for (Item book : this.books) {
-            if (((Book) book).getTitle().equalsIgnoreCase(title)) {
-            	
-                ((Book) book).setQuantity(((Book) book).getQuantity() - 1); 
-                try {
-					update();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-        }
-    }
-    }
 }

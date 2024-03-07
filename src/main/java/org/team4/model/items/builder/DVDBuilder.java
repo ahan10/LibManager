@@ -20,6 +20,6 @@ public class DVDBuilder extends ItemBuilder<DVD> {
 
  @Override
  public DVD build() {
-     return new DVD(new Item(title, yearPublished), genre, duration);
+     return new DVD(new Item(title, yearPublished, quantity, price, false, false), genre, duration);
  }
 }
