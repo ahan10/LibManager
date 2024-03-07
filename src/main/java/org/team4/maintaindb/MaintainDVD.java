@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 import org.team4.model.items.Book;
+import org.team4.model.items.DVD;
 import org.team4.model.items.Item;
 import org.team4.model.items.builder.BookBuilder;
 import org.team4.model.items.decorator.PurchasableItemDecorator;
@@ -95,33 +96,21 @@ public class MaintainDVD {
 			csvOutput.write("isRentable");
 			csvOutput.write("isPurchasable");
 			csvOutput.write("genre");
-			csvOutput.write("noOfPages");
-			csvOutput.write("author");
-			csvOutput.write("ISBN");
-			csvOutput.write("publisherName");
-			csvOutput.write("edition");
-			csvOutput.write("quantity");
-			csvOutput.write("hardcopy");
-			csvOutput.write("softcopy");
+			csvOutput.write("duration");
 			csvOutput.write("price");
+			csvOutput.write("quantity");
 			csvOutput.endRecord();
 
 			// write out records
-			for(Item b: dvd){
-				csvOutput.write(b.getTitle());
-				csvOutput.write(String.valueOf(b.getYearPublished()));
-				csvOutput.write(String.valueOf(b.isRentable()));
-				csvOutput.write(String.valueOf(b.isPurchasable()));
-				csvOutput.write(((Book) b).getGenre());
-				csvOutput.write(String.valueOf(((Book) b).getNoOfPages()));
-				csvOutput.write(((Book) b).getAuthor());
-				csvOutput.write(((Book) b).getISBN());
-				csvOutput.write(((Book) b).getPublisher());
-				csvOutput.write(String.valueOf(((Book) b).getEdition()));
-				csvOutput.write(String.valueOf(((Book) b).getQuantity()));
-				csvOutput.write(String.valueOf(((Book) b).hasHardCopy()));
-				csvOutput.write(String.valueOf(((Book) b).hasSoftCopy()));
-				csvOutput.write(String.valueOf(((Book) b).getPrice()));
+			for(Item d: dvd){
+				csvOutput.write(d.getTitle());
+				csvOutput.write(String.valueOf(d.getYearPublished()));
+				csvOutput.write(String.valueOf(d.isRentable()));
+				csvOutput.write(String.valueOf(d.isPurchasable()));
+				csvOutput.write(((DVD) d).getGenre());
+				csvOutput.write(String.valueOf(((DVD) d).getDuration()));
+				csvOutput.write(String.valueOf(d.getPrice()));
+				csvOutput.write(String.valueOf(d.getQuantity()));
 				csvOutput.endRecord();
 			}
 			csvOutput.close();

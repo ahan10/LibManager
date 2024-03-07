@@ -1,4 +1,4 @@
-title,yearPublished,isBorrowable,isPurchaseable,genre,duration,price,quantity
+title,yearPublished,isRentable,isPurchasable,genre,duration,price,quantity
 Inception,2010,true,true,Sci-Fi,148.5,9.99,12
 The Shawshank Redemption,1994,true,true,Drama,142.0,7.99,1
 Pulp Fiction,1994,false,true,Crime,154.0,8.99,2
