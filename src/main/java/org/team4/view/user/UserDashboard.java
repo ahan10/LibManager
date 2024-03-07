@@ -1,6 +1,6 @@
 package org.team4.view.user;
 import org.team4.controller.userdashboard.UserController;
-import org.team4.maintaindb.MaintainBooks;
+import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Book;
 
 import java.awt.CardLayout;
@@ -51,6 +51,7 @@ public class UserDashboard extends JFrame {
 				try {
 					UserDashboard frame = new UserDashboard();
 					frame.setVisible(true);
+					@SuppressWarnings("unused")
 					UserController userController = new UserController(frame);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -101,7 +102,7 @@ public class UserDashboard extends JFrame {
 	public void performSearch(String query) {
 	    ArrayList<Book> searchResults = null;
 
-		searchResults = MaintainBooks.searchBooks(query);
+		searchResults = MaintainDatabase.getInstance().getBookDatabase().searchBooks(query);
 		updateSearchResultsPanel(searchResults);
 		cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL);
 
