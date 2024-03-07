@@ -47,12 +47,12 @@ public class BookBuilder extends ItemBuilder<Book> {
  }
  
  public BookBuilder hasHardCopy(boolean hasHardCopy) {
-	 this.hasHardCopy(hasHardCopy);
+	 this.hasHardCopy = hasHardCopy;
 	 return this;
  }
  
  public BookBuilder hasSoftCopy(boolean hasSoftCopy) {
-	 this.hasSoftCopy(hasSoftCopy);
+	 this.hasSoftCopy = hasSoftCopy;
 	 return this;
  }
  

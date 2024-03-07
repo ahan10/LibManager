@@ -36,12 +36,6 @@ public class ManagerController implements ActionListener {
             managerDashboard.dispose();
             LoginPage frame = new LoginPage();
             MaintainUser maintainUser = MaintainDatabase.getInstance().getUserDatabase();
-			try {
-				maintainUser.load();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
         	@SuppressWarnings("unused") LoginController controller = new LoginController(frame, maintainUser);
             frame.setVisible(true);
         }

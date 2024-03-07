@@ -23,6 +23,7 @@ public class MaintainBooks {
     private MaintainBooks(){
     	this.books = new ArrayList<Item>();
     	try {
+    		//LOAD ONLY ONCE WHEN DATABASE CREATED
 			this.load();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -59,10 +60,12 @@ public class MaintainBooks {
                     .publisher(reader.get("publisherName"))
                     .edition(Integer.parseInt(reader.get("edition")))
                     .genre(reader.get("genre"))
-                    .hasHardCopy(Boolean.getBoolean(reader.get("hardcopy")))
-                    .hasSoftCopy(Boolean.getBoolean(reader.get("softcopy")))
-                    .price(Float.parseFloat(reader.get("price")))
+                    .hasHardCopy(Boolean.parseBoolean(reader.get("hardcopy")))
+                    .hasSoftCopy(Boolean.parseBoolean(reader.get("softcopy")))
                     .build();
+			if (((Book) newBook).hasSoftCopy()) {
+				((Book) newBook).setPrice(Float.parseFloat(reader.get("price")));
+			}
 			if(Boolean.parseBoolean(reader.get("isPurchaseable"))) {
                 PurchasableItemDecorator purchasableDecorator = new PurchasableItemDecorator(newBook);
                 newBook = purchasableDecorator.getItem();
@@ -124,12 +127,6 @@ public class MaintainBooks {
 	}
     
     public ArrayList<Item> getAllBooks(){
-    	try {
-			load();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     	return this.books;
 
     }

@@ -19,6 +19,7 @@ public class MaintainUser {
 	private MaintainUser() {
 		users = new ArrayList<User>();
 		try {
+			//LOAD ONLY ONCE WHEN DATABASE CREATED
 			this.load();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -52,12 +53,6 @@ public class MaintainUser {
 	}
 
 	public ArrayList<User> getAllUsers() {
-		try {
-			load();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return this.users;
 	}
 
@@ -160,23 +155,4 @@ public class MaintainUser {
 		}
 	}
 
-	/**
-	 * Example of how to access database and write users to database
-	 * 
-	 */
-	public static void main(String [] args) throws Exception{
-		MaintainUser userMaintainer = new MaintainUser();
-
-		userMaintainer.load();
-		for(User u: userMaintainer.users){
-			System.out.println(u.toString());
-		}
-
-		User newUser = new User("user1@example.com", "password1", "John Doe", "STUDENT");
-		userMaintainer.addUser(newUser);
-
-		userMaintainer.update();
-	}
-
-	/**/
 }

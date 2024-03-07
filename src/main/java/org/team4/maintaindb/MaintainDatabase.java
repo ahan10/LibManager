@@ -40,15 +40,6 @@ public class MaintainDatabase {
 		return MaintainBooks.getInstance();
 	}
 	
-	/**
-	 * Used to initialize the databases by requesting to load their data
-	 * @throws Exception
-	 */
-	public void load() throws Exception {
-		userMaintainer.load();
-		bookMaintainer.load();
-	}
-	
 	public void update() throws Exception {
 		userMaintainer.update();
 		bookMaintainer.update();

@@ -62,6 +62,10 @@ public class Book extends Item{
 	public float getPrice() {
 		return price;
 	}
+	
+	public void setPrice(float price) {
+		this.price = price;
+	}
 
     @Override
     public String toString() {
