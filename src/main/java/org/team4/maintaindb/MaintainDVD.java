@@ -8,7 +8,6 @@ import org.team4.model.items.Item;
 import org.team4.model.items.builder.DVDBuilder;
 import org.team4.model.items.decorator.PurchasableItemDecorator;
 import org.team4.model.items.decorator.RentableItemDecorator;
-
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
@@ -121,12 +120,31 @@ public class MaintainDVD {
 	}
 	
 	/**
-	 * Get list of dvds from storage
+	 * Get list of DVDs from storage
 	 * @return
 	 */
 	public ArrayList<Item> getAllDVDs(){
     	return this.dvd;
     }
+	
+	/**
+	 * Adds DVD to storage if it doesn't already exist
+	 * @param dvd
+	 */
+	public void addDVD(DVD dvd) {
+		boolean flag = false;
+		for (Item d: this.dvd) {
+			if (d.getTitle().equals(dvd.getTitle())) {
+				System.out.println(dvd.toString() + " already exists");
+				flag = true;
+				break;
+			}
+		}
+		if (flag == false) {
+			this.dvd.add(dvd);
+			System.out.println("new dvd " + dvd.toString() + " added");
+		}
+	}
 	
 	
 	
