@@ -1,4 +1,4 @@
-title,yearPublished,quantity,price,isRentable,isPurchaseable,publisher,issueNumber
+title,yearPublished,quantity,price,isRentable,isPurchasable,publisher,issueNumber
 Tech Trends,2022,10,0,true,false,Technology Publications,15
 National Geographic,2022,16,0,true,false,National Geographic Society,120
 Fashion Forward,2023,13,0,true,false,Style Media,45
