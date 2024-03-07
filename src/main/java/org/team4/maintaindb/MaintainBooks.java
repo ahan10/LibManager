@@ -88,7 +88,7 @@ public class MaintainBooks {
 			csvOutput.write("title");
 			csvOutput.write("yearPublished");
 			csvOutput.write("isRentable");
-			csvOutput.write("isPurchaseable");
+			csvOutput.write("isPurchasable");
 			csvOutput.write("genre");
 			csvOutput.write("noOfPages");
 			csvOutput.write("author");
@@ -113,6 +113,7 @@ public class MaintainBooks {
 				csvOutput.write(((Book) b).getISBN());
 				csvOutput.write(((Book) b).getPublisher());
 				csvOutput.write(String.valueOf(((Book) b).getEdition()));
+				csvOutput.write(String.valueOf(((Book) b).getQuantity()));
 				csvOutput.write(String.valueOf(((Book) b).hasHardCopy()));
 				csvOutput.write(String.valueOf(((Book) b).hasSoftCopy()));
 				csvOutput.write(String.valueOf(((Book) b).getPrice()));

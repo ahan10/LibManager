@@ -9,6 +9,7 @@ import javax.swing.table.TableColumn;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Book;
 import org.team4.model.items.Item;
+import org.team4.model.user.User;
 
 
 import javax.swing.DefaultCellEditor;
@@ -17,6 +18,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
+import javax.swing.JButton;
 
 public class ManageBookPanel extends JPanel {
 
@@ -24,6 +26,7 @@ public class ManageBookPanel extends JPanel {
 	private BookViewTableModel bookViewTableModel;
 	private ArrayList<Item> allBooks = new ArrayList<>();
 	private JPanel panel;
+	private JButton updateButton;
 
 	/**
 	 * Create the panel.
@@ -54,12 +57,36 @@ public class ManageBookPanel extends JPanel {
 		bookViewTableModel = new BookViewTableModel(this.allBooks);
         JTable bookTable = new JTable(bookViewTableModel);
 		
-		TableColumn rentColumn = bookTable.getColumnModel().getColumn(5);
+		TableColumn rentColumn = bookTable.getColumnModel().getColumn(6);
         JComboBox<Boolean> comboBox = new JComboBox<>(new Boolean[]{true, false});
         rentColumn.setCellEditor(new DefaultCellEditor(comboBox));
         
         JScrollPane scrollPane = new JScrollPane(bookTable);
-		scrollPane.setBounds(30, 58, 917, 540);
+		scrollPane.setBounds(30, 58, 917, 527);
 		panel.add(scrollPane);
+		
+		updateButton = new JButton("Update");
+		updateButton.setBounds(823, 592, 117, 29);
+		panel.add(updateButton);
+	}
+	
+	public JButton getUpdateButton() {
+		return this.updateButton;
+	}
+
+	public void updateSelectedBooks() {
+		int rowCount = bookViewTableModel.getRowCount();
+		for (int i = 0; i < rowCount; i++) {
+			Boolean rentableStatus = (Boolean) bookViewTableModel.getValueAt(i, 6);
+			Item book = allBooks.get(i);
+			book.setRentable(rentableStatus);
+		}
+
+		// Now, update the CSV with changed fields
+		try {
+			MaintainDatabase.getInstance().getBookDatabase().update();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 }

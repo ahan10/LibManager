@@ -142,7 +142,9 @@ public class ManagerDashboard extends JFrame{
 	public JButton getValidateUserButton() {
 		return ValidateUserButton;
 	}
-	public ValidateUserPanel getValidateUserPanel(){return validateUserPanel;}
+	public ValidateUserPanel getValidateUserPanel() { return validateUserPanel; }
+
+	public ManageItemPanel getManageItemPanel() { return manageItemPanel; }
 
 	public void showValidateUserPanel() {
 		cardLayout.show(activityPanel, VALIDATE_PANEL);
