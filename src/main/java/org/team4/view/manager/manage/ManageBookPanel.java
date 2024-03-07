@@ -54,7 +54,7 @@ public class ManageBookPanel extends JPanel {
 		bookViewTableModel = new BookViewTableModel(this.allBooks);
         JTable bookTable = new JTable(bookViewTableModel);
 		
-		TableColumn rentColumn = bookTable.getColumnModel().getColumn(4);
+		TableColumn rentColumn = bookTable.getColumnModel().getColumn(5);
         JComboBox<Boolean> comboBox = new JComboBox<>(new Boolean[]{true, false});
         rentColumn.setCellEditor(new DefaultCellEditor(comboBox));
         

@@ -6,6 +6,7 @@ import org.team4.maintaindb.MaintainUser;
 import org.team4.view.login.LoginPage;
 import org.team4.view.manager.*;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,6 +23,13 @@ public class ManagerController implements ActionListener {
         managerDashboard.getAddItemButton().addActionListener(this);
         managerDashboard.getManageItemButton().addActionListener(this);
         managerDashboard.getValidateUserButton().addActionListener(this);
+        managerDashboard.getValidateUserPanel().getUpdateButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                managerDashboard.getValidateUserPanel().updateSelectedUsers();
+                JOptionPane.showMessageDialog(null, "Data Updated.");
+            }
+        });
     }
 
     @Override

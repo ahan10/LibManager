@@ -29,9 +29,9 @@ public class ManagerDashboard extends JFrame{
 	private final String VALIDATE_PANEL = "Validate User Panel";
 	private final String ADD_PANEL = "Add Item Panel";
 	private final String MANAGE_PANEL = "Manage ItemPanel";
-	private JPanel validateUserPanel = new ValidateUserPanel();
-	private JPanel addItemPanel = new AddItemPanel();
-	private JPanel manageItemPanel = new ManageItemPanel();
+	private ValidateUserPanel validateUserPanel = new ValidateUserPanel();
+	private AddItemPanel addItemPanel = new AddItemPanel();
+	private ManageItemPanel manageItemPanel = new ManageItemPanel();
 	
 	private User manager;
 	
@@ -142,6 +142,7 @@ public class ManagerDashboard extends JFrame{
 	public JButton getValidateUserButton() {
 		return ValidateUserButton;
 	}
+	public ValidateUserPanel getValidateUserPanel(){return validateUserPanel;}
 
 	public void showValidateUserPanel() {
 		cardLayout.show(activityPanel, VALIDATE_PANEL);

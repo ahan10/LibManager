@@ -32,6 +32,8 @@ public class ValidateUserPanel extends JPanel {
 	
 	private NonValidatedUsersTableModel nonValidatedUsersTableModel;
 
+	private JButton updateButton;
+
     /**
 	 * Create the panel.
 	 */
@@ -65,16 +67,8 @@ public class ValidateUserPanel extends JPanel {
 		usersPane.setBounds(35, 63, 916, 593);
 		panel.add(usersPane);
 		
-		JButton updateButton = new JButton("Update Users");
+		updateButton = new JButton("Update Users");
 		updateButton.setBounds(834, 668, 117, 29);
-		
-		updateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-				updateSelectedUsers();
-				JOptionPane.showMessageDialog(null, "Data Updated.");
-            }
-        });
 		
 		panel.add(updateButton);	
 		
@@ -83,8 +77,12 @@ public class ValidateUserPanel extends JPanel {
 		TitleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		TitleLabel.setBounds(428, 25, 132, 16);
 	}
+
+	public JButton getUpdateButton(){
+		return this.updateButton;
+	}
 	
-	private void updateSelectedUsers() {
+	public void updateSelectedUsers() {
         int rowCount = nonValidatedUsersTableModel.getRowCount();
         for (int i = 0; i < rowCount; i++) {
             Boolean validatedStatus = (Boolean) nonValidatedUsersTableModel.getValueAt(i, 3);
