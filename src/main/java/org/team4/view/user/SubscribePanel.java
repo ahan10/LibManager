@@ -12,14 +12,15 @@ public class SubscribePanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	 public SubscribePanel() {
-		 	setBounds(100, 100, 788, 520);
-	     
-	        JLabel label = new JLabel("Subscribe ");
-	        label.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-	        label.setBounds(328, 28, 132, 16);
-			add(label);
-	       
-	    }
+	public SubscribePanel() {
+		setBounds(100, 100, 1160, 740);
+		setLayout(null);
+
+		JLabel label = new JLabel("Subscribe ");
+		label.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		label.setBounds(530, 5, 100, 25);
+		add(label);
+
+	}
 
 }

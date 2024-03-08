@@ -41,7 +41,7 @@ public class ManageMagazinePanel extends JPanel {
 
         JLabel titleLabel = new JLabel("Manage Magazines");
         titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        titleLabel.setBounds(422, 23, 132, 22);
+        titleLabel.setBounds(401, 23, 173, 22);
         panel.add(titleLabel);
 
         addScrollPane();

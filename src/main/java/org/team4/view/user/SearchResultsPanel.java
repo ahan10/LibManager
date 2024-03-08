@@ -15,18 +15,16 @@ public class SearchResultsPanel extends JPanel {
 	private static JTable table;
 	
 	 public SearchResultsPanel() {
-		 	setBounds(100, 100, 788, 520);
+		 setBounds(100, 100, 1160, 740);
 	        setLayout(null);
 	     
 	        JLabel label = new JLabel("Search Results ");
 	        label.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-	        label.setBounds(324, 5, 139, 26);
+	        label.setBounds(504, 5, 152, 26);
 			add(label);
 	       
 	    }
-    
-	
-	
+
 
 	 public SearchResultsPanel(ArrayList<Book> results) {
 	        setLayout(new BorderLayout());
