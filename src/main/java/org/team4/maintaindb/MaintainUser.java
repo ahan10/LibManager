@@ -61,7 +61,7 @@ public class MaintainUser {
 	 */
 	public void addUser(User user) {
 		boolean flag = false;
-		for (User u: users) {
+		for (User u: this.users) {
 			if (u.getEmail().equals(user.getEmail())) {
 				System.out.println(user.toString() + " already exists");
 				flag = true;
@@ -69,7 +69,7 @@ public class MaintainUser {
 			}
 		}
 		if (flag == false) {
-			users.add(user);
+			this.users.add(user);
 			System.out.println("new user " + user.toString() + " added");
 		}
 	}
