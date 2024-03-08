@@ -145,6 +145,12 @@ public class MaintainMagazine {
 			this.magazine.add(magazine);
 			System.out.println("new magazine " + magazine.toString() + " added");
 		}
+		try {
+			update();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

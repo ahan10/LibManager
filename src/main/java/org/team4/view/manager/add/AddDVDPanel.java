@@ -71,9 +71,9 @@ public class AddDVDPanel extends JPanel {
 		WARN_LABEL.setBounds(323, 87, 330, 16);
 		panel.add(WARN_LABEL);
 
-		JLabel bookTitleLabel = new JLabel("Title:");
-		bookTitleLabel.setBounds(182, 146, 61, 16);
-		panel.add(bookTitleLabel);
+		JLabel dvdTitleLabel = new JLabel("Title:");
+		dvdTitleLabel.setBounds(182, 146, 61, 16);
+		panel.add(dvdTitleLabel);
 
 
 		JLabel yearLabel = new JLabel("Year Published:");
@@ -132,7 +132,6 @@ public class AddDVDPanel extends JPanel {
 		quantityField.setBounds(317, 315, 136, 26);
 		panel.add(quantityField);
 		quantityField.setColumns(10);
-
 		
 		canRentComboBox = new JComboBox();
 		canRentComboBox.setModel(new DefaultComboBoxModel(new String[] {"false", "true"}));
