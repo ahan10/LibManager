@@ -7,12 +7,14 @@ public class MaintainDatabase {
 	private static MaintainBooks bookMaintainer;
 	private static MaintainDVD dvdMaintainer;
 	private static MaintainMagazine magazineMaintainer;
+	private static MaintainRent rentMaintainer;
 	
 	private MaintainDatabase() {
 		userMaintainer = MaintainUser.getInstance();
 		bookMaintainer = MaintainBooks.getInstance();
 		dvdMaintainer = MaintainDVD.getInstance();
 		magazineMaintainer = MaintainMagazine.getInstance();
+		rentMaintainer = MaintainRent.getInstance();
 	}
 	
 	public static MaintainDatabase getInstance() {
@@ -60,6 +62,14 @@ public class MaintainDatabase {
 		return MaintainMagazine.getInstance();
 	}
 	
+	/**
+	 * Used to get an instance of the renter database
+	 * @return
+	 */
+	public MaintainRent getrenterDatabase() {
+		return MaintainRent.getInstance();
+	}
+	
 	
 	/**
 	 * Update all databases
@@ -70,6 +80,7 @@ public class MaintainDatabase {
 		bookMaintainer.update();
 		dvdMaintainer.update();
 		magazineMaintainer.update();
+		rentMaintainer.update();
 	}
 
 }

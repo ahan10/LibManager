@@ -110,4 +110,27 @@ public class MaintainRent {
     	return this.renters;
     }
 	
+	public int getNumberOfItemsRentedByUser(String email) {
+		if (this.renters.get(email) == null) {
+			return 0;
+		}
+		return this.renters.get(email).size();
+	}
+	
+	public void addNewRentedItem(String email, String ISBN, Date date) {
+		if (!this.renters.containsKey(email)) {
+			this.renters.put(email, new ArrayList<RentedItem>());
+		}
+		this.renters.get(email).add(new RentedItem(ISBN, date));
+	}
+	
+	
+	public static void main(String [] args) {
+		MaintainRent rentMaintainer = MaintainDatabase.getInstance().getrenterDatabase();
+		
+		System.out.println(rentMaintainer.getNumberOfItemsRentedByUser("user1@example.com"));
+		
+		
+	}
+	
 }
