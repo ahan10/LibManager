@@ -141,6 +141,38 @@ public class MaintainBooks {
         }
         return searchedBooks;
     }
+    
+    public void decreaseNumberOfCopies(Item item) {
+    	for (Item i: this.books) {
+    		if (i.equals(item)) {
+    			i.setQuantity(i.getQuantity()-1);
+    		}
+    	}
+    	try {
+			update();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Failed to decrease quantity");
+		}
+    	
+    }
+    
+    public void increaseNumberOfCopies(Item item) {
+    	for (Item i: this.books) {
+    		if (i.equals(item)) {
+    			i.setQuantity(i.getQuantity()+1);
+    		}
+    	}
+    	try {
+			update();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Failed to increase quantity");
+		}
+    	
+    }
 
     public boolean searchExactBook(Book searchedBook) {
         ArrayList<Item> books = getAllBooks();
