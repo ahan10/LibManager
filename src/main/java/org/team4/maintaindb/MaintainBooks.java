@@ -189,10 +189,10 @@ public class MaintainBooks {
 	public Book searchExactBookByTitle(String title) {
 		for (Item item : this.books) {
 			if (item instanceof Book && ((Book) item).getTitle().equalsIgnoreCase(title)) {
-				return (Book) item;  // Exact match found, return the book.
+				return (Book) item;
 			}
 		}
-		return null;  // No match found.
+		return null;
 	}
 
 

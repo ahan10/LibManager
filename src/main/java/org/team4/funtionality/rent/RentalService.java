@@ -43,7 +43,7 @@ public class RentalService {
 
     }
         public int getRentalCountForUser(String userEmail) {
-        int userRentals = rentmaintain.getNumberOfItemsRentedByUser(userEmail);  // getRentalsForuser ( csv reader )
+        int userRentals = rentmaintain.getNumberOfItemsRentedByUser(userEmail);
         return userRentals;
     }
 //    public overdue(){
