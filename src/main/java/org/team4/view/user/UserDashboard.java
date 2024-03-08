@@ -42,7 +42,7 @@ public class UserDashboard extends JFrame {
 	private JPanel subscribePanel = new SubscribePanel(); 
 	private JPanel purchasePanel = new PurchasePanel(); 
 	private SearchResultsPanel searchResultsPanel = new SearchResultsPanel();
-	private JPanel requestPanel;
+	private RequestPanel requestPanel;
 
 	private User user;
 	
@@ -95,7 +95,7 @@ public class UserDashboard extends JFrame {
 		cardLayout = new CardLayout();
 		activityPanel.setLayout(cardLayout);
 		
-		requestPanel = new RequestPanel();
+		requestPanel = new RequestPanel(user);
 	}
 
 	public void addSearchBar() {
@@ -203,6 +203,18 @@ public class UserDashboard extends JFrame {
 	
 	public void changeToRequestPanel(){
 		cardLayout.show(activityPanel, REQUEST_PANEL);
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	public RequestPanel getRequestPanel() {
+		return requestPanel;
 	}
 }
 
