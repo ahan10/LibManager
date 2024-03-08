@@ -1,23 +1,32 @@
 package org.team4.funtionality.rent;
+import org.team4.maintaindb.MaintainBooks;
+import org.team4.maintaindb.MaintainDatabase;
+import org.team4.maintaindb.MaintainRent;
 import org.team4.model.items.Book;
 import org.team4.model.user.User;
 import java.util.Date;
 import java.util.List;
+import org.team4.model.items.RentedItem;
 
 public class RentalService {
     private static final int MAX_RENTALS_PER_USER = 10;
-    private static final String RENTALS_FILE_PATH = "database/rentals.csv";
 
-    public boolean rentBook(User user, Book book) {
+
+    private MaintainRent rentmaintain= MaintainDatabase.getInstance().getrenterDatabase();
+    private MaintainBooks maintainDB= MaintainDatabase.getInstance().getBookDatabase();
+
+
+    public boolean rentBook(User user, Book book) throws Exception {
         if (canRentBook(user, book)) {
-            book.setQuantity(book.getQuantity() - 1);
-            RentItem rental = new RentItem(user.getEmail(), book.getTitle(), new Date());
-//            writeRentalInfo(rental); maintaindb to write info
+            maintainDB.decreaseNumberOfCopies(book);
+            RentedItem rental = new RentedItem(book.getISBN(), new Date());
+            rentmaintain.addNewRentedItem(user.getEmail(), book.getISBN(), new java.sql.Date(new java.util.Date().getTime()));
+            rentmaintain.update();
             return true;
         }
         return false;
     }
-    private boolean canRentBook(User user, Book book) {
+    public boolean canRentBook(User user, Book book) {
         if (!book.isRentable() || book.getQuantity() < 1)
             return false;
         int userRentalCount = getRentalCountForUser(user.getEmail());
@@ -25,8 +34,9 @@ public class RentalService {
 
     }
     public int getRentalCountForUser(String userEmail) {
-        List<RentItem> userRentals = getRentalsForUser(userEmail);  // getRentalsForuser ( csv reader )
-        return userRentals.size();
+        int userRentals = rentmaintain.getNumberOfItemsRentedByUser(userEmail);  // getRentalsForuser ( csv reader )
+        return userRentals;
     }
+
 
 }

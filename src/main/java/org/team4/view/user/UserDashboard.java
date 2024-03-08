@@ -78,6 +78,13 @@ public class UserDashboard extends JFrame {
 		addButtons();
 		addPanels();
 	}
+	public User getCurrentUser() {
+		return this.user;
+	}
+	public void setCurrentUser(User currentUser) {
+		this.user = currentUser;
+	}
+
 
 	public void initPanel() {
 		contentPane = new JPanel();
