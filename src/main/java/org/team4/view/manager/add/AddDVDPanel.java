@@ -34,6 +34,7 @@ public class AddDVDPanel extends JPanel {
 	private JTextField priceField;
 	private JComboBox canRentComboBox;
 	private JComboBox canBuyComboBox;
+	private JTextField isbnField;
 
 
 	/**
@@ -81,11 +82,11 @@ public class AddDVDPanel extends JPanel {
 		panel.add(yearLabel);
 
 		JLabel rentLabel = new JLabel("Can Rent:");
-		rentLabel.setBounds(182, 364, 76, 16);
+		rentLabel.setBounds(182, 400, 76, 16);
 		panel.add(rentLabel);
 
 		JLabel buyLabel = new JLabel("Can Buy:");
-		buyLabel.setBounds(182, 407, 61, 16);
+		buyLabel.setBounds(182, 440, 61, 16);
 		panel.add(buyLabel);
 
 		JLabel genreLabel = new JLabel("Genre:");
@@ -93,60 +94,68 @@ public class AddDVDPanel extends JPanel {
 		panel.add(genreLabel);
 
 		JLabel durationLabel = new JLabel("Duration (mins):");
-		durationLabel.setBounds(182, 276, 123, 16);
+		durationLabel.setBounds(182, 314, 123, 16);
 		panel.add(durationLabel);
 
 		JLabel quantityLabel = new JLabel("Quantity");
-		quantityLabel.setBounds(182, 320, 61, 16);
+		quantityLabel.setBounds(182, 361, 61, 16);
 		panel.add(quantityLabel);
 
 		JLabel priceLabel = new JLabel("Price:");
-		priceLabel.setBounds(182, 450, 61, 16);
+		priceLabel.setBounds(182, 487, 61, 16);
 		panel.add(priceLabel);
-
+		
+		JLabel isbnLabel = new JLabel("ISBN:");
+		isbnLabel.setBounds(182, 276, 61, 16);
+		panel.add(isbnLabel);
 
 	}
 
 	private void addFields() {
 		titleField = new JTextField();
-		titleField.setBounds(317, 141, 411, 26);
+		titleField.setBounds(323, 141, 405, 26);
 		panel.add(titleField);
 		titleField.setColumns(10);
 
 		yearPublishedField = new JTextField();
-		yearPublishedField.setBounds(317, 187, 411, 26);
+		yearPublishedField.setBounds(323, 187, 405, 26);
 		panel.add(yearPublishedField);
 		yearPublishedField.setColumns(10);
 
 		genreField = new JTextField();
-		genreField.setBounds(317, 230, 411, 26);
+		genreField.setBounds(323, 230, 405, 26);
 		panel.add(genreField);
 		genreField.setColumns(10);
 
 		durationField = new JTextField();
-		durationField.setBounds(317, 271, 136, 26);
+		durationField.setBounds(323, 309, 130, 26);
 		panel.add(durationField);
 		durationField.setColumns(10);
 
 		quantityField = new JTextField();
-		quantityField.setBounds(317, 315, 136, 26);
+		quantityField.setBounds(323, 356, 130, 26);
 		panel.add(quantityField);
 		quantityField.setColumns(10);
 		
 		canRentComboBox = new JComboBox();
 		canRentComboBox.setModel(new DefaultComboBoxModel(new String[] {"false", "true"}));
-		canRentComboBox.setBounds(317, 360, 136, 27);
+		canRentComboBox.setBounds(317, 396, 136, 27);
 		panel.add(canRentComboBox);
 
 		canBuyComboBox = new JComboBox();
 		canBuyComboBox.setModel(new DefaultComboBoxModel(new String[] {"false", "true"}));
-		canBuyComboBox.setBounds(317, 403, 136, 27);
+		canBuyComboBox.setBounds(317, 436, 136, 27);
 		panel.add(canBuyComboBox);
 
 		priceField = new JTextField();
-		priceField.setBounds(317, 445, 130, 26);
+		priceField.setBounds(323, 482, 130, 26);
 		panel.add(priceField);
 		priceField.setColumns(10);
+		
+		isbnField = new JTextField();
+		isbnField.setBounds(323, 268, 130, 26);
+		panel.add(isbnField);
+		isbnField.setColumns(10);
 	}
 
 	private void addButton() {
@@ -159,6 +168,7 @@ public class AddDVDPanel extends JPanel {
 		
 		String title = titleField.getText();
 		String genre = genreField.getText();
+		String isbn = isbnField.getText();
 		
 		int yearPublished = Integer.parseInt(yearPublishedField.getText());
 		int quantity = Integer.parseInt(quantityField.getText());
@@ -171,7 +181,8 @@ public class AddDVDPanel extends JPanel {
 		
 		Item newDVD = ((DVDBuilder) new DVDBuilder()
 				.title(title)
-				.yearPublished(yearPublished))
+				.yearPublished(yearPublished)
+				.ISBN(isbn))
 				.genre(genre)
 				.duration(duration)
 				.price(price)
@@ -199,10 +210,10 @@ public class AddDVDPanel extends JPanel {
 	private void clearFields() {
 		titleField.setText(EMPTY);
 		genreField.setText(EMPTY);
+		isbnField.setText(EMPTY);
 		yearPublishedField.setText(EMPTY);
 		quantityField.setText(EMPTY);
 		durationField.setText(EMPTY);
 		priceField.setText(EMPTY);
 	}
-
 }

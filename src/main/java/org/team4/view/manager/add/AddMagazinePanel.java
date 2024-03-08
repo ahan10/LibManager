@@ -33,6 +33,7 @@ public class AddMagazinePanel extends JPanel {
 	private JTextField issueField;
 	private JTextField quantityField;
 	private JComboBox canRentComboBox;
+	private JTextField isbnField;
 
 	/**
 	 * Create the panel.
@@ -83,11 +84,11 @@ public class AddMagazinePanel extends JPanel {
 		panel.add(yearLabel);
 
 		JLabel rentLabel = new JLabel("Can Rent:");
-		rentLabel.setBounds(182, 402, 76, 16);
+		rentLabel.setBounds(182, 443, 76, 16);
 		panel.add(rentLabel);
 
 		JLabel quantityLabel = new JLabel("Quantity");
-		quantityLabel.setBounds(182, 354, 61, 16);
+		quantityLabel.setBounds(182, 396, 61, 16);
 		panel.add(quantityLabel);
 		
 		JLabel publisherLabel = new JLabel("Publisher:");
@@ -95,8 +96,12 @@ public class AddMagazinePanel extends JPanel {
 		panel.add(publisherLabel);
 		
 		JLabel issueLabel = new JLabel("Issue Number:");
-		issueLabel.setBounds(182, 308, 91, 16);
+		issueLabel.setBounds(182, 356, 91, 16);
 		panel.add(issueLabel);
+		
+		JLabel isbnLabel = new JLabel("ISBN:");
+		isbnLabel.setBounds(182, 308, 61, 16);
+		panel.add(isbnLabel);
 		
 	}
 	
@@ -118,19 +123,24 @@ public class AddMagazinePanel extends JPanel {
 		publisherField.setColumns(10);
 		
 		issueField = new JTextField();
-		issueField.setBounds(323, 303, 128, 26);
+		issueField.setBounds(323, 346, 128, 26);
 		panel.add(issueField);
 		issueField.setColumns(10);
 		
 		quantityField = new JTextField();
-		quantityField.setBounds(323, 349, 130, 26);
+		quantityField.setBounds(323, 391, 130, 26);
 		panel.add(quantityField);
 		quantityField.setColumns(10);
 		
 		canRentComboBox = new JComboBox();
 		canRentComboBox.setModel(new DefaultComboBoxModel(new String[] {"false", "true"}));
-		canRentComboBox.setBounds(323, 398, 128, 27);
+		canRentComboBox.setBounds(323, 439, 128, 27);
 		panel.add(canRentComboBox);
+
+		isbnField = new JTextField();
+		isbnField.setBounds(323, 303, 130, 26);
+		panel.add(isbnField);
+		isbnField.setColumns(10);
 		
 	}
 	
@@ -138,6 +148,7 @@ public class AddMagazinePanel extends JPanel {
 		
 		String title = titleField.getText();
 		String publisher = publisherField.getText();
+		String isbn = isbnField.getText();
 		
 		int year = Integer.parseInt(yearField.getText());
 		int quantity = Integer.parseInt(quantityField.getText());
@@ -147,7 +158,8 @@ public class AddMagazinePanel extends JPanel {
 		
 		Item newMagazine = ((MagazineBuilder) new MagazineBuilder()
 				.title(title)
-				.yearPublished(year))
+				.yearPublished(year)
+				.ISBN(isbn))
 				.publisher(publisher)
 				.issueNumber(issue)
 				.price(PRICE)
@@ -171,6 +183,7 @@ public class AddMagazinePanel extends JPanel {
 	private void clearFields() {
 		titleField.setText(EMPTY);
 		publisherField.setText(EMPTY);
+		isbnField.setText(EMPTY);
 		yearField.setText(EMPTY);
 		quantityField.setText(EMPTY);
 		issueField.setText(EMPTY);
