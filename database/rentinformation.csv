@@ -1,2 +1,3 @@
-email,ISBN,rentDate
-
+email,ISBN,rentDate,dueDate
+user1@example.com,9780262033848,2024-03-07,2024-04-07
+user1@example.com,9780141439555,2024-03-08,2024-04-08
