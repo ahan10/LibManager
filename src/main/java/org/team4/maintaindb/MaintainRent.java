@@ -124,6 +124,10 @@ public class MaintainRent {
 	}
 	
 	
+	/**
+	 * Used for testing, delete later
+	 * @param args
+	 */
 	public static void main(String [] args) {
 		MaintainRent rentMaintainer = MaintainDatabase.getInstance().getrenterDatabase();
 		
