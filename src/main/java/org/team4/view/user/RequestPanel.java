@@ -1,15 +1,18 @@
 package org.team4.view.user;
 
 import java.awt.Font;
+import java.text.NumberFormat;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.text.NumberFormatter;
 
 import org.team4.model.user.User;
 
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
@@ -19,7 +22,7 @@ public class RequestPanel extends JPanel {
 	private JTextField textFieldTitle;
 	private JTextField textFieldAuthor;
 	private JLabel lblAuthor;
-	private JTextField textFieldISBN;
+	private JFormattedTextField textFieldISBN;
 	private JTextField textFieldEdition;
 	private JComboBox<String> comboBoxBookType;
 	private JButton submitButton; 
@@ -68,8 +71,17 @@ public class RequestPanel extends JPanel {
 		comboBoxBookType.setBounds(340, 248, 186, 21);
 		add(comboBoxBookType);
 
-		textFieldISBN = new JTextField();
-		textFieldISBN.setColumns(10);
+		
+		NumberFormat format = NumberFormat.getInstance();
+	    NumberFormatter formatter = new NumberFormatter(format);
+	    formatter.setValueClass(Integer.class);
+	    formatter.setMinimum(0);
+	    formatter.setMaximum(Integer.MAX_VALUE);
+	    formatter.setAllowsInvalid(false);
+	    formatter.setCommitsOnValidEdit(true);
+		
+	    textFieldISBN = new JFormattedTextField();
+	    textFieldISBN.setColumns(10);
 		textFieldISBN.setBounds(340, 192, 186, 19);
 		add(textFieldISBN);
 
