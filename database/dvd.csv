@@ -1,31 +1,32 @@
-title,yearPublished,isRentable,isPurchasable,genre,duration,price,quantity,ISBN
-Inception,2010,true,true,Sci-Fi,148.5,9.99,12,8492012345678
-The Shawshank Redemption,1994,true,true,Drama,142.0,7.99,1,8492012345679
-Pulp Fiction,1994,false,true,Crime,154.0,8.99,2,8492012345680
-The Dark Knight,2008,true,true,Action,152.0,9.99,7,8492012345681
-Schindler's List,1993,false,true,Drama,195.0,7.99,15,8492012345682
-Forrest Gump,1994,false,true,Drama,142.0,8.99,17,8492012345683
-Fight Club,1999,true,true,Drama,139.5,7.99,9,8492012345684
-The Godfather,1972,true,true,Crime,175.0,9.99,3,8492012345685
-The Matrix,1999,true,true,Sci-Fi,136.0,8.99,16,8492012345686
-The Lord of the Rings: The Fellowship of the Ring,2001,true,true,Fantasy,178.0,9.99,7,8492012345687
-The Silence of the Lambs,1991,true,true,Thriller,118.0,7.99,6,8492012345688
-The Avengers,2012,true,true,Action,143.0,9.99,4,8492012345689
-The Grand Budapest Hotel,2014,false,true,Comedy,99.5,7.99,3,8492012345690
-Avatar,2009,true,true,Adventure,162.0,8.99,12,8492012345691
-Gladiator,2000,true,true,Action,155.0,9.99,15,8492012345692
-Casablanca,1942,true,true,Romance,102.0,7.99,14,8492012345693
-The Departed,2006,true,true,Crime,151.5,8.99,19,8492012345694
-Jurassic Park,1993,true,true,Adventure,127.0,9.99,12,8492012345695
-The Lion King,1994,true,true,Animation,88.0,7.99,0,8492012345696
-The Big Lebowski,1998,true,false,Comedy,117.5,0.0,12,8492012345697
-Eternal Sunshine of the Spotless Mind,2004,false,false,Romance,108.0,0.0,5,8492012345698
-The Princess Bride,1987,true,false,Adventure,98.5,0.0,8,8492012345699
-The Dark Knight Rises,2012,true,false,Action,165.0,0.0,15,8492012345700
-Memento,2000,true,false,Mystery,113.5,0.0,3,8492012345701
-The Sixth Sense,1999,false,false,Drama,107.0,0.0,18,8492012345702
-Inglourious Basterds,2009,true,false,War,153.5,0.0,9,8492012345703
-The Shining,1980,true,false,Horror,144.0,0.0,7,8492012345704
-The Terminator,1984,true,false,Sci-Fi,107.5,0.0,10,8492012345705
-The Wizard of Oz,1939,true,false,Fantasy,101.0,0.0,20,8492012345706
-Raiders of the Lost Ark,1981,true,false,Action,115.0,0.0,4,8492012345707
+title,yearPublished,isRentable,isPurchasable,genre,duration,price,quantity
+Inception,2010,true,true,Sci-Fi,148.5,9.99,12
+The Shawshank Redemption,1994,true,true,Drama,142.0,7.99,1
+Pulp Fiction,1994,false,true,Crime,154.0,8.99,2
+The Dark Knight,2008,true,true,Action,152.0,9.99,7
+Schindler's List,1993,false,true,Drama,195.0,7.99,15
+Forrest Gump,1994,false,true,Drama,142.0,8.99,17
+Fight Club,1999,true,true,Drama,139.5,7.99,9
+The Godfather,1972,true,true,Crime,175.0,9.99,3
+The Matrix,1999,true,true,Sci-Fi,136.0,8.99,16
+The Lord of the Rings: The Fellowship of the Ring,2001,true,true,Fantasy,178.0,9.99,7
+The Silence of the Lambs,1991,true,true,Thriller,118.0,7.99,6
+The Avengers,2012,true,true,Action,143.0,9.99,4
+The Grand Budapest Hotel,2014,false,true,Comedy,99.5,7.99,3
+Avatar,2009,true,true,Adventure,162.0,8.99,12
+Gladiator,2000,true,true,Action,155.0,9.99,15
+Casablanca,1942,true,true,Romance,102.0,7.99,14
+The Departed,2006,true,true,Crime,151.5,8.99,19
+Jurassic Park,1993,true,true,Adventure,127.0,9.99,12
+The Lion King,1994,true,true,Animation,88.0,7.99,6
+The Big Lebowski,1998,true,false,Comedy,117.5,0.0,12
+Eternal Sunshine of the Spotless Mind,2004,false,false,Romance,108.0,0.0,5
+The Princess Bride,1987,true,false,Adventure,98.5,0.0,8
+The Dark Knight Rises,2012,true,false,Action,165.0,0.0,15
+Memento,2000,true,false,Mystery,113.5,0.0,3
+The Sixth Sense,1999,false,false,Drama,107.0,0.0,18
+Inglourious Basterds,2009,true,false,War,153.5,0.0,9
+The Shining,1980,true,false,Horror,144.0,0.0,7
+The Terminator,1984,true,false,Sci-Fi,107.5,0.0,10
+The Wizard of Oz,1939,true,false,Fantasy,101.0,0.0,20
+Raiders of the Lost Ark,1981,true,false,Action,115.0,0.0,4
+Titanic,1997,true,true,Romance,195.0,13.0,12
