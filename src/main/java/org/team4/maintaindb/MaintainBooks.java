@@ -4,6 +4,7 @@ import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
 import org.team4.model.items.Book;
+import org.team4.model.items.DVD;
 import org.team4.model.items.builder.BookBuilder;
 
 import org.team4.model.items.Item;
@@ -185,5 +186,26 @@ public class MaintainBooks {
         }
         return found;
     }
+    
+    public void addBook(Book book) {
+		boolean flag = false;
+		for (Item d: this.books) {
+			if (((Book) d).getISBN().equals(book.getISBN())) {
+				System.out.println(book.toString() + " already exists");
+				flag = true;
+				break;
+			}
+		}
+		if (flag == false) {
+			this.books.add(book);
+			System.out.println("new dvd " + book.toString() + " added");
+		}
+		try {
+			update();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Couldn't add book: " + book);
+		}
+	}
 
 }
