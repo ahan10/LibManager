@@ -12,6 +12,7 @@ public class AddItemPanel extends JPanel {
 	private static final String MAGAZINE_VIEW = "Magazine";
 	
 	private AddBookPanel addBookPanel = new AddBookPanel();
+	private AddDVDPanel addDVDPanel = new AddDVDPanel();
 
 	private CardLayout cardLayout;
 	private JPanel viewPanel;
@@ -69,6 +70,7 @@ public class AddItemPanel extends JPanel {
 	
 	private void addPanels() {
 		viewPanel.add(addBookPanel, BOOK_VIEW);
+		viewPanel.add(addDVDPanel, DVD_VIEW);
 		
 		cardLayout.show(viewPanel, BOOK_VIEW);
 	}
@@ -76,6 +78,10 @@ public class AddItemPanel extends JPanel {
 
 	public AddBookPanel getAddBookPanel() {
 		return addBookPanel;
+	}
+	
+	public AddDVDPanel getAddDVDPanel() {
+		return addDVDPanel;
 	}
 
 	public JButton getBookButton() {
@@ -92,6 +98,10 @@ public class AddItemPanel extends JPanel {
 	
 	public void changeToBook() {
 		cardLayout.show(viewPanel, BOOK_VIEW);
+	}
+	
+	public void changeToDVD() {
+		cardLayout.show(viewPanel, DVD_VIEW);
 	}
 	
 }
