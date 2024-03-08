@@ -9,7 +9,6 @@ public class BookBuilder extends ItemBuilder<Book> {
  protected String genre;
  protected int noOfPages;
  protected String author;
- protected String ISBN;
  protected String publisher;
  protected int edition;
  protected boolean hasHardCopy;
