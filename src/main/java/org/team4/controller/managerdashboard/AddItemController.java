@@ -23,15 +23,20 @@ public class AddItemController implements ActionListener{
 		this.addItemPanel.getMagazineButton().addActionListener(this);
 		
 		this.addItemPanel.getAddBookPanel().getAddButton().addActionListener(this);
+		this.addItemPanel.getAddDVDPanel().getAddButton().addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.addItemPanel.getBookButton()) {
 			this.addItemPanel.changeToBook();
-			
-		}else if(e.getSource() == this.addItemPanel.getAddBookPanel().getAddButton()) {
-			MaintainDatabase.getInstance().getBookDatabase().addBook((Book) this.addItemPanel.getAddBookPanel().getBook());
+		}else if(e.getSource() == this.addItemPanel.getDvdButton()) {
+			this.addItemPanel.changeToDVD();
+		}
+		else if(e.getSource() == this.addItemPanel.getAddBookPanel().getAddButton()) {
+			MaintainDatabase.getInstance().getBookDatabase().addBook(this.addItemPanel.getAddBookPanel().getBook());
+		}else if(e.getSource() == this.addItemPanel.getAddDVDPanel().getAddButton()) {
+			MaintainDatabase.getInstance().getDVDDatabase().addDVD(this.addItemPanel.getAddDVDPanel().getDVD());
 		}
 	}
 

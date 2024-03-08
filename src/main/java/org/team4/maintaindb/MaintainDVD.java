@@ -144,6 +144,13 @@ public class MaintainDVD {
 			this.dvd.add(dvd);
 			System.out.println("new dvd " + dvd.toString() + " added");
 		}
+		
+		try {
+			update();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
