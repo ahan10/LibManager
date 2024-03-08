@@ -123,6 +123,18 @@ public class MaintainRent {
 		this.renters.get(email).add(new RentedItem(ISBN, date));
 	}
 	
+	public boolean isAlreadyRentedByUser(String email, RentedItem rentedItem) {
+		if (!this.renters.containsKey(email)) {
+			return false;
+		}
+		for (RentedItem rI : this.renters.get(email)) {
+			if (rI.getISBN().equals(rentedItem.getISBN())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	
 	/**
 	 * Used for testing, delete later
@@ -132,6 +144,8 @@ public class MaintainRent {
 		MaintainRent rentMaintainer = MaintainDatabase.getInstance().getrenterDatabase();
 		
 		System.out.println(rentMaintainer.getNumberOfItemsRentedByUser("user1@example.com"));
+		
+		System.out.println(rentMaintainer.isAlreadyRentedByUser("user1@example.com", new RentedItem("1237", new java.sql.Date(new java.util.Date().getTime()))));
 		
 		
 	}
