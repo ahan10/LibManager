@@ -99,6 +99,7 @@ public class MaintainDVD {
 			csvOutput.write("duration");
 			csvOutput.write("price");
 			csvOutput.write("quantity");
+			csvOutput.write("ISBN");
 			csvOutput.endRecord();
 
 			// write out records
@@ -111,6 +112,7 @@ public class MaintainDVD {
 				csvOutput.write(String.valueOf(((DVD) d).getDuration()));
 				csvOutput.write(String.valueOf(d.getPrice()));
 				csvOutput.write(String.valueOf(d.getQuantity()));
+				csvOutput.write(d.getISBN());
 				csvOutput.endRecord();
 			}
 			csvOutput.close();

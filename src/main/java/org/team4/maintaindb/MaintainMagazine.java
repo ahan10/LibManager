@@ -100,6 +100,7 @@ public class MaintainMagazine {
 			csvOutput.write("isPurchasable");
 			csvOutput.write("publisher");
 			csvOutput.write("issueNumber");
+			csvOutput.write("ISBN");
 			csvOutput.endRecord();
 
 			// write out records
@@ -112,6 +113,7 @@ public class MaintainMagazine {
 				csvOutput.write(String.valueOf(m.isPurchasable()));
 				csvOutput.write(((Magazine) m).getPublisher());
 				csvOutput.write(String.valueOf(((Magazine) m).getIssueNumber()));
+				csvOutput.write(m.getISBN());
 				csvOutput.endRecord();
 			}
 			csvOutput.close();
