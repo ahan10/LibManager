@@ -12,7 +12,7 @@ import org.team4.view.user.search.BookTableModel;
 
 public class SearchResultsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private JTable table;
+	private static JTable table;
 	
 	 public SearchResultsPanel() {
 		 	setBounds(100, 100, 788, 520);
@@ -34,4 +34,7 @@ public class SearchResultsPanel extends JPanel {
 	        table = new JTable(model);
 	        add(new JScrollPane(table), BorderLayout.CENTER);
 	    }
+	 public static JTable getTable() {
+		    return table;
+		}
 }

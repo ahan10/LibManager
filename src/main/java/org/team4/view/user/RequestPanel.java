@@ -23,11 +23,9 @@ public class RequestPanel extends JPanel {
 	private JTextField textFieldEdition;
 	
     public RequestPanel() {
-        setBounds(100, 100, 788, 520);
+    	setBounds(100, 100, 1160, 740);
 		 setLayout(null);
     
-
-        // Continue with the rest of your code...
 
 		
 		 JLabel lblRequestBook = new JLabel("Request Book");

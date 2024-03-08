@@ -186,7 +186,16 @@ public class MaintainBooks {
         }
         return found;
     }
-    
+	public Book searchExactBookByTitle(String title) {
+		for (Item item : this.books) {
+			if (item instanceof Book && ((Book) item).getTitle().equalsIgnoreCase(title)) {
+				return (Book) item;  // Exact match found, return the book.
+			}
+		}
+		return null;  // No match found.
+	}
+
+
     public void addBook(Book book) {
 		boolean flag = false;
 		for (Item d: this.books) {

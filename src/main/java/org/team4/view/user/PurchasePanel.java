@@ -13,7 +13,7 @@ public class PurchasePanel extends JPanel {
 	 * Create the panel.
 	 */
 public PurchasePanel() {
-		setBounds(100, 100, 788, 520);
+		setBounds(100, 100, 1160, 740);
         
         JLabel label = new JLabel("Purchase ");
         label.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
