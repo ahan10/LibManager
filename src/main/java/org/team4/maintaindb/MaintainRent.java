@@ -60,12 +60,14 @@ public class MaintainRent {
 			String email = reader.get("email");
 			String ISBN = reader.get("ISBN");
 			Date rentDate = Date.valueOf(reader.get("rentDate"));
+			Date dueDate = Date.valueOf(reader.get("dueDate"));
+
 			if (this.renters.containsKey(email)) {
-				this.renters.get(email).add(new RentedItem(ISBN,rentDate));
+				this.renters.get(email).add(new RentedItem(ISBN,rentDate,dueDate));
 			}
 			else {
 				this.renters.put(email, new ArrayList<RentedItem>());
-				this.renters.get(email).add(new RentedItem(ISBN,rentDate));
+				this.renters.get(email).add(new RentedItem(ISBN,rentDate,dueDate));
 			}
 		}
 	}
@@ -83,6 +85,7 @@ public class MaintainRent {
 			csvOutput.write("email");
 			csvOutput.write("ISBN");
 			csvOutput.write("rentDate");
+			csvOutput.write("dueDate");
 			csvOutput.endRecord();
 
 			// write out records
@@ -91,6 +94,7 @@ public class MaintainRent {
 					csvOutput.write(email);
 					csvOutput.write(item.getISBN());
 					csvOutput.write(String.valueOf(item.getRentDate()));
+					csvOutput.write(String.valueOf(item.getDueDate()));
 					csvOutput.endRecord();
 				}
 			}
@@ -116,11 +120,11 @@ public class MaintainRent {
 		return this.renters.get(email).size();
 	}
 	
-	public void addNewRentedItem(String email, String ISBN, Date date) {
+	public void addNewRentedItem(String email, String ISBN, Date date, Date dueDate) {
 		if (!this.renters.containsKey(email)) {
 			this.renters.put(email, new ArrayList<RentedItem>());
 		}
-		this.renters.get(email).add(new RentedItem(ISBN, date));
+		this.renters.get(email).add(new RentedItem(ISBN, date,dueDate));
 	}
 	
 	public boolean isAlreadyRentedByUser(String email, RentedItem rentedItem) {
@@ -164,7 +168,7 @@ public class MaintainRent {
 		
 		System.out.println(rentMaintainer.getNumberOfItemsRentedByUser("user1@example.com"));
 		
-		System.out.println(rentMaintainer.isAlreadyRentedByUser("user1@example.com", new RentedItem("1237", new java.sql.Date(new java.util.Date().getTime()))));
+//		System.out.println(rentMaintainer.isAlreadyRentedByUser("user1@example.com", new RentedItem("1237", new java.sql.Date(new java.util.Date().getTime()))));
 		
 		System.out.println(rentMaintainer.returnRentedItem("user4@example.com", "1237"));
 		

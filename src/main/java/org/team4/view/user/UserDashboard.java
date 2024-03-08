@@ -1,5 +1,6 @@
 package org.team4.view.user;
 import org.team4.controller.userdashboard.UserController;
+import org.team4.maintaindb.MaintainBooks;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Book;
 import org.team4.model.user.User;
@@ -16,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class UserDashboard extends JFrame {
 
@@ -76,6 +78,13 @@ public class UserDashboard extends JFrame {
 		addButtons();
 		addPanels();
 	}
+	public User getCurrentUser() {
+		return this.user;
+	}
+	public void setCurrentUser(User currentUser) {
+		this.user = currentUser;
+	}
+
 
 	public void initPanel() {
 		contentPane = new JPanel();
@@ -84,13 +93,13 @@ public class UserDashboard extends JFrame {
 		this.setLocationRelativeTo(null);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 1200, 900);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		
 		setContentPane(contentPane);
 
 		activityPanel = new JPanel();
-		activityPanel.setBounds(0, 33, 788, 490);
+		activityPanel.setBounds(12, 59, 1160, 740);
 
 		cardLayout = new CardLayout();
 		activityPanel.setLayout(cardLayout);
@@ -101,11 +110,11 @@ public class UserDashboard extends JFrame {
 	public void addSearchBar() {
 		contentPane.setLayout(null);
 		JLabel SearchLabel = new JLabel("Search:");
-		SearchLabel.setBounds(6, 6, 61, 16);
+		SearchLabel.setBounds(12, 25, 61, 16);
 		contentPane.add(SearchLabel);
 
 		SearchTextField = new JTextField();
-		SearchTextField.setBounds(60, 1, 300, 26);
+		SearchTextField.setBounds(66, 20, 300, 26);
 		SearchTextField.setColumns(10);
 		contentPane.add(SearchTextField);
 
@@ -127,33 +136,30 @@ public class UserDashboard extends JFrame {
 
 	public void addButtons() {
 		RentItemButton = new JButton("Rent an Item");
-		RentItemButton.setBounds(23, 521, 117, 29);
+		RentItemButton.setBounds(66, 812, 117, 29);
+		
+	
 		contentPane.add(RentItemButton);
 		SubscribeButton = new JButton("Subscribe");
-		SubscribeButton.setBounds(230, 521, 117, 29);
+		SubscribeButton.setBounds(284, 812, 117, 29);
 		contentPane.add(SubscribeButton);
 
 		PurchaseButton = new JButton("Purchase");
-		PurchaseButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		
 		RequestButton = new JButton("Request Book");
-		RequestButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		RequestButton.setBounds(426, 521, 117, 29);
+		
+		RequestButton.setBounds(509, 812, 117, 29);
 		contentPane.add(RequestButton);
 		
-		PurchaseButton.setBounds(637, 521, 117, 29);
+		PurchaseButton.setBounds(736, 812, 117, 29);
 		contentPane.add(PurchaseButton);
 
 		subscribePanel.setBounds(0, 33, 788, 490);
 
 		purchasePanel.setBounds(0, 33, 788, 490);
 	}
+	
 
 	public void addPanels() {
 
@@ -165,6 +171,10 @@ public class UserDashboard extends JFrame {
 		activityPanel.add(requestPanel, REQUEST_PANEL);
 
 		cardLayout.show(activityPanel, RENT_PANEL);// default panel have a user/home page
+		
+		JButton logoutButton = new JButton("Logout");
+		logoutButton.setBounds(1063, 19, 109, 27);
+		contentPane.add(logoutButton);
 		
 	}
 	

@@ -9,9 +9,6 @@ import javax.swing.SwingConstants;
 
 import org.team4.model.user.User;
 
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JToggleButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -26,6 +23,7 @@ public class RequestPanel extends JPanel {
 	private JTextField textFieldEdition;
 	private JComboBox<String> comboBoxBookType;
 	private JButton submitButton; 
+	private User user;
 	
 	public RequestPanel(User user) {
 		setBounds(100, 100, 788, 520);
@@ -112,4 +110,9 @@ public class RequestPanel extends JPanel {
 	public JButton getSubmitButton() {
 		return submitButton;
 	}
+	
+	public User getUser() {
+		return user;
+	}
+
 }

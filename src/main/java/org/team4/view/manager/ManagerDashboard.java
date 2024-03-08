@@ -1,8 +1,10 @@
 package org.team4.view.manager;
 
+import org.team4.controller.managerdashboard.AddItemController;
 import org.team4.controller.managerdashboard.ManageItemController;
 import org.team4.controller.managerdashboard.ManagerController;
 import org.team4.model.user.User;
+import org.team4.view.manager.add.AddItemPanel;
 import org.team4.view.manager.manage.ManageItemPanel;
 import org.team4.view.manager.validate.ValidateUserPanel;
 
@@ -30,10 +32,15 @@ public class ManagerDashboard extends JFrame{
 	private final String VALIDATE_PANEL = "Validate User Panel";
 	private final String ADD_PANEL = "Add Item Panel";
 	private final String MANAGE_PANEL = "Manage ItemPanel";
+	
 	private ValidateUserPanel validateUserPanel = new ValidateUserPanel();
-	private AddItemPanel addItemPanel = new AddItemPanel();
+
 	private ManageItemPanel manageItemPanel = new ManageItemPanel();
 	private ManageItemController manageItemController = new ManageItemController(manageItemPanel);
+	
+	private AddItemPanel addItemPanel = new AddItemPanel();
+	private AddItemController addItemController = new AddItemController(addItemPanel);
+	
 	private User manager;
 	
 	/**
