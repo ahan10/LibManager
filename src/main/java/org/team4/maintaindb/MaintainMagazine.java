@@ -62,6 +62,8 @@ public class MaintainMagazine {
 			Item newMagazine = ((MagazineBuilder) new MagazineBuilder()
 					.title(reader.get("title"))
 					.yearPublished(Integer.parseInt(reader.get("yearPublished"))))
+					.publisher(reader.get("publisher"))
+					.issueNumber(Integer.parseInt(reader.get("issueNumber")))
 					.price(Double.parseDouble(reader.get("price")))
 					.quantity(Integer.parseInt(reader.get("quantity")))
 					.build();

@@ -30,14 +30,7 @@ public class ManagerController implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Data Updated.");
             }
         });
-
-        managerDashboard.getManageItemPanel().getManageBookPanel().getUpdateButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                managerDashboard.getManageItemPanel().getManageBookPanel().updateSelectedBooks();
-                JOptionPane.showMessageDialog(null, "Data Updated.");
-            }
-        });
+        
     }
 
     @Override
