@@ -137,6 +137,25 @@ public class MaintainRent {
 	
 	
 	/**
+	 * Returns true if rented item was successfully returned
+	 * @param email
+	 * @param ISBN
+	 * @return
+	 */
+	public boolean returnRentedItem(String email, String ISBN) {
+		if (!this.renters.containsKey(email)) {
+			return false;
+		}
+		for (RentedItem rI : this.renters.get(email)) {
+			if (rI.getISBN().equals(ISBN)) {
+				return this.renters.get(email).remove(rI);
+			}
+		}
+		return false;
+	}
+	
+	
+	/**
 	 * Used for testing, delete later
 	 * @param args
 	 */
@@ -146,6 +165,8 @@ public class MaintainRent {
 		System.out.println(rentMaintainer.getNumberOfItemsRentedByUser("user1@example.com"));
 		
 		System.out.println(rentMaintainer.isAlreadyRentedByUser("user1@example.com", new RentedItem("1237", new java.sql.Date(new java.util.Date().getTime()))));
+		
+		System.out.println(rentMaintainer.returnRentedItem("user4@example.com", "1237"));
 		
 		
 	}
