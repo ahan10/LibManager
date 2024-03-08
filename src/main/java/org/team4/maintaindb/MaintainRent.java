@@ -24,7 +24,6 @@ public class MaintainRent {
 			// LOAD ONLY ONCE WHEN DATABASE CREATED
 			this.load();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Failed to Initialize Renter Database");
 		}
