@@ -1,13 +1,17 @@
 package org.team4.controller.userdashboard;
 
 import org.team4.model.user.User;
+import org.team4.view.login.LoginPage;
 import org.team4.view.user.RequestPanel;
 import org.team4.maintaindb.MaintainBooks;
+import org.team4.maintaindb.MaintainDatabase;
 import org.team4.maintaindb.MaintainRequests;
+import org.team4.maintaindb.MaintainUser;
 import org.team4.model.items.Book;
 import org.team4.model.items.BookRequest;
 import org.team4.view.user.SearchResultsPanel;
 import org.team4.view.user.UserDashboard;
+import org.team4.controller.login.LoginController;
 import org.team4.funtionality.rent.RentalService;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +36,7 @@ public class UserController implements ActionListener {
 		userDashboard.getSubscribeButton().addActionListener(this);
 		userDashboard.getRequestButton().addActionListener(this);
 		userDashboard.getHomeButton().addActionListener(this);
+		userDashboard.getLogoutButton().addActionListener(this);
 
 		userDashboard.getSearchTextField().addActionListener(new ActionListener() {
 			@Override
@@ -81,6 +86,12 @@ public class UserController implements ActionListener {
 			manageRequest(userDashboard.getRequestPanel());
 		}else if(e.getSource() == userDashboard.getHomeButton()) {
 			userDashboard.changeToHomePanel();
+		}else if(e.getSource() == userDashboard.getLogoutButton()) {
+			userDashboard.dispose();
+            LoginPage frame = new LoginPage();
+            MaintainUser maintainUser = MaintainDatabase.getInstance().getUserDatabase();
+        	@SuppressWarnings("unused") LoginController controller = new LoginController(frame, maintainUser);
+            frame.setVisible(true);
 		}
 	}
 

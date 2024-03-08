@@ -205,6 +205,10 @@ public class UserDashboard extends JFrame {
 	public JButton getHomeButton() {
 		return homeButton;
 	}
+	
+	public JButton getLogoutButton() {
+		return logoutButton;
+	}
 
 	public JPanel getHomePanel() {
 		return homePanel;
