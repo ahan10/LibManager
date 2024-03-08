@@ -31,6 +31,7 @@ public class UserController implements ActionListener {
 		userDashboard.getRentItemButton().addActionListener(this);
 		userDashboard.getSubscribeButton().addActionListener(this);
 		userDashboard.getRequestButton().addActionListener(this);
+		userDashboard.getHomeButton().addActionListener(this);
 
 		userDashboard.getSearchTextField().addActionListener(new ActionListener() {
 			@Override
@@ -78,6 +79,8 @@ public class UserController implements ActionListener {
 			userDashboard.changeToRequestPanel();
 		}else if (e.getSource() == userDashboard.getRequestPanel().getSubmitButton()) {
 			manageRequest(userDashboard.getRequestPanel());
+		}else if(e.getSource() == userDashboard.getHomeButton()) {
+			userDashboard.changeToHomePanel();
 		}
 	}
 
