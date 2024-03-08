@@ -43,6 +43,7 @@ public class Item {
         return isRentable;
     }
     
+    
 	public int getQuantity(){
 		return quantity;
 	}

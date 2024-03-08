@@ -3,7 +3,9 @@ package org.team4.controller.userdashboard;
 import org.team4.model.user.User;
 import org.team4.view.user.RequestPanel;
 import org.team4.maintaindb.MaintainBooks;
+import org.team4.maintaindb.MaintainRequests;
 import org.team4.model.items.Book;
+import org.team4.model.items.BookRequest;
 import org.team4.view.user.SearchResultsPanel;
 import org.team4.view.user.UserDashboard;
 import org.team4.funtionality.rent.RentalService;
@@ -80,12 +82,12 @@ public class UserController implements ActionListener {
 	}
 
 	private void manageRequest(RequestPanel panel) {
-		System.out.println("Request Submitted");
-		System.out.println("Book Title: " + panel.getTextFieldTitle().getText().trim());
-		System.out.println("Book Author: " + panel.getTextFieldAuthor().getText().trim());
-		System.out.println("Book ISBN: " + panel.getTextFieldISBN().getText().trim());
-		System.out.println("Book Edition: " + panel.getTextFieldEdition().getText().trim());
-		System.out.println("Type of Book is: " + panel.getComboBoxBookType().getSelectedItem());
+		
+		String title =  panel.getTextFieldTitle().getText().trim();
+		String author = panel.getTextFieldAuthor().getText().trim();
+		String ISBN = panel.getTextFieldISBN().getText().trim();
+		int edition = Integer.parseInt(panel.getTextFieldEdition().getText());
+		String booktype = (String)panel.getComboBoxBookType().getSelectedItem();
 		
 		if(panel.getTextFieldTitle().getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(new JFrame(), "Please enter a valid title!",
@@ -107,6 +109,9 @@ public class UserController implements ActionListener {
 						"Error Invalid Request", JOptionPane.ERROR_MESSAGE);
 			}
 			else {
+				BookRequest newRequest = new BookRequest(user.getEmail(), title, author, ISBN, edition, booktype);
+				MaintainRequests.getInstance().addRequest(newRequest);
+				
 				JOptionPane.showMessageDialog(new JFrame(), "Successful Request!",
 						"Request Complete", JOptionPane.INFORMATION_MESSAGE);
 				

@@ -14,10 +14,11 @@ public class PurchasePanel extends JPanel {
 	 */
 public PurchasePanel() {
 		setBounds(100, 100, 1160, 740);
+        setLayout(null);
         
         JLabel label = new JLabel("Purchase ");
         label.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-        label.setBounds(328, 28, 132, 16);
+        label.setBounds(534, 5, 91, 25);
 		add(label);
     }
 
