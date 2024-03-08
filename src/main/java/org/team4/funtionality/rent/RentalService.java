@@ -9,10 +9,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import org.team4.model.items.RentedItem;
 
 public class RentalService {
     private static final int MAX_RENTALS_PER_USER = 10;
+
+    private static final double PENALTY_PER_DAY=0.5;
+
 
 
     private MaintainRent rentmaintain= MaintainDatabase.getInstance().getrenterDatabase();
@@ -41,9 +46,9 @@ public class RentalService {
             return false;
         }
         List<RentedItem> overdueItems = checkOverdue(user.getEmail());
-        if (overdueItems.size() > 3) {
+        printOverduePenalties(user.getEmail());
+        if (overdueItems.size() >3) {
 
-//            System.out.println("User " + user.getEmail() + " has" +overdueItems.size() + " overdue items.");
             return false;
 
         }
@@ -67,12 +72,32 @@ public class RentalService {
             }
         }
 
-//        System.out.println("User " + userEmail + " has " + overdueItems.size() + " overdue items.");
-        System.out.println("User " + userEmail + " has " +overdueItems.size() + " overdue items.");
+
+//        System.out.println("User " + userEmail + " has " +overdueItems.size() + " overdue items");
         return overdueItems;
 
     }
 
+   public double calculatePenalty( String email){
+        double penalty=0.0;
+        List<RentedItem> overdueItems= checkOverdue(email);
+        Date currentDate = new Date(System.currentTimeMillis());
+        for ( RentedItem item: overdueItems){
+            long diffInMillis = Math.abs(currentDate.getTime() - item.getDueDate().getTime());
+            long overdueDays = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
+
+            penalty= penalty+ overdueDays*PENALTY_PER_DAY;
+        }
+       System.out.println(" Total penalty: " + penalty);
+        return penalty;
+
+   }
+    public void printOverduePenalties(String userEmail) {
+        List<RentedItem> overdueItems = checkOverdue(userEmail);
+        double penalty = calculatePenalty(userEmail);
+
+        System.out.println("User " + userEmail + " has " + overdueItems.size() + " overdue items. Total penalty: $" + penalty);
+    }
 
 
 
