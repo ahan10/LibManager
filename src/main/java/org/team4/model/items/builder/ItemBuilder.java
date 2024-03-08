@@ -8,6 +8,7 @@ public abstract class ItemBuilder<T extends Item> {
  protected int yearPublished;
  protected int quantity;
  protected double price;
+ protected String ISBN;
  
  public ItemBuilder<T> title(String title) {
      this.title = title;
@@ -26,6 +27,11 @@ public abstract class ItemBuilder<T extends Item> {
  
  public ItemBuilder<T> price(double price) {
      this.price = price;
+     return this;
+ }
+ 
+ public ItemBuilder<T> ISBN(String ISBN) {
+     this.ISBN = ISBN;
      return this;
  }
  

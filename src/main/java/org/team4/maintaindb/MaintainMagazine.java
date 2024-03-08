@@ -61,7 +61,8 @@ public class MaintainMagazine {
 		while (reader.readRecord()) {
 			Item newMagazine = ((MagazineBuilder) new MagazineBuilder()
 					.title(reader.get("title"))
-					.yearPublished(Integer.parseInt(reader.get("yearPublished"))))
+					.yearPublished(Integer.parseInt(reader.get("yearPublished")))
+					.ISBN(reader.get("ISBN")))
 					.publisher(reader.get("publisher"))
 					.issueNumber(Integer.parseInt(reader.get("issueNumber")))
 					.price(Double.parseDouble(reader.get("price")))

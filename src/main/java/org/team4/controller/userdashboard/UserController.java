@@ -9,9 +9,7 @@ import org.team4.view.user.UserDashboard;
 import org.team4.funtionality.rent.RentalService;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
-
 import javax.swing.JOptionPane;
 
 public class UserController implements ActionListener {
@@ -83,13 +81,39 @@ public class UserController implements ActionListener {
 
 	private void manageRequest(RequestPanel panel) {
 		System.out.println("Request Submitted");
-		System.out.println("Book Title: " + panel.getTextFieldTitle().getText());
-		System.out.println("Book Author: " + panel.getTextFieldAuthor().getText());
-		System.out.println("Book ISBN: " + panel.getTextFieldISBN().getText());
-		System.out.println("Book Edition: " + panel.getTextFieldEdition().getText());
+		System.out.println("Book Title: " + panel.getTextFieldTitle().getText().trim());
+		System.out.println("Book Author: " + panel.getTextFieldAuthor().getText().trim());
+		System.out.println("Book ISBN: " + panel.getTextFieldISBN().getText().trim());
+		System.out.println("Book Edition: " + panel.getTextFieldEdition().getText().trim());
 		System.out.println("Type of Book is: " + panel.getComboBoxBookType().getSelectedItem());
-
-		JOptionPane.showMessageDialog(new JFrame(), "Please ensure compliance!",
-				"Swing Tester", JOptionPane.ERROR_MESSAGE);
+		
+		if(panel.getTextFieldTitle().getText().trim().equals("")) {
+			JOptionPane.showMessageDialog(new JFrame(), "Please enter a valid title!",
+					"Error Invalid Title", JOptionPane.ERROR_MESSAGE);
+		}else if(panel.getTextFieldAuthor().getText().trim().equals("")) {
+			JOptionPane.showMessageDialog(new JFrame(), "Please enter a valid author!",
+					"Error Invalid Author Name", JOptionPane.ERROR_MESSAGE);
+		}else if(panel.getTextFieldISBN().getText().trim().length() < 10) {
+			JOptionPane.showMessageDialog(new JFrame(), "Please enter a valid ISBN!",
+					"Error Invalid ISBN", JOptionPane.ERROR_MESSAGE);
+		}
+		else if(panel.getTextFieldEdition().getText().trim().equals("")) {
+			JOptionPane.showMessageDialog(new JFrame(), "Please enter a valid edition!",
+					"Error Invalid Edition", JOptionPane.ERROR_MESSAGE);
+		}
+		else {
+			if(MaintainBooks.getInstance().searchExactBook(panel.getTextFieldISBN().getText())) {
+				JOptionPane.showMessageDialog(new JFrame(), "Book already exists in library!",
+						"Error Invalid Request", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				JOptionPane.showMessageDialog(new JFrame(), "Successful Request!",
+						"Request Complete", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
+		}
+		
+		
+		
 	}
 }

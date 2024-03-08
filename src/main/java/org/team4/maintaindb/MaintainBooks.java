@@ -56,10 +56,10 @@ public class MaintainBooks {
                     .title(reader.get("title"))
                     .yearPublished(Integer.parseInt(reader.get("yearPublished")))
                     .price(Double.parseDouble(reader.get("price")))
-                    .quantity(Integer.parseInt(reader.get("quantity"))))
+                    .quantity(Integer.parseInt(reader.get("quantity")))
+                    .ISBN(reader.get("ISBN")))
                     .noOfPages(Integer.parseInt(reader.get("noOfPages")))
                     .author(reader.get("author"))
-                    .ISBN(reader.get("ISBN"))
                     .publisher(reader.get("publisherName"))
                     .edition(Integer.parseInt(reader.get("edition")))
                     .genre(reader.get("genre"))
@@ -175,12 +175,12 @@ public class MaintainBooks {
     	
     }
 
-    public boolean searchExactBook(Book searchedBook) {
+    public boolean searchExactBook(String ISBN) {
         ArrayList<Item> books = getAllBooks();
         boolean found = false;
         for (Item item: books) {
         	Book book = (Book)item;
-            if (book.getISBN().equalsIgnoreCase(searchedBook.getISBN())) {
+            if (book.getISBN().equalsIgnoreCase(ISBN)) {
                 found = true;
             }
         }
@@ -207,7 +207,7 @@ public class MaintainBooks {
 		}
 		if (flag == false) {
 			this.books.add(book);
-			System.out.println("new dvd " + book.toString() + " added");
+			System.out.println("new book " + book.toString() + " added");
 		}
 		try {
 			update();

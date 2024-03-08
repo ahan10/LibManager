@@ -60,7 +60,8 @@ public class MaintainDVD {
 		while (reader.readRecord()) {
 			Item newDVD = ((DVDBuilder) new DVDBuilder()
 					.title(reader.get("title"))
-					.yearPublished(Integer.parseInt(reader.get("yearPublished"))))
+					.yearPublished(Integer.parseInt(reader.get("yearPublished")))
+					.ISBN(reader.get("ISBN")))
 					.genre(reader.get("genre"))
 					.duration(Double.parseDouble(reader.get("duration")))
 					.price(Double.parseDouble(reader.get("price")))

@@ -8,21 +8,23 @@ public class Item {
     private int yearPublished;
     private int quantity;
     private double price;
+    protected String ISBN;
     protected boolean isRentable;
     protected boolean isPurchaseable;
        
-    public Item(String title, int yearPublished, int quantity, double price, boolean isPurchaseable, boolean isRentable) {
+    public Item(String title, int yearPublished, int quantity, double price, String ISBN, boolean isPurchaseable, boolean isRentable) {
 		super();
 		this.title = title;
 		this.yearPublished = yearPublished;
 		this.quantity = quantity;
 		this.price = price;
+		this.ISBN = ISBN;
 		this.isPurchaseable = isPurchaseable;
 		this.isRentable = isRentable;
 	}
 
 	public Item(Item item){
-        this(item.title, item.yearPublished, item.quantity, item.price, item.isPurchaseable, item.isRentable);
+        this(item.title, item.yearPublished, item.quantity, item.price, item.ISBN, item.isPurchaseable, item.isRentable);
     }
 	
 	public String getTitle() {
@@ -41,7 +43,6 @@ public class Item {
         return isRentable;
     }
     
-    
 	public int getQuantity(){
 		return quantity;
 	}
@@ -56,6 +57,10 @@ public class Item {
 	
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	
+	public String getISBN() {
+		return ISBN;
 	}
 
     @Override
