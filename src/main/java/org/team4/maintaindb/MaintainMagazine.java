@@ -148,7 +148,6 @@ public class MaintainMagazine {
 		try {
 			update();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
