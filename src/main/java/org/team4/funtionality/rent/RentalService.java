@@ -5,6 +5,7 @@ import org.team4.maintaindb.MaintainRent;
 import org.team4.model.items.Book;
 import org.team4.model.user.User;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -39,6 +40,13 @@ public class RentalService {
         if (rentmaintain.isAlreadyRentedByUser(user.getEmail(), new RentedItem(book.getISBN(),null,null))){
             return false;
         }
+        List<RentedItem> overdueItems = checkOverdue(user.getEmail());
+        if (overdueItems.size() > 3) {
+
+//            System.out.println("User " + user.getEmail() + " has" +overdueItems.size() + " overdue items.");
+            return false;
+
+        }
         return rentmaintain.getNumberOfItemsRentedByUser(user.getEmail())< MAX_RENTALS_PER_USER ;
 
     }
@@ -46,11 +54,26 @@ public class RentalService {
         int userRentals = rentmaintain.getNumberOfItemsRentedByUser(userEmail);
         return userRentals;
     }
-//    public overdue(){
+    public List<RentedItem> checkOverdue(String userEmail) {
+        List<RentedItem> overdueItems = new ArrayList<>();
+        Date currentDate = new Date(System.currentTimeMillis());
+
+        List<RentedItem> rentedItems = rentmaintain.getAllRenters().get(userEmail);
+        if (rentedItems != null) {
+            for (RentedItem item : rentedItems) {
+                if (item.getDueDate().before(currentDate)) {
+                    overdueItems.add(item);
+                }
+            }
+        }
+
+//        System.out.println("User " + userEmail + " has " + overdueItems.size() + " overdue items.");
+        System.out.println("User " + userEmail + " has " +overdueItems.size() + " overdue items.");
+        return overdueItems;
+
+    }
 
 
-//
-//    }
 
 
 }
