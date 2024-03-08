@@ -12,7 +12,7 @@ class RentItemPanel extends JPanel {
 	
     public RentItemPanel() {
         setLayout(null);
-        setBounds(100, 100, 788, 520);
+        setBounds(100, 100, 1160, 740);
        
         JLabel label = new JLabel("Rent Item ");
         label.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
