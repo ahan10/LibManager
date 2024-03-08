@@ -4,6 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
+
 public class AddItemPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -13,6 +14,7 @@ public class AddItemPanel extends JPanel {
 	
 	private AddBookPanel addBookPanel = new AddBookPanel();
 	private AddDVDPanel addDVDPanel = new AddDVDPanel();
+	private AddMagazinePanel addMagazinePanel = new AddMagazinePanel();
 
 	private CardLayout cardLayout;
 	private JPanel viewPanel;
@@ -71,6 +73,7 @@ public class AddItemPanel extends JPanel {
 	private void addPanels() {
 		viewPanel.add(addBookPanel, BOOK_VIEW);
 		viewPanel.add(addDVDPanel, DVD_VIEW);
+		viewPanel.add(addMagazinePanel, MAGAZINE_VIEW);
 		
 		cardLayout.show(viewPanel, BOOK_VIEW);
 	}
@@ -82,6 +85,10 @@ public class AddItemPanel extends JPanel {
 	
 	public AddDVDPanel getAddDVDPanel() {
 		return addDVDPanel;
+	}
+	
+	public AddMagazinePanel getAddMagazinePanel() {
+		return addMagazinePanel;
 	}
 
 	public JButton getBookButton() {
@@ -102,6 +109,10 @@ public class AddItemPanel extends JPanel {
 	
 	public void changeToDVD() {
 		cardLayout.show(viewPanel, DVD_VIEW);
+	}
+	
+	public void changeToMagazine() {
+		cardLayout.show(viewPanel, MAGAZINE_VIEW);
 	}
 	
 }
