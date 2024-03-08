@@ -31,23 +31,25 @@ public class UserDashboard extends JFrame {
 	private JButton SubscribeButton;
 	private JButton PurchaseButton;
 	private JButton RequestButton; 
+	private JButton logoutButton;
+	private JButton homeButton;
 	private JTextField SearchTextField;
 
-	private final String RENT_PANEL = "Rent Item Panel";
+	private final String HOME_PANEL = "Home Panel";
 	private final String SUBSCRIBE_PANEL = "Subscribe Panel";
 	private final String PURCHASE_PANEL = "Purchase Panel";
 	private final String SEARCH_RESULTS_PANEL = "Search Panel";
 	private final String REQUEST_PANEL = "Request Panel";
 
 
-	private JPanel rentItemPanel = new RentItemPanel(); 
+	private JPanel homePanel = new HomePanel(); 
 	private JPanel subscribePanel = new SubscribePanel(); 
 	private JPanel purchasePanel = new PurchasePanel(); 
 	private SearchResultsPanel searchResultsPanel = new SearchResultsPanel();
 	private RequestPanel requestPanel;
 
 	private User user;
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -70,7 +72,7 @@ public class UserDashboard extends JFrame {
 		addButtons();
 		addPanels();
 	}
-	
+
 	public UserDashboard(User u) {
 		this.user = u;
 		initPanel();
@@ -95,7 +97,7 @@ public class UserDashboard extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 900);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
+
 		setContentPane(contentPane);
 
 		activityPanel = new JPanel();
@@ -103,7 +105,7 @@ public class UserDashboard extends JFrame {
 
 		cardLayout = new CardLayout();
 		activityPanel.setLayout(cardLayout);
-		
+
 		requestPanel = new RequestPanel(user);
 	}
 
@@ -120,64 +122,69 @@ public class UserDashboard extends JFrame {
 
 	}
 	public void performSearch(String query) {
-	    ArrayList<Book> searchResults = null;
+		ArrayList<Book> searchResults = null;
 
 		searchResults = MaintainDatabase.getInstance().getBookDatabase().searchBooks(query);
 		updateSearchResultsPanel(searchResults);
 		cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL);
 
 	}
-	 
-	 private void updateSearchResultsPanel(ArrayList<Book> results) {
-		    searchResultsPanel = new SearchResultsPanel(results);
-		    activityPanel.add(searchResultsPanel, SEARCH_RESULTS_PANEL);
-		    cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL); 
-		}
+
+	private void updateSearchResultsPanel(ArrayList<Book> results) {
+		searchResultsPanel = new SearchResultsPanel(results);
+		activityPanel.add(searchResultsPanel, SEARCH_RESULTS_PANEL);
+		cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL); 
+	}
 
 	public void addButtons() {
 		RentItemButton = new JButton("Rent an Item");
-		RentItemButton.setBounds(66, 812, 117, 29);
-		
-	
+		RentItemButton.setBounds(253, 812, 117, 29);
+
+
 		contentPane.add(RentItemButton);
 		SubscribeButton = new JButton("Subscribe");
-		SubscribeButton.setBounds(284, 812, 117, 29);
+		SubscribeButton.setBounds(465, 812, 117, 29);
 		contentPane.add(SubscribeButton);
 
 		PurchaseButton = new JButton("Purchase");
-		
-		
+
+
 		RequestButton = new JButton("Request Book");
-		
-		RequestButton.setBounds(509, 812, 117, 29);
+
+		RequestButton.setBounds(673, 812, 117, 29);
 		contentPane.add(RequestButton);
-		
-		PurchaseButton.setBounds(736, 812, 117, 29);
+
+		PurchaseButton.setBounds(864, 812, 117, 29);
 		contentPane.add(PurchaseButton);
 
 		subscribePanel.setBounds(0, 33, 788, 490);
 
 		purchasePanel.setBounds(0, 33, 788, 490);
+		
+		logoutButton = new JButton("Logout");
+		logoutButton.setBounds(1063, 19, 109, 27);
+		contentPane.add(logoutButton);
+		
+		homeButton = new JButton("Home");
+		homeButton.setBounds(49, 812, 117, 29);
+		contentPane.add(homeButton);
+
 	}
-	
+
 
 	public void addPanels() {
-
+		
 		contentPane.add(activityPanel);
 
-		activityPanel.add(rentItemPanel, RENT_PANEL);
+		activityPanel.add(homePanel, HOME_PANEL);
 		activityPanel.add(purchasePanel, PURCHASE_PANEL);
 		activityPanel.add(subscribePanel, SUBSCRIBE_PANEL);
 		activityPanel.add(requestPanel, REQUEST_PANEL);
 
-		cardLayout.show(activityPanel, RENT_PANEL);// default panel have a user/home page
-		
-		JButton logoutButton = new JButton("Logout");
-		logoutButton.setBounds(1063, 19, 109, 27);
-		contentPane.add(logoutButton);
-		
+		cardLayout.show(activityPanel, HOME_PANEL);// default panel have a user/home page
+
 	}
-	
+
 
 	public JButton getRequestButton() {
 		return RequestButton;
@@ -194,13 +201,21 @@ public class UserDashboard extends JFrame {
 	public JButton getPurchaseButton() {
 		return PurchaseButton;
 	}
+	
+	public JButton getHomeButton() {
+		return homeButton;
+	}
+
+	public JPanel getHomePanel() {
+		return homePanel;
+	}
 
 	public JTextField getSearchTextField(){
 		return this.SearchTextField;
 	}
 
-	public void changeToRentPanel(){
-		cardLayout.show(activityPanel, RENT_PANEL);
+	public void changeToHomePanel(){
+		cardLayout.show(activityPanel, HOME_PANEL);
 	}
 
 	public void changeToPurchasePanel(){
@@ -210,11 +225,11 @@ public class UserDashboard extends JFrame {
 	public void changeToSubscribePanel(){
 		cardLayout.show(activityPanel, SUBSCRIBE_PANEL);
 	}
-	
+
 	public void changeToRequestPanel(){
 		cardLayout.show(activityPanel, REQUEST_PANEL);
 	}
-	
+
 	public User getUser() {
 		return user;
 	}
@@ -222,7 +237,7 @@ public class UserDashboard extends JFrame {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 	public RequestPanel getRequestPanel() {
 		return requestPanel;
 	}
