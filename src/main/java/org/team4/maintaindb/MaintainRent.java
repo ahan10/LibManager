@@ -16,7 +16,7 @@ public class MaintainRent {
 
 	public Map<String, ArrayList<RentedItem>> renters;
 
-	private static final String FILE_PATH = "database/rent.csv";
+	private static final String FILE_PATH = "database/rentinformation.csv";
 
 	private MaintainRent() {
 		this.renters = new HashMap<String, ArrayList<RentedItem>>();
