@@ -1,6 +1,6 @@
 package org.team4.view.manager.manage;
 
-import org.team4.view.manager.manage.ManageBookPanel;
+import org.team4.view.manager.manage.book.ManageBookPanel;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
