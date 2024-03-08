@@ -83,19 +83,17 @@ public class LoginController implements ActionListener {
 						 */
 						loginPage.getPasswordWarning().setVisible(false);
 						switch (u.getType()) {
-						case "STUDENT":
-							System.out.println(u.toString() + " Logged in Successfully as Student");
+							case "STUDENT": // have one case for every user except manager
+							case "FACULTY":
+							case "NONFACULTY":
+							case "VISITOR":
+							System.out.println(u.toString() + " Logged in Successfully as "+ u.getType());
 							UserDashboard userDashboard = new UserDashboard(u);
 							@SuppressWarnings("unused") UserController userController = new UserController(userDashboard);
 							userDashboard.setVisible(true);
 							loginPage.dispose();
 							break;
-						case "FACULTY":
-							System.out.println(u.toString() + " Logged in Successfully as Faculty");
-							break;
-						case "NONFACULTY":
-							System.out.println(u.toString() + " Logged in Successfully as Non-Faculty");
-							break;
+
 						case "MANAGER":
 							System.out.println(u.toString() + " Logged in Successfully as Manager");
 							// TEMPORARY METHOD FOR OPENING MANAGERDASHBOARD
@@ -106,9 +104,7 @@ public class LoginController implements ActionListener {
 							@SuppressWarnings("unused") ManagerController controller = new ManagerController(frame);
 							loginPage.dispose();
 							break;
-						case "VISITOR":
-							System.out.println(u.toString() + " Logged in Successfully as Visitor");
-							break;
+
 						}
 
 					} else {

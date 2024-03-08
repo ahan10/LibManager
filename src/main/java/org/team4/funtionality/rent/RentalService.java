@@ -30,10 +30,13 @@ public class RentalService {
         if (!book.isRentable() || book.getQuantity() < 1)
             return false;
         int userRentalCount = getRentalCountForUser(user.getEmail());
-        return userRentalCount < MAX_RENTALS_PER_USER;
+        if (rentmaintain.isAlreadyRentedByUser(user.getEmail(), new RentedItem(book.getISBN(),null))){
+            return false;
+        }
+        return rentmaintain.getNumberOfItemsRentedByUser(user.getEmail())< MAX_RENTALS_PER_USER ;
 
     }
-    public int getRentalCountForUser(String userEmail) {
+        public int getRentalCountForUser(String userEmail) {
         int userRentals = rentmaintain.getNumberOfItemsRentedByUser(userEmail);  // getRentalsForuser ( csv reader )
         return userRentals;
     }
