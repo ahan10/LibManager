@@ -1,5 +1,5 @@
 courseName,startDate,endDate,courseTextBookISBN,professorEmail
-course1,1969-12-31,1969-12-32,9780135166307,user2@example.com
+course1,1969-12-31,1969-12-31,9780135166307,user2@example.com
 course2,1969-12-31,1969-12-31,9780060931957,user4@example.com
 course3,1969-12-31,1969-12-31,9780134894281,user4@example.com
 course4,1969-12-31,1969-12-31,9780061120084,user2@example.com
