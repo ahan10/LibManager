@@ -8,6 +8,8 @@ public class MaintainDatabase {
 	private static MaintainDVD dvdMaintainer;
 	private static MaintainMagazine magazineMaintainer;
 	private static MaintainRent rentMaintainer;
+	private static MaintainStudent studentMaintainer;
+	private static MaintainCourse courseMaintainer;
 	
 	private MaintainDatabase() {
 		userMaintainer = MaintainUser.getInstance();
@@ -15,6 +17,8 @@ public class MaintainDatabase {
 		dvdMaintainer = MaintainDVD.getInstance();
 		magazineMaintainer = MaintainMagazine.getInstance();
 		rentMaintainer = MaintainRent.getInstance();
+		courseMaintainer = MaintainCourse.getInstance();
+		studentMaintainer = MaintainStudent.getInstance();
 	}
 	
 	public static MaintainDatabase getInstance() {
@@ -70,6 +74,22 @@ public class MaintainDatabase {
 		return MaintainRent.getInstance();
 	}
 	
+	/**
+	 * Used to get an instance of the student database
+	 * @return
+	 */
+	public MaintainStudent getStudentDatabase() {
+		return MaintainStudent.getInstance();
+	}
+	
+	/**
+	 * Used to get an instance of the course database
+	 * @return
+	 */
+	public MaintainCourse getCourseDatabase() {
+		return MaintainCourse.getInstance();
+	}
+	
 	
 	/**
 	 * Update all databases
@@ -81,6 +101,8 @@ public class MaintainDatabase {
 		dvdMaintainer.update();
 		magazineMaintainer.update();
 		rentMaintainer.update();
+		studentMaintainer.update();
+		courseMaintainer.update();
 	}
 
 }

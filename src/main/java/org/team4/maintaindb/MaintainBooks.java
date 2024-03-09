@@ -186,6 +186,15 @@ public class MaintainBooks {
         }
         return found;
     }
+    
+    public Book searchExactBookByISBN(String ISBN) {
+    	for (Item i : this.books) {
+    		if (i.getISBN().equals(ISBN)) {
+    			return (Book) i;
+    		}
+    	}
+    	return null;
+    }
 	public Book searchExactBookByTitle(String title) {
 		for (Item item : this.books) {
 			if (item instanceof Book && ((Book) item).getTitle().equalsIgnoreCase(title)) {

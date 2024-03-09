@@ -9,3 +9,4 @@ user7@example.com,password7,Sarah Johnson,FACULTY,false
 user8@example.com,password8,David Brown,VISITOR,true
 user9@example.com,password9,Emily Smith,NONFACULTY,false
 user10@example.com,password10,James Johnson,NONFACULTY,false
+user11@example.com,password11,Bob Barker,STUDENT,true

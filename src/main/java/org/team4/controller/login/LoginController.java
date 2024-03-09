@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import org.team4.controller.managerdashboard.ManagerController;
 import org.team4.controller.userdashboard.UserController;
+import org.team4.maintaindb.MaintainDatabase;
 import org.team4.maintaindb.MaintainUser;
 import org.team4.model.user.User;
 import org.team4.view.login.LoginPage;
@@ -20,9 +21,9 @@ public class LoginController implements ActionListener {
 	private MaintainUser maintainUser;
 	private ManagerDashboard frame;
 
-	public LoginController(LoginPage loginPage, MaintainUser maintainUser) {
+	public LoginController(LoginPage loginPage) {
 		this.loginPage = loginPage;
-		this.maintainUser = maintainUser;
+		this.maintainUser = MaintainDatabase.getInstance().getUserDatabase();
 		addListeners();
 	}
 

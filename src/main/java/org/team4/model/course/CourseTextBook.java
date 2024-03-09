@@ -39,6 +39,10 @@ public class CourseTextBook extends Book {
     public List<Student> getStudentsWithCopies() {
         return studentsWithCopies;
     }
+    
+    public Course getCourse() {
+    	return this.course;
+    }
 
 
 }

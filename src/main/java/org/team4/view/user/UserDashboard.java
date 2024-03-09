@@ -1,10 +1,13 @@
 package org.team4.view.user;
 import org.team4.controller.userdashboard.UserController;
 import org.team4.maintaindb.MaintainDatabase;
+import org.team4.maintaindb.MaintainStudent;
 import org.team4.model.items.Book;
 import org.team4.model.items.DVD;
 import org.team4.model.items.Magazine;
+import org.team4.model.user.Student;
 import org.team4.model.user.User;
+import org.team4.view.user.student.StudentPanel;
 
 import java.awt.CardLayout;
 import java.awt.EventQueue;
@@ -27,6 +30,7 @@ public class UserDashboard extends JFrame {
 	private JButton RequestButton;
 	private JButton logoutButton;
 	private JButton homeButton;
+	private JButton studentButton;
 	private JTextField SearchTextField;
 
 	private final String HOME_PANEL = "Home Panel";
@@ -34,12 +38,14 @@ public class UserDashboard extends JFrame {
 	private final String PURCHASE_PANEL = "Purchase Panel";
 	private final String SEARCH_RESULTS_PANEL = "Search Panel";
 	private final String REQUEST_PANEL = "Request Panel";
+	private final String STUDENT_PANEL = "Student Panel";
 
 
 	private JPanel homePanel = new HomePanel();
 	private JPanel subscribePanel = new SubscribePanel();
 	private JPanel purchasePanel = new PurchasePanel();
 	private BookResultsPanel bookResultsPanel = new BookResultsPanel();
+	private StudentPanel studentPanel = new StudentPanel();
 
 	private MagazineResultsPanel magazineResultsPanel = new MagazineResultsPanel();
 	private DVDResultsPanel dvdResultsPanel = new DVDResultsPanel();
@@ -48,7 +54,7 @@ public class UserDashboard extends JFrame {
 	private final String[] searchTypes = {"Book", "DVD", "Newsletter", "Magazine"};
 
 	private User user;
-
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -211,18 +217,25 @@ public class UserDashboard extends JFrame {
 		homeButton = new JButton("Home");
 		homeButton.setBounds(49, 812, 117, 29);
 		contentPane.add(homeButton);
+		
+		studentButton = new JButton("StudentTemp");
+		studentButton.setBounds(1020, 812, 117, 29);
+		if (user.getType().equals("STUDENT")) {
+			contentPane.add(studentButton);
+		}
+		
 
 	}
 
 
 	public void addPanels() {
-
 		contentPane.add(activityPanel);
 
 		activityPanel.add(homePanel, HOME_PANEL);
 		activityPanel.add(purchasePanel, PURCHASE_PANEL);
 		activityPanel.add(subscribePanel, SUBSCRIBE_PANEL);
 		activityPanel.add(requestPanel, REQUEST_PANEL);
+		activityPanel.add(studentPanel, STUDENT_PANEL);
 
 		cardLayout.show(activityPanel, HOME_PANEL);// default panel have a user/home page
 
@@ -247,6 +260,10 @@ public class UserDashboard extends JFrame {
 
 	public JButton getHomeButton() {
 		return homeButton;
+	}
+	
+	public JButton getStudentButton() {
+		return studentButton;
 	}
 
 	public JButton getLogoutButton() {
@@ -275,6 +292,14 @@ public class UserDashboard extends JFrame {
 
 	public void changeToRequestPanel(){
 		cardLayout.show(activityPanel, REQUEST_PANEL);
+	}
+	
+	public void changeToStudentPanel(User student) {
+		if (studentPanel != null) {
+			activityPanel.remove(studentPanel);
+		}
+		activityPanel.add(new StudentPanel(student), STUDENT_PANEL);
+		cardLayout.show(activityPanel, STUDENT_PANEL);
 	}
 
 	public User getUser() {

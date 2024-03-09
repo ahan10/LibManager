@@ -44,8 +44,7 @@ public class ManagerController implements ActionListener {
         } else if (e.getSource() == managerDashboard.getLogOutButton()) {
             managerDashboard.dispose();
             LoginPage frame = new LoginPage();
-            MaintainUser maintainUser = MaintainDatabase.getInstance().getUserDatabase();
-        	@SuppressWarnings("unused") LoginController controller = new LoginController(frame, maintainUser);
+        	@SuppressWarnings("unused") LoginController controller = new LoginController(frame);
             frame.setVisible(true);
         }
     }
