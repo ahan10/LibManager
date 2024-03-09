@@ -176,7 +176,6 @@ public class MaintainDVD {
 		try {
 			update();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Failed to decrease quantity");
 		}
