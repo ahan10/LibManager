@@ -115,15 +115,15 @@ public class ManagerDashboard extends JFrame{
 		ValidateUserButton.setBounds(6, 6, 117, 29);
 		contentPane.add(ValidateUserButton);
 		
-//		JLabel nameLabel = new JLabel(this.manager.getName());
-//		nameLabel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-//		nameLabel.setBounds(677, 11, 211, 16);
-//		contentPane.add(nameLabel);
-		
-		JLabel nameLabel = new JLabel("TEST_NAME");
+		JLabel nameLabel = new JLabel(this.manager.getName());
 		nameLabel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		nameLabel.setBounds(677, 11, 211, 16);
 		contentPane.add(nameLabel);
+		
+//		JLabel nameLabel = new JLabel("TEST_NAME");
+//		nameLabel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+//		nameLabel.setBounds(677, 11, 211, 16);
+//		contentPane.add(nameLabel);
 	}
 	
 	public void addPanels() {

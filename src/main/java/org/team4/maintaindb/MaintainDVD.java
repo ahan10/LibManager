@@ -60,7 +60,8 @@ public class MaintainDVD {
 		while (reader.readRecord()) {
 			Item newDVD = ((DVDBuilder) new DVDBuilder()
 					.title(reader.get("title"))
-					.yearPublished(Integer.parseInt(reader.get("yearPublished"))))
+					.yearPublished(Integer.parseInt(reader.get("yearPublished")))
+					.ISBN(reader.get("ISBN")))
 					.genre(reader.get("genre"))
 					.duration(Double.parseDouble(reader.get("duration")))
 					.price(Double.parseDouble(reader.get("price")))
@@ -98,6 +99,7 @@ public class MaintainDVD {
 			csvOutput.write("duration");
 			csvOutput.write("price");
 			csvOutput.write("quantity");
+			csvOutput.write("ISBN");
 			csvOutput.endRecord();
 
 			// write out records
@@ -110,6 +112,7 @@ public class MaintainDVD {
 				csvOutput.write(String.valueOf(((DVD) d).getDuration()));
 				csvOutput.write(String.valueOf(d.getPrice()));
 				csvOutput.write(String.valueOf(d.getQuantity()));
+				csvOutput.write(d.getISBN());
 				csvOutput.endRecord();
 			}
 			csvOutput.close();

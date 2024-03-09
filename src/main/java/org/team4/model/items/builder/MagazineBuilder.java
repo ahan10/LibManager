@@ -21,7 +21,7 @@ public class MagazineBuilder extends ItemBuilder<Magazine> {
  
  @Override
  public Magazine build() {
-     return new Magazine(new Item(title, yearPublished, quantity, price, false, false), publisher, issueNumber);
+     return new Magazine(new Item(title, yearPublished, quantity, price, ISBN, false, false), publisher, issueNumber);
  }
 }
 

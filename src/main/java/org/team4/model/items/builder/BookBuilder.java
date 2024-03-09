@@ -9,7 +9,6 @@ public class BookBuilder extends ItemBuilder<Book> {
  protected String genre;
  protected int noOfPages;
  protected String author;
- protected String ISBN;
  protected String publisher;
  protected int edition;
  protected boolean hasHardCopy;
@@ -27,11 +26,6 @@ public class BookBuilder extends ItemBuilder<Book> {
 
  public BookBuilder author(String author) {
      this.author = author;
-     return this;
- }
-
- public BookBuilder ISBN(String ISBN) {
-     this.ISBN = ISBN;
      return this;
  }
 
@@ -57,6 +51,6 @@ public class BookBuilder extends ItemBuilder<Book> {
 
  @Override
  public Book build() {
-     return new Book(new Item(title, yearPublished, quantity, price, false, false), genre, noOfPages, author, ISBN, publisher, edition, hasHardCopy, hasSoftCopy);
+     return new Book(new Item(title, yearPublished, quantity, price, ISBN, false, false), genre, noOfPages, author, publisher, edition, hasHardCopy, hasSoftCopy);
  }
 }

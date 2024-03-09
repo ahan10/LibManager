@@ -16,10 +16,10 @@ class BookTest {
 	void init(){
 		 actual = ((BookBuilder) new BookBuilder()
 				.title("Title")
-				.yearPublished(1999))
+				.yearPublished(1999)
+				.ISBN(123456789L + ""))
 				.noOfPages(300)
-				.author("John Doe")
-				.ISBN(123456789L + "")
+				.author("John Doe")				
 				.publisher("Book Publisher")
 				 .edition(12)
 				 .genre("genre")

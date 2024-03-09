@@ -6,17 +6,17 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
-class RentItemPanel extends JPanel {
+class HomePanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
-    public RentItemPanel() {
+    public HomePanel() {
         setLayout(null);
         setBounds(100, 100, 1160, 740);
        
-        JLabel label = new JLabel("Rent Item ");
+        JLabel label = new JLabel("Welcome to LibManager");
         label.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-        label.setBounds(348, 11, 104, 26);
+        label.setBounds(444, 11, 237, 26);
 		add(label);
     }
 }

@@ -61,7 +61,8 @@ public class MaintainMagazine {
 		while (reader.readRecord()) {
 			Item newMagazine = ((MagazineBuilder) new MagazineBuilder()
 					.title(reader.get("title"))
-					.yearPublished(Integer.parseInt(reader.get("yearPublished"))))
+					.yearPublished(Integer.parseInt(reader.get("yearPublished")))
+					.ISBN(reader.get("ISBN")))
 					.publisher(reader.get("publisher"))
 					.issueNumber(Integer.parseInt(reader.get("issueNumber")))
 					.price(Double.parseDouble(reader.get("price")))
@@ -99,6 +100,7 @@ public class MaintainMagazine {
 			csvOutput.write("isPurchasable");
 			csvOutput.write("publisher");
 			csvOutput.write("issueNumber");
+			csvOutput.write("ISBN");
 			csvOutput.endRecord();
 
 			// write out records
@@ -111,6 +113,7 @@ public class MaintainMagazine {
 				csvOutput.write(String.valueOf(m.isPurchasable()));
 				csvOutput.write(((Magazine) m).getPublisher());
 				csvOutput.write(String.valueOf(((Magazine) m).getIssueNumber()));
+				csvOutput.write(m.getISBN());
 				csvOutput.endRecord();
 			}
 			csvOutput.close();

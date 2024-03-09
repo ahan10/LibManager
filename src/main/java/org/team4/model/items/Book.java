@@ -7,18 +7,16 @@ public class Book extends Item{
 	private String genre;
     private int noOfPages;
     private String author;
-    private String ISBN;
     private String publisher;
     private int edition;
     private boolean hasHardCopy;
     private boolean hasSoftCopy;
 
-    public Book(Item item, String genre, int noOfPages, String author, String ISBN, String publisherName, int edition, boolean hasHardCopy, boolean hasSoftCopy) {
+    public Book(Item item, String genre, int noOfPages, String author, String publisherName, int edition, boolean hasHardCopy, boolean hasSoftCopy) {
         super(item);
         this.genre = genre;
         this.noOfPages = noOfPages;
         this.author = author;
-        this.ISBN = ISBN;
         this.publisher = publisherName;
         this.edition = edition;
         this.hasHardCopy = hasHardCopy;
@@ -35,10 +33,6 @@ public class Book extends Item{
 
 	public String getAuthor() {
 		return author;
-	}
-
-	public String getISBN() {
-		return ISBN;
 	}
 
 	public String getPublisher() {
