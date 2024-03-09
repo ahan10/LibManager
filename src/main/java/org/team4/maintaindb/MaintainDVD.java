@@ -154,7 +154,21 @@ public class MaintainDVD {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+	public ArrayList<DVD> searchDVDs(String query) {
+		ArrayList<DVD> searchedDVDs = new ArrayList<>();
+
+		for (Item item : dvd) {
+			DVD dvd = (DVD) item;
+			if (dvd.getTitle().toLowerCase().contains(query.toLowerCase())) {
+				searchedDVDs.add(dvd);
+			}
+		}
+
+		return searchedDVDs;
+	}
+
+
+
+
+
 }
