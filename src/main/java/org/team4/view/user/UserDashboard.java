@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -47,6 +48,9 @@ public class UserDashboard extends JFrame {
 	private JPanel requestPanel;
 
 	private User user;
+	private JComboBox<String> searchTypeDropdown;
+	private final String[] searchTypes = {"Book", "DVD", "Newsletter", "Magazine"};
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -117,14 +121,36 @@ public class UserDashboard extends JFrame {
 		SearchTextField.setBounds(66, 20, 300, 26);
 		SearchTextField.setColumns(10);
 		contentPane.add(SearchTextField);
+		searchTypeDropdown = new JComboBox<>(searchTypes);
+	    searchTypeDropdown.setBounds(370, 20, 140, 26);  
+	    contentPane.add(searchTypeDropdown);
 
 	}
 	public void performSearch(String query) {
+		String selectedType = (String) searchTypeDropdown.getSelectedItem();
 	    ArrayList<Book> searchResults = null;
+	    switch (selectedType) {
+        case "Book":
+            searchResults = MaintainDatabase.getInstance().getBookDatabase().searchBooks(query);
+            break;
+        case "DVD":
+            // searchResults = perform DVD search;
+            break;
+        case "Newsletter":
+            // searchResults = perform Newsletter search;
+            break;
+        case "Magazine":
+            // searchResults = perform Magazine search;
+            break;
+        default:
+            break;
+    }
+    updateSearchResultsPanel(searchResults);
+    cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL);
 
-		searchResults = MaintainDatabase.getInstance().getBookDatabase().searchBooks(query);
-		updateSearchResultsPanel(searchResults);
-		cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL);
+//		searchResults = MaintainDatabase.getInstance().getBookDatabase().searchBooks(query);
+//		updateSearchResultsPanel(searchResults);
+//		cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL);
 
 	}
 	 
