@@ -86,12 +86,17 @@ public class UserController implements ActionListener {
 			manageRequest(userDashboard.getRequestPanel());
 		}else if(e.getSource() == userDashboard.getHomeButton()) {
 			userDashboard.changeToHomePanel();
+		}else if (e.getSource() == userDashboard.getStudentButton()) {
+			System.out.println("Button Detected");
+			userDashboard.changeToStudentPanel();
 		}else if(e.getSource() == userDashboard.getLogoutButton()) {
 			userDashboard.dispose();
             LoginPage frame = new LoginPage();
-            MaintainUser maintainUser = MaintainDatabase.getInstance().getUserDatabase();
-        	@SuppressWarnings("unused") LoginController controller = new LoginController(frame, maintainUser);
+        	@SuppressWarnings("unused") LoginController controller = new LoginController(frame);
             frame.setVisible(true);
+		}
+		else {
+			System.out.println("Button not Matched");
 		}
 	}
 

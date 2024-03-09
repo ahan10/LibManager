@@ -21,9 +21,8 @@ public class Main {
 
         LoginPage loginPage = new LoginPage();
         loginPage.setVisible(true);
-        MaintainUser maintainUser = MaintainDatabase.getInstance().getUserDatabase();
         @SuppressWarnings("unused")
-        LoginController controller = new LoginController(loginPage, maintainUser);
+        LoginController controller = new LoginController(loginPage);
 
     }
 }

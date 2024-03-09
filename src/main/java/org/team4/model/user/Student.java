@@ -2,13 +2,13 @@ package org.team4.model.user;
 
 import java.util.ArrayList;
 
-public class Student extends User{
-    private long studentID;
-    private ArrayList<String> courses;
+import org.team4.model.course.Course;
 
-    public Student(String email, String password, String name, String type, long studentID, ArrayList<String> courses) {
+public class Student extends User{
+    private ArrayList<Course> courses;
+
+    public Student(String email, String password, String name, String type, ArrayList<Course> courses) {
         super(email, password, name, type);
-        this.studentID = studentID;
         this.courses = courses;
     }
 
@@ -21,19 +21,11 @@ public class Student extends User{
         super(email, password, name, type, validated);
     }
 
-    public long getStudentID() {
-        return studentID;
-    }
-
-    public ArrayList<String> getCourses() {
+    public ArrayList<Course> getCourses() {
         return courses;
     }
 
-    public void setStudentID(long studentID) {
-        this.studentID = studentID;
-    }
-
-    public void setCourses(ArrayList<String> courses) {
+    public void setCourses(ArrayList<Course> courses) {
         this.courses = courses;
     }
 }
