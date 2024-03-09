@@ -7,13 +7,20 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import org.team4.maintaindb.MaintainDatabase;
+import org.team4.maintaindb.MaintainStudent;
 import org.team4.model.course.Course;
+import org.team4.model.user.Student;
+import org.team4.model.user.User;
+
 import javax.swing.JLabel;
 
 public class StudentPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static JTable table;
+	private ArrayList<String> courseNames;
+	private MaintainStudent studentMaintainer = MaintainDatabase.getInstance().getStudentDatabase();
 
 	/**
 	 * Create the panel.
@@ -28,10 +35,20 @@ public class StudentPanel extends JPanel {
 
 	}
 	
-	public StudentPanel(ArrayList<Course> results) {
+	public StudentPanel(User student) {
         setLayout(new BorderLayout());
-        TextbookTableModel model = new TextbookTableModel(results);
+        courseNames = getCourseNames(student.getEmail());
+        TextbookTableModel model = new TextbookTableModel(courseNames);
         table = new JTable(model);
         add(new JScrollPane(table), BorderLayout.CENTER);
     }
+	
+	private ArrayList<String> getCourseNames(String studentEmail) {
+		for (Student s : studentMaintainer.getStudents()) {
+			if (s.getEmail().equals(studentEmail)) {
+				return s.getCourses();
+			}
+		}
+		return new ArrayList<String>();
+	}
 }

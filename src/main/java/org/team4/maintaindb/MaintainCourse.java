@@ -18,9 +18,6 @@ private static MaintainCourse instance;
 	public ArrayList<Course> courses;
 
 	private static final String FILE_PATH = "database/courses.csv";
-	
-	private MaintainUser userMaintainer = MaintainDatabase.getInstance().getUserDatabase();
-	private MaintainBooks bookMaintainer = MaintainDatabase.getInstance().getBookDatabase();
 
 	private MaintainCourse() {
 		courses = new ArrayList<Course>();
@@ -56,24 +53,8 @@ private static MaintainCourse instance;
 			Date endDate = Date.valueOf(reader.get("endDate"));
 			String courseTextBookISBN = reader.get("courseTextBookISBN");
 			String professorEmail = reader.get("professorEmail");
-			Item textbook = null;
-			User professor = null;
-			
-			for (Item b: bookMaintainer.getAllBooks()) {
-				if (b.getISBN().equals(courseTextBookISBN)) {
-					textbook = b;
-					break;
-				}
-			}
-			
-			for (User u: userMaintainer.getAllUsers()) {
-				if (u.getEmail().equals(professorEmail)) {
-					professor = u;
-					break;
-				}
-			}
-			
-			Course newCourse = new Course(courseName, startDate, endDate, textbook, (Faculty) professor);
+
+			Course newCourse = new Course(courseName, startDate, endDate, courseTextBookISBN, professorEmail);
 			courses.add(newCourse);
 		}
 	}
@@ -96,8 +77,8 @@ private static MaintainCourse instance;
 				csvOutput.write(c.getCourseName());
 				csvOutput.write(String.valueOf(c.getStartDate()));
 				csvOutput.write(String.valueOf(c.getEndDate()));
-				csvOutput.write(c.getCourseTextBook().getISBN());
-				csvOutput.write(c.getProfessor().getEmail());
+				csvOutput.write(c.getCourseTextBookISBN());
+				csvOutput.write(c.getProfessorEmail());
 				csvOutput.endRecord();
 			}
 			csvOutput.close();
@@ -113,8 +94,23 @@ private static MaintainCourse instance;
 		return this.courses;
 	}
 	
+	public Course findCourse(String courseName) {
+		for (Course c: this.courses) {
+			if (c.getCourseName().equals(courseName)) {
+				return c;
+			}
+		}
+		System.out.println("Course not found");
+		return null;
+	}
+	
 	public static void main(String [] args) {
 		
+		MaintainCourse courseMaintainer = MaintainDatabase.getInstance().getCourseDatabase();
+		
+		for (Course c: courseMaintainer.getCourses()) {
+			System.out.println(c.toString());
+		}
 	}
 
 }

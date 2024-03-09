@@ -1,6 +1,7 @@
 package org.team4.view.user;
 import org.team4.controller.userdashboard.UserController;
 import org.team4.maintaindb.MaintainDatabase;
+import org.team4.maintaindb.MaintainStudent;
 import org.team4.model.items.Book;
 import org.team4.model.items.DVD;
 import org.team4.model.items.Magazine;
@@ -14,8 +15,6 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class UserDashboard extends JFrame {
 
@@ -56,7 +55,6 @@ public class UserDashboard extends JFrame {
 
 	private User user;
 	
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -221,15 +219,6 @@ public class UserDashboard extends JFrame {
 		contentPane.add(homeButton);
 		
 		studentButton = new JButton("StudentTemp");
-		
-		/**
-		 * TODO For some reason the action listener in the controller is not working
-		 */
-		studentButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				changeToStudentPanel();
-			}
-		});
 		studentButton.setBounds(1020, 812, 117, 29);
 		if (user.getType().equals("STUDENT")) {
 			contentPane.add(studentButton);
@@ -274,7 +263,6 @@ public class UserDashboard extends JFrame {
 	}
 	
 	public JButton getStudentButton() {
-		System.out.println("Student Button Requested");
 		return studentButton;
 	}
 
@@ -306,12 +294,11 @@ public class UserDashboard extends JFrame {
 		cardLayout.show(activityPanel, REQUEST_PANEL);
 	}
 	
-	public void changeToStudentPanel() {
-		System.out.println("Request Student Panel");
+	public void changeToStudentPanel(User student) {
 		if (studentPanel != null) {
 			activityPanel.remove(studentPanel);
 		}
-		activityPanel.add(new StudentPanel(((Student) user).getCourses()), STUDENT_PANEL);
+		activityPanel.add(new StudentPanel(student), STUDENT_PANEL);
 		cardLayout.show(activityPanel, STUDENT_PANEL);
 	}
 

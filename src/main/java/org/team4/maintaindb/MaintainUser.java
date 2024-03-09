@@ -73,6 +73,15 @@ public class MaintainUser {
 			System.out.println("new user " + user.toString() + " added");
 		}
 	}
+	
+	public User findUserByEmail(String email) {
+		for (User u: this.users) {
+			if (u.getEmail().equals(email)) {
+				return u;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Call whenever the database should be updated with new data

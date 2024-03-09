@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
+import org.team4.maintaindb.MaintainBooks;
+import org.team4.maintaindb.MaintainCourse;
+import org.team4.maintaindb.MaintainDatabase;
+import org.team4.maintaindb.MaintainUser;
 import org.team4.model.course.Course;
 import org.team4.model.course.CourseTextBook;
 
@@ -11,8 +15,18 @@ public class TextbookTableModel extends DefaultTableModel {
 	
 	private static final long serialVersionUID = 1L;
 	private final String[] columnNames = {"Title", "Course", "Professor", "End Date"};
+	private MaintainCourse courseMaintainer = MaintainDatabase.getInstance().getCourseDatabase();
+	private MaintainBooks bookMaintainer = MaintainDatabase.getInstance().getBookDatabase();
+	private MaintainUser userMaintainer = MaintainDatabase.getInstance().getUserDatabase();
+	private ArrayList<Course> courses;
 
-    public TextbookTableModel(ArrayList<Course> courses) {
+    public TextbookTableModel(ArrayList<String> courseNames) {
+    	
+    	courses = new ArrayList<Course>();
+    	
+    	for (String str: courseNames) {
+    		courses.add(courseMaintainer.findCourse(str));
+    	}
 
     	for(String columnName: columnNames) {
 			addColumn(columnName);
@@ -20,9 +34,9 @@ public class TextbookTableModel extends DefaultTableModel {
     	
     	for ( Course c: courses) {
             addRow(new Object[]{
-                    c.getCourseTextBook().getTitle(),
+            		bookMaintainer.searchExactBookByISBN(c.getCourseTextBookISBN()).getTitle(),
                     c.getCourseName(),
-                    c.getProfessor().getName(),
+                    userMaintainer.findUserByEmail(c.getProfessorEmail()).getName(),
                     c.getEndDate()
             });
       

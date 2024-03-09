@@ -15,8 +15,6 @@ public class MaintainStudent {
 
 	private static final String FILE_PATH = "database/students.csv";
 
-	private MaintainCourse courseMaintainer = MaintainDatabase.getInstance().getCourseDatabase();
-
 	private MaintainStudent() {
 		students = new ArrayList<Student>();
 		try {
@@ -46,16 +44,12 @@ public class MaintainStudent {
 		reader.readHeaders();
 
 		while (reader.readRecord()) {
-			Student s = new Student(reader.get("email"), null, null, "STUDENT", new ArrayList<Course>());
+			Student s = new Student(reader.get("email"), null, null, "STUDENT", new ArrayList<String>());
 			String[] values = reader.getValues();
-			for (int i = 1; i < values.length - 1; i++) {
-				for (Course c : courseMaintainer.getCourses()) {
-					if (values[i].equals(c.getCourseName())) {
-						s.getCourses().add(c);
-
-					}
-				}
+			for (int i = 1; i < values.length; i++) {
+				s.getCourses().add(values[i]);
 			}
+			this.students.add(s);
 		}
 	}
 
@@ -65,8 +59,8 @@ public class MaintainStudent {
 		if (student.getCourses().size() > 0) {
 			StringBuilder sb = new StringBuilder();
 
-			for (Course c : student.getCourses()) {
-				sb.append(c.getCourseName()).append(",");
+			for (String c : student.getCourses()) {
+				sb.append(c).append(",");
 			}
 
 			result = sb.deleteCharAt(sb.length() - 1).toString();
@@ -92,21 +86,35 @@ public class MaintainStudent {
 				csvOutput.endRecord();
 			}
 			csvOutput.close();
-			System.out.println("User Database Updated");
+			System.out.println("Student Database Updated");
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("User Database Failed to Update");
+			System.out.println("Student Database Failed to Update");
 		}
 	}
 
 	public ArrayList<Student> getStudents() {
 		return this.students;
 	}
+	
+	public Student findStudent(String studentEmail) {
+		for (Student s : this.students) {
+			if (s.getEmail().equals(studentEmail)) {
+				return s;
+			}
+		}
+		System.out.println("Student not found");
+		return null;
+	}
 
 	public static void main(String[] args) {
 
 		MaintainStudent studentMaintainer = MaintainDatabase.getInstance().getStudentDatabase();
+		
+		for (Student s : studentMaintainer.getStudents()) {
+			System.out.println(s.toString());
+		}
 
 	}
 
