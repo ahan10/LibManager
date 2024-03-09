@@ -1,4 +1,4 @@
-package org.team4.view.purchase;
+package org.team4.view.purchase.modes;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -6,6 +6,8 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import com.toedter.calendar.JMonthChooser;
 import com.toedter.calendar.JYearChooser;
+import org.team4.funtionality.buy.modes.DebitCard;
+
 import javax.swing.JButton;
 
 public class DebitCardPanel extends JPanel {
@@ -72,11 +74,15 @@ public class DebitCardPanel extends JPanel {
 	}
 	
 	public int getMonth() {
-		return monthChooser.getMonth();
+		return (monthChooser.getMonth() + 1);
 	}
 	
 	public int getYear() {
 		return yearChooser.getYear();
+	}
+
+	public DebitCard getDebitCard(){
+		return new DebitCard(this.getDebitCardNumber(), this.getYear(), this.getMonth());
 	}
 	
 }

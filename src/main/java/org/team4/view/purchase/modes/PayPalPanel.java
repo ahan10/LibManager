@@ -1,4 +1,6 @@
-package org.team4.view.purchase;
+package org.team4.view.purchase.modes;
+
+import org.team4.funtionality.buy.modes.PayPal;
 
 import java.awt.Font;
 
@@ -49,6 +51,18 @@ public class PayPalPanel extends JPanel {
 	
 	public String getEmail() {
 		return this.emailField.getText();
+	}
+
+	public PayPal getPayPal(){
+		return new PayPal(this.getEmail());
+	}
+	
+	public void clearField() {
+		this.emailField.setText("");
+	}
+	
+	public void setEmail(String email) {
+		this.emailField.setText(email);
 	}
 	
 }

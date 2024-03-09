@@ -1,4 +1,6 @@
-package org.team4.view.purchase;
+package org.team4.view.purchase.modes;
+
+import org.team4.funtionality.buy.modes.MobileWallet;
 
 import java.awt.Font;
 
@@ -49,5 +51,9 @@ public class MobileWalletPanel extends JPanel {
 	
 	public String getPhoneNumber() {
 		return this.phoneNumberField.getText();
+	}
+
+	public MobileWallet getMobileWallet(){
+		return new MobileWallet(this.getPhoneNumber());
 	}
 }

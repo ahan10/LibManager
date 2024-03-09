@@ -1,4 +1,4 @@
-package org.team4.view.purchase;
+package org.team4.view.purchase.modes;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -6,6 +6,8 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import com.toedter.calendar.JMonthChooser;
 import com.toedter.calendar.JYearChooser;
+import org.team4.funtionality.buy.modes.CreditCard;
+
 import javax.swing.JButton;
 
 public class CreditCardPanel extends JPanel {
@@ -62,4 +64,25 @@ public class CreditCardPanel extends JPanel {
 		processButton.setBounds(112, 402, 117, 29);
 		add(processButton);
 	}
+
+	public JButton getProcessButton() {
+		return processButton;
+	}
+
+	public String getCreditCardNumber() {
+		return this.ccNumberField.getText();
+	}
+
+	public int getMonth() {
+		return (monthChooser.getMonth() + 1);
+	}
+
+	public int getYear() {
+		return yearChooser.getYear();
+	}
+
+	public CreditCard getCreditCard(){
+		return new CreditCard(this.getCreditCardNumber(), this.getYear(), this.getMonth());
+	}
+
 }

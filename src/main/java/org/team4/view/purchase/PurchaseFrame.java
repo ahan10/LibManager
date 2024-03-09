@@ -8,7 +8,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import org.team4.controller.purchase.PurchaseController;
+import org.team4.funtionality.buy.ItemToPurchase;
 import org.team4.funtionality.buy.Payment;
+import org.team4.model.items.Item;
+import org.team4.model.user.User;
+import org.team4.view.purchase.modes.CreditCardPanel;
+import org.team4.view.purchase.modes.DebitCardPanel;
+import org.team4.view.purchase.modes.MobileWalletPanel;
+import org.team4.view.purchase.modes.PayPalPanel;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -34,6 +41,9 @@ public class PurchaseFrame extends JFrame implements Payment{
 	private JComboBox modeComboBox;
 	private JButton selectButton;
 
+	private Item item;
+	private User user;
+
 	/**
 	 * Launch the application.
 	 */
@@ -56,7 +66,12 @@ public class PurchaseFrame extends JFrame implements Payment{
 	 */
 	public PurchaseFrame() {
 		initPurchase();
+	}
 
+	public PurchaseFrame(Item item, User user) {
+		this.item = item;
+		this.user = user;
+		initPurchase();
 	}
 
 	private void initPurchase() {
@@ -150,6 +165,10 @@ public class PurchaseFrame extends JFrame implements Payment{
 	
 	public void changeToMobileWallet() {
 		cardLayout.show(activityPanel, MOBILE_WALLET);
+	}
+
+	public ItemToPurchase getItemToPurchase(){
+		return new ItemToPurchase(this.item, this.user);
 	}
 	
 }
