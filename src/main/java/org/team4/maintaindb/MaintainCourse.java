@@ -5,10 +5,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import org.team4.model.course.Course;
+import org.team4.model.items.Item;
 import org.team4.model.user.Faculty;
-import org.team4.model.user.Student;
 import org.team4.model.user.User;
-import org.team4.model.user.UserFactory;
 
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
@@ -19,6 +18,9 @@ private static MaintainCourse instance;
 	public ArrayList<Course> courses;
 
 	private static final String FILE_PATH = "database/courses.csv";
+	
+	private MaintainUser userMaintainer = MaintainDatabase.getInstance().getUserDatabase();
+	private MaintainBooks bookMaintainer = MaintainDatabase.getInstance().getBookDatabase();
 
 	private MaintainCourse() {
 		courses = new ArrayList<Course>();
@@ -47,13 +49,32 @@ private static MaintainCourse instance;
 	public void load() throws Exception{
 		CsvReader reader = new CsvReader(FILE_PATH);
 		reader.readHeaders();
-		UserFactory uFactory = new UserFactory();
 
 		while (reader.readRecord()) {
-			Student s = (Student) uFactory.getUser(reader.get("email"), null, null, "STUDENT");
-			for (String string : reader.getValues()) {
-				System.out.println(string);
+			String courseName = reader.get("courseName");
+			Date startDate = Date.valueOf(reader.get("startDate"));
+			Date endDate = Date.valueOf(reader.get("endDate"));
+			String courseTextBookISBN = reader.get("courseTextBookISBN");
+			String professorEmail = reader.get("professorEmail");
+			Item textbook = null;
+			User professor = null;
+			
+			for (Item b: bookMaintainer.getAllBooks()) {
+				if (b.getISBN().equals(courseTextBookISBN)) {
+					textbook = b;
+					break;
+				}
 			}
+			
+			for (User u: userMaintainer.getAllUsers()) {
+				if (u.getEmail().equals(professorEmail)) {
+					professor = u;
+					break;
+				}
+			}
+			
+			Course newCourse = new Course(courseName, startDate, endDate, textbook, (Faculty) professor);
+			courses.add(newCourse);
 		}
 	}
 		
@@ -94,24 +115,6 @@ private static MaintainCourse instance;
 	
 	public static void main(String [] args) {
 		
-		MaintainCourse courseMaintainer = MaintainCourse.getInstance();
-		MaintainBooks bookMaintainer = MaintainBooks.getInstance();
-		MaintainUser userMaintainer = MaintainUser.getInstance();
-		courseMaintainer.getCourses().add(new Course("course1", new Date(0), new Date(1000), bookMaintainer.getAllBooks().get(1), (Faculty) userMaintainer.getAllUsers().get(1)));
-		courseMaintainer.getCourses().add(new Course("course2", new Date(0), new Date(1000), bookMaintainer.getAllBooks().get(2), (Faculty) userMaintainer.getAllUsers().get(3)));
-		courseMaintainer.getCourses().add(new Course("course3", new Date(0), new Date(1000), bookMaintainer.getAllBooks().get(3), (Faculty) userMaintainer.getAllUsers().get(3)));
-		courseMaintainer.getCourses().add(new Course("course4", new Date(0), new Date(1000), bookMaintainer.getAllBooks().get(4), (Faculty) userMaintainer.getAllUsers().get(1)));
-		courseMaintainer.getCourses().add(new Course("course5", new Date(0), new Date(1000), bookMaintainer.getAllBooks().get(5), (Faculty) userMaintainer.getAllUsers().get(3)));
-		courseMaintainer.getCourses().add(new Course("course6", new Date(0), new Date(1000), bookMaintainer.getAllBooks().get(6), (Faculty) userMaintainer.getAllUsers().get(1)));
-		courseMaintainer.getCourses().add(new Course("course7", new Date(0), new Date(1000), bookMaintainer.getAllBooks().get(7), (Faculty) userMaintainer.getAllUsers().get(3)));
-		courseMaintainer.getCourses().add(new Course("course8", new Date(0), new Date(1000), bookMaintainer.getAllBooks().get(8), (Faculty) userMaintainer.getAllUsers().get(1)));
-		courseMaintainer.getCourses().add(new Course("course9", new Date(0), new Date(1000), bookMaintainer.getAllBooks().get(9), (Faculty) userMaintainer.getAllUsers().get(3)));
-		try {
-			courseMaintainer.update();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }
