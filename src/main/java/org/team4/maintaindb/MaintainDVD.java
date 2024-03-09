@@ -167,7 +167,21 @@ public class MaintainDVD {
 		return searchedDVDs;
 	}
 
+	public void decreaseNumberOfCopies(Item item) {
+		for (Item i: this.dvd) {
+			if (i.equals(item)) {
+				i.setQuantity(i.getQuantity()-1);
+			}
+		}
+		try {
+			update();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Failed to decrease quantity");
+		}
 
+	}
 
 
 
