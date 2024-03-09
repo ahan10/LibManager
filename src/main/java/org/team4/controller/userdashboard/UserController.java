@@ -9,7 +9,7 @@ import org.team4.maintaindb.MaintainRequests;
 import org.team4.maintaindb.MaintainUser;
 import org.team4.model.items.Book;
 import org.team4.model.items.BookRequest;
-import org.team4.view.user.SearchResultsPanel;
+import org.team4.view.user.BookResultsPanel;
 import org.team4.view.user.UserDashboard;
 import org.team4.controller.login.LoginController;
 import org.team4.funtionality.rent.RentalService;
@@ -52,9 +52,9 @@ public class UserController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == userDashboard.getRentItemButton()) {
-			int selectedRow = SearchResultsPanel.getTable().getSelectedRow();
+			int selectedRow = BookResultsPanel.getTable().getSelectedRow();
 			if (selectedRow >= 0) {
-				String title = SearchResultsPanel.getTable().getValueAt(selectedRow, 0).toString();
+				String title = BookResultsPanel.getTable().getValueAt(selectedRow, 0).toString();
 				User currentUser = userDashboard.getCurrentUser();
 				Book bookToRent = MaintainBooks.getInstance().searchExactBookByTitle(title);
 

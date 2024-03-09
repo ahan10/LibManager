@@ -1,23 +1,17 @@
 package org.team4.view.user;
 import org.team4.controller.userdashboard.UserController;
-import org.team4.maintaindb.MaintainBooks;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Book;
+import org.team4.model.items.DVD;
+import org.team4.model.items.Magazine;
 import org.team4.model.user.User;
 
 import java.awt.CardLayout;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 public class UserDashboard extends JFrame {
 
@@ -30,7 +24,7 @@ public class UserDashboard extends JFrame {
 	private JButton RentItemButton;
 	private JButton SubscribeButton;
 	private JButton PurchaseButton;
-	private JButton RequestButton; 
+	private JButton RequestButton;
 	private JButton logoutButton;
 	private JButton homeButton;
 	private JTextField SearchTextField;
@@ -42,11 +36,16 @@ public class UserDashboard extends JFrame {
 	private final String REQUEST_PANEL = "Request Panel";
 
 
-	private JPanel homePanel = new HomePanel(); 
-	private JPanel subscribePanel = new SubscribePanel(); 
-	private JPanel purchasePanel = new PurchasePanel(); 
-	private SearchResultsPanel searchResultsPanel = new SearchResultsPanel();
+	private JPanel homePanel = new HomePanel();
+	private JPanel subscribePanel = new SubscribePanel();
+	private JPanel purchasePanel = new PurchasePanel();
+	private BookResultsPanel bookResultsPanel = new BookResultsPanel();
+
+	private MagazineResultsPanel magazineResultsPanel = new MagazineResultsPanel();
+	private DVDResultsPanel dvdResultsPanel = new DVDResultsPanel();
 	private RequestPanel requestPanel;
+	private JComboBox<String> searchTypeDropdown;
+	private final String[] searchTypes = {"Book", "DVD", "Newsletter", "Magazine"};
 
 	private User user;
 
@@ -119,22 +118,66 @@ public class UserDashboard extends JFrame {
 		SearchTextField.setBounds(66, 20, 300, 26);
 		SearchTextField.setColumns(10);
 		contentPane.add(SearchTextField);
+		searchTypeDropdown = new JComboBox<>(searchTypes);
+		searchTypeDropdown.setBounds(370, 20, 140, 26);
+		contentPane.add(searchTypeDropdown);
 
 	}
 	public void performSearch(String query) {
-		ArrayList<Book> searchResults = null;
+		String selectedType = (String) searchTypeDropdown.getSelectedItem();
+		ArrayList<?> searchResults = null;
 
-		searchResults = MaintainDatabase.getInstance().getBookDatabase().searchBooks(query);
-		updateSearchResultsPanel(searchResults);
+		switch (selectedType) {
+			case "Book":
+				searchResults = MaintainDatabase.getInstance().getBookDatabase().searchBooks(query);
+				break;
+			case "DVD":
+				searchResults = MaintainDatabase.getInstance().getDVDDatabase().searchDVDs(query);
+				break;
+			case "Newsletter":
+
+				break;
+			case "Magazine":
+				searchResults= MaintainDatabase.getInstance().getMagazineDatabase().searchMagazines(query);
+
+				break;
+			default:
+				break;
+		}
+
+		if (searchResults != null) {
+			updateSearchResultsPanel(searchResults, selectedType); // Pass the type along with results
+		}
+	}
+
+
+	private void updateSearchResultsPanel(ArrayList<?> results, String type) {
+		// Remove the existing search results panel if present
+		if (bookResultsPanel != null) {
+			activityPanel.remove(bookResultsPanel);
+		}
+
+
+		if ("Book".equals(type)) {
+			bookResultsPanel = new BookResultsPanel((ArrayList<Book>) results);
+			activityPanel.add(bookResultsPanel, SEARCH_RESULTS_PANEL);
+		} else if ("DVD".equals(type)) {
+			dvdResultsPanel = new DVDResultsPanel((ArrayList<DVD>) results);
+			activityPanel.add(dvdResultsPanel, SEARCH_RESULTS_PANEL);
+		} else if ("Newsletter".equals(type)) {
+
+		} else if ("Magazine".equals(type)) {
+			magazineResultsPanel = new MagazineResultsPanel((ArrayList<Magazine>) results);
+			activityPanel.add(magazineResultsPanel, SEARCH_RESULTS_PANEL);
+		}
+
+
+
 		cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL);
-
+		this.revalidate();
+		this.repaint();
 	}
 
-	private void updateSearchResultsPanel(ArrayList<Book> results) {
-		searchResultsPanel = new SearchResultsPanel(results);
-		activityPanel.add(searchResultsPanel, SEARCH_RESULTS_PANEL);
-		cardLayout.show(activityPanel, SEARCH_RESULTS_PANEL); 
-	}
 
 	public void addButtons() {
 		RentItemButton = new JButton("Rent an Item");
@@ -160,11 +203,11 @@ public class UserDashboard extends JFrame {
 		subscribePanel.setBounds(0, 33, 788, 490);
 
 		purchasePanel.setBounds(0, 33, 788, 490);
-		
+
 		logoutButton = new JButton("Logout");
 		logoutButton.setBounds(1063, 19, 109, 27);
 		contentPane.add(logoutButton);
-		
+
 		homeButton = new JButton("Home");
 		homeButton.setBounds(49, 812, 117, 29);
 		contentPane.add(homeButton);
@@ -173,7 +216,7 @@ public class UserDashboard extends JFrame {
 
 
 	public void addPanels() {
-		
+
 		contentPane.add(activityPanel);
 
 		activityPanel.add(homePanel, HOME_PANEL);
@@ -201,11 +244,11 @@ public class UserDashboard extends JFrame {
 	public JButton getPurchaseButton() {
 		return PurchaseButton;
 	}
-	
+
 	public JButton getHomeButton() {
 		return homeButton;
 	}
-	
+
 	public JButton getLogoutButton() {
 		return logoutButton;
 	}
@@ -246,5 +289,3 @@ public class UserDashboard extends JFrame {
 		return requestPanel;
 	}
 }
-
-

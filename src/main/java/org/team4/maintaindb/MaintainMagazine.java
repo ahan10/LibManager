@@ -154,8 +154,21 @@ public class MaintainMagazine {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+	public ArrayList<Magazine> searchMagazines(String query) {
+		ArrayList<Item> magazines = getAllMagazines();
+		ArrayList<Magazine> searchedMagazines = new ArrayList<>();
+
+		for (Item item: magazines) {
+			if (item.getTitle().toLowerCase().contains(query.toLowerCase())) {
+				Magazine magazine = (Magazine)item;
+				searchedMagazines.add(magazine);
+			}
+		}
+		return searchedMagazines;
+	}
+
+
+
+
 
 }
