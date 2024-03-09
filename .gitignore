@@ -13,7 +13,7 @@ target/
 *.iws
 *.iml
 *.ipr
-database/
+
 
 ### Eclipse ###
 .apt_generated
@@ -40,3 +40,4 @@ build/
 ### Mac OS ###
 .DS_Store
 /bin/
+/database/
