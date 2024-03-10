@@ -31,7 +31,7 @@ public class CreditCardPanel extends JPanel {
 		titleLabel.setBounds(122, 37, 98, 16);
 		add(titleLabel);
 		
-		JLabel numberLabel = new JLabel("Enter Credit Card Number (max. 16 digits):");
+		JLabel numberLabel = new JLabel("Enter Credit Card Number:");
 		numberLabel.setBounds(26, 137, 292, 16);
 		add(numberLabel);
 		
