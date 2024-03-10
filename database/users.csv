@@ -10,3 +10,8 @@ user8@example.com,password8,David Brown,VISITOR,true
 user9@example.com,password9,Emily Smith,NONFACULTY,false
 user10@example.com,password10,James Johnson,NONFACULTY,false
 user11@example.com,password11,Bob Barker,STUDENT,true
+1,1,Quick Student,STUDENT,true
+2,2,Quick Faculty,FACULTY,true
+3,3,Quick Non Faculty,NONFACULTY,true
+4,4,Quick Manager,MANAGER,true
+5,5,Quick Visitor,VISITOR,true
