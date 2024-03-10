@@ -126,9 +126,6 @@ public class UserController implements ActionListener {
 				BookRequest newRequest = new BookRequest(user.getEmail(), title, author, ISBN, edition, booktype);
 				MaintainRequests.getInstance().addRequest(newRequest);
 				
-				JOptionPane.showMessageDialog(new JFrame(), "Successful Request!",
-						"Request Complete", JOptionPane.INFORMATION_MESSAGE);
-				
 			}
 		}
 		
