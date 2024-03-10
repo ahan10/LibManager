@@ -1,6 +1,6 @@
 package org.team4.funtionality.buy;
 
-import org.team4.maintaindb.MaintainBooks;
+import org.team4.model.paymentmodes.PaymentModes;
 import org.team4.model.items.Item;
 import org.team4.model.items.Newsletter;
 import org.team4.model.user.User;
@@ -8,7 +8,7 @@ import org.team4.model.user.User;
 import java.util.Date;
 import java.util.Random;
 
-public class PurchaseComplete implements Payment{
+public class PurchaseComplete implements PaymentModes {
     private long purchaseID;
     private Date purchaseDate;
     private double amount;
@@ -33,7 +33,7 @@ public class PurchaseComplete implements Payment{
         this.newsletter = newsletter;
     }
 
-    public PurchaseComplete(ItemToPurchase itemToPurchase, Modes modes){
+    public PurchaseComplete(ItemToPurchase itemToPurchase, PaymentValidator modes){
         this.purchaseID = new Random().nextLong();
         this.purchaseDate = new Date();
         this.user = itemToPurchase.getUser();

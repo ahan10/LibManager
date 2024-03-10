@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import org.team4.controller.purchase.PurchaseController;
 import org.team4.funtionality.buy.ItemToPurchase;
-import org.team4.funtionality.buy.Payment;
+import org.team4.model.paymentmodes.PaymentModes;
 import org.team4.model.items.Item;
 import org.team4.model.user.User;
 import org.team4.view.purchase.modes.CreditCardPanel;
@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
-public class PurchaseFrame extends JFrame implements Payment{
+public class PurchaseFrame extends JFrame implements PaymentModes {
 
 	private static final long serialVersionUID = 1L;
 	private static final String CREDIT_CARD = "Credit Card";

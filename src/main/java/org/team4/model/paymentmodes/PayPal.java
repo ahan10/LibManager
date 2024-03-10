@@ -1,10 +1,9 @@
-package org.team4.funtionality.buy.modes;
+package org.team4.model.paymentmodes;
 
-import org.team4.funtionality.buy.Modes;
-import org.team4.funtionality.buy.Payment;
+import org.team4.funtionality.buy.PaymentValidator;
 import org.team4.utils.EmailValidator;
 
-public class PayPal implements Modes, Payment {
+public class PayPal implements PaymentValidator, PaymentModes {
 
     String email;
 

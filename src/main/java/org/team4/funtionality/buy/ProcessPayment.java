@@ -1,10 +1,10 @@
 package org.team4.funtionality.buy;
 
 public class ProcessPayment {
-    private Modes modes;
+    private PaymentValidator modes;
     private ItemToPurchase itemToPurchase;
 
-    public ProcessPayment(Modes modes, ItemToPurchase itemToPurchase) {
+    public ProcessPayment(PaymentValidator modes, ItemToPurchase itemToPurchase) {
         this.modes = modes;
         this.itemToPurchase = itemToPurchase;
     }

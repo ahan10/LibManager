@@ -15,7 +15,7 @@ public class ItemToPurchase {
     }
 
     public ItemToPurchase(Newsletter newsletter, User user) {
-        this.item = item;
+        this.newsletter = newsletter;
         this.user = user;
     }
 

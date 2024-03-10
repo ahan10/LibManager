@@ -1,6 +1,6 @@
 package org.team4.view.purchase.modes;
 
-import org.team4.funtionality.buy.modes.PayPal;
+import org.team4.model.paymentmodes.PayPal;
 
 import java.awt.Font;
 

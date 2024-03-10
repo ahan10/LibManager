@@ -1,19 +1,17 @@
-package org.team4.funtionality.buy.modes;
+package org.team4.model.paymentmodes;
 
-import org.team4.funtionality.buy.Modes;
-import org.team4.funtionality.buy.Payment;
+import org.team4.funtionality.buy.PaymentValidator;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.util.Date;
 
-public class DebitCard implements Modes, Payment {
+public class CreditCard implements PaymentValidator, PaymentModes {
     String ccNumber;
     YearMonth ym;
     LocalDate expiry;
     LocalDate today;
 
-    public DebitCard(String ccNumber, int year, int month){
+    public CreditCard(String ccNumber, int year, int month){
         this.ccNumber = ccNumber;
 
         this.ym = YearMonth.of(year, month);
@@ -32,7 +30,7 @@ public class DebitCard implements Modes, Payment {
     }
 
     public String getMode(){
-        return MODE.get(1);
+        return MODE.get(0);
     }
 
     @Override

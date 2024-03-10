@@ -1,9 +1,8 @@
-package org.team4.funtionality.buy.modes;
+package org.team4.model.paymentmodes;
 
-import org.team4.funtionality.buy.Modes;
-import org.team4.funtionality.buy.Payment;
+import org.team4.funtionality.buy.PaymentValidator;
 
-public class MobileWallet implements Modes, Payment {
+public class MobileWallet implements PaymentValidator, PaymentModes {
     String phoneNumber;
 
     public MobileWallet(String phoneNumber) {

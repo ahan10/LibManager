@@ -1,6 +1,6 @@
 package org.team4.view.purchase.modes;
 
-import org.team4.funtionality.buy.modes.MobileWallet;
+import org.team4.model.paymentmodes.MobileWallet;
 
 import java.awt.Font;
 

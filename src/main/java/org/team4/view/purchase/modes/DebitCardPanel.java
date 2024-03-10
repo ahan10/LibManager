@@ -6,7 +6,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import com.toedter.calendar.JMonthChooser;
 import com.toedter.calendar.JYearChooser;
-import org.team4.funtionality.buy.modes.DebitCard;
+import org.team4.model.paymentmodes.DebitCard;
 
 import javax.swing.JButton;
 
