@@ -41,20 +41,23 @@ public class RentalService {
 
 
 
-    public boolean canRentItem(User user, Item item) {
-
+    public boolean canRentItem(User user, Item item) throws Exception {
         if (!item.isRentable() || item.getQuantity() < 1) {
-            return false;
+            throw new Exception("Item is not available for rent.");
         }
         if (rentMaintain.isAlreadyRentedByUser(user.getEmail(), new RentedItem(item.getISBN(), null, null))) {
-            return false;
+            throw new Exception("You have already rented this item.");
         }
         if (getOverdueCount(user.getEmail()) > 3) {
-            return false;
+            throw new Exception("You have more than 3 overdue items.");
         }
-        return rentMaintain.getNumberOfItemsRentedByUser(user.getEmail()) < MAX_RENTALS_PER_USER;
+        if (rentMaintain.getNumberOfItemsRentedByUser(user.getEmail()) >= MAX_RENTALS_PER_USER) {
+            throw new Exception("You cannot rent more than 10 items.");
+        }
+        return true;
     }
-        public int getRentalCountForUser(String userEmail) {
+
+    public int getRentalCountForUser(String userEmail) {
         int userRentals = rentMaintain.getNumberOfItemsRentedByUser(userEmail);
         return userRentals;
     }

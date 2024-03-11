@@ -102,20 +102,21 @@ public class UserController implements ActionListener {
 		}
 
 		// to rent the selected item by the user
-		if (itemToRent != null && rent.canRentItem(user, itemToRent)) {
+		if (itemToRent != null) {
 			try {
-				if (rent.rentItem(user, itemToRent)) {
-					JOptionPane.showMessageDialog(null, itemToRent.getTitle() + " rented successfully!");
-
-				} else {
-					JOptionPane.showMessageDialog(null, "Failed to rent " + itemTitle + ". Please try again.");
+				if (rent.canRentItem(user, itemToRent)) {
+					if (rent.rentItem(user, itemToRent)) {
+						JOptionPane.showMessageDialog(null, itemToRent.getTitle() + " rented successfully!");
+					} else {
+						JOptionPane.showMessageDialog(null, "Failed to rent " + itemTitle + ". Please try again.");
+					}
 				}
 			} catch (Exception ex) {
-				ex.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Error occurred while renting " + itemTitle);
+
+				JOptionPane.showMessageDialog(null, ex.getMessage());
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, itemToRent.getTitle()+ " cannot be rented.");
+			JOptionPane.showMessageDialog(null, "Please select a " + itemTitle + " to rent.");
 		}
 	}
 
