@@ -1,8 +1,6 @@
 package org.team4.funtionality.rent;
-import org.team4.maintaindb.MaintainBooks;
-import org.team4.maintaindb.MaintainDatabase;
-import org.team4.maintaindb.MaintainRent;
-import org.team4.model.items.Book;
+import org.team4.maintaindb.*;
+import org.team4.model.items.*;
 import org.team4.model.user.User;
 
 import java.util.ArrayList;
@@ -11,8 +9,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.team4.model.items.RentedItem;
-
 public class RentalService {
     private static final int MAX_RENTALS_PER_USER = 10;
 
@@ -20,50 +16,71 @@ public class RentalService {
 
 
 
-    private MaintainRent rentmaintain= MaintainDatabase.getInstance().getrenterDatabase();
+    private MaintainRent rentMaintain= MaintainDatabase.getInstance().getrenterDatabase();
     private MaintainBooks maintainDB= MaintainDatabase.getInstance().getBookDatabase();
+    private MaintainBooks maintainBooks = MaintainDatabase.getInstance().getBookDatabase();
+    private MaintainDVD maintainDVD = MaintainDatabase.getInstance().getDVDDatabase();
+    private MaintainMagazine maintainMagazine = MaintainDatabase.getInstance().getMagazineDatabase();
 
-
-    public boolean rentBook(User user, Book book) throws Exception {
+    public boolean rentItem(User user, Item item) throws Exception {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new java.util.Date());
+        calendar.setTime(new Date());
         calendar.add(Calendar.MONTH, 1);
-        java.sql.Date dueDate = new java.sql.Date(calendar.getTime().getTime());
-        if (canRentBook(user, book)) {
-            maintainDB.decreaseNumberOfCopies(book);
-            RentedItem rental = new RentedItem(book.getISBN(), new Date(),new Date());
-            rentmaintain.addNewRentedItem(user.getEmail(), book.getISBN(), new java.sql.Date(new java.util.Date().getTime()),dueDate);
-            rentmaintain.update();
+        Date dueDate = new java.sql.Date(calendar.getTime().getTime());
+
+        if (canRentItem(user, item)) {
+            decreaseItemQuantity(item); // Assumes this method is implemented to decrease quantity of any item
+            RentedItem rental = new RentedItem(item.getISBN(), new Date(), dueDate);
+            rentMaintain.addNewRentedItem(user.getEmail(), item.getISBN(), new java.sql.Date(new Date().getTime()), new java.sql.Date(dueDate.getTime()));
+            rentMaintain.update();
             return true;
         }
         return false;
     }
-    public boolean canRentBook(User user, Book book) {
-        if (!book.isRentable() || book.getQuantity() < 1)
-            return false;
-        int userRentalCount = getRentalCountForUser(user.getEmail());
-        if (rentmaintain.isAlreadyRentedByUser(user.getEmail(), new RentedItem(book.getISBN(),null,null))){
+
+
+
+
+    public boolean canRentItem(User user, Item item) {
+
+        if (!item.isRentable() || item.getQuantity() < 1) {
             return false;
         }
-        List<RentedItem> overdueItems = checkOverdue(user.getEmail());
-        printOverduePenalties(user.getEmail());
-        if (overdueItems.size() >3) {
-
+        if (rentMaintain.isAlreadyRentedByUser(user.getEmail(), new RentedItem(item.getISBN(), null, null))) {
             return false;
-
         }
-        return rentmaintain.getNumberOfItemsRentedByUser(user.getEmail())< MAX_RENTALS_PER_USER ;
-
+        if (getOverdueCount(user.getEmail()) > 3) {
+            return false;
+        }
+        return rentMaintain.getNumberOfItemsRentedByUser(user.getEmail()) < MAX_RENTALS_PER_USER;
     }
         public int getRentalCountForUser(String userEmail) {
-        int userRentals = rentmaintain.getNumberOfItemsRentedByUser(userEmail);
+        int userRentals = rentMaintain.getNumberOfItemsRentedByUser(userEmail);
         return userRentals;
+    }
+    private RentedItem createRental(User user, Item item) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new java.util.Date());
+        calendar.add(Calendar.MONTH, 1);
+        java.sql.Date dueDate = new java.sql.Date(calendar.getTime().getTime());
+        return new RentedItem(item.getISBN(), new Date(), dueDate);
+    }
+    private void decreaseItemQuantity(Item item) throws Exception {
+
+        if (item instanceof Book) {
+            maintainBooks.decreaseNumberOfCopies((Book) item);
+        } else if (item instanceof DVD) {
+            maintainDVD.decreaseNumberOfCopies((DVD) item);
+        } else if (item instanceof Magazine) {
+            maintainMagazine.decreaseNumberOfCopies((Magazine) item);
+        }
     }
     public List<RentedItem> checkOverdue(String userEmail) {
         List<RentedItem> overdueItems = new ArrayList<>();
         Date currentDate = new Date(System.currentTimeMillis());
 
-        List<RentedItem> rentedItems = rentmaintain.getAllRenters().get(userEmail);
+        List<RentedItem> rentedItems = rentMaintain.getAllRenters().get(userEmail);
         if (rentedItems != null) {
             for (RentedItem item : rentedItems) {
                 if (item.getDueDate().before(currentDate)) {
@@ -71,11 +88,13 @@ public class RentalService {
                 }
             }
         }
-
-
-//        System.out.println("User " + userEmail + " has " +overdueItems.size() + " overdue items");
         return overdueItems;
+    }
 
+
+    private int getOverdueCount(String userEmail) {
+
+        return checkOverdue(userEmail).size();
     }
 
    public double calculatePenalty( String email){

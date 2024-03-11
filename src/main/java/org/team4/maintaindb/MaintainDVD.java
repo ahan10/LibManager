@@ -181,6 +181,14 @@ public class MaintainDVD {
 		}
 
 	}
+	public DVD searchExactDVDByISBN(String isbn) {
+		for (Item item : dvd) {
+			if (item instanceof DVD && item.getISBN().equals(isbn)) {
+				return (DVD) item;
+			}
+		}
+		return null;
+	}
 
 
 

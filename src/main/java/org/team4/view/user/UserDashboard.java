@@ -195,16 +195,29 @@ public class UserDashboard extends JFrame {
 		this.revalidate();
 		this.repaint();
 	}
+	public DVDResultsPanel getDVDResultsPanel() {
+		return this.dvdResultsPanel;
+	}
+
+	public BookResultsPanel getBookResultsPanel() {
+		return this.bookResultsPanel;
+	}
+
+	public MagazineResultsPanel getMagazineResultsPanel() {
+		return this.magazineResultsPanel;
+	}
+
+	public String getItemType() {
+
+		String selectedItemType = (String) searchTypeDropdown.getSelectedItem();
+		return selectedItemType;
+	}
 	public void displaySearchResultsInNewWindow(ArrayList<?> results, String type) {
 		JFrame searchResultsFrame = new JFrame("Search Results");
 		JPanel resultsPanel = null;
 		searchResultsFrame.setContentPane(new JScrollPane(resultsPanel));
 
 		searchResultsFrame.setSize(1200, 900);
-
-
-
-
 
 		switch (type) {
 			case "Book":

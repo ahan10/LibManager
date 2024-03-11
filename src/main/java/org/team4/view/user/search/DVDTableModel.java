@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class DVDTableModel extends DefaultTableModel {
 
     private static final long serialVersionUID = 1L;
-    private final String[] columnNames = {"Title", "Year Published", "Genre", "Duration", "Quantity","ISBN"};
+    private final String[] columnNames = {"Title", "Year Published", "Genre", "Duration","ISBN", "Quantity"};
 
     public DVDTableModel(ArrayList<DVD> dvds) {
 
@@ -20,8 +20,8 @@ public class DVDTableModel extends DefaultTableModel {
                     dvd.getYearPublished(),
                     dvd.getGenre(),
                     dvd.getDuration(),
-                    dvd.getQuantity(),
-                    dvd.getISBN()
+                    dvd.getISBN(),
+                    dvd.getQuantity()
             });
         }
     }
