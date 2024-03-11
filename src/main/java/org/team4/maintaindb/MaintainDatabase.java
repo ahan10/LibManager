@@ -57,6 +57,15 @@ public class MaintainDatabase {
 	public MaintainDVD getDVDDatabase() {
 		return MaintainDVD.getInstance();
 	}
+
+	/**
+	 * Used to get an instance of the Newsletter database
+	 * @return
+	 */
+
+	public MaintainNewsletter getNewsletterDatabase() {
+		return MaintainNewsletter.getInstance();
+	}
 	
 	/**
 	 * Used to get an instance of the magazine database

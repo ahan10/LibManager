@@ -5,12 +5,12 @@ import org.team4.maintaindb.MaintainStudent;
 import org.team4.model.items.Book;
 import org.team4.model.items.DVD;
 import org.team4.model.items.Magazine;
+import org.team4.model.items.Newsletter;
 import org.team4.model.user.Student;
 import org.team4.model.user.User;
 import org.team4.view.user.student.StudentPanel;
 
-import java.awt.CardLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -41,6 +41,7 @@ public class UserDashboard extends JFrame {
 	private final String STUDENT_PANEL = "Student Panel";
 
 
+
 	private JPanel homePanel = new HomePanel();
 	private JPanel subscribePanel = new SubscribePanel();
 	private JPanel purchasePanel = new PurchasePanel();
@@ -49,6 +50,8 @@ public class UserDashboard extends JFrame {
 
 	private MagazineResultsPanel magazineResultsPanel = new MagazineResultsPanel();
 	private DVDResultsPanel dvdResultsPanel = new DVDResultsPanel();
+	private NewsletterResultsPanel newsletterResultsPanel = new NewsletterResultsPanel();
+
 	private RequestPanel requestPanel;
 	private JComboBox<String> searchTypeDropdown;
 	private final String[] searchTypes = {"Book", "DVD", "Newsletter", "Magazine"};
@@ -141,7 +144,7 @@ public class UserDashboard extends JFrame {
 				searchResults = MaintainDatabase.getInstance().getDVDDatabase().searchDVDs(query);
 				break;
 			case "Newsletter":
-
+				searchResults=MaintainDatabase.getInstance().getNewsletterDatabase().searchNewsletters(query);
 				break;
 			case "Magazine":
 				searchResults= MaintainDatabase.getInstance().getMagazineDatabase().searchMagazines(query);
@@ -152,29 +155,38 @@ public class UserDashboard extends JFrame {
 		}
 
 		if (searchResults != null) {
-			updateSearchResultsPanel(searchResults, selectedType); // Pass the type along with results
+			displaySearchResultsInNewWindow(searchResults, selectedType);
 		}
 	}
 
 
 	private void updateSearchResultsPanel(ArrayList<?> results, String type) {
-		// Remove the existing search results panel if present
+
 		if (bookResultsPanel != null) {
 			activityPanel.remove(bookResultsPanel);
 		}
 
 
 		if ("Book".equals(type)) {
+
 			bookResultsPanel = new BookResultsPanel((ArrayList<Book>) results);
 			activityPanel.add(bookResultsPanel, SEARCH_RESULTS_PANEL);
+
 		} else if ("DVD".equals(type)) {
+
 			dvdResultsPanel = new DVDResultsPanel((ArrayList<DVD>) results);
 			activityPanel.add(dvdResultsPanel, SEARCH_RESULTS_PANEL);
+
 		} else if ("Newsletter".equals(type)) {
 
+			newsletterResultsPanel= new NewsletterResultsPanel((ArrayList<Newsletter>) results);
+			activityPanel.add(newsletterResultsPanel, SEARCH_RESULTS_PANEL);
+
 		} else if ("Magazine".equals(type)) {
+
 			magazineResultsPanel = new MagazineResultsPanel((ArrayList<Magazine>) results);
 			activityPanel.add(magazineResultsPanel, SEARCH_RESULTS_PANEL);
+
 		}
 
 
@@ -183,6 +195,42 @@ public class UserDashboard extends JFrame {
 		this.revalidate();
 		this.repaint();
 	}
+	public void displaySearchResultsInNewWindow(ArrayList<?> results, String type) {
+		JFrame searchResultsFrame = new JFrame("Search Results");
+		JPanel resultsPanel = null;
+		searchResultsFrame.setContentPane(new JScrollPane(resultsPanel));
+
+		searchResultsFrame.setSize(1200, 900);
+
+
+
+
+
+		switch (type) {
+			case "Book":
+				resultsPanel = new BookResultsPanel((ArrayList<Book>) results);
+				break;
+			case "DVD":
+				resultsPanel = new DVDResultsPanel((ArrayList<DVD>) results);
+				break;
+			case "Newsletter":
+				resultsPanel = new NewsletterResultsPanel((ArrayList<Newsletter>) results);
+				break;
+			case "Magazine":
+				resultsPanel = new MagazineResultsPanel((ArrayList<Magazine>) results);
+				break;
+			default:
+
+				JOptionPane.showMessageDialog(this, "No results found.", "Search Error", JOptionPane.ERROR_MESSAGE);
+				return;
+		}
+
+		searchResultsFrame.setContentPane(new JScrollPane(resultsPanel));
+
+		searchResultsFrame.setLocationRelativeTo(null);
+		searchResultsFrame.setVisible(true);
+	}
+
 
 
 	public void addButtons() {
