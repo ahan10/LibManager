@@ -20,42 +20,55 @@ public class ReturnService {
 
     public boolean returnItem(User user, Item item) {
         List<RentedItem> rentedItems = rentMaintain.getAllRenters().get(user.getEmail());
-        if (rentedItems != null) {
-            for (RentedItem rentedItem : rentedItems) {
-                if (rentedItem.getISBN().equals(item.getISBN())) {
-
-                    if (rentedItem.getDueDate().before(new Date())) {
-
-                        double penalty = rentalService.calculatePenalty(user.getEmail());
-                        boolean paidPenalty = handlePenaltyPayment(user, penalty);
-                        if (!paidPenalty) { // ahan's method to process penalty or something similar
-                            System.out.println("Unable to process return due to unpaid penalty.");
-                            return false;
-                        }else{
-                            System.out.println("Success");
-                            return true;
-                        }
-                    }
-
-                    if (rentMaintain.returnRentedItem(user.getEmail(), item.getISBN())) {
-                        increaseItemQuantity(item);
-                    
-                        try {
-                            rentMaintain.update();
-                        }
-                        catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-
-                        return true;
-                    }
-                }
-            }
+        if (rentedItems == null) {
+            System.out.println("No rented items found for user.");
+            return false;
         }
+
+        for (RentedItem rentedItem : rentedItems) {
+            if (!rentedItem.getISBN().equals(item.getISBN())) {
+                continue;
+            }
+
+            if (rentedItem.getDueDate().before(new Date())) {
+                double penalty = rentalService.calculatePenalty(user.getEmail());
+                boolean paidPenalty = handlePenaltyPayment(user, penalty);
+                if (!paidPenalty) {
+                    System.out.println("Unable to process return due to unpaid penalty.");
+                    return false;
+                }
+                System.out.println("Penalty paid, proceeding with return.");
+            }
+
+            boolean isReturned = rentMaintain.returnRentedItem(user.getEmail(), item.getISBN());
+            if (!isReturned) {
+                System.out.println("Failed to return rented item in database.");
+                return false;
+            }
+
+            boolean increased = increaseItemQuantity(item);
+            if (!increased) {
+                System.out.println("Failed to increase item quantity.");
+                return false;
+            }
+
+            try {
+                rentMaintain.update();
+                System.out.println("Database updated successfully.");
+            } catch (Exception e) {
+                System.out.println("Failed to update database: " + e.getMessage());
+                return false;
+            }
+
+            return true;
+        }
+
+        System.out.println("Item with given ISBN not found in rented items.");
         return false;
     }
 
-    private void increaseItemQuantity(Item item) {
+
+    private boolean increaseItemQuantity(Item item) {
         try {
             if (item instanceof Book) {
                 maintainBooks.increaseNumberOfCopies((Book) item);
@@ -64,13 +77,16 @@ public class ReturnService {
             } else if (item instanceof Magazine) {
                 maintainMagazine.increaseNumberOfCopies((Magazine) item);
             } else {
-                throw new Exception("Unsupported item type for return.");
+                System.out.println("Unsupported item type for return.");
+                return false;
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Failed to increase quantity of the returned item.");
+            System.out.println("Failed to increase quantity of the returned item: " + e.getMessage());
+            return false;
         }
+        return true;
     }
+
 
     private boolean handlePenaltyPayment(User user, double penalty) {
         PurchaseFrame purchaseFrame = new PurchaseFrame(penalty, user);
@@ -78,8 +94,10 @@ public class ReturnService {
 
         System.out.println("User " + user.getEmail() + " has to pay a penalty of $" + penalty);
 
-        JOptionPane jop = new JOptionPane();
-        JDialog dialog = jop.createDialog("Payment Gateway");
+
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Payment Gateway");
+        dialog.setModal(true);
 
         JPanel dialogContentPanel = new JPanel();
         dialogContentPanel.setLayout(new BorderLayout());
@@ -91,8 +109,10 @@ public class ReturnService {
 
         dialog.setVisible(true);
 
-        System.out.println(purchaseController.isSuccess());
+        boolean success = purchaseController.isSuccess();
+        System.out.println(success);
 
-        return purchaseController.isSuccess();
+        return success;
     }
 }
+
