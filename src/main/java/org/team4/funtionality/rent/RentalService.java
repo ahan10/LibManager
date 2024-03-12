@@ -29,7 +29,7 @@ public class RentalService {
         Date dueDate = new java.sql.Date(calendar.getTime().getTime());
 
         if (canRentItem(user, item)) {
-            decreaseItemQuantity(item); // Assumes this method is implemented to decrease quantity of any item
+            decreaseItemQuantity(item);
             RentedItem rental = new RentedItem(item.getISBN(), new Date(), dueDate);
             rentMaintain.addNewRentedItem(user.getEmail(), item.getISBN(), new java.sql.Date(new Date().getTime()), new java.sql.Date(dueDate.getTime()));
             rentMaintain.update();

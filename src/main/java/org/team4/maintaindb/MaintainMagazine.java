@@ -181,6 +181,24 @@ public class MaintainMagazine {
 		}
 	}
 
+	public void increaseNumberOfCopies(Item item) {
+		for (Item i : this.magazine) {
+			if (i.equals(item)) {
+				i.setQuantity(i.getQuantity() + 1);
+				break;
+			}
+		}
+		try {
+			update();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Failed to increase quantity");
+		}
+	}
+
+
+
+
 	public Magazine searchExactMagazineByISBN(String isbn) {
 		for (Item item : magazine) {
 			if (item instanceof Magazine && item.getISBN().equals(isbn)) {
