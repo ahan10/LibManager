@@ -17,7 +17,6 @@ public class MaintainNewsletter {
     private MaintainNewsletter() {
         newsletters = new ArrayList<>();
         try {
-
             load();
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,7 +53,6 @@ public class MaintainNewsletter {
     public void update() throws Exception {
         try {
             CsvWriter csvOutput = new CsvWriter(new FileWriter(FILE_PATH, false), ',');
-
 
             csvOutput.write("title");
             csvOutput.write("link");
@@ -110,5 +108,16 @@ public class MaintainNewsletter {
         }
 
         return searchedNewsletters;
+    }
+    public Newsletter searchNewslettersbyTitle(String query) {
+        Newsletter searchedNewsletter = null;
+
+        for (Newsletter newsletter : newsletters) {
+            if (newsletter.getTitle().toLowerCase().equals(query.toLowerCase())) {
+                searchedNewsletter = newsletter;
+            }
+        }
+
+        return searchedNewsletter;
     }
 }
