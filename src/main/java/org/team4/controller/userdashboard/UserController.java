@@ -57,7 +57,7 @@ public class UserController implements ActionListener {
 		}
 		else if (e.getSource()== userDashboard.getReturnButton()){
 			returnSelectedItem();
-			// implementation
+
 		}
 
 	 else if (e.getSource() == userDashboard.getSubscribeButton()) {
