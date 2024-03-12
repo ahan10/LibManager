@@ -7,7 +7,6 @@ import org.team4.view.login.LoginPage;
 import org.team4.view.user.*;
 import org.team4.maintaindb.MaintainBooks;
 import org.team4.maintaindb.MaintainRequests;
-import org.team4.model.items.Book;
 import org.team4.model.items.BookRequest;
 import org.team4.controller.login.LoginController;
 import org.team4.funtionality.rent.RentalService;
@@ -40,7 +39,7 @@ public class UserController implements ActionListener {
 		userDashboard.getSearchTextField().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				userDashboard.performSearch(userDashboard.getSearchTextField().getText());
+				userDashboard.displayResults(userDashboard.getSearchTextField().getText());
 			}
 		});
 
