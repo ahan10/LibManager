@@ -1,8 +1,12 @@
 package org.team4.funtionality.rent;
+import org.team4.controller.purchase.PurchaseController;
 import org.team4.maintaindb.*;
 import org.team4.model.items.*;
 import org.team4.model.user.User;
+import org.team4.view.purchase.PurchaseFrame;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.Date;
 import java.util.List;
 
@@ -23,15 +27,26 @@ public class ReturnService {
                     if (rentedItem.getDueDate().before(new Date())) {
 
                         double penalty = rentalService.calculatePenalty(user.getEmail());
-
-                        if (!handlePenaltyPayment(user, penalty)) { // ahan's method to process penalty or something similar
+                        boolean paidPenalty = handlePenaltyPayment(user, penalty);
+                        if (!paidPenalty) { // ahan's method to process penalty or something similar
                             System.out.println("Unable to process return due to unpaid penalty.");
                             return false;
+                        }else{
+                            System.out.println("Success");
+                            return true;
                         }
                     }
 
                     if (rentMaintain.returnRentedItem(user.getEmail(), item.getISBN())) {
                         increaseItemQuantity(item);
+                    
+                        try {
+                            rentMaintain.update();
+                        }
+                        catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+
                         return true;
                     }
                 }
@@ -58,9 +73,26 @@ public class ReturnService {
     }
 
     private boolean handlePenaltyPayment(User user, double penalty) {
+        PurchaseFrame purchaseFrame = new PurchaseFrame(penalty, user);
+        PurchaseController purchaseController = new PurchaseController(purchaseFrame);
 
         System.out.println("User " + user.getEmail() + " has to pay a penalty of $" + penalty);
 
-        return true;
+        JOptionPane jop = new JOptionPane();
+        JDialog dialog = jop.createDialog("Payment Gateway");
+
+        JPanel dialogContentPanel = new JPanel();
+        dialogContentPanel.setLayout(new BorderLayout());
+        dialogContentPanel.add(purchaseFrame, BorderLayout.CENTER);
+
+        dialog.setSize(360, 610);
+        dialog.setContentPane(dialogContentPanel);
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+        dialog.setVisible(true);
+
+        System.out.println(purchaseController.isSuccess());
+
+        return purchaseController.isSuccess();
     }
 }
