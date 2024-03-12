@@ -1,14 +1,12 @@
 package org.team4.view.purchase;
 
-import java.awt.CardLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import org.team4.controller.purchase.PurchaseController;
 import org.team4.funtionality.buy.ItemToPurchase;
+import org.team4.model.items.Newsletter;
 import org.team4.model.paymentmodes.PaymentModes;
 import org.team4.model.items.Item;
 import org.team4.model.user.User;
@@ -17,11 +15,7 @@ import org.team4.view.purchase.modes.DebitCardPanel;
 import org.team4.view.purchase.modes.MobileWalletPanel;
 import org.team4.view.purchase.modes.PayPalPanel;
 
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-
-public class PurchaseFrame extends JFrame implements PaymentModes {
+public class PurchaseFrame extends JPanel implements PaymentModes {
 
 	private static final long serialVersionUID = 1L;
 	private static final String CREDIT_CARD = "Credit Card";
@@ -29,7 +23,7 @@ public class PurchaseFrame extends JFrame implements PaymentModes {
 	private static final String PAY_PAL = "Pay Pal";
 	private static final String MOBILE_WALLET = "Mobile Wallet";
 
-	private JPanel contentPane;
+	private JPanel panel;
 	private JPanel activityPanel;
 	private CardLayout cardLayout;
 
@@ -43,27 +37,9 @@ public class PurchaseFrame extends JFrame implements PaymentModes {
 
 	private Item item;
 	private User user;
+	private Newsletter newsletter;
+	private double amount;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PurchaseFrame frame = new PurchaseFrame();
-					frame.setVisible(true);
-					PurchaseController purchaseController = new PurchaseController(frame);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public PurchaseFrame() {
 		initPurchase();
 	}
@@ -74,22 +50,29 @@ public class PurchaseFrame extends JFrame implements PaymentModes {
 		initPurchase();
 	}
 
-	private void initPurchase() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 353, 609);
-		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
-		setTitle("Buy");
-		setContentPane(contentPane);
+	public PurchaseFrame(double amount, User user) {
+		this.amount = amount;
+		this.user = user;
+		initPurchase();
+	}
 
-		getContentPane().setLayout(null);
+	public PurchaseFrame(Newsletter newsletter, User user) {
+		this.newsletter = newsletter;
+		this.user = user;
+		initPurchase();
+	}
+
+	private void initPurchase() {
+		setBounds(100, 100, 353, 609);
+		setLayout(new BorderLayout());
 		
-		
-		
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		add(panel, BorderLayout.CENTER);
+
 		activityPanel = new JPanel();
-		activityPanel.setBounds(6, 69, 342, 508);
+		activityPanel.setBounds(6, 71, 330, 476);
 		
 		cardLayout = new CardLayout();
 		activityPanel.setLayout(cardLayout);
@@ -99,25 +82,26 @@ public class PurchaseFrame extends JFrame implements PaymentModes {
 	}
 	
 	private void addComponents() {
+		panel.setLayout(null);
 		JLabel titleLabel = new JLabel("Payment Gateway");
-		titleLabel.setBounds(116, 6, 109, 16);
-		getContentPane().add(titleLabel);
+		titleLabel.setBounds(74, 10, 109, 16);
+		panel.add(titleLabel);
 
 		JLabel modeLabel = new JLabel("Select Mode:");
-		modeLabel.setBounds(6, 34, 88, 16);
-		getContentPane().add(modeLabel);
+		modeLabel.setBounds(188, 10, 79, 16);
+		panel.add(modeLabel);
 
 		modeComboBox = new JComboBox(MODE.toArray(new String[0]));
-		modeComboBox.setBounds(94, 30, 193, 27);
-		getContentPane().add(modeComboBox);
+		modeComboBox.setBounds(58, 32, 140, 27);
+		panel.add(modeComboBox);
 
 		selectButton = new JButton("✔︎");
-		selectButton.setBounds(284, 29, 52, 29);
-		getContentPane().add(selectButton);
+		selectButton.setBounds(203, 31, 75, 29);
+		panel.add(selectButton);
 	}
 	
 	private void addPanels() {
-		contentPane.add(activityPanel);
+		panel.add(activityPanel);
 		activityPanel.add(debitCardPanel, DEBIT_CARD);
 		activityPanel.add(creditCardPanel, CREDIT_CARD);
 		activityPanel.add(payPalPanel, PAY_PAL);
@@ -168,7 +152,14 @@ public class PurchaseFrame extends JFrame implements PaymentModes {
 	}
 
 	public ItemToPurchase getItemToPurchase(){
-		return new ItemToPurchase(this.item, this.user);
+		if(this.item != null){
+			return new ItemToPurchase(this.item, this.user);
+		}else if(this.newsletter != null){
+			return new ItemToPurchase(this.newsletter, this.user);
+		}else{
+			return new ItemToPurchase(this.amount, this.user);
+		}
+
 	}
-	
+
 }

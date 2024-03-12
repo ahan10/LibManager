@@ -21,6 +21,10 @@ public class UserDashboard extends JFrame {
 	private JButton logoutButton;
 	private JButton homeButton;
 	private JButton studentButton;
+
+	private JButton returnButton;
+
+
 	private JTextField SearchTextField;
 
 	private final String HOME_PANEL = "Home Panel";
@@ -154,12 +158,17 @@ public class UserDashboard extends JFrame {
 
 	public void addButtons() {
 		RentItemButton = new JButton("Rent an Item");
-		RentItemButton.setBounds(253, 812, 117, 29);
-
-
+		RentItemButton.setBounds(220, 812, 117, 29);
 		contentPane.add(RentItemButton);
+
+		returnButton = new JButton("Return");
+		returnButton.setBounds(350, 814, 117, 29);
+		contentPane.add(returnButton);
+
+
+
 		SubscribeButton = new JButton("Subscribe");
-		SubscribeButton.setBounds(465, 812, 117, 29);
+		SubscribeButton.setBounds(490, 812, 117, 29);
 		contentPane.add(SubscribeButton);
 
 		PurchaseButton = new JButton("Purchase");
@@ -215,6 +224,10 @@ public class UserDashboard extends JFrame {
 
 	public JButton getRentItemButton() {
 		return RentItemButton;
+	}
+
+	public JButton getReturnButton() {
+		return returnButton;
 	}
 
 	public JButton getSubscribeButton() {

@@ -181,6 +181,21 @@ public class MaintainDVD {
 		}
 
 	}
+	public void increaseNumberOfCopies(Item item) {
+		for (Item i : this.dvd) {
+			if (i.equals(item)) {
+				i.setQuantity(i.getQuantity() + 1);
+				break;
+			}
+		}
+		try {
+			update();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Failed to increase quantity");
+		}
+	}
+
 	public DVD searchExactDVDByISBN(String isbn) {
 		for (Item item : dvd) {
 			if (item instanceof DVD && item.getISBN().equals(isbn)) {

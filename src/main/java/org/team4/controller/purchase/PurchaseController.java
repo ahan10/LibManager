@@ -19,15 +19,13 @@ public class PurchaseController implements ActionListener {
     private PurchaseFrame purchaseFrame;
     private ProcessPayment processPayment;
     private PurchaseComplete purchaseComplete;
-    private Item item;
-    private Newsletter newsletter;
     private MaintainBooks maintainBooks = MaintainDatabase.getInstance().getBookDatabase();
     private MaintainDVD maintainDVD = MaintainDatabase.getInstance().getDVDDatabase();
+    private boolean success;
 
     public PurchaseController(PurchaseFrame purchaseFrame) {
         this.purchaseFrame = purchaseFrame;
-        this.item = this.purchaseFrame.getItemToPurchase().getItem();
-        this.newsletter = this.purchaseFrame.getItemToPurchase().getNewsletter();
+        this.success = false;
 
         addListeners();
     }
@@ -44,10 +42,11 @@ public class PurchaseController implements ActionListener {
     private void process(){
         purchaseComplete = processPayment.getPurchaseCompleted();
         if(purchaseComplete == null){
+            this.success = false;
             JOptionPane.showMessageDialog(null, "Payment Failed");
         } else if (purchaseComplete.getItem() != null) {
+            this.success = true;
             if(purchaseComplete.getItem().getISBN().charAt(0) == '9'){
-
                 maintainBooks.decreaseNumberOfCopies((Book) purchaseComplete.getItem());
             }else if(purchaseComplete.getItem().getISBN().charAt(0) == '8'){
                 maintainDVD.decreaseNumberOfCopies(purchaseComplete.getItem());
@@ -55,15 +54,26 @@ public class PurchaseController implements ActionListener {
 
             String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
                     + "Item Name: " + purchaseComplete.getItem().getTitle() + "\n"
-                    + "Price: $" + purchaseComplete.getItem().getPrice();
+                    + "Price: $" + purchaseComplete.getAmount();
             JOptionPane.showMessageDialog(null, message, "View Purchase", JOptionPane.INFORMATION_MESSAGE);
 
         } else if (purchaseComplete.getNewsletter() != null) {
+            this.success = true;
             String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
                     + "Newsletter Name: " + purchaseComplete.getNewsletter().getTitle() + "\n"
-                    + "Price: $" + purchaseComplete.getNewsletter().getPrice();
+                    + "Price: $" + purchaseComplete.getAmount();
+            JOptionPane.showMessageDialog(null, message, "Newsletter Subscribed", JOptionPane.INFORMATION_MESSAGE);
+        }else {
+            this.success = true;
+            String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
+                    + "Fine Paid"  + "\n"
+                    + "Price: $" + purchaseComplete.getAmount();
             JOptionPane.showMessageDialog(null, message, "Newsletter Subscribed", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+
+    public boolean isSuccess() {
+        return success;
     }
 
     @Override
@@ -91,21 +101,25 @@ public class PurchaseController implements ActionListener {
             processPayment = new ProcessPayment(this.purchaseFrame.getCreditCardPanel().getCreditCard(), this.purchaseFrame.getItemToPurchase());
             process();
 
+            SwingUtilities.getWindowAncestor(this.purchaseFrame).dispose();
         }else if(e.getSource() == this.purchaseFrame.getDebitCardPanel().getProcessButton()){
 
             processPayment = new ProcessPayment(this.purchaseFrame.getDebitCardPanel().getDebitCard(), this.purchaseFrame.getItemToPurchase());
             process();
 
+            SwingUtilities.getWindowAncestor(this.purchaseFrame).dispose();
         }else if(e.getSource() == this.purchaseFrame.getPayPalPanel().getProcessButton()){
 
             processPayment = new ProcessPayment(this.purchaseFrame.getPayPalPanel().getPayPal(), this.purchaseFrame.getItemToPurchase());
             process();
 
+            SwingUtilities.getWindowAncestor(this.purchaseFrame).dispose();
         }else if(e.getSource() == this.purchaseFrame.getMobileWalletPanel().getProcessButton()){
 
             processPayment = new ProcessPayment(this.purchaseFrame.getMobileWalletPanel().getMobileWallet(), this.purchaseFrame.getItemToPurchase());
             process();
 
+            SwingUtilities.getWindowAncestor(this.purchaseFrame).dispose();
         }
     }
 }

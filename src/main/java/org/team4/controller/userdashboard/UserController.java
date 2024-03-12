@@ -1,25 +1,26 @@
 package org.team4.controller.userdashboard;
 
+import org.team4.controller.login.LoginController;
+import org.team4.funtionality.rent.RentalService;
+import org.team4.funtionality.rent.ReturnService;
+import org.team4.maintaindb.MaintainBooks;
 import org.team4.maintaindb.MaintainDatabase;
+import org.team4.maintaindb.MaintainRequests;
+import org.team4.model.items.BookRequest;
 import org.team4.model.items.Item;
 import org.team4.model.user.User;
 import org.team4.view.login.LoginPage;
 import org.team4.view.user.*;
-import org.team4.maintaindb.MaintainBooks;
-import org.team4.maintaindb.MaintainRequests;
-import org.team4.model.items.BookRequest;
-import org.team4.controller.login.LoginController;
-import org.team4.funtionality.rent.RentalService;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class UserController implements ActionListener {
 
 	private final UserDashboard userDashboard;
 	private final User user;
 	private final RentalService rent= new RentalService();
+	private final ReturnService returnService = new ReturnService();
 
 	public UserController(UserDashboard u){
 		this.userDashboard = u;
@@ -35,6 +36,7 @@ public class UserController implements ActionListener {
 		userDashboard.getHomeButton().addActionListener(this);
 		userDashboard.getLogoutButton().addActionListener(this);
 		userDashboard.getStudentButton().addActionListener(this);
+		userDashboard.getReturnButton().addActionListener(this);
 
 		userDashboard.getSearchTextField().addActionListener(new ActionListener() {
 			@Override
@@ -51,6 +53,10 @@ public class UserController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == userDashboard.getRentItemButton()) {
 			rentSelectedItem();
+		}
+		else if (e.getSource()== userDashboard.getReturnButton()){
+			returnSelectedItem();
+
 		}
 
 	 else if (e.getSource() == userDashboard.getSubscribeButton()) {
@@ -116,6 +122,49 @@ public class UserController implements ActionListener {
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Please select a " + itemTitle + " to rent.");
+		}
+	}
+
+	private void returnSelectedItem() {
+		Item itemToReturn = null;
+		int selectedRow = -1;
+		String itemType = userDashboard.getItemType();
+
+
+		if ("Book".equals(itemType)) {
+			selectedRow = BookResultsPanel.getTable().getSelectedRow();
+			if (selectedRow >= 0) {
+				String isbn = BookResultsPanel.getTable().getValueAt(selectedRow, 5).toString();
+				itemToReturn = MaintainDatabase.getInstance().getBookDatabase().searchExactBookByISBN(isbn);
+			}
+		} else if ("DVD".equals(itemType)) {
+			selectedRow = DVDResultsPanel.getTable().getSelectedRow();
+			if (selectedRow >= 0) {
+				String isbn = DVDResultsPanel.getTable().getValueAt(selectedRow, 4).toString();
+				itemToReturn = MaintainDatabase.getInstance().getDVDDatabase().searchExactDVDByISBN(isbn);
+			}
+		} else if ("Magazine".equals(itemType)) {
+			selectedRow = MagazineResultsPanel.getTable().getSelectedRow();
+			if (selectedRow >= 0) {
+				String isbn = MagazineResultsPanel.getTable().getValueAt(selectedRow, 4).toString();
+				itemToReturn = MaintainDatabase.getInstance().getMagazineDatabase().searchExactMagazineByISBN(isbn);
+			}
+		}
+
+
+		if (itemToReturn != null) {
+			try {
+				boolean returned = returnService.returnItem(user, itemToReturn);
+				if (returned) {
+					JOptionPane.showMessageDialog(null, "Item returned successfully!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Failed to return item. Please try again.");
+				}
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null, "Error during item return: " + ex.getMessage());
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Please select an item to return.");
 		}
 	}
 
