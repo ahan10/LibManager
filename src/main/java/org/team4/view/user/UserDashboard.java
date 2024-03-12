@@ -30,8 +30,6 @@ public class UserDashboard extends JFrame {
 	private final String STUDENT_PANEL = "Student Panel";
 
 	private JPanel homePanel = new HomePanel();
-	private JPanel subscribePanel = new SubscribePanel();
-	private JPanel purchasePanel = new PurchasePanel();
 	private StudentPanel studentPanel = new StudentPanel();
 	private RequestPanel requestPanel;
 	private JPanel resultsPanel;
@@ -164,9 +162,6 @@ public class UserDashboard extends JFrame {
 		RequestButton.setBounds(673, 812, 117, 29);
 		contentPane.add(RequestButton);
 
-		subscribePanel.setBounds(0, 33, 788, 490);
-
-		purchasePanel.setBounds(0, 33, 788, 490);
 
 		logoutButton = new JButton("Logout");
 		logoutButton.setBounds(1063, 19, 109, 27);
