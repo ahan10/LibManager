@@ -80,7 +80,7 @@ public class BookResultsPanel extends JPanel {
 
 
 			window.setContentPane(new JScrollPane(this));
-			window.setSize(1200, 900);
+			window.setSize(1200, 500);
 			window.setVisible(true);
 		}
 
