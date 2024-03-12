@@ -19,6 +19,7 @@ public class ReturnService {
     private RentalService rentalService = new RentalService();
 
     public boolean returnItem(User user, Item item) {
+
         List<RentedItem> rentedItems = rentMaintain.getAllRenters().get(user.getEmail());
         if (rentedItems == null) {
             System.out.println("No rented items found for user.");
@@ -31,7 +32,8 @@ public class ReturnService {
             }
 
             if (rentedItem.getDueDate().before(new Date())) {
-                double penalty = rentalService.calculatePenalty(user.getEmail());
+                double penalty = rentalService.calculatePenaltyForItem(user.getEmail(), item.getISBN());
+
                 boolean paidPenalty = handlePenaltyPayment(user, penalty);
                 if (!paidPenalty) {
                     System.out.println("Unable to process return due to unpaid penalty.");

@@ -100,25 +100,31 @@ public class RentalService {
         return checkOverdue(userEmail).size();
     }
 
-   public double calculatePenalty( String email){
-        double penalty=0.0;
-        List<RentedItem> overdueItems= checkOverdue(email);
-        Date currentDate = new Date(System.currentTimeMillis());
-        for ( RentedItem item: overdueItems){
-            long diffInMillis = Math.abs(currentDate.getTime() - item.getDueDate().getTime());
-            long overdueDays = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
+    public double calculatePenaltyForItem(String userEmail, String itemISBN) {
+        double penalty = 0.0;
+        List<RentedItem> userRentedItems = rentMaintain.getAllRenters().get(userEmail);
 
-            penalty= penalty+ overdueDays*PENALTY_PER_DAY;
+        if (userRentedItems != null) {
+            for (RentedItem rentedItem : userRentedItems) {
+                if (rentedItem.getISBN().equals(itemISBN) && rentedItem.getDueDate().before(new Date())) {
+
+                    long diffInMillis = Math.abs(new Date().getTime() - rentedItem.getDueDate().getTime());
+                    long overdueDays = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
+
+                    penalty = overdueDays * PENALTY_PER_DAY;
+                    System.out.println("Penalty for item " + itemISBN + ": " + penalty);
+                    break;
+                }
+            }
         }
-       System.out.println(" Total penalty: " + penalty);
+
         return penalty;
-
-   }
-    public void printOverduePenalties(String userEmail) {
+    }
+    public void printOverduePenalties(String userEmail, String itemISBN) {
         List<RentedItem> overdueItems = checkOverdue(userEmail);
-        double penalty = calculatePenalty(userEmail);
+        double penalty = calculatePenaltyForItem(userEmail,itemISBN);
 
-        System.out.println("User " + userEmail + " has " + overdueItems.size() + " overdue items. Total penalty: $" + penalty);
+        System.out.println("User " + userEmail + " has " + overdueItems.size() + " overdue items. Penalty $" + penalty);
     }
 
 
