@@ -9,9 +9,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import org.team4.controller.results.DVDController;
 import org.team4.maintaindb.MaintainDVD;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.DVD;
+import org.team4.model.user.User;
 import org.team4.view.user.search.DVDTableModel;
 
 
@@ -20,7 +22,7 @@ public class DVDResultsPanel extends JPanel {
 	private static JTable table;
 	private String query;
 	private JFrame window;
-
+	private User user;
 
 	public DVDResultsPanel() {
 		setBounds(100, 100, 788, 520);
@@ -28,10 +30,11 @@ public class DVDResultsPanel extends JPanel {
 
 	}
 
-	public DVDResultsPanel(String query, JFrame window) {
+	public DVDResultsPanel(String query, JFrame window, User user) {
 
 		this.window = window;
 		this.query = query;
+		this.user = user;
 
 		setBounds(100, 100, 788, 520);
 		setLayout(new BorderLayout());
@@ -67,7 +70,9 @@ public class DVDResultsPanel extends JPanel {
 						DVD dvd = MaintainDVD.getInstance().searchExactDVDByISBN(table.getValueAt(row, 4).toString());
 						JFrame itemInfoFrame = new JFrame(dvd.getTitle());
 
-						DVDItemPanel dvdPanel = new DVDItemPanel(itemInfoFrame, dvd);
+						DVDItemPanel dvdPanel = new DVDItemPanel(itemInfoFrame, dvd, user);
+						DVDController dvdController = new DVDController(dvdPanel, user);
+
 						dvdPanel.showItemInfo();
 						itemInfoFrame.setContentPane(new JScrollPane(dvdPanel));
 						itemInfoFrame.setSize(300, 280);

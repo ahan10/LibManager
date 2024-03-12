@@ -9,9 +9,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import org.team4.controller.results.MagazineController;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.maintaindb.MaintainMagazine;
 import org.team4.model.items.Magazine;
+import org.team4.model.user.User;
 import org.team4.view.user.search.MagazineTableModel;
 
 
@@ -20,6 +22,7 @@ public class MagazineResultsPanel extends JPanel {
 	private static JTable table;
 	private String query;
 	private JFrame window;
+	private User user;
 
 
 	public MagazineResultsPanel() {
@@ -28,10 +31,11 @@ public class MagazineResultsPanel extends JPanel {
 
 	}
 
-	public MagazineResultsPanel(String query, JFrame window) {
+	public MagazineResultsPanel(String query, JFrame window, User user) {
 
 		this.window = window;
 		this.query = query;
+		this.user = user;
 
 		setBounds(100, 100, 788, 520);
 		setLayout(new BorderLayout());
@@ -67,7 +71,9 @@ public class MagazineResultsPanel extends JPanel {
 						JFrame itemInfoFrame = new JFrame(magazine.getTitle());
 						System.out.println(magazine);
 
-						MagazineItemPanel magazinePanel = new MagazineItemPanel(itemInfoFrame, magazine);
+						MagazineItemPanel magazinePanel = new MagazineItemPanel(itemInfoFrame, magazine, user);
+						MagazineController magazineController = new MagazineController(magazinePanel, user);
+
 						magazinePanel.showItemInfo();
 						itemInfoFrame.setContentPane(new JScrollPane(magazinePanel));
 						itemInfoFrame.setSize(300, 250);

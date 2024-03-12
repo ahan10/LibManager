@@ -3,6 +3,8 @@ package org.team4.view.user;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.team4.model.items.DVD;
+import org.team4.model.user.User;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -18,10 +20,10 @@ public class DVDItemPanel extends JPanel {
 	private JLabel lblYearPublishedValue = new JLabel();
 	private JLabel lblQuantityValue = new JLabel();
 	private JLabel lblPriceValue = new JLabel();
+	private JButton btnBuy, btnRent;
 
 
-
-	public DVDItemPanel(JFrame window, DVD dvd) {
+	public DVDItemPanel(JFrame window, DVD dvd, User user) {
 		this.window = window;
 		this.dvd = dvd;
 		setLayout(null);
@@ -97,11 +99,11 @@ public class DVDItemPanel extends JPanel {
 		add(lblPriceValue);
 		add(lblQuantityValue);
 		
-		JButton btnBuy = new JButton("Buy");
+		btnBuy = new JButton("Buy");
 		btnBuy.setBounds(20, 200, 85, 21);
 		add(btnBuy);
 		
-		JButton btnRent = new JButton("Rent");
+		btnRent = new JButton("Rent");
 		btnRent.setBounds(160, 200, 85, 21);
 		add(btnRent);
 		
@@ -134,4 +136,11 @@ public class DVDItemPanel extends JPanel {
 		return window;
 	}
 
-}	
+	public JButton getBtnBuy() {
+		return btnBuy;
+	}
+
+	public JButton getBtnRent() {
+		return btnRent;
+	}
+}

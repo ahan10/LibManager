@@ -9,9 +9,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import org.team4.controller.results.BookController;
 import org.team4.maintaindb.MaintainBooks;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Book;
+import org.team4.model.user.User;
 import org.team4.view.user.search.BookTableModel;
 
 
@@ -20,16 +22,18 @@ public class BookResultsPanel extends JPanel {
 	private static JTable table;
 	private String query;
 	private JFrame window;
+	private User user;
 
 	public BookResultsPanel() {
 		setBounds(100, 100, 788, 520);
 		setLayout(null);
 	}
 
-	public BookResultsPanel(String query, JFrame window) {
+	public BookResultsPanel(String query, JFrame window, User user) {
 
 		this.window = window;
 		this.query = query;
+		this.user = user;
 
 		setBounds(100, 100, 788, 520);
 		setLayout(new BorderLayout());
@@ -65,6 +69,7 @@ public class BookResultsPanel extends JPanel {
 						Book book = MaintainBooks.getInstance().searchExactBookByISBN(table.getValueAt(row, 5).toString());
 						JFrame itemInfoFrame = new JFrame(book.getTitle());
 						BookItemPanel bookPanel = new BookItemPanel(itemInfoFrame, book);
+						BookController bookController = new BookController(bookPanel, user);
 						bookPanel.showItemInfo();
 						itemInfoFrame.setContentPane(new JScrollPane(bookPanel));
 						itemInfoFrame.setSize(300, 300);

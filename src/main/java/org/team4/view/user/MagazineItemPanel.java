@@ -3,6 +3,7 @@ package org.team4.view.user;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.team4.model.items.Magazine;
+import org.team4.model.user.User;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -20,11 +21,15 @@ public class MagazineItemPanel extends JPanel {
 	private JLabel lblPublisherValue = new JLabel();
 	private JLabel lblIssueNumberValue = new JLabel();
 	private JLabel lblQuantityValue = new JLabel();
+	private JButton btnRent;
+	private User user;
 
 
-	public MagazineItemPanel(JFrame window, Magazine magazine) {
+	public MagazineItemPanel(JFrame window, Magazine magazine, User user) {
 		this.window = window;
 		this.magazine = magazine;
+		this.user = user;
+
 		setLayout(null);
 		
 		JLabel lblTitle = new JLabel("Title:");
@@ -89,7 +94,7 @@ public class MagazineItemPanel extends JPanel {
 		add(lblIssueNumberValue);
 		add(lblQuantityValue);
 		
-		JButton btnRent = new JButton("Rent");
+		btnRent = new JButton("Rent");
 		btnRent.setBounds(90, 180, 85, 21);
 		add(btnRent);
 		
@@ -121,4 +126,7 @@ public class MagazineItemPanel extends JPanel {
 		return window;
 	}
 
-}	
+	public JButton getBtnRent() {
+		return btnRent;
+	}
+}

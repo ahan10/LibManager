@@ -21,6 +21,8 @@ public class BookItemPanel extends JPanel {
 	private JLabel lblPriceValue = new JLabel();
 	private JLabel lblQuantityValue = new JLabel();
 
+	private JButton btnBuy, btnRent;
+
 
 	public BookItemPanel(JFrame window, Book book) {
 		this.window = window;
@@ -46,7 +48,7 @@ public class BookItemPanel extends JPanel {
 
 		JLabel lblPublisher = new JLabel("Publisher:");
 		lblPublisher.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblPublisher.setBounds(20, 100, 57, 13);
+		lblPublisher.setBounds(20, 120, 57, 13);
 		
 		JLabel lblYearPublished = new JLabel("Published: ");
 		lblYearPublished.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -107,11 +109,11 @@ public class BookItemPanel extends JPanel {
 		add(lblPriceValue);
 		add(lblQuantityValue);
 		
-		JButton btnBuy = new JButton("Buy");
+		btnBuy = new JButton("Buy");
 		btnBuy.setBounds(20, 220, 85, 21);
 		add(btnBuy);
 		
-		JButton btnRent = new JButton("Rent");
+		btnRent = new JButton("Rent");
 		btnRent.setBounds(160, 220, 85, 21);
 		add(btnRent);
 
@@ -145,4 +147,11 @@ public class BookItemPanel extends JPanel {
 		return window;
 	}
 
-}	
+	public JButton getBtnBuy() {
+		return btnBuy;
+	}
+
+	public JButton getBtnRent() {
+		return btnRent;
+	}
+}
