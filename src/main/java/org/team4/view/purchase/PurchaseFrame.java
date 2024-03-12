@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import org.team4.controller.purchase.PurchaseController;
 import org.team4.funtionality.buy.ItemToPurchase;
+import org.team4.model.items.Newsletter;
 import org.team4.model.paymentmodes.PaymentModes;
 import org.team4.model.items.Item;
 import org.team4.model.user.User;
@@ -43,6 +44,9 @@ public class PurchaseFrame extends JFrame implements PaymentModes {
 
 	private Item item;
 	private User user;
+	private Newsletter newsletter;
+	private double amount;
+
 
 	/**
 	 * Launch the application.
@@ -70,6 +74,18 @@ public class PurchaseFrame extends JFrame implements PaymentModes {
 
 	public PurchaseFrame(Item item, User user) {
 		this.item = item;
+		this.user = user;
+		initPurchase();
+	}
+
+	public PurchaseFrame(double amount, User user) {
+		this.amount = amount;
+		this.user = user;
+		initPurchase();
+	}
+
+	public PurchaseFrame(Newsletter newsletter, User user) {
+		this.newsletter = newsletter;
 		this.user = user;
 		initPurchase();
 	}
@@ -169,6 +185,14 @@ public class PurchaseFrame extends JFrame implements PaymentModes {
 
 	public ItemToPurchase getItemToPurchase(){
 		return new ItemToPurchase(this.item, this.user);
+	}
+
+	public ItemToPurchase getFinePay(){
+		return new ItemToPurchase(this.amount, this.user);
+	}
+
+	public ItemToPurchase getNewsLetterSub(){
+		return new ItemToPurchase(this.newsletter, this.user);
 	}
 	
 }

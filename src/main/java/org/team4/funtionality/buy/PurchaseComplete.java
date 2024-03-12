@@ -38,12 +38,11 @@ public class PurchaseComplete implements PaymentModes {
         this.purchaseDate = new Date();
         this.user = itemToPurchase.getUser();
         this.modeOfPayment = modes.getMode();
+        this.amount = itemToPurchase.getAmount();
         if(itemToPurchase.getItem() != null){
             this.item = itemToPurchase.getItem();
-            this.amount = itemToPurchase.getItem().getPrice();
-        }else{
+        }else if(itemToPurchase.getNewsletter() != null){
             this.newsletter = itemToPurchase.getNewsletter();
-            this.amount = itemToPurchase.getNewsletter().getPrice();
         }
     }
 

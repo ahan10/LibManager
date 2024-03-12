@@ -47,7 +47,6 @@ public class PurchaseController implements ActionListener {
             JOptionPane.showMessageDialog(null, "Payment Failed");
         } else if (purchaseComplete.getItem() != null) {
             if(purchaseComplete.getItem().getISBN().charAt(0) == '9'){
-
                 maintainBooks.decreaseNumberOfCopies((Book) purchaseComplete.getItem());
             }else if(purchaseComplete.getItem().getISBN().charAt(0) == '8'){
                 maintainDVD.decreaseNumberOfCopies(purchaseComplete.getItem());
@@ -55,13 +54,18 @@ public class PurchaseController implements ActionListener {
 
             String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
                     + "Item Name: " + purchaseComplete.getItem().getTitle() + "\n"
-                    + "Price: $" + purchaseComplete.getItem().getPrice();
+                    + "Price: $" + purchaseComplete.getAmount();
             JOptionPane.showMessageDialog(null, message, "View Purchase", JOptionPane.INFORMATION_MESSAGE);
 
         } else if (purchaseComplete.getNewsletter() != null) {
             String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
                     + "Newsletter Name: " + purchaseComplete.getNewsletter().getTitle() + "\n"
-                    + "Price: $" + purchaseComplete.getNewsletter().getPrice();
+                    + "Price: $" + purchaseComplete.getAmount();
+            JOptionPane.showMessageDialog(null, message, "Newsletter Subscribed", JOptionPane.INFORMATION_MESSAGE);
+        }else {
+            String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
+                    + "Fine Paid"  + "\n"
+                    + "Price: $" + purchaseComplete.getAmount();
             JOptionPane.showMessageDialog(null, message, "Newsletter Subscribed", JOptionPane.INFORMATION_MESSAGE);
         }
     }
