@@ -13,10 +13,6 @@ public class UserDashboard extends JFrame {
 	private JPanel contentPane;
 	private JPanel activityPanel;
 	private CardLayout cardLayout;
-
-	private JButton RentItemButton;
-	private JButton SubscribeButton;
-	private JButton PurchaseButton;
 	private JButton RequestButton;
 	private JButton logoutButton;
 	private JButton homeButton;
@@ -127,12 +123,12 @@ public class UserDashboard extends JFrame {
 
 		if ("Book".equals(type)) {
 			
-			resultsPanel = new BookResultsPanel(query, searchResultsFrame);
+			resultsPanel = new BookResultsPanel(query, searchResultsFrame, this.user);
 			((BookResultsPanel) resultsPanel).addSearchResults();
 			
 		} else if ("DVD".equals(type)) {
 
-			resultsPanel = new DVDResultsPanel(query, searchResultsFrame);
+			resultsPanel = new DVDResultsPanel(query, searchResultsFrame, this.user);
 			((DVDResultsPanel) resultsPanel).addSearchResults();
 
 		} else if ("Newsletter".equals(type)) {
@@ -142,7 +138,7 @@ public class UserDashboard extends JFrame {
 			
 		}else if ("Magazine".equals(type)) {
 
-			resultsPanel= new MagazineResultsPanel(query, searchResultsFrame);
+			resultsPanel= new MagazineResultsPanel(query, searchResultsFrame, this.user);
 			((MagazineResultsPanel) resultsPanel).addSearchResults();
 	
 		}
@@ -157,30 +153,16 @@ public class UserDashboard extends JFrame {
 	}
 
 	public void addButtons() {
-		RentItemButton = new JButton("Rent an Item");
-		RentItemButton.setBounds(220, 812, 117, 29);
-		contentPane.add(RentItemButton);
 
 		returnButton = new JButton("Return");
 		returnButton.setBounds(350, 814, 117, 29);
 		contentPane.add(returnButton);
 
 
-
-		SubscribeButton = new JButton("Subscribe");
-		SubscribeButton.setBounds(490, 812, 117, 29);
-		contentPane.add(SubscribeButton);
-
-		PurchaseButton = new JButton("Purchase");
-
-
 		RequestButton = new JButton("Request Book");
 
 		RequestButton.setBounds(673, 812, 117, 29);
 		contentPane.add(RequestButton);
-
-		PurchaseButton.setBounds(864, 812, 117, 29);
-		contentPane.add(PurchaseButton);
 
 		subscribePanel.setBounds(0, 33, 788, 490);
 
@@ -208,8 +190,6 @@ public class UserDashboard extends JFrame {
 		contentPane.add(activityPanel);
 
 		activityPanel.add(homePanel, HOME_PANEL);
-		activityPanel.add(purchasePanel, PURCHASE_PANEL);
-		activityPanel.add(subscribePanel, SUBSCRIBE_PANEL);
 		activityPanel.add(requestPanel, REQUEST_PANEL);
 		activityPanel.add(studentPanel, STUDENT_PANEL);
 
@@ -222,20 +202,8 @@ public class UserDashboard extends JFrame {
 		return RequestButton;
 	}
 
-	public JButton getRentItemButton() {
-		return RentItemButton;
-	}
-
 	public JButton getReturnButton() {
 		return returnButton;
-	}
-
-	public JButton getSubscribeButton() {
-		return SubscribeButton;
-	}
-
-	public JButton getPurchaseButton() {
-		return PurchaseButton;
 	}
 
 	public JButton getHomeButton() {
@@ -262,13 +230,6 @@ public class UserDashboard extends JFrame {
 		cardLayout.show(activityPanel, HOME_PANEL);
 	}
 
-	public void changeToPurchasePanel(){
-		cardLayout.show(activityPanel, PURCHASE_PANEL);
-	}
-
-	public void changeToSubscribePanel(){
-		cardLayout.show(activityPanel, SUBSCRIBE_PANEL);
-	}
 
 	public void changeToRequestPanel(){
 		cardLayout.show(activityPanel, REQUEST_PANEL);

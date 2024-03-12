@@ -29,9 +29,6 @@ public class UserController implements ActionListener {
 	}
 
 	private void addListeners(){
-		userDashboard.getPurchaseButton().addActionListener(this);
-		userDashboard.getRentItemButton().addActionListener(this);
-		userDashboard.getSubscribeButton().addActionListener(this);
 		userDashboard.getRequestButton().addActionListener(this);
 		userDashboard.getHomeButton().addActionListener(this);
 		userDashboard.getLogoutButton().addActionListener(this);
@@ -51,18 +48,9 @@ public class UserController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == userDashboard.getRentItemButton()) {
-			rentSelectedItem();
-		}
-		else if (e.getSource()== userDashboard.getReturnButton()){
+
+		if (e.getSource()== userDashboard.getReturnButton()){
 			returnSelectedItem();
-
-		}
-
-	 else if (e.getSource() == userDashboard.getSubscribeButton()) {
-			userDashboard.changeToSubscribePanel();
-		} else if (e.getSource() == userDashboard.getPurchaseButton()) {
-			userDashboard.changeToPurchasePanel();
 		}else if (e.getSource() == userDashboard.getRequestButton()) {
 			userDashboard.changeToRequestPanel();
 		}else if (e.getSource() == userDashboard.getRequestPanel().getSubmitButton()) {
@@ -73,57 +61,12 @@ public class UserController implements ActionListener {
 			userDashboard.changeToStudentPanel(userDashboard.getCurrentUser());
 		}else if(e.getSource() == userDashboard.getLogoutButton()) {
 			userDashboard.dispose();
-            LoginPage frame = new LoginPage();
-        	@SuppressWarnings("unused") LoginController controller = new LoginController(frame);
-            frame.setVisible(true);
+			LoginPage frame = new LoginPage();
+			@SuppressWarnings("unused") LoginController controller = new LoginController(frame);
+			frame.setVisible(true);
 		}
 	}
-	private void rentSelectedItem() {
-		Item itemToRent = null;
-		String itemTitle = "";
-		String itemType = userDashboard.getItemType();
 
-		if ("Book".equals(itemType)) {
-			int selectedRow = BookResultsPanel.getTable().getSelectedRow();
-			if (selectedRow >= 0) {
-				String isbn = BookResultsPanel.getTable().getValueAt(selectedRow, 5).toString();
-				itemToRent = MaintainDatabase.getInstance().getBookDatabase().searchExactBookByISBN(isbn);
-				itemTitle = "book";
-			}
-		} else if ("DVD".equals(itemType)) {
-			int selectedRow = DVDResultsPanel.getTable().getSelectedRow();
-			if (selectedRow >= 0) {
-				String isbn = DVDResultsPanel.getTable().getValueAt(selectedRow, 4).toString();
-				itemToRent = MaintainDatabase.getInstance().getDVDDatabase().searchExactDVDByISBN(isbn);
-				itemTitle = "DVD";
-			}
-		} else if ("Magazine".equals(itemType)) {
-			int selectedRow = MagazineResultsPanel.getTable().getSelectedRow();
-			if (selectedRow >= 0) {
-				String isbn = MagazineResultsPanel.getTable().getValueAt(selectedRow, 4).toString();
-				itemToRent = MaintainDatabase.getInstance().getMagazineDatabase().searchExactMagazineByISBN(isbn);
-				itemTitle = "magazine";
-			}
-		}
-
-		// to rent the selected item by the user
-		if (itemToRent != null) {
-			try {
-				if (rent.canRentItem(user, itemToRent)) {
-					if (rent.rentItem(user, itemToRent)) {
-						JOptionPane.showMessageDialog(null, itemToRent.getTitle() + " rented successfully!");
-					} else {
-						JOptionPane.showMessageDialog(null, "Failed to rent " + itemTitle + ". Please try again.");
-					}
-				}
-			} catch (Exception ex) {
-
-				JOptionPane.showMessageDialog(null, ex.getMessage());
-			}
-		} else {
-			JOptionPane.showMessageDialog(null, "Please select a " + itemTitle + " to rent.");
-		}
-	}
 
 	private void returnSelectedItem() {
 		Item itemToReturn = null;
@@ -170,13 +113,13 @@ public class UserController implements ActionListener {
 
 
 	private void manageRequest(RequestPanel panel) {
-		
+
 		String title =  panel.getTextFieldTitle().getText().trim();
 		String author = panel.getTextFieldAuthor().getText().trim();
 		String ISBN = panel.getTextFieldISBN().getText().trim();
 		int edition = Integer.parseInt(panel.getTextFieldEdition().getText());
 		String booktype = (String)panel.getComboBoxBookType().getSelectedItem();
-		
+
 		if(panel.getTextFieldTitle().getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(new JFrame(), "Please enter a valid title!",
 					"Error Invalid Title", JOptionPane.ERROR_MESSAGE);
@@ -199,11 +142,11 @@ public class UserController implements ActionListener {
 			else {
 				BookRequest newRequest = new BookRequest(user.getEmail(), title, author, ISBN, edition, booktype);
 				MaintainRequests.getInstance().addRequest(newRequest);
-				
+
 			}
 		}
-		
-		
-		
+
+
+
 	}
 }
