@@ -23,11 +23,13 @@ public class PurchaseController implements ActionListener {
     private Newsletter newsletter;
     private MaintainBooks maintainBooks = MaintainDatabase.getInstance().getBookDatabase();
     private MaintainDVD maintainDVD = MaintainDatabase.getInstance().getDVDDatabase();
+    private boolean success;
 
     public PurchaseController(PurchaseFrame purchaseFrame) {
         this.purchaseFrame = purchaseFrame;
         this.item = this.purchaseFrame.getItemToPurchase().getItem();
         this.newsletter = this.purchaseFrame.getItemToPurchase().getNewsletter();
+        this.success = false;
 
         addListeners();
     }
@@ -46,6 +48,7 @@ public class PurchaseController implements ActionListener {
         if(purchaseComplete == null){
             JOptionPane.showMessageDialog(null, "Payment Failed");
         } else if (purchaseComplete.getItem() != null) {
+            this.success = true;
             if(purchaseComplete.getItem().getISBN().charAt(0) == '9'){
                 maintainBooks.decreaseNumberOfCopies((Book) purchaseComplete.getItem());
             }else if(purchaseComplete.getItem().getISBN().charAt(0) == '8'){
@@ -58,11 +61,13 @@ public class PurchaseController implements ActionListener {
             JOptionPane.showMessageDialog(null, message, "View Purchase", JOptionPane.INFORMATION_MESSAGE);
 
         } else if (purchaseComplete.getNewsletter() != null) {
+            this.success = true;
             String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
                     + "Newsletter Name: " + purchaseComplete.getNewsletter().getTitle() + "\n"
                     + "Price: $" + purchaseComplete.getAmount();
             JOptionPane.showMessageDialog(null, message, "Newsletter Subscribed", JOptionPane.INFORMATION_MESSAGE);
         }else {
+            this.success = true;
             String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
                     + "Fine Paid"  + "\n"
                     + "Price: $" + purchaseComplete.getAmount();
