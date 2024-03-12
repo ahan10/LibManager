@@ -19,16 +19,12 @@ public class PurchaseController implements ActionListener {
     private PurchaseFrame purchaseFrame;
     private ProcessPayment processPayment;
     private PurchaseComplete purchaseComplete;
-    private Item item;
-    private Newsletter newsletter;
     private MaintainBooks maintainBooks = MaintainDatabase.getInstance().getBookDatabase();
     private MaintainDVD maintainDVD = MaintainDatabase.getInstance().getDVDDatabase();
     private boolean success;
 
     public PurchaseController(PurchaseFrame purchaseFrame) {
         this.purchaseFrame = purchaseFrame;
-        this.item = this.purchaseFrame.getItemToPurchase().getItem();
-        this.newsletter = this.purchaseFrame.getItemToPurchase().getNewsletter();
         this.success = false;
 
         addListeners();
@@ -46,6 +42,7 @@ public class PurchaseController implements ActionListener {
     private void process(){
         purchaseComplete = processPayment.getPurchaseCompleted();
         if(purchaseComplete == null){
+            this.success = false;
             JOptionPane.showMessageDialog(null, "Payment Failed");
         } else if (purchaseComplete.getItem() != null) {
             this.success = true;
@@ -75,6 +72,10 @@ public class PurchaseController implements ActionListener {
         }
     }
 
+    public boolean isSuccess() {
+        return success;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.purchaseFrame.getSelectButton()){
@@ -100,21 +101,25 @@ public class PurchaseController implements ActionListener {
             processPayment = new ProcessPayment(this.purchaseFrame.getCreditCardPanel().getCreditCard(), this.purchaseFrame.getItemToPurchase());
             process();
 
+            SwingUtilities.getWindowAncestor(this.purchaseFrame).dispose();
         }else if(e.getSource() == this.purchaseFrame.getDebitCardPanel().getProcessButton()){
 
             processPayment = new ProcessPayment(this.purchaseFrame.getDebitCardPanel().getDebitCard(), this.purchaseFrame.getItemToPurchase());
             process();
 
+            SwingUtilities.getWindowAncestor(this.purchaseFrame).dispose();
         }else if(e.getSource() == this.purchaseFrame.getPayPalPanel().getProcessButton()){
 
             processPayment = new ProcessPayment(this.purchaseFrame.getPayPalPanel().getPayPal(), this.purchaseFrame.getItemToPurchase());
             process();
 
+            SwingUtilities.getWindowAncestor(this.purchaseFrame).dispose();
         }else if(e.getSource() == this.purchaseFrame.getMobileWalletPanel().getProcessButton()){
 
             processPayment = new ProcessPayment(this.purchaseFrame.getMobileWalletPanel().getMobileWallet(), this.purchaseFrame.getItemToPurchase());
             process();
 
+            SwingUtilities.getWindowAncestor(this.purchaseFrame).dispose();
         }
     }
 }
