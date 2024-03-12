@@ -117,7 +117,6 @@ public class UserController implements ActionListener {
 		String title =  panel.getTextFieldTitle().getText().trim();
 		String author = panel.getTextFieldAuthor().getText().trim();
 		String ISBN = panel.getTextFieldISBN().getText().trim();
-		int edition = Integer.parseInt(panel.getTextFieldEdition().getText());
 		String booktype = (String)panel.getComboBoxBookType().getSelectedItem();
 
 		if(panel.getTextFieldTitle().getText().trim().equals("")) {
@@ -140,6 +139,7 @@ public class UserController implements ActionListener {
 						"Error Invalid Request", JOptionPane.ERROR_MESSAGE);
 			}
 			else {
+				int edition = Integer.parseInt(panel.getTextFieldEdition().getText());
 				BookRequest newRequest = new BookRequest(user.getEmail(), title, author, ISBN, edition, booktype);
 				MaintainRequests.getInstance().addRequest(newRequest);
 
