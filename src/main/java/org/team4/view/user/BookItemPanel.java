@@ -29,71 +29,72 @@ public class BookItemPanel extends JPanel {
 		
 		JLabel lblTitle = new JLabel("Title:");
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblTitle.setBounds(20, 40, 45, 13);
-		add(lblTitle);
+		lblTitle.setBounds(20, 20, 45, 13);
 		
 		JLabel lblAuthor = new JLabel("Author:");
 		lblAuthor.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblAuthor.setBounds(20, 60, 45, 13);
-		add(lblAuthor);
+		lblAuthor.setBounds(20, 40, 45, 13);
 		
 		JLabel lblGenre = new JLabel("Genre:");
 		lblGenre.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblGenre.setBounds(20, 80, 45, 13);
-		add(lblGenre);
+		lblGenre.setBounds(20, 60, 45, 13);
 		
 		JLabel lblISBN = new JLabel("ISBN:");
 		lblISBN.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblISBN.setBounds(20, 100, 45, 13);
-		add(lblISBN);
+		lblISBN.setBounds(20, 80, 45, 13);
 		
 
 		JLabel lblPublisher = new JLabel("Publisher:");
 		lblPublisher.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblPublisher.setBounds(20, 140, 57, 13);
-		add(lblPublisher);
+		lblPublisher.setBounds(20, 100, 57, 13);
 		
 		JLabel lblYearPublished = new JLabel("Published: ");
 		lblYearPublished.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblYearPublished.setBounds(20, 160, 100, 13);
-		add(lblYearPublished);
+		lblYearPublished.setBounds(20, 140, 100, 13);
 		
 		
 		JLabel lblPrice = new JLabel("Price:");
 		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblPrice.setBounds(20, 180, 45, 13);
-		add(lblPrice);
+		lblPrice.setBounds(20, 160, 45, 13);
 		
 		JLabel lblQuantity = new JLabel("Quantity:");
 		lblQuantity.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblQuantity.setBounds(20, 200, 70, 13);
-		add(lblQuantity);
+		lblQuantity.setBounds(20, 180, 70, 13);
+		
 		add(lblTitle);
 		add(lblAuthor);
 		add(lblGenre);
 		add(lblISBN);
+
+	
 		add(lblPublisher);
+		add(lblYearPublished);
 		add(lblPrice);
 		add(lblQuantity);
+		
 		lblTitleValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblTitleValue.setBounds(100, 20, 200, 13);
 		
-		
-		lblTitleValue.setBounds(100, 40, 200, 13);
 		lblAuthorValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblAuthorValue.setBounds(100, 60, 200, 13);
-		lblGenreValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblGenreValue.setBounds(100, 80, 200, 13);
-		lblISBNValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblISBNValue.setBounds(100, 100, 200, 13);
-		lblPublisherValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblAuthorValue.setBounds(100, 40, 200, 13);
 		
-		lblPublisherValue.setBounds(100, 140, 200, 13);
+		lblGenreValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblGenreValue.setBounds(100, 60, 200, 13);
+		
+		lblISBNValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblISBNValue.setBounds(100, 80, 200, 13);
+		
+		lblPublisherValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblPublisherValue.setBounds(100, 120, 200, 13);
+		
 		lblYearPublishedValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblYearPublishedValue.setBounds(100, 160, 200, 13);
+		lblYearPublishedValue.setBounds(100, 140, 200, 13);
+		
 		lblPriceValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblPriceValue.setBounds(100, 180, 200, 13);
+		lblPriceValue.setBounds(100, 160, 200, 13);
+		
 		lblQuantityValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblQuantityValue.setBounds(100, 200, 200, 13);
+		lblQuantityValue.setBounds(100, 180, 200, 13);
 
 		
 		add(lblTitleValue);
@@ -107,11 +108,11 @@ public class BookItemPanel extends JPanel {
 		add(lblQuantityValue);
 		
 		JButton btnBuy = new JButton("Buy");
-		btnBuy.setBounds(20, 230, 85, 21);
+		btnBuy.setBounds(20, 220, 85, 21);
 		add(btnBuy);
 		
 		JButton btnRent = new JButton("Rent");
-		btnRent.setBounds(160, 230, 85, 21);
+		btnRent.setBounds(160, 220, 85, 21);
 		add(btnRent);
 
 	}
