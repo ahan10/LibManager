@@ -10,6 +10,7 @@ public class MaintainDatabase {
 	private static MaintainRent rentMaintainer;
 	private static MaintainStudent studentMaintainer;
 	private static MaintainCourse courseMaintainer;
+	private static MaintainPurchase purchaseMaintainer;
 	
 	private MaintainDatabase() {
 		userMaintainer = MaintainUser.getInstance();

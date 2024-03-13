@@ -68,7 +68,7 @@ public class PurchaseController implements ActionListener {
             String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
                     + "Fine Paid"  + "\n"
                     + "Price: $" + purchaseComplete.getAmount();
-            JOptionPane.showMessageDialog(null, message, "Newsletter Subscribed", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, message, "Fine Paid", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
