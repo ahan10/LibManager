@@ -109,7 +109,7 @@ public class DVDItemPanel extends JPanel {
 		add(btnRent);
 
 		btnRent.setEnabled(this.dvd.isRentable());
-		btnRent.setEnabled(this.dvd.isPurchasable());
+		btnBuy.setEnabled(this.dvd.isPurchasable());
 
 	}
 	

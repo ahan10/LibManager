@@ -118,7 +118,7 @@ public class BookItemPanel extends JPanel {
 		add(btnRent);
 
 		btnRent.setEnabled(this.book.isRentable());
-		btnRent.setEnabled(this.book.isPurchasable());
+		btnBuy.setEnabled(this.book.isPurchasable());
 	}
 	
 	
