@@ -108,8 +108,7 @@ public class RentalService {
             for (RentedItem rentedItem : userRentedItems) {
                 if (rentedItem.getISBN().equals(itemISBN) && rentedItem.getDueDate().before(new Date())) {
 
-                    long diffInMillis = Math.abs(new Date().getTime() - rentedItem.getDueDate().getTime());
-                    long overdueDays = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
+                    long overdueDays = (new Date().getTime() - rentedItem.getDueDate().getTime()) / (24 * 60 * 60 * 1000);
 
                     penalty = overdueDays * PENALTY_PER_DAY;
                     System.out.println("Penalty for item " + itemISBN + ": " + penalty);
