@@ -63,17 +63,19 @@ public class BookResultsPanel extends JPanel {
 			table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					int row = table.rowAtPoint(e.getPoint());
-					int col = table.columnAtPoint(e.getPoint());
-					if (col == 0) {
-						Book book = MaintainBooks.getInstance().searchExactBookByISBN(table.getValueAt(row, 5).toString());
-						JFrame itemInfoFrame = new JFrame(book.getTitle());
-						BookItemPanel bookPanel = new BookItemPanel(itemInfoFrame, book);
-						BookController bookController = new BookController(bookPanel, user);
-						bookPanel.showItemInfo();
-						itemInfoFrame.setContentPane(new JScrollPane(bookPanel));
-						itemInfoFrame.setSize(300, 300);
-						itemInfoFrame.setVisible(true);
+					if(e.getClickCount() == 2) {
+						int row = table.rowAtPoint(e.getPoint());
+						int col = table.columnAtPoint(e.getPoint());
+						if (col == 0) {
+							Book book = MaintainBooks.getInstance().searchExactBookByISBN(table.getValueAt(row, 5).toString());
+							JFrame itemInfoFrame = new JFrame(book.getTitle());
+							BookItemPanel bookPanel = new BookItemPanel(itemInfoFrame, book);
+							BookController bookController = new BookController(bookPanel, user);
+							bookPanel.showItemInfo();
+							itemInfoFrame.setContentPane(new JScrollPane(bookPanel));
+							itemInfoFrame.setSize(300, 300);
+							itemInfoFrame.setVisible(true);
+						}
 					}
 				}
 			});

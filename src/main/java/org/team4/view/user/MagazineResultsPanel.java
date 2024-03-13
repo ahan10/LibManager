@@ -64,20 +64,22 @@ public class MagazineResultsPanel extends JPanel {
 			table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					int row = table.rowAtPoint(e.getPoint());
-					int col = table.columnAtPoint(e.getPoint());
-					if (col == 0) {
-						Magazine magazine = MaintainMagazine.getInstance().searchExactMagazineByISBN(table.getValueAt(row, 4).toString());
-						JFrame itemInfoFrame = new JFrame(magazine.getTitle());
-						System.out.println(magazine);
+					if(e.getClickCount() == 2) {
+						int row = table.rowAtPoint(e.getPoint());
+						int col = table.columnAtPoint(e.getPoint());
+						if (col == 0) {
+							Magazine magazine = MaintainMagazine.getInstance().searchExactMagazineByISBN(table.getValueAt(row, 4).toString());
+							JFrame itemInfoFrame = new JFrame(magazine.getTitle());
+							System.out.println(magazine);
 
-						MagazineItemPanel magazinePanel = new MagazineItemPanel(itemInfoFrame, magazine, user);
-						MagazineController magazineController = new MagazineController(magazinePanel, user);
+							MagazineItemPanel magazinePanel = new MagazineItemPanel(itemInfoFrame, magazine, user);
+							MagazineController magazineController = new MagazineController(magazinePanel, user);
 
-						magazinePanel.showItemInfo();
-						itemInfoFrame.setContentPane(new JScrollPane(magazinePanel));
-						itemInfoFrame.setSize(300, 250);
-						itemInfoFrame.setVisible(true);
+							magazinePanel.showItemInfo();
+							itemInfoFrame.setContentPane(new JScrollPane(magazinePanel));
+							itemInfoFrame.setSize(300, 250);
+							itemInfoFrame.setVisible(true);
+						}
 					}
 				}
 			});

@@ -64,19 +64,21 @@ public class DVDResultsPanel extends JPanel {
 			table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					int row = table.rowAtPoint(e.getPoint());
-					int col = table.columnAtPoint(e.getPoint());
-					if (col == 0) {
-						DVD dvd = MaintainDVD.getInstance().searchExactDVDByISBN(table.getValueAt(row, 4).toString());
-						JFrame itemInfoFrame = new JFrame(dvd.getTitle());
+					if(e.getClickCount() == 2) {
+						int row = table.rowAtPoint(e.getPoint());
+						int col = table.columnAtPoint(e.getPoint());
+						if (col == 0) {
+							DVD dvd = MaintainDVD.getInstance().searchExactDVDByISBN(table.getValueAt(row, 4).toString());
+							JFrame itemInfoFrame = new JFrame(dvd.getTitle());
 
-						DVDItemPanel dvdPanel = new DVDItemPanel(itemInfoFrame, dvd, user);
-						DVDController dvdController = new DVDController(dvdPanel, user);
+							DVDItemPanel dvdPanel = new DVDItemPanel(itemInfoFrame, dvd, user);
+							DVDController dvdController = new DVDController(dvdPanel, user);
 
-						dvdPanel.showItemInfo();
-						itemInfoFrame.setContentPane(new JScrollPane(dvdPanel));
-						itemInfoFrame.setSize(300, 280);
-						itemInfoFrame.setVisible(true);
+							dvdPanel.showItemInfo();
+							itemInfoFrame.setContentPane(new JScrollPane(dvdPanel));
+							itemInfoFrame.setSize(300, 280);
+							itemInfoFrame.setVisible(true);
+						}
 					}
 				}
 			});

@@ -57,16 +57,18 @@ public class NewsletterResultsPanel extends JPanel {
 			table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					int row = table.rowAtPoint(e.getPoint());
-					int col = table.columnAtPoint(e.getPoint());
-					if (col == 0) {
-						Newsletter newsLetter = MaintainNewsletter.getInstance().searchNewslettersbyTitle(table.getValueAt(row, 0).toString());
-						JFrame itemInfoFrame = new JFrame(newsLetter.getTitle());
-						NewsletterItemPanel newsletterPanel = new NewsletterItemPanel(itemInfoFrame, newsLetter);
-						newsletterPanel.showItemInfo();
-						itemInfoFrame.setContentPane(new JScrollPane(newsletterPanel));
-						itemInfoFrame.setSize(750, 550);
-						itemInfoFrame.setVisible(true);
+					if(e.getClickCount() == 2) {
+						int row = table.rowAtPoint(e.getPoint());
+						int col = table.columnAtPoint(e.getPoint());
+						if (col == 0) {
+							Newsletter newsLetter = MaintainNewsletter.getInstance().searchNewslettersbyTitle(table.getValueAt(row, 0).toString());
+							JFrame itemInfoFrame = new JFrame(newsLetter.getTitle());
+							NewsletterItemPanel newsletterPanel = new NewsletterItemPanel(itemInfoFrame, newsLetter);
+							newsletterPanel.showItemInfo();
+							itemInfoFrame.setContentPane(new JScrollPane(newsletterPanel));
+							itemInfoFrame.setSize(750, 550);
+							itemInfoFrame.setVisible(true);
+						}
 					}
 				}
 			});
