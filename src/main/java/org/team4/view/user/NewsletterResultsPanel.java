@@ -62,11 +62,10 @@ public class NewsletterResultsPanel extends JPanel {
 					if (col == 0) {
 						Newsletter newsLetter = MaintainNewsletter.getInstance().searchNewslettersbyTitle(table.getValueAt(row, 0).toString());
 						JFrame itemInfoFrame = new JFrame(newsLetter.getTitle());
-
 						NewsletterItemPanel newsletterPanel = new NewsletterItemPanel(itemInfoFrame, newsLetter);
 						newsletterPanel.showItemInfo();
 						itemInfoFrame.setContentPane(new JScrollPane(newsletterPanel));
-						itemInfoFrame.setSize(900, 900);
+						itemInfoFrame.setSize(750, 550);
 						itemInfoFrame.setVisible(true);
 					}
 				}
