@@ -20,6 +20,7 @@ public class MaintainDatabase {
 		rentMaintainer = MaintainRent.getInstance();
 		courseMaintainer = MaintainCourse.getInstance();
 		studentMaintainer = MaintainStudent.getInstance();
+		purchaseMaintainer = MaintainPurchase.getInstance();
 	}
 	
 	public static MaintainDatabase getInstance() {
@@ -99,7 +100,14 @@ public class MaintainDatabase {
 	public MaintainCourse getCourseDatabase() {
 		return MaintainCourse.getInstance();
 	}
-	
+
+	/**
+	 * Used to get an instance of the purchase database
+	 * @return
+	 */
+	public MaintainPurchase getPurchaseDatabase() {
+		return MaintainPurchase.getInstance();
+	}
 	
 	/**
 	 * Update all databases
@@ -113,6 +121,7 @@ public class MaintainDatabase {
 		rentMaintainer.update();
 		studentMaintainer.update();
 		courseMaintainer.update();
+		purchaseMaintainer.update();
 	}
 
 }

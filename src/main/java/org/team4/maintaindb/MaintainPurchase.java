@@ -19,6 +19,7 @@ public class MaintainPurchase {
 
     private static MaintainPurchase instance;
     public ArrayList<ItemPurchased> items;
+    SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
 
     private static final String FILE_PATH = "database/purchase.csv";
 
@@ -48,7 +49,6 @@ public class MaintainPurchase {
     public void load() throws Exception{
         CsvReader reader = new CsvReader(FILE_PATH);
         reader.readHeaders();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
 
         while (reader.readRecord()) {
             String email = reader.get("email");
@@ -78,7 +78,8 @@ public class MaintainPurchase {
             for(ItemPurchased p: items){
                 csvOutput.write(p.getEmail());
                 csvOutput.write(p.getTitle());
-                csvOutput.write(String.valueOf(p.getDatePurchased()));
+                csvOutput.write(formatter.format(p.getDatePurchased()));
+                csvOutput.endRecord();
             }
             csvOutput.close();
 
@@ -89,6 +90,16 @@ public class MaintainPurchase {
 
     public void add(ItemPurchased itemPurchased){
         this.items.add(itemPurchased);
+        try {
+            update();
+        } catch (Exception e) {
+            System.out.println("Failed to update purchase db");
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<ItemPurchased> getAllItemsPurchased(){
+        return this.items;
     }
 
 }
