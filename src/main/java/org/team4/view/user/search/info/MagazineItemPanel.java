@@ -1,4 +1,4 @@
-package org.team4.view.user;
+package org.team4.view.user.search.info;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

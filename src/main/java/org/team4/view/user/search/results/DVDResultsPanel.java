@@ -1,4 +1,4 @@
-package org.team4.view.user;
+package org.team4.view.user.search.results;
 
 import javax.swing.*;
 
@@ -14,7 +14,8 @@ import org.team4.maintaindb.MaintainDVD;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.DVD;
 import org.team4.model.user.User;
-import org.team4.view.user.search.DVDTableModel;
+import org.team4.view.user.search.info.DVDItemPanel;
+import org.team4.view.user.search.models.DVDTableModel;
 
 
 public class DVDResultsPanel extends JPanel {
@@ -64,19 +65,21 @@ public class DVDResultsPanel extends JPanel {
 			table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					int row = table.rowAtPoint(e.getPoint());
-					int col = table.columnAtPoint(e.getPoint());
-					if (col == 0) {
-						DVD dvd = MaintainDVD.getInstance().searchExactDVDByISBN(table.getValueAt(row, 4).toString());
-						JFrame itemInfoFrame = new JFrame(dvd.getTitle());
+					if(e.getClickCount() == 2) {
+						int row = table.rowAtPoint(e.getPoint());
+						int col = table.columnAtPoint(e.getPoint());
+						if (col == 0) {
+							DVD dvd = MaintainDVD.getInstance().searchExactDVDByISBN(table.getValueAt(row, 4).toString());
+							JFrame itemInfoFrame = new JFrame(dvd.getTitle());
 
-						DVDItemPanel dvdPanel = new DVDItemPanel(itemInfoFrame, dvd, user);
-						DVDController dvdController = new DVDController(dvdPanel, user);
+							DVDItemPanel dvdPanel = new DVDItemPanel(itemInfoFrame, dvd, user);
+							DVDController dvdController = new DVDController(dvdPanel, user);
 
-						dvdPanel.showItemInfo();
-						itemInfoFrame.setContentPane(new JScrollPane(dvdPanel));
-						itemInfoFrame.setSize(300, 280);
-						itemInfoFrame.setVisible(true);
+							dvdPanel.showItemInfo();
+							itemInfoFrame.setContentPane(new JScrollPane(dvdPanel));
+							itemInfoFrame.setSize(300, 280);
+							itemInfoFrame.setVisible(true);
+						}
 					}
 				}
 			});

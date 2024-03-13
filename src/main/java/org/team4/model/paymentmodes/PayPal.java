@@ -1,6 +1,5 @@
 package org.team4.model.paymentmodes;
 
-import org.team4.funtionality.buy.PaymentValidator;
 import org.team4.utils.EmailValidator;
 
 public class PayPal implements PaymentValidator, PaymentModes {
