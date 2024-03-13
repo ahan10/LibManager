@@ -35,16 +35,24 @@ public class ReturnService {
             if (rentedItem.getDueDate().before(new Date())) {
                 double penalty = rentalService.calculatePenaltyForItem(user.getEmail(), item.getISBN());
 
-//                pay penalty yes or no
-//                        yes or if no return not possible
 
-                boolean paidPenalty = handlePenaltyPayment(user, penalty);
-                if (!paidPenalty) {
-                    System.out.println("Unable to process return due to unpaid penalty.");
+                int choice = JOptionPane.showConfirmDialog(null, "This item is overdue and has a penalty of $" + penalty + ". Do you want to proceed with the payment?", "Penalty Confirmation",
+                             JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+                if (choice == JOptionPane.YES_OPTION) {
+
+                    boolean paidPenalty = handlePenaltyPayment(user, penalty);
+                    if (!paidPenalty) {
+                        System.out.println("Unable to process return due to unpaid penalty.");
+                        return false;
+                    }
+                    System.out.println("Penalty paid, proceeding with return.");
+                } else {
+
                     return false;
                 }
-                System.out.println("Penalty paid, proceeding with return.");
             }
+
 
             boolean isReturned = rentMaintain.returnRentedItem(user.getEmail(), item.getISBN());
             if (!isReturned) {
