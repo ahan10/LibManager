@@ -1,23 +1,27 @@
 package org.team4.view.purchase;
 
 import org.team4.controller.purchase.PurchaseController;
+import org.team4.model.items.Item;
 import org.team4.model.user.User;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Payment {
-    private double penalty;
-    private User user;
+
     boolean success;
+    private PurchaseFrame purchaseFrame;
     public Payment(double penalty, User user){
-         this.penalty = penalty;
-         this.user = user;
-         init();
+        purchaseFrame = new PurchaseFrame(penalty, user);
+        init();
+    }
+
+    public Payment(Item item, User user){
+        purchaseFrame = new PurchaseFrame(item, user);
+        init();
     }
 
    private void init(){
-       PurchaseFrame purchaseFrame= new PurchaseFrame(penalty, user);
        PurchaseController purchaseController = new PurchaseController(purchaseFrame);
 
        JDialog dialog = new JDialog();

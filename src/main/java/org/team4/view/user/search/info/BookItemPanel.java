@@ -117,6 +117,8 @@ public class BookItemPanel extends JPanel {
 		btnRent.setBounds(160, 220, 85, 21);
 		add(btnRent);
 
+		btnRent.setEnabled(this.book.isRentable());
+		btnRent.setEnabled(this.book.isPurchasable());
 	}
 	
 	
@@ -138,7 +140,6 @@ public class BookItemPanel extends JPanel {
 		this.window = window;
 	}
 
-
 	public void setBook(Book book) {
 		this.book = book;
 	}
@@ -153,5 +154,9 @@ public class BookItemPanel extends JPanel {
 
 	public JButton getBtnRent() {
 		return btnRent;
+	}
+
+	public Book getBook() {
+		return book;
 	}
 }
