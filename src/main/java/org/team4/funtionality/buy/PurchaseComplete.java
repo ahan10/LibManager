@@ -78,4 +78,8 @@ public class PurchaseComplete implements PaymentModes {
     public Newsletter getNewsletter() {
         return newsletter;
     }
+
+    public User getUser() {
+        return user;
+    }
 }

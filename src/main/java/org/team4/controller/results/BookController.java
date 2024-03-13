@@ -4,6 +4,7 @@ import org.team4.funtionality.rent.RentalService;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Item;
 import org.team4.model.user.User;
+import org.team4.view.purchase.Payment;
 import org.team4.view.user.search.info.BookItemPanel;
 import org.team4.view.user.search.results.BookResultsPanel;
 
@@ -32,6 +33,8 @@ public class BookController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.bookItem.getBtnRent()){
             rentSelectedItem();
+        }else if (e.getSource() == this.bookItem.getBtnBuy()){
+            Payment payment = new Payment(bookItem.getBook(), user);
         }
     }
 

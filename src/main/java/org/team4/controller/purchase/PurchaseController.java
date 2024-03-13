@@ -1,10 +1,12 @@
 package org.team4.controller.purchase;
 
+import org.team4.funtionality.buy.ItemPurchased;
 import org.team4.funtionality.buy.ProcessPayment;
 import org.team4.funtionality.buy.PurchaseComplete;
 import org.team4.maintaindb.MaintainBooks;
 import org.team4.maintaindb.MaintainDVD;
 import org.team4.maintaindb.MaintainDatabase;
+import org.team4.maintaindb.MaintainPurchase;
 import org.team4.model.items.Book;
 import org.team4.model.items.Item;
 import org.team4.model.items.Newsletter;
@@ -21,6 +23,7 @@ public class PurchaseController implements ActionListener {
     private PurchaseComplete purchaseComplete;
     private MaintainBooks maintainBooks = MaintainDatabase.getInstance().getBookDatabase();
     private MaintainDVD maintainDVD = MaintainDatabase.getInstance().getDVDDatabase();
+    private MaintainPurchase maintainPurchase = MaintainDatabase.getInstance().getPurchaseDatabase();
     private boolean success;
 
     public PurchaseController(PurchaseFrame purchaseFrame) {
@@ -41,16 +44,26 @@ public class PurchaseController implements ActionListener {
 
     private void process(){
         purchaseComplete = processPayment.getPurchaseCompleted();
+
         if(purchaseComplete == null){
+
             this.success = false;
             JOptionPane.showMessageDialog(null, "Payment Failed");
+
         } else if (purchaseComplete.getItem() != null) {
+
             this.success = true;
+
             if(purchaseComplete.getItem().getISBN().charAt(0) == '9'){
+
                 maintainBooks.decreaseNumberOfCopies((Book) purchaseComplete.getItem());
+
             }else if(purchaseComplete.getItem().getISBN().charAt(0) == '8'){
+
                 maintainDVD.decreaseNumberOfCopies(purchaseComplete.getItem());
+
             }
+            maintainPurchase.add(new ItemPurchased(purchaseComplete.getItem().getTitle(),purchaseComplete.getUser().getEmail()));
 
             String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
                     + "Item Name: " + purchaseComplete.getItem().getTitle() + "\n"

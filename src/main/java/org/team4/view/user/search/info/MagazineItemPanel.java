@@ -57,7 +57,6 @@ public class MagazineItemPanel extends JPanel {
 		lblQuantity.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblQuantity.setBounds(20, 140, 70, 13);
 		
-		
 		add(lblTitle);
 		add(lblISBN);
 		add(lblYearPublished);
@@ -65,7 +64,6 @@ public class MagazineItemPanel extends JPanel {
 		add(lblPublisher);
 		add(lblIssueNumber);
 		add(lblQuantity);
-		
 
 		lblTitleValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblTitleValue.setBounds(100, 20, 200, 13);
@@ -85,7 +83,6 @@ public class MagazineItemPanel extends JPanel {
 		lblQuantityValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblQuantityValue.setBounds(100, 140, 200, 13);
 
-		
 		add(lblTitleValue);
 		add(lblISBNValue);
 		add(lblYearPublishedValue);
@@ -96,8 +93,10 @@ public class MagazineItemPanel extends JPanel {
 		
 		btnRent = new JButton("Rent");
 		btnRent.setBounds(90, 180, 85, 21);
+
+        btnRent.setEnabled(this.magazine.isRentable());
+
 		add(btnRent);
-		
 
 	}
 	
