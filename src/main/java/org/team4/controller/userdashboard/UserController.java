@@ -11,6 +11,10 @@ import org.team4.model.items.Item;
 import org.team4.model.user.User;
 import org.team4.view.login.LoginPage;
 import org.team4.view.user.*;
+import org.team4.view.user.search.results.BookResultsPanel;
+import org.team4.view.user.search.results.DVDResultsPanel;
+import org.team4.view.user.search.results.MagazineResultsPanel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

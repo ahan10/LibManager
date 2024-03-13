@@ -1,5 +1,7 @@
 package org.team4.funtionality.buy;
 
+import org.team4.model.paymentmodes.PaymentValidator;
+
 public class ProcessPayment {
     private PaymentValidator modes;
     private ItemToPurchase itemToPurchase;

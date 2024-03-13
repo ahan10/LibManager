@@ -1,4 +1,4 @@
-package org.team4.view.user;
+package org.team4.view.user.search.results;
 
 import javax.swing.*;
 
@@ -14,7 +14,8 @@ import org.team4.maintaindb.MaintainDVD;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.DVD;
 import org.team4.model.user.User;
-import org.team4.view.user.search.DVDTableModel;
+import org.team4.view.user.search.info.DVDItemPanel;
+import org.team4.view.user.search.models.DVDTableModel;
 
 
 public class DVDResultsPanel extends JPanel {

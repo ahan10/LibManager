@@ -1,4 +1,4 @@
-package org.team4.view.user.search;
+package org.team4.view.user.search.models;
 
 import javax.swing.table.DefaultTableModel;
 

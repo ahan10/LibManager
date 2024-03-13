@@ -1,6 +1,10 @@
 package org.team4.view.user;
 import org.team4.controller.userdashboard.UserController;
 import org.team4.model.user.User;
+import org.team4.view.user.search.results.BookResultsPanel;
+import org.team4.view.user.search.results.DVDResultsPanel;
+import org.team4.view.user.search.results.MagazineResultsPanel;
+import org.team4.view.user.search.results.NewsletterResultsPanel;
 import org.team4.view.user.student.StudentPanel;
 import java.awt.*;
 import javax.swing.*;

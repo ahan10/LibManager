@@ -1,4 +1,4 @@
-package org.team4.view.user;
+package org.team4.view.user.search.results;
 
 import javax.swing.*;
 
@@ -9,29 +9,28 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import org.team4.controller.results.MagazineController;
+import org.team4.controller.results.BookController;
+import org.team4.maintaindb.MaintainBooks;
 import org.team4.maintaindb.MaintainDatabase;
-import org.team4.maintaindb.MaintainMagazine;
-import org.team4.model.items.Magazine;
+import org.team4.model.items.Book;
 import org.team4.model.user.User;
-import org.team4.view.user.search.MagazineTableModel;
+import org.team4.view.user.search.info.BookItemPanel;
+import org.team4.view.user.search.models.BookTableModel;
 
 
-public class MagazineResultsPanel extends JPanel {
+public class BookResultsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static JTable table;
 	private String query;
 	private JFrame window;
 	private User user;
 
-
-	public MagazineResultsPanel() {
+	public BookResultsPanel() {
 		setBounds(100, 100, 788, 520);
 		setLayout(null);
-
 	}
 
-	public MagazineResultsPanel(String query, JFrame window, User user) {
+	public BookResultsPanel(String query, JFrame window, User user) {
 
 		this.window = window;
 		this.query = query;
@@ -39,7 +38,7 @@ public class MagazineResultsPanel extends JPanel {
 
 		setBounds(100, 100, 788, 520);
 		setLayout(new BorderLayout());
-		JLabel label = new JLabel("Magazine Search Results for Title: " + query);
+		JLabel label = new JLabel("Book Search Results for Title: " + query);
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		label.setBounds(324, 5, 239, 26);
 		add(label, BorderLayout.PAGE_START);
@@ -48,13 +47,14 @@ public class MagazineResultsPanel extends JPanel {
 
 
 	public void addSearchResults() {
-		ArrayList<Magazine> results = MaintainDatabase.getInstance().getMagazineDatabase().searchMagazines(query);
-		MagazineTableModel model = new MagazineTableModel(results);
+		ArrayList<Book> results = MaintainDatabase.getInstance().getBookDatabase().searchBooks(query);
+		BookTableModel model = new BookTableModel(results);
 
 		if(results.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "No results found.", "Search Error", JOptionPane.ERROR_MESSAGE);
 			window.dispose();
 			return;
+
 		}
 		else {
 			table = new JTable(model);
@@ -68,16 +68,13 @@ public class MagazineResultsPanel extends JPanel {
 						int row = table.rowAtPoint(e.getPoint());
 						int col = table.columnAtPoint(e.getPoint());
 						if (col == 0) {
-							Magazine magazine = MaintainMagazine.getInstance().searchExactMagazineByISBN(table.getValueAt(row, 4).toString());
-							JFrame itemInfoFrame = new JFrame(magazine.getTitle());
-							System.out.println(magazine);
-
-							MagazineItemPanel magazinePanel = new MagazineItemPanel(itemInfoFrame, magazine, user);
-							MagazineController magazineController = new MagazineController(magazinePanel, user);
-
-							magazinePanel.showItemInfo();
-							itemInfoFrame.setContentPane(new JScrollPane(magazinePanel));
-							itemInfoFrame.setSize(300, 250);
+							Book book = MaintainBooks.getInstance().searchExactBookByISBN(table.getValueAt(row, 5).toString());
+							JFrame itemInfoFrame = new JFrame(book.getTitle());
+							BookItemPanel bookPanel = new BookItemPanel(itemInfoFrame, book);
+							BookController bookController = new BookController(bookPanel, user);
+							bookPanel.showItemInfo();
+							itemInfoFrame.setContentPane(new JScrollPane(bookPanel));
+							itemInfoFrame.setSize(300, 300);
 							itemInfoFrame.setVisible(true);
 						}
 					}
@@ -92,9 +89,8 @@ public class MagazineResultsPanel extends JPanel {
 
 	}
 
-	public JFrame getWindow() {
-		return window;
-	}
+
+
 
 	public static JTable getTable() {
 		return table;

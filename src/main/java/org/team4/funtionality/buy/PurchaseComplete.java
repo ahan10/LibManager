@@ -3,6 +3,7 @@ package org.team4.funtionality.buy;
 import org.team4.model.paymentmodes.PaymentModes;
 import org.team4.model.items.Item;
 import org.team4.model.items.Newsletter;
+import org.team4.model.paymentmodes.PaymentValidator;
 import org.team4.model.user.User;
 
 import java.util.Date;

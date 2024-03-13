@@ -4,8 +4,8 @@ import org.team4.funtionality.rent.RentalService;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Item;
 import org.team4.model.user.User;
-import org.team4.view.user.BookItemPanel;
-import org.team4.view.user.BookResultsPanel;
+import org.team4.view.user.search.info.BookItemPanel;
+import org.team4.view.user.search.results.BookResultsPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
