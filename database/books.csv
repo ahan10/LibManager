@@ -1,7 +1,7 @@
 title,yearPublished,isRentable,isPurchasable,genre,noOfPages,author,ISBN,publisherName,edition,quantity,hardcopy,softcopy,price
 The Great Gatsby,1925,false,false,Fiction,180,F. Scott Fitzgerald,9781234567890,Random House,1,15,true,false,50.0
 Introduction to Java Programming,2019,false,true,Textbook,700,Y. Daniel Liang,9780135166307,Pearson,12,8,true,true,100.0
-The Catcher in the Rye,1951,false,false,Fiction,214,J.D. Salinger,9780060931957,Little Brown and Company,0,20,true,false,60.0
+The Catcher in the Rye,1951,false,false,Fiction,214,J.D. Salinger,9780060931957,Little Brown and Company,0,19,true,false,60.0
 Data Structures and Algorithms,2020,true,true,Textbook,550,Robert Lafore,9780134894281,Sams Publishing,2,4,true,true,80.0
 To Kill a Mockingbird,1960,true,false,Fiction,281,Harper Lee,9780061120084,HarperCollins,0,10,true,false,40.0
 1984,1949,true,true,Dystopian,328,George Orwell,9780451524935,Signet Classics,0,18,true,true,25.0
@@ -20,7 +20,7 @@ Database Management Systems,2021,true,true,Textbook,800,Raghu Ramakrishnan & Joh
 The Art of War,1932,true,false,Philosophy,92,Sun Tzu,9781590302255,Shambhala,0,20,true,false,30.0
 Effective Java,2017,true,true,Non-fiction,412,Joshua Bloch,9780134685991,Addison-Wesley,3,15,true,true,50.0
 Harry Potter and the Sorcerer's Stone,1997,true,true,Fantasy,309,J.K. Rowling,9780590353427,Scholastic,1,12,true,true,30.0
-Python Crash Course,2015,true,true,Textbook,544,Eric Matthes,9781593276034,No Starch Press,2,8,true,true,75.0
+Python Crash Course,2015,true,true,Textbook,544,Eric Matthes,9781593276034,No Starch Press,2,6,true,true,75.0
 Animal Farm,1945,true,false,Allegory,141,George Orwell,9780451526342,Signet Classics,10,10,true,false,50.0
 Design Patterns: Elements of Reusable Object-Oriented Software,1994,true,true,Non-fiction,416,Erich Gamma et al.,9780201633610,Addison-Wesley,1,18,true,true,55.0
 Moby-Dick,1851,true,false,Adventure,654,Herman Melville,9781503280786,CreateSpace Independent Publishing Platform,0,15,true,false,65.0
