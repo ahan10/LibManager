@@ -125,7 +125,22 @@ public class RentalService {
 
         System.out.println("User " + userEmail + " has " + overdueItems.size() + " overdue items. Penalty $" + penalty);
     }
+    public List<RentedItem> getApproachingOrOverdueItems(String userEmail) {
+        List<RentedItem> approachingOrOverdueItems = new ArrayList<>();
+        Date currentDate = new Date(System.currentTimeMillis());
 
+        List<RentedItem> rentedItems = rentMaintain.getAllRenters().get(userEmail);
+        if (rentedItems != null) {
+            for (RentedItem item : rentedItems) {
+                long timeDiff = item.getDueDate().getTime() - currentDate.getTime();
+                long hoursLeft = timeDiff / (60 * 60 * 1000);
+                if (hoursLeft < 24 || timeDiff < 0) {
+                    approachingOrOverdueItems.add(item);
+                }
+            }
+        }
+        return approachingOrOverdueItems;
+    }
 
 
 }

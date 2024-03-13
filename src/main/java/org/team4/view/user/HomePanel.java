@@ -2,10 +2,10 @@ package org.team4.view.user;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
+import java.util.List;
 
+import org.team4.funtionality.rent.RentalService;
 import org.team4.maintaindb.MaintainRent;
 import org.team4.model.items.RentedItem;
 import org.team4.model.user.User;
@@ -19,8 +19,11 @@ public class HomePanel extends JPanel {
 	private JScrollPane scrollPane;
 	private JButton refreshButton, returnButton;
 
+	private RentalService rentalService;
+
 	public HomePanel(User user) {
 		this.currentUser = user;
+		this.rentalService= new RentalService();
 		initializeUI();
 	}
 
@@ -96,5 +99,32 @@ public class HomePanel extends JPanel {
     public JTable getRentedItemsTable() {
         return rentedItemsTable;
     }
+	@Override
+	public void addNotify() {
+		super.addNotify();
+		checkForApproachingOrOverdueItems();
+	}
+
+
+	private void checkForApproachingOrOverdueItems() {
+		EventQueue.invokeLater(() -> {
+			List<RentedItem> approachingOrOverdueItems = rentalService.getApproachingOrOverdueItems(currentUser.getEmail());
+			if (!approachingOrOverdueItems.isEmpty()) {
+				StringBuilder warnings = new StringBuilder();
+				for (RentedItem rentedItem : approachingOrOverdueItems) {
+					long timeDiff = rentedItem.getDueDate().getTime() - new Date().getTime();
+					if (timeDiff < 0) {
+						warnings.append(rentedItem.getTitle()).append(" is overdue!\n");
+					} else if (timeDiff < 24 * 60 * 60 * 1000) {
+						warnings.append(rentedItem.getTitle()).append(" is due in less than 24 hours!\n");
+					}
+				}
+				if (!warnings.isEmpty()) {
+					JOptionPane.showMessageDialog(this, warnings.toString(), "Due Book Warnings", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
+	}
+
 
 }
