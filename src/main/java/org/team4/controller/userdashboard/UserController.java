@@ -85,10 +85,7 @@ public class UserController implements ActionListener {
 				try {
 					boolean returned = returnService.returnItem(userDashboard.getCurrentUser(), itemToReturn);
 					if (returned) {
-						JOptionPane.showMessageDialog(null, "Item returned successfully!");
 						userDashboard.getHomePanel().refreshRentedItemsTable();
-					} else {
-						JOptionPane.showMessageDialog(null, "Failed to return item. Please try again.");
 					}
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Error during item return: " + ex.getMessage());
