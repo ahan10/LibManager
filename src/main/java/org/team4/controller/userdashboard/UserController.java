@@ -34,7 +34,6 @@ public class UserController implements ActionListener {
 		userDashboard.getHomeButton().addActionListener(this);
 		userDashboard.getLogoutButton().addActionListener(this);
 		userDashboard.getStudentButton().addActionListener(this);
-		userDashboard.getReturnButton().addActionListener(this);
 
 		userDashboard.getSearchTextField().addActionListener(new ActionListener() {
 			@Override
