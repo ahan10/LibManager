@@ -33,11 +33,10 @@ public class UserDashboard extends JFrame {
 	private final String REQUEST_PANEL = "Request Panel";
 	private final String STUDENT_PANEL = "Student Panel";
 
-	private JPanel homePanel;
+	private HomePanel homePanel;
 	private StudentPanel studentPanel = new StudentPanel();
 	private RequestPanel requestPanel;
 	private JPanel resultsPanel;
-
 
 	private JComboBox<String> searchTypeDropdown;
 	private final String[] searchTypes = {"Book", "DVD", "Newsletter", "Magazine"};
@@ -70,12 +69,6 @@ public class UserDashboard extends JFrame {
 	public UserDashboard(User u) {
 		this.user = u;
 		initPanel();
-		addSearchBar();
-		addButtons();
-		addPanels();
-		homePanel = new HomePanel(user);
-
-
 	}
 	public User getCurrentUser() {
 		return this.user;
@@ -103,7 +96,12 @@ public class UserDashboard extends JFrame {
 		cardLayout = new CardLayout();
 		activityPanel.setLayout(cardLayout);
 
+		homePanel = new HomePanel(user);
 		requestPanel = new RequestPanel(user);
+
+		addSearchBar();
+		addButtons();
+		addPanels();
 	}
 
 	public void addSearchBar() {
@@ -119,7 +117,6 @@ public class UserDashboard extends JFrame {
 		searchTypeDropdown = new JComboBox<>(searchTypes);
 		searchTypeDropdown.setBounds(370, 20, 140, 26);
 		contentPane.add(searchTypeDropdown);
-
 	}
 
 	public void displayResults(String query) {
@@ -152,7 +149,6 @@ public class UserDashboard extends JFrame {
 
 
 	public String getItemType() {
-
 		String selectedItemType = (String) searchTypeDropdown.getSelectedItem();
 		return selectedItemType;
 	}
@@ -163,12 +159,9 @@ public class UserDashboard extends JFrame {
 		returnButton.setBounds(350, 814, 117, 29);
 		contentPane.add(returnButton);
 
-
 		RequestButton = new JButton("Request Book");
-
 		RequestButton.setBounds(673, 812, 117, 29);
 		contentPane.add(RequestButton);
-
 
 		logoutButton = new JButton("Logout");
 		logoutButton.setBounds(1063, 19, 109, 27);
@@ -183,27 +176,17 @@ public class UserDashboard extends JFrame {
 		if (user.getType().equals("STUDENT")) {
 			contentPane.add(studentButton);
 		}
-
-
 	}
-
 
 	public void addPanels() {
 		contentPane.add(activityPanel);
-		if (homePanel == null) {
-			homePanel = new HomePanel(user);
-		}
+
 		activityPanel.add(homePanel, HOME_PANEL);
-		cardLayout.show(activityPanel, HOME_PANEL);
-
-
 		activityPanel.add(requestPanel, REQUEST_PANEL);
 		activityPanel.add(studentPanel, STUDENT_PANEL);
 
-
+		cardLayout.show(activityPanel, HOME_PANEL);
 	}
-
-
 
 	public JButton getRequestButton() {
 		return RequestButton;
@@ -225,9 +208,7 @@ public class UserDashboard extends JFrame {
 		return logoutButton;
 	}
 
-	public JPanel getHomePanel() {
-		return homePanel;
-	}
+
 
 	public JTextField getSearchTextField(){
 		return this.SearchTextField;
@@ -260,5 +241,9 @@ public class UserDashboard extends JFrame {
 
 	public RequestPanel getRequestPanel() {
 		return requestPanel;
+	}
+
+	public HomePanel getHomePanel() {
+		return this.homePanel;
 	}
 }

@@ -48,6 +48,8 @@ public class UserController implements ActionListener {
 
 		userDashboard.getRequestPanel().getSubmitButton().addActionListener(this);
 
+		userDashboard.getHomePanel().getRefreshButton().addActionListener(this);
+		userDashboard.getHomePanel().getReturnButton().addActionListener(this);
 	}
 
 	@Override
@@ -68,6 +70,10 @@ public class UserController implements ActionListener {
 			LoginPage frame = new LoginPage();
 			@SuppressWarnings("unused") LoginController controller = new LoginController(frame);
 			frame.setVisible(true);
+		} else if (e.getSource() == userDashboard.getHomePanel().getRefreshButton()) {
+			this.userDashboard.getHomePanel().refreshRentedItemsTable();
+		} else if (e.getSource() == userDashboard.getHomePanel().getReturnButton()) {
+			//add logic
 		}
 	}
 
