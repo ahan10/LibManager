@@ -4,16 +4,13 @@ import org.team4.controller.login.LoginController;
 import org.team4.funtionality.rent.RentalService;
 import org.team4.funtionality.rent.ReturnService;
 import org.team4.maintaindb.MaintainBooks;
-import org.team4.maintaindb.MaintainDatabase;
 import org.team4.maintaindb.MaintainRequests;
 import org.team4.model.items.BookRequest;
 import org.team4.model.items.Item;
 import org.team4.model.user.User;
 import org.team4.view.login.LoginPage;
 import org.team4.view.user.*;
-import org.team4.view.user.search.results.BookResultsPanel;
-import org.team4.view.user.search.results.DVDResultsPanel;
-import org.team4.view.user.search.results.MagazineResultsPanel;
+
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -55,8 +52,8 @@ public class UserController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource()== userDashboard.getReturnButton()){
-			returnSelectedItem();
+		if (e.getSource() == userDashboard.getHomePanel().getReturnButton()){
+			returnRentedItem();
 		}else if (e.getSource() == userDashboard.getRequestButton()) {
 			userDashboard.changeToRequestPanel();
 		}else if (e.getSource() == userDashboard.getRequestPanel().getSubmitButton()) {
@@ -72,54 +69,40 @@ public class UserController implements ActionListener {
 			frame.setVisible(true);
 		} else if (e.getSource() == userDashboard.getHomePanel().getRefreshButton()) {
 			this.userDashboard.getHomePanel().refreshRentedItemsTable();
-		} else if (e.getSource() == userDashboard.getHomePanel().getReturnButton()) {
-			//add logic
 		}
 	}
 
 
-	private void returnSelectedItem() {
+	public void returnRentedItem() {
 		Item itemToReturn = null;
-		int selectedRow = -1;
-		String itemType = userDashboard.getItemType();
+		JTable rentedItemsTable = userDashboard.getHomePanel().getRentedItemsTable();
+		int selectedRow = rentedItemsTable.getSelectedRow();
 
+		if (selectedRow >= 0) {
+			String isbn = rentedItemsTable.getValueAt(selectedRow, 1).toString();
+			 itemToReturn = returnService.findItemByISBN(isbn);
 
-		if ("Book".equals(itemType)) {
-			selectedRow = BookResultsPanel.getTable().getSelectedRow();
-			if (selectedRow >= 0) {
-				String isbn = BookResultsPanel.getTable().getValueAt(selectedRow, 5).toString();
-				itemToReturn = MaintainDatabase.getInstance().getBookDatabase().searchExactBookByISBN(isbn);
-			}
-		} else if ("DVD".equals(itemType)) {
-			selectedRow = DVDResultsPanel.getTable().getSelectedRow();
-			if (selectedRow >= 0) {
-				String isbn = DVDResultsPanel.getTable().getValueAt(selectedRow, 4).toString();
-				itemToReturn = MaintainDatabase.getInstance().getDVDDatabase().searchExactDVDByISBN(isbn);
-			}
-		} else if ("Magazine".equals(itemType)) {
-			selectedRow = MagazineResultsPanel.getTable().getSelectedRow();
-			if (selectedRow >= 0) {
-				String isbn = MagazineResultsPanel.getTable().getValueAt(selectedRow, 4).toString();
-				itemToReturn = MaintainDatabase.getInstance().getMagazineDatabase().searchExactMagazineByISBN(isbn);
-			}
-		}
-
-
-		if (itemToReturn != null) {
-			try {
-				boolean returned = returnService.returnItem(user, itemToReturn);
-				if (returned) {
-					JOptionPane.showMessageDialog(null, "Item returned successfully!");
-				} else {
-					JOptionPane.showMessageDialog(null, "Failed to return item. Please try again.");
+			if (itemToReturn != null) {
+				try {
+					boolean returned = returnService.returnItem(userDashboard.getCurrentUser(), itemToReturn);
+					if (returned) {
+						JOptionPane.showMessageDialog(null, "Item returned successfully!");
+						userDashboard.getHomePanel().refreshRentedItemsTable();
+					} else {
+						JOptionPane.showMessageDialog(null, "Failed to return item. Please try again.");
+					}
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Error during item return: " + ex.getMessage());
 				}
-			} catch (Exception ex) {
-				JOptionPane.showMessageDialog(null, "Error during item return: " + ex.getMessage());
+			} else {
+				JOptionPane.showMessageDialog(null, "Failed to find the selected item.");
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Please select an item to return.");
 		}
 	}
+
+
 
 
 	private void manageRequest(RequestPanel panel) {

@@ -93,5 +93,8 @@ public class HomePanel extends JPanel {
 	public JButton getReturnButton() {
 		return returnButton;
 	}
-	
+    public JTable getRentedItemsTable() {
+        return rentedItemsTable;
+    }
+
 }

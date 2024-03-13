@@ -101,5 +101,28 @@ public class ReturnService {
 
         return payment.isSuccess();
     }
+
+public Item findItemByISBN(String isbn) {
+
+        Book book = maintainBooks.searchExactBookByISBN(isbn);
+        if (book != null) {
+            return book;
+        }
+
+        DVD dvd = maintainDVD.searchExactDVDByISBN(isbn);
+        if (dvd != null) {
+            return dvd;
+        }
+
+        Magazine magazine = maintainMagazine.searchExactMagazineByISBN(isbn);
+        if (magazine != null) {
+            return magazine;
+        }
+
+        return null;
+    }
+
+
+
 }
 
