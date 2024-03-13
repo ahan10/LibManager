@@ -35,6 +35,9 @@ public class ReturnService {
             if (rentedItem.getDueDate().before(new Date())) {
                 double penalty = rentalService.calculatePenaltyForItem(user.getEmail(), item.getISBN());
 
+//                pay penalty yes or no
+//                        yes or if no return not possible
+
                 boolean paidPenalty = handlePenaltyPayment(user, penalty);
                 if (!paidPenalty) {
                     System.out.println("Unable to process return due to unpaid penalty.");

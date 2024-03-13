@@ -1,25 +1,78 @@
 package org.team4.view.user;
 
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
-import java.awt.Font;
-
-import javax.swing.JLabel;
+import org.team4.maintaindb.MaintainRent;
+import org.team4.model.items.RentedItem;
+import org.team4.model.user.User;
+import org.team4.view.user.search.models.RentedItemTableModel;
 
 class HomePanel extends JPanel {
-	
-	private static final long serialVersionUID = 1L;
-	
-    public HomePanel() {
-        setLayout(null);
-        setBounds(100, 100, 1160, 740);
-       
-        JLabel label = new JLabel("Welcome to LibManager");
-        label.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-        label.setBounds(444, 11, 237, 26);
-		add(label);
+    private User currentUser;
+    private JTable rentedItemsTable;
+    private JScrollPane scrollPane;
+    private JButton refreshButton;
+
+    public HomePanel(User user) {
+        this.currentUser = user;
+        initializeUI();
     }
+
+
+
+
+    private void initializeUI() {
+        setLayout(new BorderLayout());
+        JLabel label = new JLabel("Rented Items");
+        label.setFont(new Font("Tahoma", Font.BOLD, 14));
+
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(label, BorderLayout.WEST);
+
+        refreshButton = new JButton("Refresh");
+        refreshButton.addActionListener(e -> refreshRentedItemsTable());
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonPanel.add(refreshButton);
+        topPanel.add(buttonPanel, BorderLayout.EAST);
+
+        add(topPanel, BorderLayout.PAGE_START);
+
+        addRentedItemsTable();
+    }
+    public JButton getRefreshButton() {
+        return refreshButton;
+    }
+
+
+    private void addRentedItemsTable() {
+        Map<String, ArrayList<RentedItem>> allRenters = MaintainRent.getInstance().getAllRenters();
+        if (allRenters == null) {
+            allRenters = new HashMap<>();
+        }
+        ArrayList<RentedItem> rentedItems = allRenters.getOrDefault(currentUser.getEmail(), new ArrayList<>());
+        rentedItemsTable = new JTable(new RentedItemTableModel(rentedItems));
+        rentedItemsTable.setDefaultEditor(Object.class, null);
+
+        scrollPane = new JScrollPane(rentedItemsTable);
+        add(scrollPane, BorderLayout.CENTER);
+    }
+
+    private void refreshRentedItemsTable() {
+        Map<String, ArrayList<RentedItem>> allRenters = MaintainRent.getInstance().getAllRenters();
+        if (allRenters == null) {
+            allRenters = new HashMap<>();
+        }
+        ArrayList<RentedItem> rentedItems = allRenters.getOrDefault(currentUser.getEmail(), new ArrayList<>());
+
+        rentedItemsTable.setModel(new RentedItemTableModel(rentedItems));
+        rentedItemsTable.revalidate();
+        rentedItemsTable.repaint();
+    }
+
+
 }
-
-
-

@@ -58,17 +58,16 @@ public class MaintainRent {
 
 		while (reader.readRecord()) {
 			String email = reader.get("email");
+			String title = reader.get("title");
 			String ISBN = reader.get("ISBN");
 			Date rentDate = Date.valueOf(reader.get("rentDate"));
 			Date dueDate = Date.valueOf(reader.get("dueDate"));
 
-			if (this.renters.containsKey(email)) {
-				this.renters.get(email).add(new RentedItem(ISBN,rentDate,dueDate));
+			if (!this.renters.containsKey(email)) {
+				this.renters.put(email, new ArrayList<>());
 			}
-			else {
-				this.renters.put(email, new ArrayList<RentedItem>());
-				this.renters.get(email).add(new RentedItem(ISBN,rentDate,dueDate));
-			}
+
+			this.renters.get(email).add(new RentedItem(title,ISBN,rentDate,dueDate));
 		}
 	}
 	
@@ -79,10 +78,11 @@ public class MaintainRent {
 	public void update() throws Exception{
 		try {
 			CsvWriter csvOutput = new CsvWriter(new FileWriter(FILE_PATH, false), ',');
-			//email,password,name,type,validated
+
 
 			//set header
 			csvOutput.write("email");
+			csvOutput.write("title");
 			csvOutput.write("ISBN");
 			csvOutput.write("rentDate");
 			csvOutput.write("dueDate");
@@ -92,6 +92,7 @@ public class MaintainRent {
 			for(String email: this.renters.keySet()){
 				for (RentedItem item: this.renters.get(email)) {
 					csvOutput.write(email);
+					csvOutput.write(item.getTitle());
 					csvOutput.write(item.getISBN());
 					csvOutput.write(String.valueOf(item.getRentDate()));
 					csvOutput.write(String.valueOf(item.getDueDate()));
@@ -120,11 +121,11 @@ public class MaintainRent {
 		return this.renters.get(email).size();
 	}
 	
-	public void addNewRentedItem(String email, String ISBN, Date date, Date dueDate) {
+	public void addNewRentedItem(String email, String title,String ISBN, Date date, Date dueDate) {
 		if (!this.renters.containsKey(email)) {
 			this.renters.put(email, new ArrayList<RentedItem>());
 		}
-		this.renters.get(email).add(new RentedItem(ISBN, date,dueDate));
+		this.renters.get(email).add(new RentedItem(title,ISBN, date,dueDate));
 	}
 	
 	public boolean isAlreadyRentedByUser(String email, RentedItem rentedItem) {

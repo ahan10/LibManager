@@ -33,17 +33,17 @@ public class UserDashboard extends JFrame {
 	private final String REQUEST_PANEL = "Request Panel";
 	private final String STUDENT_PANEL = "Student Panel";
 
-	private JPanel homePanel = new HomePanel();
+	private JPanel homePanel;
 	private StudentPanel studentPanel = new StudentPanel();
 	private RequestPanel requestPanel;
 	private JPanel resultsPanel;
 
-	
+
 	private JComboBox<String> searchTypeDropdown;
 	private final String[] searchTypes = {"Book", "DVD", "Newsletter", "Magazine"};
 
 	private User user;
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -73,6 +73,9 @@ public class UserDashboard extends JFrame {
 		addSearchBar();
 		addButtons();
 		addPanels();
+		homePanel = new HomePanel(user);
+
+
 	}
 	public User getCurrentUser() {
 		return this.user;
@@ -124,10 +127,10 @@ public class UserDashboard extends JFrame {
 		JFrame searchResultsFrame = new JFrame("Search Results");
 
 		if ("Book".equals(type)) {
-			
+
 			resultsPanel = new BookResultsPanel(query, searchResultsFrame, this.user);
 			((BookResultsPanel) resultsPanel).addSearchResults();
-			
+
 		} else if ("DVD".equals(type)) {
 
 			resultsPanel = new DVDResultsPanel(query, searchResultsFrame, this.user);
@@ -137,16 +140,16 @@ public class UserDashboard extends JFrame {
 
 			resultsPanel= new NewsletterResultsPanel(query, searchResultsFrame);
 			((NewsletterResultsPanel) resultsPanel).addSearchResults();
-			
+
 		}else if ("Magazine".equals(type)) {
 
 			resultsPanel= new MagazineResultsPanel(query, searchResultsFrame, this.user);
 			((MagazineResultsPanel) resultsPanel).addSearchResults();
-	
+
 		}
 
 	}
-	
+
 
 	public String getItemType() {
 
@@ -174,27 +177,32 @@ public class UserDashboard extends JFrame {
 		homeButton = new JButton("Home");
 		homeButton.setBounds(49, 812, 117, 29);
 		contentPane.add(homeButton);
-		
+
 		studentButton = new JButton("StudentTemp");
 		studentButton.setBounds(1020, 812, 117, 29);
 		if (user.getType().equals("STUDENT")) {
 			contentPane.add(studentButton);
 		}
-		
+
 
 	}
 
 
 	public void addPanels() {
 		contentPane.add(activityPanel);
-
+		if (homePanel == null) {
+			homePanel = new HomePanel(user);
+		}
 		activityPanel.add(homePanel, HOME_PANEL);
+		cardLayout.show(activityPanel, HOME_PANEL);
+
+
 		activityPanel.add(requestPanel, REQUEST_PANEL);
 		activityPanel.add(studentPanel, STUDENT_PANEL);
 
-		cardLayout.show(activityPanel, HOME_PANEL);// default panel have a user/home page
 
 	}
+
 
 
 	public JButton getRequestButton() {
@@ -208,7 +216,7 @@ public class UserDashboard extends JFrame {
 	public JButton getHomeButton() {
 		return homeButton;
 	}
-	
+
 	public JButton getStudentButton() {
 		return studentButton;
 	}
@@ -233,7 +241,7 @@ public class UserDashboard extends JFrame {
 	public void changeToRequestPanel(){
 		cardLayout.show(activityPanel, REQUEST_PANEL);
 	}
-	
+
 	public void changeToStudentPanel(User student) {
 		if (studentPanel != null) {
 			activityPanel.remove(studentPanel);

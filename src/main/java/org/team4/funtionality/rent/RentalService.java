@@ -30,8 +30,8 @@ public class RentalService {
 
         if (canRentItem(user, item)) {
             decreaseItemQuantity(item);
-            RentedItem rental = new RentedItem(item.getISBN(), new Date(), dueDate);
-            rentMaintain.addNewRentedItem(user.getEmail(), item.getISBN(), new java.sql.Date(new Date().getTime()), new java.sql.Date(dueDate.getTime()));
+            RentedItem rental = new RentedItem(item.getTitle(),item.getISBN(), new Date(), dueDate);
+            rentMaintain.addNewRentedItem(user.getEmail(), item.getTitle(),item.getISBN(), new java.sql.Date(new Date().getTime()), new java.sql.Date(dueDate.getTime()));
             rentMaintain.update();
             return true;
         }
@@ -45,7 +45,7 @@ public class RentalService {
         if (!item.isRentable() || item.getQuantity() < 1) {
             throw new Exception("Item is not available for rent.");
         }
-        if (rentMaintain.isAlreadyRentedByUser(user.getEmail(), new RentedItem(item.getISBN(), null, null))) {
+        if (rentMaintain.isAlreadyRentedByUser(user.getEmail(), new RentedItem(null,item.getISBN(), null, null))) {
             throw new Exception("You have already rented this item.");
         }
         if (getOverdueCount(user.getEmail()) > 3) {
@@ -67,7 +67,7 @@ public class RentalService {
         calendar.setTime(new java.util.Date());
         calendar.add(Calendar.MONTH, 1);
         java.sql.Date dueDate = new java.sql.Date(calendar.getTime().getTime());
-        return new RentedItem(item.getISBN(), new Date(), dueDate);
+        return new RentedItem(item.getTitle(),item.getISBN(), new Date(), dueDate);
     }
     private void decreaseItemQuantity(Item item) throws Exception {
 
