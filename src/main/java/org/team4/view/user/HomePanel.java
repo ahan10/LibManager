@@ -113,7 +113,10 @@ public class HomePanel extends JPanel {
 				StringBuilder warnings = new StringBuilder();
 				for (RentedItem rentedItem : approachingOrOverdueItems) {
 					long timeDiff = rentedItem.getDueDate().getTime() - new Date().getTime();
-					if (timeDiff < 0) {
+					long overdueDays = (new Date().getTime() - rentedItem.getDueDate().getTime()) / (24 * 60 * 60 * 1000);
+					if (overdueDays > 15) {
+						warnings.append(rentedItem.getTitle()).append(" is considered lost!\n");
+					} else if (timeDiff < 0) {
 						warnings.append(rentedItem.getTitle()).append(" is overdue!\n");
 					} else if (timeDiff < 24 * 60 * 60 * 1000) {
 						warnings.append(rentedItem.getTitle()).append(" is due in less than 24 hours!\n");
@@ -125,6 +128,7 @@ public class HomePanel extends JPanel {
 			}
 		});
 	}
+
 
 
 }
