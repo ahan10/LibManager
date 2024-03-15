@@ -5,10 +5,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import org.team4.model.course.Course;
-import org.team4.model.items.Item;
-import org.team4.model.user.Faculty;
-import org.team4.model.user.User;
-
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 

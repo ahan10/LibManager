@@ -9,7 +9,6 @@ import org.team4.maintaindb.MaintainCourse;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.maintaindb.MaintainUser;
 import org.team4.model.course.Course;
-import org.team4.model.course.CourseTextBook;
 
 public class TextbookTableModel extends DefaultTableModel {
 	
