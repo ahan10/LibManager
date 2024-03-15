@@ -27,6 +27,7 @@ public class BookItemPanel extends JPanel {
 	public BookItemPanel(JFrame window, Book book) {
 		this.window = window;
 		this.book = book;
+
 		setLayout(null);
 		
 		JLabel lblTitle = new JLabel("Title:");

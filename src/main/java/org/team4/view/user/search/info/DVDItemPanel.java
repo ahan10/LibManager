@@ -26,8 +26,9 @@ public class DVDItemPanel extends JPanel {
 	public DVDItemPanel(JFrame window, DVD dvd, User user) {
 		this.window = window;
 		this.dvd = dvd;
+
 		setLayout(null);
-		
+
 		JLabel lblTitle = new JLabel("Title:");
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblTitle.setBounds(20, 20, 45, 13);
@@ -130,7 +131,6 @@ public class DVDItemPanel extends JPanel {
 		this.window = window;
 	}
 
-
 	public void setDVD(DVD dvd) {
 		this.dvd = dvd;
 	}
@@ -145,5 +145,9 @@ public class DVDItemPanel extends JPanel {
 
 	public JButton getBtnRent() {
 		return btnRent;
+	}
+
+	public DVD getDvd() {
+		return dvd;
 	}
 }

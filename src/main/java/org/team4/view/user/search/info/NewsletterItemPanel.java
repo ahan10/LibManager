@@ -23,6 +23,7 @@ public class NewsletterItemPanel extends JPanel {
 	public NewsletterItemPanel(JFrame window, Newsletter newsletter) {
 		this.window = window;
 		this.newsletter = newsletter;
+
 		setLayout(null);
 		
 		JLabel titleLabel = new JLabel("Subscribe a Newsletter");

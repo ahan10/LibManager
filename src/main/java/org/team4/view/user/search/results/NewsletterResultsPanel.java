@@ -22,13 +22,15 @@ public class NewsletterResultsPanel extends JPanel {
 
 	public NewsletterResultsPanel() {
 		setBounds(100, 100, 788, 520);
-		setLayout(null);
+
 	}
 
 	public NewsletterResultsPanel(String query, JFrame window) {
 
 		this.window = window;
 		this.query = query;
+
+		setLayout(null);
 
 		setBounds(100, 100, 788, 520);
 		setLayout(new BorderLayout());
