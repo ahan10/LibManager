@@ -34,6 +34,7 @@ public class UserController implements ActionListener {
 		userDashboard.getHomeButton().addActionListener(this);
 		userDashboard.getLogoutButton().addActionListener(this);
 		userDashboard.getStudentButton().addActionListener(this);
+		userDashboard.getFacultyButton().addActionListener(this);
 
 		userDashboard.getSearchTextField().addActionListener(new ActionListener() {
 			@Override
@@ -61,6 +62,8 @@ public class UserController implements ActionListener {
 			userDashboard.changeToHomePanel();
 		}else if (e.getSource() == userDashboard.getStudentButton()) {
 			userDashboard.changeToStudentPanel(userDashboard.getCurrentUser());
+		}else if (e.getSource() == userDashboard.getFacultyButton()) {
+			userDashboard.changeToFacultyPanel(userDashboard.getCurrentUser());
 		}else if(e.getSource() == userDashboard.getLogoutButton()) {
 			userDashboard.dispose();
 			LoginPage frame = new LoginPage();

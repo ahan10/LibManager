@@ -5,10 +5,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import org.team4.model.course.Course;
-import org.team4.model.items.Item;
-import org.team4.model.user.Faculty;
-import org.team4.model.user.User;
-
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
@@ -102,6 +98,17 @@ private static MaintainCourse instance;
 		}
 		System.out.println("Course not found");
 		return null;
+	}
+	
+	public ArrayList<Course> findCourseByProfessor(String professorEmail) {
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		for (Course c: this.courses) {
+			if (c.getProfessorEmail().equals(professorEmail)) {
+				courseList.add(c);
+			}
+		}
+		
+		return courseList;
 	}
 	
 	public static void main(String [] args) {

@@ -1,4 +1,4 @@
-package org.team4.view.user.student;
+package org.team4.view.user.faculty;
 
 import java.util.ArrayList;
 
@@ -10,37 +10,28 @@ import org.team4.maintaindb.MaintainDatabase;
 import org.team4.maintaindb.MaintainUser;
 import org.team4.model.course.Course;
 
-public class TextbookTableModel extends DefaultTableModel {
+public class CourseTableModel extends DefaultTableModel {
 	
 	private static final long serialVersionUID = 1L;
-	private final String[] columnNames = {"Title", "Course", "Professor", "End Date"};
+	private final String[] columnNames = {"Course", "Textbook", "Current Edition"};
 	private MaintainCourse courseMaintainer = MaintainDatabase.getInstance().getCourseDatabase();
 	private MaintainBooks bookMaintainer = MaintainDatabase.getInstance().getBookDatabase();
 	private MaintainUser userMaintainer = MaintainDatabase.getInstance().getUserDatabase();
-	private ArrayList<Course> courses;
 
-    public TextbookTableModel(ArrayList<String> courseNames) {
-    	
-    	courses = new ArrayList<Course>();
-    	
-    	for (String str: courseNames) {
-    		courses.add(courseMaintainer.findCourse(str));
-    	}
-
+    public CourseTableModel(ArrayList<Course> courses) {
+ 
     	for(String columnName: columnNames) {
 			addColumn(columnName);
 		}
     	
     	for ( Course c: courses) {
             addRow(new Object[]{
-            		bookMaintainer.searchExactBookByISBN(c.getCourseTextBookISBN()).getTitle(),
                     c.getCourseName(),
-                    userMaintainer.findUserByEmail(c.getProfessorEmail()).getName(),
-                    c.getEndDate()
+                    bookMaintainer.searchExactBookByISBN(c.getCourseTextBookISBN()).getTitle(),
+                    bookMaintainer.searchExactBookByISBN(c.getCourseTextBookISBN()).getEdition()
             });
       
         	  
         }
     }
 }
-
