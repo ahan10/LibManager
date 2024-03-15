@@ -1,6 +1,7 @@
 package org.team4.view.user;
 import org.team4.controller.userdashboard.UserController;
 import org.team4.model.user.User;
+import org.team4.view.user.faculty.FacultyPanel;
 import org.team4.view.user.search.results.BookResultsPanel;
 import org.team4.view.user.search.results.DVDResultsPanel;
 import org.team4.view.user.search.results.MagazineResultsPanel;
@@ -21,6 +22,7 @@ public class UserDashboard extends JFrame {
 	private JButton logoutButton;
 	private JButton homeButton;
 	private JButton studentButton;
+	private JButton facultyButton;
 
 
 	private JTextField SearchTextField;
@@ -30,9 +32,11 @@ public class UserDashboard extends JFrame {
 	private final String PURCHASE_PANEL = "Purchase Panel";
 	private final String REQUEST_PANEL = "Request Panel";
 	private final String STUDENT_PANEL = "Student Panel";
+	private final String FACULTY_PANEL = "Faculty Panel";
 
 	private HomePanel homePanel;
-	private StudentPanel studentPanel = new StudentPanel();
+	private StudentPanel studentPanel;
+	private FacultyPanel facultyPanel;
 	private RequestPanel requestPanel;
 	private JPanel resultsPanel;
 
@@ -96,6 +100,9 @@ public class UserDashboard extends JFrame {
 
 		homePanel = new HomePanel(user);
 		requestPanel = new RequestPanel(user);
+		
+		studentPanel = new StudentPanel();
+		facultyPanel = new FacultyPanel();
 
 		addSearchBar();
 		addButtons();
@@ -170,6 +177,12 @@ public class UserDashboard extends JFrame {
 		if (user.getType().equals("STUDENT")) {
 			contentPane.add(studentButton);
 		}
+		
+		facultyButton = new JButton("Faculty View");
+		facultyButton.setBounds(1020, 812, 117, 29);
+		if (user.getType().equals("FACULTY")) {
+			contentPane.add(facultyButton);
+		}
 	}
 
 	public void addPanels() {
@@ -178,6 +191,7 @@ public class UserDashboard extends JFrame {
 		activityPanel.add(homePanel, HOME_PANEL);
 		activityPanel.add(requestPanel, REQUEST_PANEL);
 		activityPanel.add(studentPanel, STUDENT_PANEL);
+		activityPanel.add(facultyPanel, FACULTY_PANEL);
 
 		cardLayout.show(activityPanel, HOME_PANEL);
 	}
@@ -194,6 +208,10 @@ public class UserDashboard extends JFrame {
 
 	public JButton getStudentButton() {
 		return studentButton;
+	}
+	
+	public JButton getFacultyButton() {
+		return facultyButton;
 	}
 
 	public JButton getLogoutButton() {
@@ -221,6 +239,14 @@ public class UserDashboard extends JFrame {
 		}
 		activityPanel.add(new StudentPanel(student), STUDENT_PANEL);
 		cardLayout.show(activityPanel, STUDENT_PANEL);
+	}
+	
+	public void changeToFacultyPanel(User faculty) {
+		if (facultyPanel != null) {
+			activityPanel.remove(facultyPanel);
+		}
+		activityPanel.add(new FacultyPanel(faculty), FACULTY_PANEL);
+		cardLayout.show(activityPanel, FACULTY_PANEL);
 	}
 
 	public User getUser() {

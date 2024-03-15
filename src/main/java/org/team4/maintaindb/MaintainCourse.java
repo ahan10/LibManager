@@ -100,6 +100,17 @@ private static MaintainCourse instance;
 		return null;
 	}
 	
+	public ArrayList<Course> findCourseByProfessor(String professorEmail) {
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		for (Course c: this.courses) {
+			if (c.getProfessorEmail().equals(professorEmail)) {
+				courseList.add(c);
+			}
+		}
+		
+		return courseList;
+	}
+	
 	public static void main(String [] args) {
 		
 		MaintainCourse courseMaintainer = MaintainDatabase.getInstance().getCourseDatabase();
