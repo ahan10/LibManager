@@ -103,6 +103,7 @@ public class FacultyPanel extends JPanel {
 			if (!notifications.isEmpty()) {
 				int response = JOptionPane.showOptionDialog(this, notifications.toString(), "Textbooks Unavailable", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 				if (response == 0) {
+					//TODO Notify Management
 					System.out.println("Yes");
 				} else {
 					System.out.println("No");
