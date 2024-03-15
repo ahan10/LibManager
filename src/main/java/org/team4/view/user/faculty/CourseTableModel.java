@@ -13,7 +13,7 @@ import org.team4.model.course.Course;
 public class CourseTableModel extends DefaultTableModel {
 	
 	private static final long serialVersionUID = 1L;
-	private final String[] columnNames = {"Textbook", "Course", "End Date"};
+	private final String[] columnNames = {"Course", "Textbook", "Current Edition"};
 	private MaintainCourse courseMaintainer = MaintainDatabase.getInstance().getCourseDatabase();
 	private MaintainBooks bookMaintainer = MaintainDatabase.getInstance().getBookDatabase();
 	private MaintainUser userMaintainer = MaintainDatabase.getInstance().getUserDatabase();
@@ -26,9 +26,9 @@ public class CourseTableModel extends DefaultTableModel {
     	
     	for ( Course c: courses) {
             addRow(new Object[]{
-            		bookMaintainer.searchExactBookByISBN(c.getCourseTextBookISBN()).getTitle(),
                     c.getCourseName(),
-                    c.getEndDate()
+                    bookMaintainer.searchExactBookByISBN(c.getCourseTextBookISBN()).getTitle(),
+                    bookMaintainer.searchExactBookByISBN(c.getCourseTextBookISBN()).getEdition()
             });
       
         	  
