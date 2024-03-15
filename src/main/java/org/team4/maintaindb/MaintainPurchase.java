@@ -19,7 +19,7 @@ public class MaintainPurchase {
 
     private static MaintainPurchase instance;
     public ArrayList<ItemPurchased> items;
-    SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+    SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
 
     private static final String FILE_PATH = "database/purchase.csv";
 

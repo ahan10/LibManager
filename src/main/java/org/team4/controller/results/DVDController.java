@@ -4,6 +4,7 @@ import org.team4.funtionality.rent.RentalService;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Item;
 import org.team4.model.user.User;
+import org.team4.view.purchase.Payment;
 import org.team4.view.user.search.info.DVDItemPanel;
 import org.team4.view.user.search.results.DVDResultsPanel;
 
@@ -31,6 +32,8 @@ public class DVDController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.dvdItemPanel.getBtnRent()){
             rentSelectedItem();
+        }else if (e.getSource() == this.dvdItemPanel.getBtnBuy()){
+            purchaseOption();
         }
     }
 
@@ -64,4 +67,23 @@ public class DVDController implements ActionListener {
             JOptionPane.showMessageDialog(null, "Please select a " + itemTitle + " to rent.");
         }
     }
+
+    private void purchaseOption(){
+        double dvdPrice = dvdItemPanel.getDvd().getPrice() - (0.2 * dvdItemPanel.getDvd().getPrice());
+        String message = "After discount the dvd costs $" + dvdPrice + "\n" + "Do you want to continue your purchase?";
+
+        int dialogResult = JOptionPane.showConfirmDialog(null, message, "Confirm Purchase", JOptionPane.YES_NO_OPTION);
+
+        if(dialogResult == JOptionPane.YES_OPTION){
+            Payment payment = new Payment(dvdItemPanel.getDvd(), user);
+            if(!payment.isSuccess()){
+                JOptionPane.showMessageDialog(null, "Payment Failed/ Cancelled");
+            }else {
+                JOptionPane.showMessageDialog(null, "Payment Successful");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Purchase Cancelled!");
+        }
+    }
+
 }

@@ -34,7 +34,7 @@ public class BookController implements ActionListener {
         if(e.getSource() == this.bookItem.getBtnRent()){
             rentSelectedItem();
         }else if (e.getSource() == this.bookItem.getBtnBuy()){
-            Payment payment = new Payment(bookItem.getBook(), user);
+            purchaseOption();
         }
     }
 
@@ -48,8 +48,6 @@ public class BookController implements ActionListener {
             itemToRent = MaintainDatabase.getInstance().getBookDatabase().searchExactBookByISBN(isbn);
             itemTitle = "book";
         }
-
-
         // to rent the selected item by the user
         if (itemToRent != null) {
             try {
@@ -68,4 +66,23 @@ public class BookController implements ActionListener {
             JOptionPane.showMessageDialog(null, "Please select a " + itemTitle + " to rent.");
         }
     }
+
+    private void purchaseOption(){
+        double bookPrice = bookItem.getBook().getPrice() - (0.2 * bookItem.getBook().getPrice());
+        String message = "After discount the book costs $" + bookPrice + "\n" + "Do you want to continue your purchase?";
+
+        int dialogResult = JOptionPane.showConfirmDialog(null, message, "Confirm Purchase", JOptionPane.YES_NO_OPTION);
+
+        if(dialogResult == JOptionPane.YES_OPTION){
+            Payment payment = new Payment(bookItem.getBook(), user);
+            if(!payment.isSuccess()){
+                JOptionPane.showMessageDialog(null, "Payment Failed/ Cancelled");
+            }else {
+                JOptionPane.showMessageDialog(null, "Payment Successful");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Purchase Cancelled!");
+        }
+    }
+
 }
