@@ -3,11 +3,6 @@ package org.team4.maintaindb;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 import org.team4.funtionality.buy.ItemPurchased;
-import org.team4.model.items.Book;
-import org.team4.model.items.Item;
-import org.team4.model.items.builder.BookBuilder;
-import org.team4.model.items.decorator.PurchasableItemDecorator;
-import org.team4.model.items.decorator.RentableItemDecorator;
 
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
