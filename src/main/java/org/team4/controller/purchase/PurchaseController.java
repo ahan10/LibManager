@@ -65,9 +65,10 @@ public class PurchaseController implements ActionListener {
             }
             maintainPurchase.add(new ItemPurchased(purchaseComplete.getItem().getTitle(),purchaseComplete.getUser().getEmail()));
 
+            double price = purchaseComplete.getAmount() - (0.2 * purchaseComplete.getAmount());
             String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
                     + "Item Name: " + purchaseComplete.getItem().getTitle() + "\n"
-                    + "Price: $" + purchaseComplete.getAmount();
+                    + "Price: $" + price;
             JOptionPane.showMessageDialog(null, message, "View Purchase", JOptionPane.INFORMATION_MESSAGE);
 
         } else if (purchaseComplete.getNewsletter() != null) {
