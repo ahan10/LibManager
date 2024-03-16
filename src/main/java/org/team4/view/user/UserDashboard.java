@@ -140,7 +140,7 @@ public class UserDashboard extends JFrame {
 
 		} else if ("Newsletter".equals(type)) {
 
-			resultsPanel= new NewsletterResultsPanel(query, searchResultsFrame);
+			resultsPanel= new NewsletterResultsPanel(query, searchResultsFrame, this.user);
 			((NewsletterResultsPanel) resultsPanel).addSearchResults();
 
 		}else if ("Magazine".equals(type)) {
@@ -200,8 +200,6 @@ public class UserDashboard extends JFrame {
 		return RequestButton;
 	}
 
-
-
 	public JButton getHomeButton() {
 		return homeButton;
 	}
@@ -218,8 +216,6 @@ public class UserDashboard extends JFrame {
 		return logoutButton;
 	}
 
-
-
 	public JTextField getSearchTextField(){
 		return this.SearchTextField;
 	}
@@ -227,7 +223,6 @@ public class UserDashboard extends JFrame {
 	public void changeToHomePanel(){
 		cardLayout.show(activityPanel, HOME_PANEL);
 	}
-
 
 	public void changeToRequestPanel(){
 		cardLayout.show(activityPanel, REQUEST_PANEL);

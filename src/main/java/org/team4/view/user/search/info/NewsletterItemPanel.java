@@ -1,13 +1,18 @@
 package org.team4.view.user.search.info;
 
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import org.team4.maintaindb.MaintainDatabase;
+import org.team4.maintaindb.MaintainSubscriptions;
 import org.team4.model.items.Newsletter;
+import org.team4.model.user.User;
+
 import javax.swing.JButton;
 
 
@@ -17,12 +22,17 @@ public class NewsletterItemPanel extends JPanel {
 	private JFrame window;
 	private Newsletter newsletter;
 	private JLabel newsletterTitleValue = new JLabel("");
-
-
+	private ArrayList<String> newslettersSubscribed;
+	private JButton readButton, subscribeButton, unsubscribeButton;
+	private User user;
+	private MaintainSubscriptions subscriptions = MaintainDatabase.getInstance().getSubscriptionDatabase();
 	
-	public NewsletterItemPanel(JFrame window, Newsletter newsletter) {
+	public NewsletterItemPanel(JFrame window, Newsletter newsletter, User user) {
 		this.window = window;
 		this.newsletter = newsletter;
+		this.user = user;
+
+		loadSubscriptions();
 
 		setLayout(null);
 		
@@ -41,25 +51,26 @@ public class NewsletterItemPanel extends JPanel {
 		newsletterTitleValue.setBounds(66, 151, 631, 33);
 		add(newsletterTitleValue);
 		
-		JButton readButton = new JButton("Read");
+		readButton = new JButton("Read");
 		readButton.setBounds(66, 296, 117, 29);
 		add(readButton);
 		
-		JButton subscribeButton = new JButton("Subscribe");
+		subscribeButton = new JButton("Subscribe");
 		subscribeButton.setBounds(316, 296, 117, 29);
 		add(subscribeButton);
-		
-		JButton unsubscribeButton = new JButton("Unsubscribe");
+
+		unsubscribeButton = new JButton("Unsubscribe");
 		unsubscribeButton.setBounds(580, 296, 117, 29);
 		add(unsubscribeButton);
-		
+
+		updateButtons();
+
 	}
 	
 	
 	public void showItemInfo() {
 		newsletterTitleValue.setText(newsletter.getTitle());
 	}
-
 
 	public void setWindow(JFrame window) {
 		this.window = window;
@@ -76,4 +87,37 @@ public class NewsletterItemPanel extends JPanel {
 	public JFrame getWindow() {
 		return this.window;
 	}
-}	
+
+	public JButton getReadButton() {
+		return readButton;
+	}
+
+	public JButton getSubscribeButton() {
+		return subscribeButton;
+	}
+
+	public JButton getUnsubscribeButton() {
+		return unsubscribeButton;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void updateButtons(){
+		if(!newslettersSubscribed.contains(newsletter.getTitle())){
+			readButton.setEnabled(false);
+			unsubscribeButton.setEnabled(false);
+			subscribeButton.setEnabled(true);
+		}else{
+			readButton.setEnabled(true);
+			unsubscribeButton.setEnabled(true);
+			subscribeButton.setEnabled(false);
+		}
+	}
+
+	public void loadSubscriptions(){
+		newslettersSubscribed = new ArrayList<>();
+		newslettersSubscribed = subscriptions.getAllSubscribedNewslettersTitlesByEmail(user.getEmail());
+	}
+}

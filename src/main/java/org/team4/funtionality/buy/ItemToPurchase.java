@@ -19,7 +19,7 @@ public class ItemToPurchase {
     public ItemToPurchase(Newsletter newsletter, User user) {
         this.newsletter = newsletter;
         this.user = user;
-        this.amount = item.getPrice();
+        this.amount = newsletter.getPrice();
     }
 
     public ItemToPurchase(double amount, User user){

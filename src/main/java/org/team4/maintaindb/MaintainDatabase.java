@@ -11,6 +11,7 @@ public class MaintainDatabase {
 	private static MaintainStudent studentMaintainer;
 	private static MaintainCourse courseMaintainer;
 	private static MaintainPurchase purchaseMaintainer;
+	private static MaintainSubscriptions subscriptionMaintainer;
 	
 	private MaintainDatabase() {
 		userMaintainer = MaintainUser.getInstance();
@@ -21,6 +22,7 @@ public class MaintainDatabase {
 		courseMaintainer = MaintainCourse.getInstance();
 		studentMaintainer = MaintainStudent.getInstance();
 		purchaseMaintainer = MaintainPurchase.getInstance();
+		subscriptionMaintainer = MaintainSubscriptions.getInstance();
 	}
 	
 	public static MaintainDatabase getInstance() {
@@ -108,6 +110,14 @@ public class MaintainDatabase {
 	public MaintainPurchase getPurchaseDatabase() {
 		return MaintainPurchase.getInstance();
 	}
+
+	/**
+	 * Used to get an instance of the purchase database
+	 * @return
+	 */
+	public MaintainSubscriptions getSubscriptionDatabase() {
+		return MaintainSubscriptions.getInstance();
+	}
 	
 	/**
 	 * Update all databases
@@ -122,6 +132,7 @@ public class MaintainDatabase {
 		studentMaintainer.update();
 		courseMaintainer.update();
 		purchaseMaintainer.update();
+		subscriptionMaintainer.update();
 	}
 
 }

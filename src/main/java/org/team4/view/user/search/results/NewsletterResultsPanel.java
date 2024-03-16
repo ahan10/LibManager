@@ -8,9 +8,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import org.team4.controller.results.NewsletterController;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.maintaindb.MaintainNewsletter;
 import org.team4.model.items.Newsletter;
+import org.team4.model.user.User;
 import org.team4.view.user.search.info.NewsletterItemPanel;
 import org.team4.view.user.search.models.NewsletterTableModel;
 
@@ -19,16 +21,18 @@ public class NewsletterResultsPanel extends JPanel {
 	private static JTable table;
 	private String query;
 	private JFrame window;
+	private User user;
 
 	public NewsletterResultsPanel() {
 		setBounds(100, 100, 788, 520);
 
 	}
 
-	public NewsletterResultsPanel(String query, JFrame window) {
+	public NewsletterResultsPanel(String query, JFrame window, User user) {
 
 		this.window = window;
 		this.query = query;
+		this.user = user;
 
 		setLayout(null);
 
@@ -63,7 +67,9 @@ public class NewsletterResultsPanel extends JPanel {
 						if (col == 0) {
 							Newsletter newsLetter = MaintainNewsletter.getInstance().searchNewslettersbyTitle(table.getValueAt(row, 0).toString());
 							JFrame itemInfoFrame = new JFrame(newsLetter.getTitle());
-							NewsletterItemPanel newsletterPanel = new NewsletterItemPanel(itemInfoFrame, newsLetter);
+							NewsletterItemPanel newsletterPanel = new NewsletterItemPanel(itemInfoFrame, newsLetter, user);
+							new NewsletterController(newsletterPanel, user);
+
 							newsletterPanel.showItemInfo();
 							itemInfoFrame.setContentPane(new JScrollPane(newsletterPanel));
 							itemInfoFrame.setSize(750, 550);
