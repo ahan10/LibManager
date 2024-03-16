@@ -23,6 +23,7 @@ public class NewsletterItemPanel extends JPanel {
 	private Newsletter newsletter;
 	private JLabel newsletterTitleValue = new JLabel("");
 	private ArrayList<String> newslettersSubscribed;
+	private JButton readButton, subscribeButton, unsubscribeButton;
 	private User user;
 	private MaintainSubscriptions subscriptions = MaintainDatabase.getInstance().getSubscriptionDatabase();
 	
@@ -31,8 +32,7 @@ public class NewsletterItemPanel extends JPanel {
 		this.newsletter = newsletter;
 		this.user = user;
 
-		newslettersSubscribed = new ArrayList<>();
-		newslettersSubscribed = subscriptions.getAllSubscribedNewslettersTitlesByEmail(user.getEmail());
+		loadSubscriptions();
 
 		setLayout(null);
 		
@@ -51,27 +51,19 @@ public class NewsletterItemPanel extends JPanel {
 		newsletterTitleValue.setBounds(66, 151, 631, 33);
 		add(newsletterTitleValue);
 		
-		JButton readButton = new JButton("Read");
+		readButton = new JButton("Read");
 		readButton.setBounds(66, 296, 117, 29);
 		add(readButton);
 		
-		JButton subscribeButton = new JButton("Subscribe");
+		subscribeButton = new JButton("Subscribe");
 		subscribeButton.setBounds(316, 296, 117, 29);
 		add(subscribeButton);
-		
-		JButton unsubscribeButton = new JButton("Unsubscribe");
+
+		unsubscribeButton = new JButton("Unsubscribe");
 		unsubscribeButton.setBounds(580, 296, 117, 29);
 		add(unsubscribeButton);
 
-		if(!newslettersSubscribed.contains(newsletter.getTitle())){
-			readButton.setEnabled(false);
-			unsubscribeButton.setEnabled(false);
-			subscribeButton.setEnabled(true);
-		}else{
-			readButton.setEnabled(true);
-			unsubscribeButton.setEnabled(true);
-			subscribeButton.setEnabled(false);
-		}
+		updateButtons();
 
 	}
 	
@@ -95,4 +87,37 @@ public class NewsletterItemPanel extends JPanel {
 	public JFrame getWindow() {
 		return this.window;
 	}
-}	
+
+	public JButton getReadButton() {
+		return readButton;
+	}
+
+	public JButton getSubscribeButton() {
+		return subscribeButton;
+	}
+
+	public JButton getUnsubscribeButton() {
+		return unsubscribeButton;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void updateButtons(){
+		if(!newslettersSubscribed.contains(newsletter.getTitle())){
+			readButton.setEnabled(false);
+			unsubscribeButton.setEnabled(false);
+			subscribeButton.setEnabled(true);
+		}else{
+			readButton.setEnabled(true);
+			unsubscribeButton.setEnabled(true);
+			subscribeButton.setEnabled(false);
+		}
+	}
+
+	public void loadSubscriptions(){
+		newslettersSubscribed = new ArrayList<>();
+		newslettersSubscribed = subscriptions.getAllSubscribedNewslettersTitlesByEmail(user.getEmail());
+	}
+}
