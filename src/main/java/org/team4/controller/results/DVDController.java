@@ -69,10 +69,7 @@ public class DVDController implements ActionListener {
     }
 
     private void purchaseOption(){
-        double dvdPrice = dvdItemPanel.getDvd().getPrice() - (0.2 * dvdItemPanel.getDvd().getPrice());
-        String message = "After discount the dvd costs $" + dvdPrice + "\n" + "Do you want to continue your purchase?";
-
-        int dialogResult = JOptionPane.showConfirmDialog(null, message, "Confirm Purchase", JOptionPane.YES_NO_OPTION);
+        int dialogResult = JOptionPane.showConfirmDialog(null, this.getMessage(), "Confirm Purchase", JOptionPane.YES_NO_OPTION);
 
         if(dialogResult == JOptionPane.YES_OPTION){
             Payment payment = new Payment(dvdItemPanel.getDvd(), user);
@@ -84,6 +81,19 @@ public class DVDController implements ActionListener {
         }else{
             JOptionPane.showMessageDialog(null, "Purchase Cancelled!");
         }
+    }
+
+    private String getMessage() {
+        double price;
+        String message = "";
+        if(dvdItemPanel.getDvd().getPrice() > 8.5 && !dvdItemPanel.getDvd().isRentable()){
+            price = dvdItemPanel.getDvd().getPrice() - (0.2 * dvdItemPanel.getDvd().getPrice());
+            message = "After discount the DVD costs $" + price + "\n" + "Do you want to continue your purchase?";
+        }else {
+            price = dvdItemPanel.getDvd().getPrice();
+            message = "This DVD costs $" + price + "\n" + "Do you want to continue your purchase?";
+        }
+        return message;
     }
 
 }
