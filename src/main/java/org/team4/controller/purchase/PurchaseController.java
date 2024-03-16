@@ -3,13 +3,9 @@ package org.team4.controller.purchase;
 import org.team4.funtionality.buy.ItemPurchased;
 import org.team4.funtionality.buy.ProcessPayment;
 import org.team4.funtionality.buy.PurchaseComplete;
-import org.team4.maintaindb.MaintainBooks;
-import org.team4.maintaindb.MaintainDVD;
-import org.team4.maintaindb.MaintainDatabase;
-import org.team4.maintaindb.MaintainPurchase;
+import org.team4.funtionality.subscriptions.SubscribeNewsletter;
+import org.team4.maintaindb.*;
 import org.team4.model.items.Book;
-import org.team4.model.items.Item;
-import org.team4.model.items.Newsletter;
 import org.team4.view.purchase.PurchaseFrame;
 
 import javax.swing.*;
@@ -24,6 +20,7 @@ public class PurchaseController implements ActionListener {
     private MaintainBooks maintainBooks = MaintainDatabase.getInstance().getBookDatabase();
     private MaintainDVD maintainDVD = MaintainDatabase.getInstance().getDVDDatabase();
     private MaintainPurchase maintainPurchase = MaintainDatabase.getInstance().getPurchaseDatabase();
+    private MaintainSubscriptions maintainSubscriptions = MaintainDatabase.getInstance().getSubscriptionDatabase();
     private boolean success;
 
     public PurchaseController(PurchaseFrame purchaseFrame) {
@@ -65,14 +62,12 @@ public class PurchaseController implements ActionListener {
             }
             maintainPurchase.add(new ItemPurchased(purchaseComplete.getItem().getTitle(),purchaseComplete.getUser().getEmail()));
 
-            double price = purchaseComplete.getAmount() - (0.2 * purchaseComplete.getAmount());
-            String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
-                    + "Item Name: " + purchaseComplete.getItem().getTitle() + "\n"
-                    + "Price: $" + price;
+            String message = getMessage();
             JOptionPane.showMessageDialog(null, message, "View Purchase", JOptionPane.INFORMATION_MESSAGE);
 
         } else if (purchaseComplete.getNewsletter() != null) {
             this.success = true;
+            maintainSubscriptions.add(new SubscribeNewsletter(purchaseComplete.getNewsletter().getTitle(), purchaseComplete.getUser().getEmail()));
             String message = "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
                     + "Newsletter Name: " + purchaseComplete.getNewsletter().getTitle() + "\n"
                     + "Price: $" + purchaseComplete.getAmount();
@@ -84,6 +79,22 @@ public class PurchaseController implements ActionListener {
                     + "Price: $" + purchaseComplete.getAmount();
             JOptionPane.showMessageDialog(null, message, "Fine Paid", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+
+    private String getMessage() {
+        double price;
+
+        if(((this.purchaseComplete.getAmount() > 60 && this.purchaseComplete.getItem().getISBN().charAt(0) == '9') ||
+                (this.purchaseComplete.getAmount() > 8.5 && this.purchaseComplete.getItem().getISBN().charAt(0) == '8'))
+                && !this.purchaseComplete.getItem().isRentable()){
+            price = purchaseComplete.getAmount() - (0.2 * purchaseComplete.getAmount());
+        }else {
+            price = purchaseComplete.getAmount();
+        }
+
+        return "Purchase ID: " + purchaseComplete.getPurchaseID() + "\n"
+                + "Item Name: " + purchaseComplete.getItem().getTitle() + "\n"
+                + "Price: $" + price;
     }
 
     public boolean isSuccess() {
