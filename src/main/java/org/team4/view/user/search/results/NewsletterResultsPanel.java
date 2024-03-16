@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import org.team4.controller.results.NewsletterController;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.maintaindb.MaintainNewsletter;
 import org.team4.model.items.Newsletter;
@@ -67,6 +68,8 @@ public class NewsletterResultsPanel extends JPanel {
 							Newsletter newsLetter = MaintainNewsletter.getInstance().searchNewslettersbyTitle(table.getValueAt(row, 0).toString());
 							JFrame itemInfoFrame = new JFrame(newsLetter.getTitle());
 							NewsletterItemPanel newsletterPanel = new NewsletterItemPanel(itemInfoFrame, newsLetter, user);
+							new NewsletterController(newsletterPanel, user);
+
 							newsletterPanel.showItemInfo();
 							itemInfoFrame.setContentPane(new JScrollPane(newsletterPanel));
 							itemInfoFrame.setSize(750, 550);
