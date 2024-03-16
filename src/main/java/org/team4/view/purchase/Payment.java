@@ -2,6 +2,7 @@ package org.team4.view.purchase;
 
 import org.team4.controller.purchase.PurchaseController;
 import org.team4.model.items.Item;
+import org.team4.model.items.Newsletter;
 import org.team4.model.user.User;
 
 import javax.swing.*;
@@ -18,6 +19,11 @@ public class Payment {
 
     public Payment(Item item, User user){
         purchaseFrame = new PurchaseFrame(item, user);
+        init();
+    }
+
+    public Payment(Newsletter newsletter, User user){
+        purchaseFrame = new PurchaseFrame(newsletter, user);
         init();
     }
 
