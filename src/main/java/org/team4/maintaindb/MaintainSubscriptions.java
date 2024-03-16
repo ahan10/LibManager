@@ -56,8 +56,6 @@ public class MaintainSubscriptions {
 
             SubscribeNewsletter subscribeNewsletter = new SubscribeNewsletter(title, email, dateSubscribe, dueDate);
 
-            System.out.println(subscribeNewsletter);
-
             if(dueDate.after(new Date())){
                 newsletters.add(subscribeNewsletter);
             }
@@ -102,22 +100,6 @@ public class MaintainSubscriptions {
         }
     }
 
-    public ArrayList<SubscribeNewsletter> getAllSubscribedNewsletters(){
-        return this.newsletters;
-    }
-
-    public ArrayList<SubscribeNewsletter> getAllSubscribedNewslettersByEmail(String email){
-        ArrayList<SubscribeNewsletter> newsletterArrayList = new ArrayList<>();
-
-        for(SubscribeNewsletter s: this.newsletters){
-            if(s.getEmail().equals(email)){
-                newsletterArrayList.add(s);
-            }
-        }
-
-        return newsletterArrayList;
-    }
-
     public ArrayList<String> getAllSubscribedNewslettersTitlesByEmail(String email){
         ArrayList<String> newsletterArrayList = new ArrayList<>();
 
@@ -129,4 +111,27 @@ public class MaintainSubscriptions {
 
         return newsletterArrayList;
     }
+
+    public void removeNewsletter(SubscribeNewsletter newsletter){
+        if (this.newsletters.contains(newsletter)){
+            this.newsletters.remove(newsletter);
+        }
+
+        try {
+            update();
+        } catch (Exception e) {
+            System.out.println("Couldn't remove the newsletter");
+            throw new RuntimeException(e);
+        }
+    }
+
+    public SubscribeNewsletter getSubscribedNewsletterIfExists(String email, String title){
+        for (SubscribeNewsletter s: this.newsletters){
+            if (s.getEmail().equals(email) && s.getTitle().equals(title)){
+                return s;
+            }
+        }
+        return null;
+    }
+
 }
