@@ -28,11 +28,6 @@ public class StudentPanel extends JPanel {
 	public StudentPanel() {
 		setBounds(100, 100, 788, 520);
 		setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("TESTING");
-		lblNewLabel.setBounds(199, 188, 264, 185);
-		add(lblNewLabel);
-
 	}
 	
 	public StudentPanel(User student) {
@@ -40,6 +35,7 @@ public class StudentPanel extends JPanel {
         courseNames = getCourseNames(student.getEmail());
         TextbookTableModel model = new TextbookTableModel(courseNames);
         table = new JTable(model);
+        table.setDefaultEditor(Object.class, null);
         add(new JScrollPane(table), BorderLayout.CENTER);
     }
 	

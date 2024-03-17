@@ -31,11 +31,6 @@ public class FacultyPanel extends JPanel {
 	public FacultyPanel() {
 		setBounds(100, 100, 788, 520);
 		setLayout(null);
-
-		JLabel lblNewLabel = new JLabel("TESTING");
-		lblNewLabel.setBounds(199, 188, 264, 185);
-		add(lblNewLabel);
-
 	}
 
 	public FacultyPanel(User faculty) {
@@ -43,6 +38,7 @@ public class FacultyPanel extends JPanel {
 		courses = courseMaintainer.findCourseByProfessor(faculty.getEmail());
 		CourseTableModel model = new CourseTableModel(courses);
 		table = new JTable(model);
+		table.setDefaultEditor(Object.class, null);
 		add(new JScrollPane(table), BorderLayout.CENTER);
 		checkForNewerEditions(courses);
 		checkForAvailability(courses);
