@@ -83,6 +83,7 @@ public class MaintainRequests {
 			csvOutput.write("author");
 			csvOutput.write("ISBN");
 			csvOutput.write("edition");
+			csvOutput.write("booktype");
 			csvOutput.endRecord();
 
 			// write out records
@@ -130,7 +131,7 @@ public class MaintainRequests {
 			//this.requests.add(request);
 			if(request.getBookType().equals("TextBook")) {
 				this.highPriorityRequests.add(request);
-				JOptionPane.showMessageDialog(new JFrame(), "Successful high priority request! Priority: " + (highPriorityRequests.size() + 1) + " of " + (allRequests.size()+1),
+				JOptionPane.showMessageDialog(new JFrame(), "Successful high priority request! Priority: " + (highPriorityRequests.size()) + " of " + (allRequests.size()+1),
 						"Request Complete", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {

@@ -1,6 +1,5 @@
-email,title,author,ISBN,edition
-"",1111111111111111111111,1111111111111111111111,111111111111111,11,
-"",tttttttttt,tttttttttt,4444444444444444444444444,4,
-"",22,22,22222222222222222222222222,2,
-"",tttttttttt,tttttttttt,444444444444444444444444,4,
-1,11111111111111,1111111111111111,11111111111,2,General Book
+email,title,author,ISBN,edition,booktype
+"",Title,Author,1234567890,1,TextBook
+"",Title,Author,1234567891,1,TextBook
+1,Title,Author,1234567892,1,TextBook
+1,Title,Author,1234567893,1,General Book
