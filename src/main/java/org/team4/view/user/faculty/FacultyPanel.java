@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import org.team4.maintaindb.MaintainBooks;
 import org.team4.maintaindb.MaintainCourse;
 import org.team4.maintaindb.MaintainDatabase;
+import org.team4.maintaindb.MaintainNotifications;
 import org.team4.model.course.Course;
 import org.team4.model.items.Book;
 import org.team4.model.items.Item;
@@ -23,7 +24,9 @@ public class FacultyPanel extends JPanel {
 	private static JTable table;
 	private MaintainCourse courseMaintainer = MaintainDatabase.getInstance().getCourseDatabase();
 	private MaintainBooks bookMaintainer = MaintainDatabase.getInstance().getBookDatabase();
+	private MaintainNotifications notificationMaintainer = MaintainDatabase.getInstance().getNotificationDatabase();
 	private ArrayList<Course> courses;
+	private User currentUser;
 
 	/**
 	 * Create the panel.
@@ -34,6 +37,7 @@ public class FacultyPanel extends JPanel {
 	}
 
 	public FacultyPanel(User faculty) {
+		currentUser = faculty;
 		setLayout(new BorderLayout());
 		courses = courseMaintainer.findCourseByProfessor(faculty.getEmail());
 		CourseTableModel model = new CourseTableModel(courses);
@@ -89,7 +93,7 @@ public class FacultyPanel extends JPanel {
 					}
 				}
 			}
-			// Create Notification if newer books were found
+			// Create Notification if books were found that aren't available
 			if (!unavailableBooks.isEmpty()) {
 				for (Item b : unavailableBooks) {
 					notifications.append(b.getTitle() + " is currently unavailable!\n");
@@ -101,6 +105,27 @@ public class FacultyPanel extends JPanel {
 				if (response == 0) {
 					//TODO Notify Management
 					System.out.println("Yes");
+					StringBuilder str = new StringBuilder();
+					str.append("The textbook ");
+					for (Item b : unavailableBooks) {
+						//append book title
+						str.append("\"");
+						str.append(b.getTitle());
+						str.append("\", ");
+					}
+					str.delete(str.length()-2, str.length());
+					str.append(" is not available.");
+					str.append("@@@@").append(currentUser.getEmail());
+					notificationMaintainer.getNotifications().add(str.toString());
+					System.out.println(str.toString());
+					try {
+						notificationMaintainer.update();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						System.out.println("Failed to update notification database when faculty requested to notify management");
+					}
+					
 				} else {
 					System.out.println("No");
 				}
