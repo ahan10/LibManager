@@ -1,5 +1,6 @@
 package org.team4.view.user.student;
 
+import java.util.Date;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +25,11 @@ public class TextbookTableModel extends DefaultTableModel {
     	courses = new ArrayList<Course>();
     	
     	for (String str: courseNames) {
-    		courses.add(courseMaintainer.findCourse(str));
+    		Course c = courseMaintainer.findCourse(str);
+    		if (c.getEndDate().before(new Date())) {
+    			continue;
+    		}
+    		courses.add(c);
     	}
 
     	for(String columnName: columnNames) {
