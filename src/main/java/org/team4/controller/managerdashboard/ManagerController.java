@@ -23,6 +23,7 @@ public class ManagerController implements ActionListener {
         managerDashboard.getAddItemButton().addActionListener(this);
         managerDashboard.getManageItemButton().addActionListener(this);
         managerDashboard.getValidateUserButton().addActionListener(this);
+        managerDashboard.getNotificationButton().addActionListener(this);
         managerDashboard.getValidateUserPanel().getUpdateButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,6 +42,8 @@ public class ManagerController implements ActionListener {
             managerDashboard.showAddItemPanel();
         } else if (e.getSource() == managerDashboard.getManageItemButton()) {
             managerDashboard.showManageItemPanel();
+        } else if (e.getSource() == managerDashboard.getNotificationButton()) {
+            managerDashboard.showNotificationPanel();
         } else if (e.getSource() == managerDashboard.getLogOutButton()) {
             managerDashboard.dispose();
             LoginPage frame = new LoginPage();

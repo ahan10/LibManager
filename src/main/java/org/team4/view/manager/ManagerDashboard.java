@@ -6,6 +6,7 @@ import org.team4.controller.managerdashboard.ManagerController;
 import org.team4.model.user.User;
 import org.team4.view.manager.add.AddItemPanel;
 import org.team4.view.manager.manage.ManageItemPanel;
+import org.team4.view.manager.notifications.NotificationPanel;
 import org.team4.view.manager.validate.ValidateUserPanel;
 
 import java.awt.CardLayout;
@@ -32,6 +33,7 @@ public class ManagerDashboard extends JFrame{
 	private final String VALIDATE_PANEL = "Validate User Panel";
 	private final String ADD_PANEL = "Add Item Panel";
 	private final String MANAGE_PANEL = "Manage ItemPanel";
+	private final String NOTIFICATION_PANEL = "Notification Panel";
 	
 	private ValidateUserPanel validateUserPanel = new ValidateUserPanel();
 
@@ -41,7 +43,10 @@ public class ManagerDashboard extends JFrame{
 	private AddItemPanel addItemPanel = new AddItemPanel();
 	private AddItemController addItemController = new AddItemController(addItemPanel);
 	
+	private NotificationPanel notificationPanel = new NotificationPanel();
+	
 	private User manager;
+	private JButton NotificationButton;
 	
 	/**
 	 * Launch the application.
@@ -115,6 +120,10 @@ public class ManagerDashboard extends JFrame{
 		ValidateUserButton.setBounds(6, 6, 117, 29);
 		contentPane.add(ValidateUserButton);
 		
+		NotificationButton = new JButton("Notifications");
+		NotificationButton.setBounds(393, 6, 117, 29);
+		contentPane.add(NotificationButton);
+		
 		JLabel nameLabel = new JLabel(this.manager.getName());
 		nameLabel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		nameLabel.setBounds(677, 11, 211, 16);
@@ -132,6 +141,7 @@ public class ManagerDashboard extends JFrame{
 		activityPanel.add(validateUserPanel, VALIDATE_PANEL);
 		activityPanel.add(addItemPanel, ADD_PANEL);
 		activityPanel.add(manageItemPanel, MANAGE_PANEL);
+		activityPanel.add(notificationPanel, NOTIFICATION_PANEL);
 		
 		cardLayout.show(activityPanel, VALIDATE_PANEL);
 	}
@@ -150,9 +160,16 @@ public class ManagerDashboard extends JFrame{
 	public JButton getValidateUserButton() {
 		return ValidateUserButton;
 	}
+	
+	public JButton getNotificationButton() {
+		return NotificationButton;
+	}
+	
 	public ValidateUserPanel getValidateUserPanel() { return validateUserPanel; }
 
 	public ManageItemPanel getManageItemPanel() { return manageItemPanel; }
+	
+	public NotificationPanel getNotificationPanel() { return notificationPanel; }
 
 	public void showValidateUserPanel() {
 		cardLayout.show(activityPanel, VALIDATE_PANEL);
@@ -164,5 +181,9 @@ public class ManagerDashboard extends JFrame{
 
 	public void showManageItemPanel() {
 		cardLayout.show(activityPanel, MANAGE_PANEL);
+	}
+	
+	public void showNotificationPanel() {
+		cardLayout.show(activityPanel, NOTIFICATION_PANEL);
 	}
 }
