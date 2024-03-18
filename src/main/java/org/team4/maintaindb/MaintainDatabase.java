@@ -13,6 +13,7 @@ public class MaintainDatabase {
 	private static MaintainPurchase purchaseMaintainer;
 	private static MaintainSubscriptions subscriptionMaintainer;
 	private static MaintainNotifications notificationMaintainer;
+	private static MaintainRequests requestMaintainer;
 	
 	private MaintainDatabase() {
 		userMaintainer = MaintainUser.getInstance();
@@ -25,6 +26,7 @@ public class MaintainDatabase {
 		purchaseMaintainer = MaintainPurchase.getInstance();
 		subscriptionMaintainer = MaintainSubscriptions.getInstance();
 		notificationMaintainer = MaintainNotifications.getInstance();
+		requestMaintainer = MaintainRequests.getInstance();
 	}
 	
 	public static MaintainDatabase getInstance() {
@@ -130,6 +132,14 @@ public class MaintainDatabase {
 	}
 	
 	/**
+	 * Used to get an instance of the request database
+	 * @return
+	 */
+	public MaintainRequests getRequestDatabase() {
+		return MaintainRequests.getInstance();
+	}
+	
+	/**
 	 * Update all databases
 	 * @throws Exception
 	 */
@@ -144,6 +154,7 @@ public class MaintainDatabase {
 		purchaseMaintainer.update();
 		subscriptionMaintainer.update();
 		notificationMaintainer.update();
+		requestMaintainer.update();
 	}
 
 }
