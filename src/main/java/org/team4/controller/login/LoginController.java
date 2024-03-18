@@ -2,9 +2,6 @@ package org.team4.controller.login;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.swing.JOptionPane;
 
 import org.team4.controller.managerdashboard.ManagerController;
@@ -12,6 +9,7 @@ import org.team4.controller.userdashboard.UserController;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.maintaindb.MaintainUser;
 import org.team4.model.user.User;
+import org.team4.utils.EmailValidator;
 import org.team4.view.login.LoginPage;
 import org.team4.view.manager.ManagerDashboard;
 import org.team4.view.user.UserDashboard;
@@ -56,14 +54,6 @@ public class LoginController implements ActionListener {
 		return upperCaseFlag & lowerCaseFlag & numberFlag & symbolFlag;
 	}
 	
-	private boolean checkEmailValid(String email) {
-		Pattern regexPatternForEmail = Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" 
-		        + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
-		Matcher match = regexPatternForEmail.matcher(email);
-		
-		return match.matches();
-	}
-
 	private void addListeners() {
 		loginPage.getLoginButton().addActionListener(this);
 		loginPage.getRegisterButton().addActionListener(this);
@@ -133,7 +123,7 @@ public class LoginController implements ActionListener {
 				JOptionPane.showMessageDialog(loginPage,
 						"Registration Failed!\nPlease ensure all fields are filled in properly");
 			} 
-			else if (!checkEmailValid(loginPage.getRegisterEmailInput())){
+			else if (!EmailValidator.validEmail(loginPage.getRegisterEmailInput())){
 				System.out.println(loginPage.getRegisterEmailInput() + " does not follow the format xxxx@yyyy.com");
 				JOptionPane.showMessageDialog(loginPage, "Registration Failed!\nPlease enter a valid email address!");
 			}
