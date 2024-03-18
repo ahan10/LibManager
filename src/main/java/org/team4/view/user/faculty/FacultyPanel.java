@@ -126,6 +126,8 @@ public class FacultyPanel extends JPanel {
 						System.out.println("Failed to update notification database when faculty requested to notify management");
 					}
 					
+					JOptionPane.showMessageDialog(this, "Someone from the library management team will contact you as soon as possible");
+					
 				} else {
 					System.out.println("No");
 				}
