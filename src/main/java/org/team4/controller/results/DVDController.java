@@ -38,33 +38,19 @@ public class DVDController implements ActionListener {
     }
 
     private void rentSelectedItem() {
-        Item itemToRent = null;
-        String itemTitle = "";
-
-        int selectedRow = DVDResultsPanel.getTable().getSelectedRow();
-        if (selectedRow >= 0) {
-            String isbn = DVDResultsPanel.getTable().getValueAt(selectedRow, 4).toString();
-            itemToRent = MaintainDatabase.getInstance().getDVDDatabase().searchExactDVDByISBN(isbn);
-            itemTitle = "DVD";
-        }
-
+        Item itemToRent = MaintainDatabase.getInstance().getDVDDatabase().searchExactDVDByISBN(this.dvdItemPanel.getDvd().getISBN());
 
         // to rent the selected item by the user
-        if (itemToRent != null) {
-            try {
-                if (rent.canRentItem(user, itemToRent)) {
-                    if (rent.rentItem(user, itemToRent)) {
-                        JOptionPane.showMessageDialog(null, itemToRent.getTitle() + " rented successfully!");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Failed to rent " + itemTitle + ". Please try again.");
-                    }
+        try {
+            if (rent.canRentItem(user, itemToRent)) {
+                if (rent.rentItem(user, itemToRent)) {
+                    JOptionPane.showMessageDialog(null, itemToRent.getTitle() + " rented successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to rent DVD. Please try again.");
                 }
-            } catch (Exception ex) {
-
-                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select a " + itemTitle + " to rent.");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
 

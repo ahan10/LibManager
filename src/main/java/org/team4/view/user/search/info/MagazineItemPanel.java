@@ -128,4 +128,8 @@ public class MagazineItemPanel extends JPanel {
 	public JButton getBtnRent() {
 		return btnRent;
 	}
+
+	public Magazine getMagazine() {
+		return magazine;
+	}
 }

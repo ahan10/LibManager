@@ -39,31 +39,18 @@ public class BookController implements ActionListener {
     }
 
     private void rentSelectedItem() {
-        Item itemToRent = null;
-        String itemTitle = "";
+        Item itemToRent = MaintainDatabase.getInstance().getBookDatabase().searchExactBookByISBN(this.bookItem.getBook().getISBN());
 
-        int selectedRow = BookResultsPanel.getTable().getSelectedRow();
-        if (selectedRow >= 0) {
-            String isbn = BookResultsPanel.getTable().getValueAt(selectedRow, 5).toString();
-            itemToRent = MaintainDatabase.getInstance().getBookDatabase().searchExactBookByISBN(isbn);
-            itemTitle = "book";
-        }
-        // to rent the selected item by the user
-        if (itemToRent != null) {
-            try {
-                if (rent.canRentItem(user, itemToRent)) {
-                    if (rent.rentItem(user, itemToRent)) {
-                        JOptionPane.showMessageDialog(null, itemToRent.getTitle() + " rented successfully!");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Failed to rent " + itemTitle + ". Please try again.");
-                    }
+        try {
+            if (rent.canRentItem(user, itemToRent)) {
+                if (rent.rentItem(user, itemToRent)) {
+                    JOptionPane.showMessageDialog(null, itemToRent.getTitle() + " rented successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to rent book. Please try again.");
                 }
-            } catch (Exception ex) {
-
-                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select a " + itemTitle + " to rent.");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
 
