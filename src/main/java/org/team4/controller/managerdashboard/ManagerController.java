@@ -24,13 +24,8 @@ public class ManagerController implements ActionListener {
         managerDashboard.getManageItemButton().addActionListener(this);
         managerDashboard.getValidateUserButton().addActionListener(this);
         managerDashboard.getNotificationButton().addActionListener(this);
-        managerDashboard.getValidateUserPanel().getUpdateButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                managerDashboard.getValidateUserPanel().updateSelectedUsers();
-                JOptionPane.showMessageDialog(null, "Data Updated.");
-            }
-        });
+        managerDashboard.getRequestsButton().addActionListener(this);
+        managerDashboard.getValidateUserPanel().getUpdateButton().addActionListener(this);
         
     }
 
@@ -44,7 +39,12 @@ public class ManagerController implements ActionListener {
             managerDashboard.showManageItemPanel();
         } else if (e.getSource() == managerDashboard.getNotificationButton()) {
             managerDashboard.showNotificationPanel();
-        } else if (e.getSource() == managerDashboard.getLogOutButton()) {
+        } else if (e.getSource() == managerDashboard.getRequestsButton()) {
+			managerDashboard.showRequestsPanel();
+		} else if (e.getSource() == managerDashboard.getValidateUserPanel().getUpdateButton()) {
+			managerDashboard.getValidateUserPanel().updateSelectedUsers();
+            JOptionPane.showMessageDialog(null, "Data Updated.");
+		} else if (e.getSource() == managerDashboard.getLogOutButton()) {
             managerDashboard.dispose();
             LoginPage frame = new LoginPage();
         	@SuppressWarnings("unused") LoginController controller = new LoginController(frame);
