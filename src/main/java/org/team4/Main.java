@@ -1,8 +1,6 @@
 package org.team4;
 
 import org.team4.controller.login.LoginController;
-import org.team4.maintaindb.MaintainDatabase;
-import org.team4.maintaindb.MaintainUser;
 import org.team4.view.login.LoginPage;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or

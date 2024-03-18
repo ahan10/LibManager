@@ -9,11 +9,8 @@ import javax.swing.JTable;
 
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.maintaindb.MaintainStudent;
-import org.team4.model.course.Course;
 import org.team4.model.user.Student;
 import org.team4.model.user.User;
-
-import javax.swing.JLabel;
 
 public class StudentPanel extends JPanel {
 

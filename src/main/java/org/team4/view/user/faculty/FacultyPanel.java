@@ -3,7 +3,6 @@ package org.team4.view.user.faculty;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.ArrayList;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -126,7 +125,7 @@ public class FacultyPanel extends JPanel {
 						System.out.println("Failed to update notification database when faculty requested to notify management");
 					}
 					
-					JOptionPane.showMessageDialog(this, "Someone from the library management team will contact you as soon as possible");
+					JOptionPane.showMessageDialog(this, "Library management team notified!");
 					
 				} else {
 					System.out.println("No");
