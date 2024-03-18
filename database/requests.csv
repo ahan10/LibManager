@@ -1,5 +1,5 @@
 email,title,author,ISBN,edition,booktype
-"",Title,Author,1234567890,1,TextBook
-"",Title,Author,1234567891,1,TextBook
+1,Title,Author,1234567890,1,TextBook
+1,Title,Author,1234567891,1,TextBook
 1,Title,Author,1234567892,1,TextBook
 1,Title,Author,1234567893,1,General Book
