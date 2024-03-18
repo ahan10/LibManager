@@ -57,6 +57,7 @@ public class MaintainRequests {
 
 		while (reader.readRecord()) {
 			BookRequest newRequest =  new BookRequestBuilder()
+					.email(reader.get("email"))
 					.title(reader.get("title"))	
 					.author(reader.get("author"))
 					.ISBN(reader.get("ISBN"))
@@ -147,6 +148,14 @@ public class MaintainRequests {
 				System.out.println("Couldn't add request: " + request);
 			}
 		}
+	}
 
-	}	 
+	public ArrayList<BookRequest> getHighPriorityRequests() {
+		return highPriorityRequests;
+	}
+
+	public ArrayList<BookRequest> getLowPriorityRequests() {
+		return lowPriorityRequests;
+	}
+	
 }
