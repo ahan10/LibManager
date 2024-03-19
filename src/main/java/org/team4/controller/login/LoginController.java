@@ -169,6 +169,7 @@ public class LoginController implements ActionListener {
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
+							System.out.println("Failed to update");
 						}
 					} else {
 						System.out.println("Password Weak");
