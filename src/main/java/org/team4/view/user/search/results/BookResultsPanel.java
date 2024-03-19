@@ -8,6 +8,7 @@ import java.awt.Panel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 import org.team4.controller.results.BookController;
@@ -127,6 +128,14 @@ public class BookResultsPanel extends JPanel {
 					recomResults = recomResults.stream()
 							.filter(element -> element != book)
 							.collect(Collectors.toCollection(ArrayList::new));
+					
+					 HashSet<Book> setWithoutDuplicates = new HashSet<>(recomResults);
+
+				     // Clear the original list
+					 recomResults.clear();
+
+				     // Add elements from the HashSet back to the ArrayList
+					 recomResults.addAll(setWithoutDuplicates);
 					BookTableModel model = new BookTableModel(recomResults);
 					recomTable.setModel(model);
 					recomTable.updateUI();
