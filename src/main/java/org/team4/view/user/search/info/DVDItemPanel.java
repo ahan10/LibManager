@@ -130,10 +130,9 @@ public class DVDItemPanel extends JPanel {
 		lblPriceValue.setText("$" + dvd.getPrice() + "");
 		lblQuantityValue.setText(dvd.getQuantity() + "");
 
-		Random rand = new Random();
-		int randomNumber = rand.nextInt(5) + 1;
+		int randomNumber = new Random().nextInt(5) + 1;
 
-		String locationString = dvd.getGenre() + " " + randomNumber;
+		String locationString = dvd.getGenre() + " Section " + randomNumber;
 
 		lblLocationValue.setText(locationString);
 	}

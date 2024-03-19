@@ -142,11 +142,10 @@ public class BookItemPanel extends JPanel {
 		lblYearPublishedValue.setText(book.getYearPublished() + "");
 		lblPriceValue.setText("$" + book.getPrice() + "");
 		lblQuantityValue.setText(book.getQuantity() + "");
+
+		int randomNumber = new Random().nextInt(5) + 1;
 		
-		Random rand = new Random();
-		int randomNumber = rand.nextInt(5) + 1;
-		
-		String locationString = book.getGenre() + " " + randomNumber;
+		String locationString = book.getGenre() + " Section " + randomNumber;
 		
 		lblLocationValue.setText(locationString);
 

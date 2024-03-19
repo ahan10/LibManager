@@ -118,10 +118,9 @@ public class MagazineItemPanel extends JPanel {
 		lblIssueNumberValue.setText(magazine.getIssueNumber() + "");
 		lblQuantityValue.setText(magazine.getQuantity() + "");
 
-		Random rand = new Random();
-		int randomNumber = rand.nextInt(5) + 1;
+		int randomNumber = new Random().nextInt(5) + 1;
 
-		String locationString = "Magazine " + randomNumber;
+		String locationString = "Magazine Section" + randomNumber;
 
 		lblLocationValue.setText(locationString);
 	}
