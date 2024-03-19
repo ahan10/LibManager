@@ -109,8 +109,8 @@ public class BookResultsPanel extends JPanel {
 					Book book = MaintainBooks.getInstance().searchExactBookByISBN(table.getValueAt(row, 5).toString());
 
 					//Recommendation Results
-					Strategy resultStrategy = new CompareRecommendationStrategy();
-					ArrayList<Book> recomResults = resultStrategy.getRecommendation(book.getTitle());
+					Strategy resultStrategy = new CompareYearRecommendationStrategy();
+					ArrayList<Book> recomResults = resultStrategy.getRecommendation(book.getYearPublished()+"");
 					recomResults = recomResults.stream()
 							.filter(element -> element != book)
 							.collect(Collectors.toCollection(ArrayList::new));
