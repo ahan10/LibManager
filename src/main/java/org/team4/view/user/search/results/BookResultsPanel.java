@@ -121,6 +121,10 @@ public class BookResultsPanel extends JPanel {
 						if(recomResults.size() < 5) {
 							recomResults.addAll(new PublisherRecommendationStrategy().getRecommendation(book.getPublisher()));
 						}
+						
+						if(recomResults.size() < 5) {
+							recomResults.addAll(new AuthorRecommendationStrategy().getRecommendation(book.getAuthor()));
+						}
 					}
 
 
