@@ -164,6 +164,12 @@ public class LoginController implements ActionListener {
 						} else {
 							JOptionPane.showMessageDialog(loginPage, "Account Registered!");
 						}
+						try {
+							maintainUser.update();
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					} else {
 						System.out.println("Password Weak");
 						JOptionPane.showMessageDialog(loginPage,
