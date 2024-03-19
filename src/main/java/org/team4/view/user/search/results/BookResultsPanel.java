@@ -131,30 +131,26 @@ public class BookResultsPanel extends JPanel {
 					BookTableModel model = new BookTableModel(recomResults);
 					recomTable.setModel(model);
 					recomTable.updateUI();
+				}
+			});
 
-					recomTable.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							if(e.getClickCount() == 2) {
-								int row = recomTable.rowAtPoint(e.getPoint());
-								int col = recomTable.columnAtPoint(e.getPoint());
-								if (col == 0) {
-									Book book = MaintainBooks.getInstance().searchExactBookByISBN(recomTable.getValueAt(row, 5).toString());
-									JFrame itemInfoFrame = new JFrame(book.getTitle());
-									BookItemPanel bookPanel = new BookItemPanel(itemInfoFrame, book);
-									new BookController(bookPanel, user);
-									bookPanel.showItemInfo();
-									itemInfoFrame.setContentPane(new JScrollPane(bookPanel));
-									itemInfoFrame.setSize(300, 300);
-									itemInfoFrame.setVisible(true);
-								}
-							}
+			recomTable.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(e.getClickCount() == 2) {
+						int row = recomTable.rowAtPoint(e.getPoint());
+						int col = recomTable.columnAtPoint(e.getPoint());
+						if (col == 0) {
+							Book book = MaintainBooks.getInstance().searchExactBookByISBN(recomTable.getValueAt(row, 5).toString());
+							JFrame itemInfoFrame = new JFrame(book.getTitle());
+							BookItemPanel bookPanel = new BookItemPanel(itemInfoFrame, book);
+							new BookController(bookPanel, user);
+							bookPanel.showItemInfo();
+							itemInfoFrame.setContentPane(new JScrollPane(bookPanel));
+							itemInfoFrame.setSize(300, 300);
+							itemInfoFrame.setVisible(true);
 						}
-					});
-
-
-
-
+					}
 				}
 			});
 
