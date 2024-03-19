@@ -107,28 +107,23 @@ public class BookResultsPanel extends JPanel {
 					int row = table.rowAtPoint(e.getPoint());
 
 					Book book = MaintainBooks.getInstance().searchExactBookByISBN(table.getValueAt(row, 5).toString());
-
-					//Recommendation Results
-					Strategy resultStrategy = new CompareYearRecommendationStrategy();
-					ArrayList<Book> recomResults = resultStrategy.getRecommendation(book.getYearPublished()+"");
-					recomResults = recomResults.stream()
-							.filter(element -> element != book)
-							.collect(Collectors.toCollection(ArrayList::new));
-
-					if(recomResults.size() < 5) {
+					label.setText("Recommendations based on: " + book.getTitle());
+					ArrayList<Book> recomResults = new AuthorRecommendationStrategy().getRecommendation(book.getAuthor());
+					
+					if(recomResults.size() < 10) {
 						recomResults.addAll(new GenreRecommendationStrategy().getRecommendation(book.getGenre()));
 
-						if(recomResults.size() < 5) {
+						if(recomResults.size() < 10) {
 							recomResults.addAll(new PublisherRecommendationStrategy().getRecommendation(book.getPublisher()));
 						}
 						
-						if(recomResults.size() < 5) {
-							recomResults.addAll(new AuthorRecommendationStrategy().getRecommendation(book.getAuthor()));
+						if(recomResults.size() < 10) {
+							recomResults.addAll(new CompareYearRecommendationStrategy().getRecommendation(book.getYearPublished()+""));
+							
 						}
 					}
 
 
-					label.setText("Recommendations based on: " + book.getTitle());
 					recomResults = recomResults.stream()
 							.filter(element -> element != book)
 							.collect(Collectors.toCollection(ArrayList::new));

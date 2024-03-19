@@ -15,7 +15,7 @@ public class CompareYearRecommendationStrategy extends Strategy {
 		for (Item item: books) {
 			if (searchedBooks.size() < 3) {
 				Book book = (Book)item;
-				if(book.getYearPublished() == Integer.parseInt(year)) {
+				if(Math.abs(book.getYearPublished() - Integer.parseInt(year)) <= 3) {
 					searchedBooks.add(book);
 				}
 			}

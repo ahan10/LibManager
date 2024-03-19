@@ -15,7 +15,7 @@ public class PublisherRecommendationStrategy extends Strategy {
 		for (Item item: books) {
 			if (searchedBooks.size() < 3) {
 				Book book = (Book)item;
-				if(book.getGenre().equals(publisher)) {
+				if(book.getPublisher().equals(publisher)) {
 					searchedBooks.add(book);
 				}
 			}
