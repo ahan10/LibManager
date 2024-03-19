@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import org.team4.model.items.Book;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.swing.JButton;
@@ -25,6 +27,7 @@ public class BookItemPanel extends JPanel {
 	private JLabel lblLocationValue = new JLabel();
 
 	private JButton btnBuy, btnRent;
+	private static final Map<String, String> locationMap = new HashMap<>();
 
 
 	public BookItemPanel(JFrame window, Book book) {
@@ -80,6 +83,10 @@ public class BookItemPanel extends JPanel {
 		add(lblPrice);
 		add(lblQuantity);
 		add(lblLocation);
+
+		if (!locationMap.containsKey(book.getISBN())) {
+			locationMap.put(book.getISBN(), generateLocation(book.getGenre()));
+		}
 		
 		lblTitleValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblTitleValue.setBounds(100, 20, 200, 13);
@@ -130,7 +137,10 @@ public class BookItemPanel extends JPanel {
 		btnRent.setEnabled(this.book.isRentable());
 		btnBuy.setEnabled(this.book.isPurchasable());
 	}
-	
+	private String generateLocation(String genre) {
+		int section = new Random().nextInt(5) + 1;
+		return genre + " Section " + section;
+	}
 	
 	public void showItemInfo() {
 		lblTitleValue.setText(book.getTitle());
@@ -143,11 +153,8 @@ public class BookItemPanel extends JPanel {
 		lblPriceValue.setText("$" + book.getPrice() + "");
 		lblQuantityValue.setText(book.getQuantity() + "");
 
-		int randomNumber = new Random().nextInt(5) + 1;
-		
-		String locationString = book.getGenre() + " Section " + randomNumber;
-		
-		lblLocationValue.setText(locationString);
+		String location = locationMap.get(book.getISBN());
+		lblLocationValue.setText(location);
 
 	}
 
