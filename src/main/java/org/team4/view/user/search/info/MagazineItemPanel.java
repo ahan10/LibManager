@@ -7,6 +7,7 @@ import org.team4.model.user.User;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.Random;
 import javax.swing.JButton;
 
 public class MagazineItemPanel extends JPanel {
@@ -21,6 +22,7 @@ public class MagazineItemPanel extends JPanel {
 	private JLabel lblPublisherValue = new JLabel();
 	private JLabel lblIssueNumberValue = new JLabel();
 	private JLabel lblQuantityValue = new JLabel();
+	private JLabel lblLocationValue = new JLabel();
 	private JButton btnRent;
 	private User user;
 
@@ -43,27 +45,30 @@ public class MagazineItemPanel extends JPanel {
 		JLabel lblYearPublished = new JLabel("Published:");
 		lblYearPublished.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblYearPublished.setBounds(20, 60, 100, 13);
-		
 
 		JLabel lblPublisher = new JLabel("Publisher:");
 		lblPublisher.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblPublisher.setBounds(20, 100, 100, 13);
+		lblPublisher.setBounds(20, 80, 100, 13);
 		
 		JLabel lblIssueNumber = new JLabel("Issue Number: ");
 		lblIssueNumber.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblIssueNumber.setBounds(20, 120, 100, 13);
+		lblIssueNumber.setBounds(20, 100, 100, 13);
 		
 		JLabel lblQuantity = new JLabel("Quantity:");
 		lblQuantity.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblQuantity.setBounds(20, 140, 70, 13);
+		lblQuantity.setBounds(20, 120, 70, 13);
+
+		JLabel lblLocation = new JLabel("Location:");
+		lblLocation.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lblLocation.setBounds(20, 140, 70, 13);
 		
 		add(lblTitle);
 		add(lblISBN);
 		add(lblYearPublished);
-		
 		add(lblPublisher);
 		add(lblIssueNumber);
 		add(lblQuantity);
+		add(lblLocation);
 
 		lblTitleValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblTitleValue.setBounds(100, 20, 200, 13);
@@ -75,21 +80,24 @@ public class MagazineItemPanel extends JPanel {
 		lblYearPublishedValue.setBounds(100, 60, 200, 13);
 		
 		lblPublisherValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblPublisherValue.setBounds(100, 100, 200, 13);
+		lblPublisherValue.setBounds(100, 80, 200, 13);
 		
 		lblIssueNumberValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblIssueNumberValue.setBounds(100, 120, 200, 13);
+		lblIssueNumberValue.setBounds(100, 100, 200, 13);
 		
 		lblQuantityValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblQuantityValue.setBounds(100, 140, 200, 13);
+		lblQuantityValue.setBounds(100, 120, 200, 13);
+
+		lblLocationValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblLocationValue.setBounds(100, 140, 200, 13);
 
 		add(lblTitleValue);
 		add(lblISBNValue);
 		add(lblYearPublishedValue);
-		
 		add(lblPublisherValue);
 		add(lblIssueNumberValue);
 		add(lblQuantityValue);
+		add(lblLocationValue);
 		
 		btnRent = new JButton("Rent");
 		btnRent.setBounds(90, 180, 85, 21);
@@ -109,13 +117,19 @@ public class MagazineItemPanel extends JPanel {
 		lblPublisherValue.setText(magazine.getPublisher());
 		lblIssueNumberValue.setText(magazine.getIssueNumber() + "");
 		lblQuantityValue.setText(magazine.getQuantity() + "");
+
+		Random rand = new Random();
+		int randomNumber = rand.nextInt(5) + 1;
+
+		String locationString = "Magazine " + randomNumber;
+
+		lblLocationValue.setText(locationString);
 	}
 
 
 	public void setWindow(JFrame window) {
 		this.window = window;
 	}
-
 
 	public void setMagazine(Magazine magazine) {
 		this.magazine = magazine;
