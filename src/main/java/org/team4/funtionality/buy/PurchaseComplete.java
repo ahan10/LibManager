@@ -35,7 +35,7 @@ public class PurchaseComplete implements PaymentModes {
     }
 
     public PurchaseComplete(ItemToPurchase itemToPurchase, PaymentValidator modes){
-        this.purchaseID = new Random().nextLong();
+        this.purchaseID = new Random().nextLong(10000000) + 1;
         this.purchaseDate = new Date();
         this.user = itemToPurchase.getUser();
         this.modeOfPayment = modes.getMode();
