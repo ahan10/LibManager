@@ -120,7 +120,7 @@ public class MagazineItemPanel extends JPanel {
 
 		int randomNumber = new Random().nextInt(5) + 1;
 
-		String locationString = "Magazine Section" + randomNumber;
+		String locationString = "Magazine Section " + randomNumber;
 
 		lblLocationValue.setText(locationString);
 	}

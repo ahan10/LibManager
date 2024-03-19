@@ -82,7 +82,7 @@ public class DVDItemPanel extends JPanel {
 		lblISBNValue.setBounds(100, 60, 200, 13);
 
 		lblYearPublishedValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblYearPublishedValue.setBounds(80, 100, 200, 13);
+		lblYearPublishedValue.setBounds(100, 80, 180, 13);
 		
 		lblDurationValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblDurationValue.setBounds(100, 100, 200, 13);
