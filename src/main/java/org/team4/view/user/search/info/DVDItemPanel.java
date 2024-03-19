@@ -7,6 +7,8 @@ import org.team4.model.user.User;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import javax.swing.JButton;
 
@@ -23,6 +25,7 @@ public class DVDItemPanel extends JPanel {
 	private JLabel lblPriceValue = new JLabel();
 	private JLabel lblLocationValue = new JLabel();
 	private JButton btnBuy, btnRent;
+	private static final Map<String, String> DVDlocationMap = new HashMap<>();
 
 
 	public DVDItemPanel(JFrame window, DVD dvd, User user) {
@@ -71,6 +74,9 @@ public class DVDItemPanel extends JPanel {
 		add(lblPrice);
 		add(lblQuantity);
 		add(lblLocation);
+		if (!DVDlocationMap.containsKey(dvd.getISBN())) {
+			DVDlocationMap.put(dvd.getISBN(), generateLocation(dvd.getGenre()));
+		}
 
 		lblTitleValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblTitleValue.setBounds(100, 20, 200, 13);
@@ -118,7 +124,10 @@ public class DVDItemPanel extends JPanel {
 		btnBuy.setEnabled(this.dvd.isPurchasable());
 
 	}
-	
+	private String generateLocation(String genre) {
+		int section = new Random().nextInt(5) + 1;
+		return genre + " Section " + section;
+	}
 	
 	public void showItemInfo() {
 		lblTitleValue.setText(dvd.getTitle());
@@ -130,11 +139,8 @@ public class DVDItemPanel extends JPanel {
 		lblPriceValue.setText("$" + dvd.getPrice() + "");
 		lblQuantityValue.setText(dvd.getQuantity() + "");
 
-		int randomNumber = new Random().nextInt(5) + 1;
-
-		String locationString = dvd.getGenre() + " Section " + randomNumber;
-
-		lblLocationValue.setText(locationString);
+		String location = DVDlocationMap.get(dvd.getISBN());
+		lblLocationValue.setText(location);
 	}
 
 

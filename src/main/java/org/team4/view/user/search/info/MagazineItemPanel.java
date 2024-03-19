@@ -7,6 +7,8 @@ import org.team4.model.user.User;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import javax.swing.JButton;
 
@@ -25,6 +27,7 @@ public class MagazineItemPanel extends JPanel {
 	private JLabel lblLocationValue = new JLabel();
 	private JButton btnRent;
 	private User user;
+	private static final Map<String, String> magazineLocationMap = new HashMap<>();
 
 
 	public MagazineItemPanel(JFrame window, Magazine magazine, User user) {
@@ -70,6 +73,9 @@ public class MagazineItemPanel extends JPanel {
 		add(lblQuantity);
 		add(lblLocation);
 
+		if (!magazineLocationMap.containsKey(magazine.getISBN())) {
+			magazineLocationMap.put(magazine.getISBN(), generateLocation());
+		}
 		lblTitleValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblTitleValue.setBounds(100, 20, 200, 13);
 		
@@ -107,6 +113,10 @@ public class MagazineItemPanel extends JPanel {
 		add(btnRent);
 
 	}
+	private String generateLocation() {
+		int section = new Random().nextInt(5) + 1;
+		return "Magazine Section " + section;
+	}
 	
 	
 	public void showItemInfo() {
@@ -118,11 +128,8 @@ public class MagazineItemPanel extends JPanel {
 		lblIssueNumberValue.setText(magazine.getIssueNumber() + "");
 		lblQuantityValue.setText(magazine.getQuantity() + "");
 
-		int randomNumber = new Random().nextInt(5) + 1;
-
-		String locationString = "Magazine Section " + randomNumber;
-
-		lblLocationValue.setText(locationString);
+		String location = magazineLocationMap.get(magazine.getISBN());
+		lblLocationValue.setText(location);
 	}
 
 
