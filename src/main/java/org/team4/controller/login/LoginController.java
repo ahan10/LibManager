@@ -77,6 +77,16 @@ public class LoginController implements ActionListener {
 							case "STUDENT": // have one case for every user except manager
 							case "FACULTY":
 							case "NONFACULTY":
+								if(u.isValidated()){
+									System.out.println(u.toString() + " Logged in Successfully as "+ u.getType());
+									UserDashboard userDashboard = new UserDashboard(u);
+									@SuppressWarnings("unused") UserController userController = new UserController(userDashboard);
+									userDashboard.setVisible(true);
+									loginPage.dispose();
+								}else {
+									JOptionPane.showMessageDialog(null, "You are not validated by manager. \n Please wait to be validated.", "Login Failed!", JOptionPane.ERROR_MESSAGE);
+								}
+								break;
 							case "VISITOR":
 							System.out.println(u.toString() + " Logged in Successfully as "+ u.getType());
 							UserDashboard userDashboard = new UserDashboard(u);
