@@ -6,7 +6,6 @@ import org.team4.model.items.Item;
 import org.team4.model.user.User;
 import org.team4.view.purchase.Payment;
 import org.team4.view.user.search.info.BookItemPanel;
-import org.team4.view.user.search.results.BookResultsPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

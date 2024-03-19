@@ -74,7 +74,7 @@ public class MagazineResultsPanel extends JPanel {
 							System.out.println(magazine);
 
 							MagazineItemPanel magazinePanel = new MagazineItemPanel(itemInfoFrame, magazine, user);
-							MagazineController magazineController = new MagazineController(magazinePanel, user);
+							new MagazineController(magazinePanel, user);
 
 							magazinePanel.showItemInfo();
 							itemInfoFrame.setContentPane(new JScrollPane(magazinePanel));
@@ -97,7 +97,4 @@ public class MagazineResultsPanel extends JPanel {
 		return window;
 	}
 
-	public static JTable getTable() {
-		return table;
-	}
 }

@@ -130,18 +130,6 @@ public class MaintainBooks {
     	return this.books;
 
     }
-    public ArrayList<Book> searchBooks(String query) {
-        ArrayList<Item> books = getAllBooks();
-        ArrayList<Book> searchedBooks = new ArrayList<>();
-
-        for (Item item: books) {
-            if (item.getTitle().toLowerCase().contains(query.toLowerCase())) {
-                Book book = (Book)item;
-                searchedBooks.add(book);
-            }
-        }
-        return searchedBooks;
-    }
     
     public void decreaseNumberOfCopies(Item item) {
     	for (Item i: this.books) {

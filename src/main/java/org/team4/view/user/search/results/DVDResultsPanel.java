@@ -73,7 +73,7 @@ public class DVDResultsPanel extends JPanel {
 							JFrame itemInfoFrame = new JFrame(dvd.getTitle());
 
 							DVDItemPanel dvdPanel = new DVDItemPanel(itemInfoFrame, dvd, user);
-							DVDController dvdController = new DVDController(dvdPanel, user);
+							new DVDController(dvdPanel, user);
 
 							dvdPanel.showItemInfo();
 							itemInfoFrame.setContentPane(new JScrollPane(dvdPanel));
@@ -94,9 +94,5 @@ public class DVDResultsPanel extends JPanel {
 
 	public JFrame getWindow() {
 		return window;
-	}
-
-	public static JTable getTable() {
-		return table;
 	}
 }

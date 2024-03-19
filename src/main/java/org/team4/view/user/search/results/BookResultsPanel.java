@@ -8,10 +8,11 @@ import java.awt.Panel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.team4.controller.results.BookController;
+import org.team4.funtionality.recommendation.*;
 import org.team4.maintaindb.MaintainBooks;
-import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Book;
 import org.team4.model.user.User;
 import org.team4.view.user.search.info.BookItemPanel;
@@ -47,7 +48,8 @@ public class BookResultsPanel extends JPanel {
 
 
 	public void addSearchResults() {
-		ArrayList<Book> results = MaintainDatabase.getInstance().getBookDatabase().searchBooks(query);
+		Strategy resultStrategy = new TitleRecommendationStrategy();
+		ArrayList<Book> results = resultStrategy.getRecommendation(query);
 		BookTableModel model = new BookTableModel(results);
 
 		if(results.isEmpty()) {
@@ -57,9 +59,14 @@ public class BookResultsPanel extends JPanel {
 
 		}
 		else {
+
+			Panel resultsPanel = new Panel();
+			resultsPanel.setLayout(new BorderLayout());
+
+			//Search Results
 			table = new JTable(model);
 			table.setDefaultEditor(Object.class, null);
-			add(new Panel().add(new JScrollPane(table)));
+			resultsPanel.add(new JScrollPane(table), BorderLayout.NORTH);
 
 			table.addMouseListener(new MouseAdapter() {
 				@Override
@@ -71,7 +78,7 @@ public class BookResultsPanel extends JPanel {
 							Book book = MaintainBooks.getInstance().searchExactBookByISBN(table.getValueAt(row, 5).toString());
 							JFrame itemInfoFrame = new JFrame(book.getTitle());
 							BookItemPanel bookPanel = new BookItemPanel(itemInfoFrame, book);
-							BookController bookController = new BookController(bookPanel, user);
+							new BookController(bookPanel, user);
 							bookPanel.showItemInfo();
 							itemInfoFrame.setContentPane(new JScrollPane(bookPanel));
 							itemInfoFrame.setSize(300, 300);
@@ -81,18 +88,85 @@ public class BookResultsPanel extends JPanel {
 				}
 			});
 
+			JLabel label = new JLabel("Recommendations:");
+			label.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+			label.setBounds(324, 5, 239, 26);
+			resultsPanel.add(label, BorderLayout.CENTER);
+
+
+			model = new BookTableModel(new ArrayList<Book>());
+			//Recommendation Results
+			JTable recomTable = new JTable(model);
+			recomTable.setDefaultEditor(Object.class, null);
+			resultsPanel.add(new JScrollPane(recomTable), BorderLayout.SOUTH);
+
+
+			table.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					int row = table.rowAtPoint(e.getPoint());
+
+					Book book = MaintainBooks.getInstance().searchExactBookByISBN(table.getValueAt(row, 5).toString());
+
+					//Recommendation Results
+					Strategy resultStrategy = new CompareRecommendationStrategy();
+					ArrayList<Book> recomResults = resultStrategy.getRecommendation(book.getTitle());
+					recomResults = recomResults.stream()
+							.filter(element -> element != book)
+							.collect(Collectors.toCollection(ArrayList::new));
+
+					if(recomResults.size() < 5) {
+						recomResults.addAll(new GenreRecommendationStrategy().getRecommendation(book.getGenre()));
+
+						if(recomResults.size() < 5) {
+							recomResults.addAll(new PublisherRecommendationStrategy().getRecommendation(book.getPublisher()));
+						}
+					}
+
+
+					label.setText("Recommendations based on: " + book.getTitle());
+					recomResults = recomResults.stream()
+							.filter(element -> element != book)
+							.collect(Collectors.toCollection(ArrayList::new));
+					BookTableModel model = new BookTableModel(recomResults);
+					recomTable.setModel(model);
+					recomTable.updateUI();
+
+					recomTable.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							if(e.getClickCount() == 2) {
+								int row = recomTable.rowAtPoint(e.getPoint());
+								int col = recomTable.columnAtPoint(e.getPoint());
+								if (col == 0) {
+									Book book = MaintainBooks.getInstance().searchExactBookByISBN(recomTable.getValueAt(row, 5).toString());
+									JFrame itemInfoFrame = new JFrame(book.getTitle());
+									BookItemPanel bookPanel = new BookItemPanel(itemInfoFrame, book);
+									new BookController(bookPanel, user);
+									bookPanel.showItemInfo();
+									itemInfoFrame.setContentPane(new JScrollPane(bookPanel));
+									itemInfoFrame.setSize(300, 300);
+									itemInfoFrame.setVisible(true);
+								}
+							}
+						}
+					});
+
+
+
+
+				}
+			});
+
+
+
+			add(resultsPanel);
 
 			window.setContentPane(new JScrollPane(this));
-			window.setSize(1200, 500);
+			window.setSize(1200, 900);
 			window.setVisible(true);
 		}
 
 	}
 
-
-
-
-	public static JTable getTable() {
-		return table;
-	}
 }
