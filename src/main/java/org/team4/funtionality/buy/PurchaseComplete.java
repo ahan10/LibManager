@@ -18,22 +18,6 @@ public class PurchaseComplete implements PaymentModes {
     private Newsletter newsletter;
     private String modeOfPayment;
 
-    public PurchaseComplete(double amount, User user, Item item, String mode) {
-        this.purchaseID = new Random().nextLong();
-        this.purchaseDate = new Date();
-        this.amount = amount;
-        this.user = user;
-        this.item = item;
-    }
-
-    public PurchaseComplete(double amount, User user, Newsletter newsletter){
-        this.purchaseID = new Random().nextLong();
-        this.purchaseDate = new Date();
-        this.amount = amount;
-        this.user = user;
-        this.newsletter = newsletter;
-    }
-
     public PurchaseComplete(ItemToPurchase itemToPurchase, PaymentValidator modes){
         this.purchaseID = new Random().nextLong(10000000) + 1;
         this.purchaseDate = new Date();
@@ -47,28 +31,12 @@ public class PurchaseComplete implements PaymentModes {
         }
     }
 
-    public boolean processPayment(String mode){
-        return MODE.contains(mode);
-    }
-
-    public PurchaseComplete getPayment(){
-        return this;
-    }
-
-    public String getMode(){
-        return this.modeOfPayment;
-    }
-
     public long getPurchaseID() {
         return purchaseID;
     }
 
     public double getAmount() {
         return amount;
-    }
-
-    public String getModeOfPayment() {
-        return modeOfPayment;
     }
 
     public Item getItem() {
@@ -83,7 +51,4 @@ public class PurchaseComplete implements PaymentModes {
         return user;
     }
 
-	public Date getPurchaseDate() {
-		return purchaseDate;
-	}
 }
