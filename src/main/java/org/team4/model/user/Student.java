@@ -2,8 +2,6 @@ package org.team4.model.user;
 
 import java.util.ArrayList;
 
-import org.team4.model.course.Course;
-
 public class Student extends User{
     private ArrayList<String> courses;
 

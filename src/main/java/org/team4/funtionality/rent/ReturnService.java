@@ -1,16 +1,12 @@
 package org.team4.funtionality.rent;
-import org.team4.controller.purchase.PurchaseController;
 import org.team4.maintaindb.*;
 import org.team4.model.items.*;
 import org.team4.model.user.User;
 import org.team4.view.purchase.Payment;
-import org.team4.view.purchase.PurchaseFrame;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class ReturnService {
 

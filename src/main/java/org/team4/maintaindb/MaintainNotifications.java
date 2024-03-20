@@ -1,11 +1,7 @@
 package org.team4.maintaindb;
 
 import java.io.FileWriter;
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.team4.model.course.Course;
 
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;

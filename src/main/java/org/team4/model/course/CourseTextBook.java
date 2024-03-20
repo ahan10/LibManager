@@ -4,10 +4,7 @@ import org.team4.model.items.*;
 import org.team4.model.user.*;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CourseTextBook extends Book {
