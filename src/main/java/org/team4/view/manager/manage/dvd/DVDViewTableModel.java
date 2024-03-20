@@ -1,6 +1,5 @@
 package org.team4.view.manager.manage.dvd;
 
-import org.team4.model.items.Book;
 import org.team4.model.items.DVD;
 import org.team4.model.items.Item;
 

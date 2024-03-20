@@ -1,12 +1,9 @@
 package org.team4;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.team4.model.items.Book;
 import org.team4.model.items.builder.BookBuilder;
-import org.team4.model.items.Item;
 
 class BookTest {
 

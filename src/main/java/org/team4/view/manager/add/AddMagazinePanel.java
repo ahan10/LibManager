@@ -11,7 +11,6 @@ import javax.swing.SwingConstants;
 import org.team4.model.items.Item;
 import org.team4.model.items.Magazine;
 import org.team4.model.items.builder.MagazineBuilder;
-import org.team4.model.items.decorator.PurchasableItemDecorator;
 import org.team4.model.items.decorator.RentableItemDecorator;
 
 import javax.swing.JTextField;

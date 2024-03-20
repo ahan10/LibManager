@@ -1,7 +1,5 @@
 package org.team4.view.manager;
 
-import org.team4.controller.managerdashboard.AddItemController;
-import org.team4.controller.managerdashboard.ManageItemController;
 import org.team4.model.user.User;
 import org.team4.view.manager.add.AddItemPanel;
 import org.team4.view.manager.manage.ManageItemPanel;
