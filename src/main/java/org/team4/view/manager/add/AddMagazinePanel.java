@@ -185,6 +185,7 @@ public class AddMagazinePanel extends JPanel {
 		yearField.setText(EMPTY);
 		quantityField.setText(EMPTY);
 		issueField.setText(EMPTY);
+		isbnField.setText(EMPTY);
 	}
 
 }
