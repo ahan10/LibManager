@@ -34,6 +34,7 @@ public class AddDVDPanel extends JPanel {
 	private JTextField priceField;
 	private JComboBox canRentComboBox;
 	private JComboBox canBuyComboBox;
+	private JTextField isbnField;
 
 
 	/**
@@ -68,7 +69,7 @@ public class AddDVDPanel extends JPanel {
 		JLabel WARN_LABEL = new JLabel("PLEASE FILL ALL FIELDS WITH APPROPRIATE DATA");
 		WARN_LABEL.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
 		WARN_LABEL.setHorizontalAlignment(SwingConstants.CENTER);
-		WARN_LABEL.setBounds(323, 87, 330, 16);
+		WARN_LABEL.setBounds(323, 87, 367, 16);
 		panel.add(WARN_LABEL);
 
 		JLabel dvdTitleLabel = new JLabel("Title:");
@@ -103,8 +104,10 @@ public class AddDVDPanel extends JPanel {
 		JLabel priceLabel = new JLabel("Price:");
 		priceLabel.setBounds(182, 450, 61, 16);
 		panel.add(priceLabel);
-
-
+		
+		JLabel isbnLabel = new JLabel("ISBN:");
+		isbnLabel.setBounds(182, 489, 61, 16);
+		panel.add(isbnLabel);
 	}
 
 	private void addFields() {
@@ -147,11 +150,16 @@ public class AddDVDPanel extends JPanel {
 		priceField.setBounds(317, 445, 130, 26);
 		panel.add(priceField);
 		priceField.setColumns(10);
+		
+		isbnField = new JTextField();
+		isbnField.setBounds(317, 484, 130, 26);
+		panel.add(isbnField);
+		isbnField.setColumns(10);
 	}
 
 	private void addButton() {
 		addButton = new JButton("Add");
-		addButton.setBounds(432, 516, 117, 29);
+		addButton.setBounds(433, 537, 117, 29);
 		panel.add(addButton);
 	}
 	
@@ -159,6 +167,7 @@ public class AddDVDPanel extends JPanel {
 		
 		String title = titleField.getText();
 		String genre = genreField.getText();
+		String isbn = isbnField.getText();
 		
 		int yearPublished = Integer.parseInt(yearPublishedField.getText());
 		int quantity = Integer.parseInt(quantityField.getText());
@@ -176,6 +185,7 @@ public class AddDVDPanel extends JPanel {
 				.duration(duration)
 				.price(price)
 				.quantity(quantity)
+				.ISBN(isbn)
 				.build();
 		
 		if(canBuy) {
@@ -203,6 +213,6 @@ public class AddDVDPanel extends JPanel {
 		quantityField.setText(EMPTY);
 		durationField.setText(EMPTY);
 		priceField.setText(EMPTY);
+		isbnField.setText(EMPTY);
 	}
-
 }

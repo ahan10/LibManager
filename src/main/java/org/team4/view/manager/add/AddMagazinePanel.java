@@ -33,6 +33,7 @@ public class AddMagazinePanel extends JPanel {
 	private JTextField issueField;
 	private JTextField quantityField;
 	private JComboBox canRentComboBox;
+	private JTextField isbnField;
 
 	/**
 	 * Create the panel.
@@ -98,6 +99,9 @@ public class AddMagazinePanel extends JPanel {
 		issueLabel.setBounds(182, 308, 91, 16);
 		panel.add(issueLabel);
 		
+		JLabel isbnLabel = new JLabel("ISBN:");
+		isbnLabel.setBounds(182, 444, 61, 16);
+		panel.add(isbnLabel);
 	}
 	
 	private void addFields() {
@@ -132,12 +136,18 @@ public class AddMagazinePanel extends JPanel {
 		canRentComboBox.setBounds(323, 398, 128, 27);
 		panel.add(canRentComboBox);
 		
+		isbnField = new JTextField();
+		isbnField.setBounds(323, 439, 130, 26);
+		panel.add(isbnField);
+		isbnField.setColumns(10);
+		
 	}
 	
 	public Magazine getMagazine() {
 		
 		String title = titleField.getText();
 		String publisher = publisherField.getText();
+		String isbn = isbnField.getText();
 		
 		int year = Integer.parseInt(yearField.getText());
 		int quantity = Integer.parseInt(quantityField.getText());
@@ -152,6 +162,7 @@ public class AddMagazinePanel extends JPanel {
 				.issueNumber(issue)
 				.price(PRICE)
 				.quantity(quantity)
+				.ISBN(isbn)
 				.build();
 		
 		if(rent) {
