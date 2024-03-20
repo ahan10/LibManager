@@ -111,14 +111,5 @@ private static MaintainCourse instance;
 		return courseList;
 	}
 	
-	public static void main(String [] args) {
-		
-		MaintainCourse courseMaintainer = MaintainDatabase.getInstance().getCourseDatabase();
-		
-		for (Course c: courseMaintainer.getCourses()) {
-			System.out.println(c.toString());
-		}
-	}
-
 }
 

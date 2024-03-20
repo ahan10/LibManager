@@ -160,20 +160,4 @@ public class MaintainRent {
 	}
 	
 	
-	/**
-	 * Used for testing, delete later
-	 * @param args
-	 */
-	public static void main(String [] args) {
-		MaintainRent rentMaintainer = MaintainDatabase.getInstance().getrenterDatabase();
-		
-		System.out.println(rentMaintainer.getNumberOfItemsRentedByUser("user1@example.com"));
-		
-//		System.out.println(rentMaintainer.isAlreadyRentedByUser("user1@example.com", new RentedItem("1237", new java.sql.Date(new java.util.Date().getTime()))));
-		
-		System.out.println(rentMaintainer.returnRentedItem("user4@example.com", "1237"));
-		
-		
-	}
-	
 }

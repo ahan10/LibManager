@@ -82,4 +82,8 @@ public class PurchaseComplete implements PaymentModes {
     public User getUser() {
         return user;
     }
+
+	public Date getPurchaseDate() {
+		return purchaseDate;
+	}
 }

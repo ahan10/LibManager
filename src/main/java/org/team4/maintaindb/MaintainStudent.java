@@ -108,14 +108,4 @@ public class MaintainStudent {
 		return null;
 	}
 
-	public static void main(String[] args) {
-
-		MaintainStudent studentMaintainer = MaintainDatabase.getInstance().getStudentDatabase();
-		
-		for (Student s : studentMaintainer.getStudents()) {
-			System.out.println(s.toString());
-		}
-
-	}
-
 }
