@@ -1,8 +1,6 @@
 package org.team4.controller.managerdashboard;
 
 import org.team4.controller.login.LoginController;
-import org.team4.maintaindb.MaintainDatabase;
-import org.team4.maintaindb.MaintainUser;
 import org.team4.view.login.LoginPage;
 import org.team4.view.manager.*;
 

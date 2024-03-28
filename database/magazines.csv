@@ -1,52 +1,52 @@
 title,yearPublished,quantity,price,isRentable,isPurchasable,publisher,issueNumber,ISBN
-Tech Trends,2022,10,0.0,false,false,Technology Publications,15,7123456789012
-National Geographic,2022,16,0.0,false,false,National Geographic Society,120,7123456789013
-Fashion Forward,2023,13,0.0,true,false,Style Media,45,7123456789014
-Science & Discovery,2022,8,0.0,false,false,Discovery Communications,89,7123456789015
-Health & Wellness,2023,17,0.0,true,false,Wellness Publishing,30,7123456789016
-Business Insider,2022,2,0.0,true,false,Insider Media,75,7123456789017
-Traveler's Digest,2023,18,0.0,true,false,Global Travels,56,7123456789018
-Gourmet Cuisine,2022,7,0.0,true,false,Culinary Press,25,7123456789019
-Artistic Expressions,2023,4,0.0,true,false,Artistry Publishing,18,7123456789020
-Sports Illustrated,2022,3,0.0,true,false,Meredith Corporation,105,7123456789021
-Green Living,2023,9,0.0,false,false,Sustainable Media,40,7123456789022
-Entertainment Weekly,2022,12,0.0,true,false,Meredith Corporation,88,7123456789023
-Home & Garden,2023,19,0.0,true,false,Lifestyle Media,32,7123456789024
-Automobile Enthusiast,2022,6,0.0,true,false,Auto Publications,50,7123456789025
-Mindful Living,2023,16,0.0,false,false,Conscious Media,22,7123456789026
-Financial Review,2022,7,0.0,true,false,Finance Media,65,7123456789027
+Tech Trends,2022,20,0.0,false,false,Technology Publications,15,7123456789012
+National Geographic,2022,20,0.0,false,false,National Geographic Society,120,7123456789013
+Fashion Forward,2023,20,0.0,true,false,Style Media,45,7123456789014
+Science & Discovery,2022,20,0.0,false,false,Discovery Communications,89,7123456789015
+Health & Wellness,2023,20,0.0,true,false,Wellness Publishing,30,7123456789016
+Business Insider,2022,20,0.0,true,false,Insider Media,75,7123456789017
+Traveler's Digest,2023,20,0.0,true,false,Global Travels,56,7123456789018
+Gourmet Cuisine,2022,20,0.0,true,false,Culinary Press,25,7123456789019
+Artistic Expressions,2023,20,0.0,true,false,Artistry Publishing,18,7123456789020
+Sports Illustrated,2022,20,0.0,true,false,Meredith Corporation,105,7123456789021
+Green Living,2023,20,0.0,false,false,Sustainable Media,40,7123456789022
+Entertainment Weekly,2022,20,0.0,true,false,Meredith Corporation,88,7123456789023
+Home & Garden,2023,20,0.0,true,false,Lifestyle Media,32,7123456789024
+Automobile Enthusiast,2022,20,0.0,true,false,Auto Publications,50,7123456789025
+Mindful Living,2023,20,0.0,false,false,Conscious Media,22,7123456789026
+Financial Review,2022,20,0.0,true,false,Finance Media,65,7123456789027
 Outdoor Adventures,2023,20,0.0,true,false,Adventure Publications,38,7123456789028
-Political Insight,2022,4,0.0,true,false,Current Affairs Media,95,7123456789029
-Parenting Today,2023,3,0.0,true,false,Family Publishing,28,7123456789030
-Fashionista,2022,10,0.0,true,false,Style Media,60,7123456789031
-Tech Innovations,2023,14,0.0,false,false,Technology Publications,20,7123456789032
-Culinary Delights,2022,10,0.0,true,false,Culinary Press,42,7123456789033
-Nature's Wonders,2023,7,0.0,true,false,Discovery Communications,76,7123456789034
-Fitness Focus,2022,2,0.0,true,false,Wellness Publishing,48,7123456789035
-Business Review,2023,17,0.0,true,false,Insider Media,82,7123456789036
-Wanderlust,2022,16,0.0,true,false,Global Travels,65,7123456789037
-Home Design,2023,1,0.0,false,false,Lifestyle Media,30,7123456789038
-Auto Trends,2022,6,0.0,false,false,Auto Publications,55,7123456789039
-Artistry Magazine,2023,4,0.0,true,false,Artistry Publishing,38,7123456789040
-Sports Fanatic,2022,12,0.0,true,false,Meredith Corporation,110,7123456789041
-Sustainable Living,2023,8,0.0,true,false,Sustainable Media,44,7123456789042
-Movie Buff,2022,17,0.0,true,false,Entertainment Media,70,7123456789043
-Gardener's Companion,2023,14,0.0,true,false,Horticulture Publications,28,7123456789044
-Financial Focus,2022,13,0.0,false,false,Finance Media,60,7123456789045
-Extreme Sports,2023,8,0.0,false,false,Adventure Publications,52,7123456789046
-World Affairs,2022,6,0.0,true,false,Current Affairs Media,75,7123456789047
-Parenting Essentials,2023,18,0.0,true,false,Family Publishing,35,7123456789048
-Chic Lifestyle,2022,7,0.0,false,false,Lifestyle Media,50,7123456789049
-Tech Insights,2023,1,0.0,true,false,Technology Publications,15,7123456789050
-Culinary Creations,2022,12,0.0,true,false,Culinary Press,40,7123456789051
-Natural Wonders,2023,17,0.0,true,false,Discovery Communications,80,7123456789052
-Active Living,2022,10,0.0,true,false,Wellness Publishing,55,7123456789053
-Market Trends,2023,10,0.0,true,false,Insider Media,90,7123456789054
-Global Traveler,2022,11,0.0,false,false,Global Travels,70,7123456789055
-Home Decor,2023,8,0.0,true,false,Lifestyle Media,32,7123456789056
-Auto Lifestyle,2022,10,0.0,true,false,Auto Publications,58,7123456789057
-Artistic Visions,2023,18,0.0,true,false,Artistry Publishing,45,7123456789058
-Sports Showcase,2022,14,0.0,false,false,Meredith Corporation,102,7123456789059
-Sustainable Solutions,2023,5,0.0,true,false,Sustainable Media,48,7123456789060
-Entertainment Insider,2022,13,0.0,true,false,Entertainment Media,75,7123456789061
-Outdoor Explorer,2023,9,0.0,false,false,Adventure Publications,36,7123456789062
+Political Insight,2022,20,0.0,true,false,Current Affairs Media,95,7123456789029
+Parenting Today,2023,20,0.0,true,false,Family Publishing,28,7123456789030
+Fashionista,2022,20,0.0,true,false,Style Media,60,7123456789031
+Tech Innovations,2023,20,0.0,false,false,Technology Publications,20,7123456789032
+Culinary Delights,2022,20,0.0,true,false,Culinary Press,42,7123456789033
+Nature's Wonders,2023,20,0.0,true,false,Discovery Communications,76,7123456789034
+Fitness Focus,2022,20,0.0,true,false,Wellness Publishing,48,7123456789035
+Business Review,2023,20,0.0,true,false,Insider Media,82,7123456789036
+Wanderlust,2022,20,0.0,true,false,Global Travels,65,7123456789037
+Home Design,2023,20,0.0,false,false,Lifestyle Media,30,7123456789038
+Auto Trends,2022,20,0.0,false,false,Auto Publications,55,7123456789039
+Artistry Magazine,2023,20,0.0,true,false,Artistry Publishing,38,7123456789040
+Sports Fanatic,2022,20,0.0,true,false,Meredith Corporation,110,7123456789041
+Sustainable Living,2023,20,0.0,true,false,Sustainable Media,44,7123456789042
+Movie Buff,2022,20,0.0,true,false,Entertainment Media,70,7123456789043
+Gardener's Companion,2023,20,0.0,true,false,Horticulture Publications,28,7123456789044
+Financial Focus,2022,20,0.0,false,false,Finance Media,60,7123456789045
+Extreme Sports,2023,20,0.0,false,false,Adventure Publications,52,7123456789046
+World Affairs,2022,20,0.0,true,false,Current Affairs Media,75,7123456789047
+Parenting Essentials,2023,20,0.0,true,false,Family Publishing,35,7123456789048
+Chic Lifestyle,2022,20,0.0,false,false,Lifestyle Media,50,7123456789049
+Tech Insights,2023,20,0.0,true,false,Technology Publications,15,7123456789050
+Culinary Creations,2022,20,0.0,true,false,Culinary Press,40,7123456789051
+Natural Wonders,2023,20,0.0,true,false,Discovery Communications,80,7123456789052
+Active Living,2022,20,0.0,true,false,Wellness Publishing,55,7123456789053
+Market Trends,2023,20,0.0,true,false,Insider Media,90,7123456789054
+Global Traveler,2022,20,0.0,false,false,Global Travels,70,7123456789055
+Home Decor,2023,20,0.0,true,false,Lifestyle Media,32,7123456789056
+Auto Lifestyle,2022,20,0.0,true,false,Auto Publications,58,7123456789057
+Artistic Visions,2023,20,0.0,true,false,Artistry Publishing,45,7123456789058
+Sports Showcase,2022,20,0.0,false,false,Meredith Corporation,102,7123456789059
+Sustainable Solutions,2023,20,0.0,true,false,Sustainable Media,48,7123456789060
+Entertainment Insider,2022,20,0.0,true,false,Entertainment Media,75,7123456789061
+Outdoor Explorer,2023,20,0.0,false,false,Adventure Publications,36,7123456789062

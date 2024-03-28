@@ -8,9 +8,6 @@ import javax.swing.table.TableColumn;
 
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Item;
-import org.team4.view.manager.manage.book.BookViewTableModel;
-
-
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;

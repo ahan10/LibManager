@@ -1,5 +1,4 @@
 package org.team4.view.user;
-import org.team4.controller.userdashboard.UserController;
 import org.team4.model.user.User;
 import org.team4.view.user.faculty.FacultyPanel;
 import org.team4.view.user.search.results.BookResultsPanel;
@@ -28,8 +27,6 @@ public class UserDashboard extends JFrame {
 	private JTextField SearchTextField;
 
 	private final String HOME_PANEL = "Home Panel";
-	private final String SUBSCRIBE_PANEL = "Subscribe Panel";
-	private final String PURCHASE_PANEL = "Purchase Panel";
 	private final String REQUEST_PANEL = "Request Panel";
 	private final String STUDENT_PANEL = "Student Panel";
 	private final String FACULTY_PANEL = "Faculty Panel";
@@ -44,22 +41,6 @@ public class UserDashboard extends JFrame {
 	private final String[] searchTypes = {"Book", "DVD", "Newsletter", "Magazine"};
 
 	private User user;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UserDashboard frame = new UserDashboard();
-					frame.setVisible(true);
-					@SuppressWarnings("unused")
-					UserController userController = new UserController(frame);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 
 	public UserDashboard() {
 		initPanel();

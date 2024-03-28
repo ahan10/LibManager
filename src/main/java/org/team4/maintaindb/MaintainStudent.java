@@ -3,7 +3,6 @@ package org.team4.maintaindb;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
-import org.team4.model.course.Course;
 import org.team4.model.user.Student;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
@@ -106,16 +105,6 @@ public class MaintainStudent {
 		}
 		System.out.println("Student not found");
 		return null;
-	}
-
-	public static void main(String[] args) {
-
-		MaintainStudent studentMaintainer = MaintainDatabase.getInstance().getStudentDatabase();
-		
-		for (Student s : studentMaintainer.getStudents()) {
-			System.out.println(s.toString());
-		}
-
 	}
 
 }

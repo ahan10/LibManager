@@ -6,6 +6,10 @@ import javax.swing.JPanel;
 import org.team4.model.items.Book;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 import javax.swing.JButton;
 
 public class BookItemPanel extends JPanel {
@@ -20,8 +24,10 @@ public class BookItemPanel extends JPanel {
 	private JLabel lblYearPublishedValue = new JLabel();
 	private JLabel lblPriceValue = new JLabel();
 	private JLabel lblQuantityValue = new JLabel();
+	private JLabel lblLocationValue = new JLabel();
 
 	private JButton btnBuy, btnRent;
+	private static final Map<String, String> locationMap = new HashMap<>();
 
 
 	public BookItemPanel(JFrame window, Book book) {
@@ -49,31 +55,38 @@ public class BookItemPanel extends JPanel {
 
 		JLabel lblPublisher = new JLabel("Publisher:");
 		lblPublisher.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblPublisher.setBounds(20, 120, 57, 13);
+		lblPublisher.setBounds(20, 100, 57, 13);
 		
 		JLabel lblYearPublished = new JLabel("Published: ");
 		lblYearPublished.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblYearPublished.setBounds(20, 140, 100, 13);
-		
+		lblYearPublished.setBounds(20, 120, 100, 13);
 		
 		JLabel lblPrice = new JLabel("Price:");
 		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblPrice.setBounds(20, 160, 45, 13);
+		lblPrice.setBounds(20, 140, 45, 13);
 		
 		JLabel lblQuantity = new JLabel("Quantity:");
 		lblQuantity.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblQuantity.setBounds(20, 180, 70, 13);
+		lblQuantity.setBounds(20, 160, 70, 13);
+		
+		JLabel lblLocation = new JLabel("Location:");
+		lblLocation.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lblLocation.setBounds(20, 180, 70, 13);
 		
 		add(lblTitle);
 		add(lblAuthor);
 		add(lblGenre);
 		add(lblISBN);
-
 	
 		add(lblPublisher);
 		add(lblYearPublished);
 		add(lblPrice);
 		add(lblQuantity);
+		add(lblLocation);
+
+		if (!locationMap.containsKey(book.getISBN())) {
+			locationMap.put(book.getISBN(), generateLocation(book.getGenre()));
+		}
 		
 		lblTitleValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblTitleValue.setBounds(100, 20, 200, 13);
@@ -88,27 +101,30 @@ public class BookItemPanel extends JPanel {
 		lblISBNValue.setBounds(100, 80, 200, 13);
 		
 		lblPublisherValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblPublisherValue.setBounds(100, 120, 200, 13);
+		lblPublisherValue.setBounds(100, 100, 200, 13);
 		
 		lblYearPublishedValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblYearPublishedValue.setBounds(100, 140, 200, 13);
+		lblYearPublishedValue.setBounds(100, 120, 200, 13);
 		
 		lblPriceValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblPriceValue.setBounds(100, 160, 200, 13);
+		lblPriceValue.setBounds(100, 140, 200, 13);
 		
 		lblQuantityValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblQuantityValue.setBounds(100, 180, 200, 13);
+		lblQuantityValue.setBounds(100, 160, 200, 13);
+
+		lblLocationValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblLocationValue.setBounds(100, 180, 200, 13);
 
 		
 		add(lblTitleValue);
 		add(lblAuthorValue);
 		add(lblGenreValue);
 		add(lblISBNValue);
-
 		add(lblPublisherValue);
 		add(lblYearPublishedValue);
 		add(lblPriceValue);
 		add(lblQuantityValue);
+		add(lblLocationValue);
 		
 		btnBuy = new JButton("Buy");
 		btnBuy.setBounds(20, 220, 85, 21);
@@ -121,7 +137,10 @@ public class BookItemPanel extends JPanel {
 		btnRent.setEnabled(this.book.isRentable());
 		btnBuy.setEnabled(this.book.isPurchasable());
 	}
-	
+	private String generateLocation(String genre) {
+		int section = new Random().nextInt(5) + 1;
+		return genre + " Section " + section;
+	}
 	
 	public void showItemInfo() {
 		lblTitleValue.setText(book.getTitle());
@@ -133,6 +152,9 @@ public class BookItemPanel extends JPanel {
 		lblYearPublishedValue.setText(book.getYearPublished() + "");
 		lblPriceValue.setText("$" + book.getPrice() + "");
 		lblQuantityValue.setText(book.getQuantity() + "");
+
+		String location = locationMap.get(book.getISBN());
+		lblLocationValue.setText(location);
 
 	}
 

@@ -14,6 +14,7 @@ public class MaintainDatabase {
 	private static MaintainSubscriptions subscriptionMaintainer;
 	private static MaintainNotifications notificationMaintainer;
 	private static MaintainRequests requestMaintainer;
+	private static MaintainNewsletter newsletterMaintainer;
 	
 	private MaintainDatabase() {
 		userMaintainer = MaintainUser.getInstance();
@@ -27,6 +28,7 @@ public class MaintainDatabase {
 		subscriptionMaintainer = MaintainSubscriptions.getInstance();
 		notificationMaintainer = MaintainNotifications.getInstance();
 		requestMaintainer = MaintainRequests.getInstance();
+		newsletterMaintainer = MaintainNewsletter.getInstance();
 	}
 	
 	public static MaintainDatabase getInstance() {
@@ -155,6 +157,7 @@ public class MaintainDatabase {
 		subscriptionMaintainer.update();
 		notificationMaintainer.update();
 		requestMaintainer.update();
+		newsletterMaintainer.update();
 	}
 
 }

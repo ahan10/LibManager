@@ -6,8 +6,11 @@ import java.net.URL;
 import javax.swing.*;
 
 public class BrowserWindow extends JFrame {
-    public BrowserWindow(String url){
-        setSize(620,440);
+	private static final long serialVersionUID = 1L;
+
+	@SuppressWarnings("deprecation")
+	public BrowserWindow(String url){
+        setSize(1200,850);
         JScrollPane sp=new JScrollPane();
         JTextPane tp=new JTextPane();
         tp.setEditable(false);

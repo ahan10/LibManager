@@ -77,6 +77,16 @@ public class LoginController implements ActionListener {
 							case "STUDENT": // have one case for every user except manager
 							case "FACULTY":
 							case "NONFACULTY":
+								if(u.isValidated()){
+									System.out.println(u.toString() + " Logged in Successfully as "+ u.getType());
+									UserDashboard userDashboard = new UserDashboard(u);
+									@SuppressWarnings("unused") UserController userController = new UserController(userDashboard);
+									userDashboard.setVisible(true);
+									loginPage.dispose();
+								}else {
+									JOptionPane.showMessageDialog(null, "You are not validated by manager. \n Please wait to be validated.", "Login Failed!", JOptionPane.ERROR_MESSAGE);
+								}
+								break;
 							case "VISITOR":
 							System.out.println(u.toString() + " Logged in Successfully as "+ u.getType());
 							UserDashboard userDashboard = new UserDashboard(u);
@@ -143,9 +153,23 @@ public class LoginController implements ActionListener {
 					System.out.println("Email doesnt already exist, still need to check other credentials");
 					if (checkPasswordStrength(loginPage.getRegisterPasswordInput())) {
 						System.out.println("Password Strong");
-						maintainUser.addUser(new User(loginPage.getRegisterEmailInput(), loginPage.getRegisterPasswordInput(), loginPage.getUserNameInput(), loginPage.getRegisterAccountType()));
+						maintainUser.addUser(
+								new User(loginPage.getRegisterEmailInput(), loginPage.getRegisterPasswordInput(),
+										loginPage.getUserNameInput(), loginPage.getRegisterAccountType()));
 						System.out.println("New User Registered");
-						JOptionPane.showMessageDialog(loginPage, "Account Registered!\nAuthentication from management still required to access certain features");
+						System.out.println(loginPage.getRegisterAccountType());
+						if (!loginPage.getRegisterAccountType().equals("VISITOR")) {
+							JOptionPane.showMessageDialog(loginPage,
+									"Account Registered!\nAuthentication from management still required to access certain features");
+						} else {
+							JOptionPane.showMessageDialog(loginPage, "Account Registered!");
+						}
+						try {
+							maintainUser.update();
+						} catch (Exception e1) {
+							e1.printStackTrace();
+							System.out.println("Failed to update");
+						}
 					} else {
 						System.out.println("Password Weak");
 						JOptionPane.showMessageDialog(loginPage,

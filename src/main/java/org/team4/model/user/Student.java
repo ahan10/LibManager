@@ -2,8 +2,6 @@ package org.team4.model.user;
 
 import java.util.ArrayList;
 
-import org.team4.model.course.Course;
-
 public class Student extends User{
     private ArrayList<String> courses;
 
@@ -28,9 +26,5 @@ public class Student extends User{
     public void setCourses(ArrayList<String> courses) {
         this.courses = courses;
     }
-    
-    @Override
-	public String toString() {
-		return "Student [email=" + getEmail() + ", password=" + getPassword() + ", name=" + getName() + ", type=" + getType() + "]";
-	}
+
 }

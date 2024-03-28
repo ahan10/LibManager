@@ -1,8 +1,5 @@
 package org.team4.view.manager;
 
-import org.team4.controller.managerdashboard.AddItemController;
-import org.team4.controller.managerdashboard.ManageItemController;
-import org.team4.controller.managerdashboard.ManagerController;
 import org.team4.model.user.User;
 import org.team4.view.manager.add.AddItemPanel;
 import org.team4.view.manager.manage.ManageItemPanel;
@@ -11,7 +8,6 @@ import org.team4.view.manager.requests.ViewRequestsPanel;
 import org.team4.view.manager.validate.ValidateUserPanel;
 
 import java.awt.CardLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -38,40 +34,13 @@ public class ManagerDashboard extends JFrame{
 	private final String REQUESTS_PANEL = "Requests Panel";
 	
 	private ValidateUserPanel validateUserPanel = new ValidateUserPanel();
-
 	private ManageItemPanel manageItemPanel = new ManageItemPanel();
-	private ManageItemController manageItemController = new ManageItemController(manageItemPanel);
-	
 	private AddItemPanel addItemPanel = new AddItemPanel();
-	private AddItemController addItemController = new AddItemController(addItemPanel);
-	
 	private NotificationPanel notificationPanel = new NotificationPanel();
-	
 	private ViewRequestsPanel requestsPanel = new ViewRequestsPanel();
-	
 	private User manager;
 	private JButton NotificationButton, requestsButton;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ManagerDashboard frame = new ManagerDashboard();
-					frame.setLocationRelativeTo(null);
-					frame.setVisible(true);
-
-					@SuppressWarnings("unused")
-					ManagerController controller = new ManagerController(frame);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */

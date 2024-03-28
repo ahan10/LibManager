@@ -7,6 +7,9 @@ import org.team4.model.user.User;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 import javax.swing.JButton;
 
 public class DVDItemPanel extends JPanel {
@@ -20,7 +23,9 @@ public class DVDItemPanel extends JPanel {
 	private JLabel lblYearPublishedValue = new JLabel();
 	private JLabel lblQuantityValue = new JLabel();
 	private JLabel lblPriceValue = new JLabel();
+	private JLabel lblLocationValue = new JLabel();
 	private JButton btnBuy, btnRent;
+	private static final Map<String, String> DVDlocationMap = new HashMap<>();
 
 
 	public DVDItemPanel(JFrame window, DVD dvd, User user) {
@@ -43,20 +48,23 @@ public class DVDItemPanel extends JPanel {
 		
 		JLabel lblYearPublished = new JLabel("Published:");
 		lblYearPublished.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblYearPublished.setBounds(20, 100, 100, 13);
+		lblYearPublished.setBounds(20, 80, 100, 13);
 		
 		JLabel lblDuration = new JLabel("Duration: ");
 		lblDuration.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblDuration.setBounds(20, 120, 100, 13);
+		lblDuration.setBounds(20, 100, 100, 13);
 		
 		JLabel lblPrice = new JLabel("Price:");
 		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblPrice.setBounds(20, 140, 70, 13);
+		lblPrice.setBounds(20, 120, 70, 13);
 		
 		JLabel lblQuantity = new JLabel("Quantity:");
 		lblQuantity.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblQuantity.setBounds(20, 160, 70, 13);
-		
+		lblQuantity.setBounds(20, 140, 70, 13);
+
+		JLabel lblLocation = new JLabel("Location:");
+		lblLocation.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lblLocation.setBounds(20, 160, 70, 13);
 		
 		add(lblTitle);
 		add(lblGenre);
@@ -65,7 +73,10 @@ public class DVDItemPanel extends JPanel {
 		add(lblDuration);
 		add(lblPrice);
 		add(lblQuantity);
-		
+		add(lblLocation);
+		if (!DVDlocationMap.containsKey(dvd.getISBN())) {
+			DVDlocationMap.put(dvd.getISBN(), generateLocation(dvd.getGenre()));
+		}
 
 		lblTitleValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblTitleValue.setBounds(100, 20, 200, 13);
@@ -75,21 +86,21 @@ public class DVDItemPanel extends JPanel {
 		
 		lblISBNValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblISBNValue.setBounds(100, 60, 200, 13);
-		
-		
-		
+
 		lblYearPublishedValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblYearPublishedValue.setBounds(100, 100, 200, 13);
+		lblYearPublishedValue.setBounds(100, 80, 180, 13);
 		
 		lblDurationValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblDurationValue.setBounds(100, 120, 200, 13);
+		lblDurationValue.setBounds(100, 100, 200, 13);
 		
 		lblPriceValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblPriceValue.setBounds(100, 140, 200, 13);
+		lblPriceValue.setBounds(100, 120, 200, 13);
 		
 		lblQuantityValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblQuantityValue.setBounds(100, 160, 200, 13);
+		lblQuantityValue.setBounds(100, 140, 200, 13);
 
+		lblLocationValue.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblLocationValue.setBounds(100, 160, 200, 13);
 		
 		add(lblTitleValue);
 		add(lblGenreValue);
@@ -99,12 +110,12 @@ public class DVDItemPanel extends JPanel {
 		add(lblDurationValue);
 		add(lblPriceValue);
 		add(lblQuantityValue);
+		add(lblLocationValue);
 		
 		btnBuy = new JButton("Buy");
 		btnBuy.setBounds(20, 200, 85, 21);
 		add(btnBuy);
 
-		
 		btnRent = new JButton("Rent");
 		btnRent.setBounds(160, 200, 85, 21);
 		add(btnRent);
@@ -113,7 +124,10 @@ public class DVDItemPanel extends JPanel {
 		btnBuy.setEnabled(this.dvd.isPurchasable());
 
 	}
-	
+	private String generateLocation(String genre) {
+		int section = new Random().nextInt(5) + 1;
+		return genre + " Section " + section;
+	}
 	
 	public void showItemInfo() {
 		lblTitleValue.setText(dvd.getTitle());
@@ -124,6 +138,9 @@ public class DVDItemPanel extends JPanel {
 		lblDurationValue.setText(dvd.getDuration() + " mins");
 		lblPriceValue.setText("$" + dvd.getPrice() + "");
 		lblQuantityValue.setText(dvd.getQuantity() + "");
+
+		String location = DVDlocationMap.get(dvd.getISBN());
+		lblLocationValue.setText(location);
 	}
 
 
