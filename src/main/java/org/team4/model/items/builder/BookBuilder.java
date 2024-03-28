@@ -51,6 +51,19 @@ public class BookBuilder extends ItemBuilder<Book> {
 
  @Override
  public Book build() {
-     return new Book(new Item(title, yearPublished, quantity, price, ISBN, false, false), genre, noOfPages, author, publisher, edition, hasHardCopy, hasSoftCopy);
+     return new Book(new Item(title,
+             yearPublished,
+             quantity,
+             price,
+             ISBN,
+             false,
+             false),
+             genre,
+             noOfPages,
+             author,
+             publisher,
+             edition,
+             hasHardCopy,
+             hasSoftCopy);
  }
 }
