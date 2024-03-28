@@ -1,7 +1,7 @@
 package org.team4.model.items;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class BookRequestTest {
+public class BookRequestTest {
 
 }

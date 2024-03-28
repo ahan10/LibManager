@@ -1,7 +1,7 @@
 package org.team4.funtionality.subscriptions;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class SubscribeNewsletterTest {
+public class SubscribeNewsletterTest {
 
 }

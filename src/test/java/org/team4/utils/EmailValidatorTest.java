@@ -1,7 +1,7 @@
 package org.team4.utils;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class EmailValidatorTest {
+public class EmailValidatorTest {
 
 }

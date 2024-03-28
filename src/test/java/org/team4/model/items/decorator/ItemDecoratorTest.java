@@ -1,7 +1,7 @@
 package org.team4.model.items.decorator;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class ItemDecoratorTest {
+public class ItemDecoratorTest {
 
 }

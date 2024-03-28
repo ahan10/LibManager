@@ -1,7 +1,7 @@
 package org.team4.maintaindb;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class MaintainUserTest {
+public class MaintainUserTest {
 
 }

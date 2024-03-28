@@ -1,14 +1,12 @@
 package org.team4.model.user;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import  org.junit.*;
+import static org.junit.Assert.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class UserTest {
+public class UserTest {
     User u1, u2;
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         u1 = new User(
                 "email@example.com",
                 "password",
@@ -26,58 +24,58 @@ class UserTest {
     }
 
     @Test
-    void getEmail() {
+    public void getEmail() {
         assertEquals("email@example.com", u1.getEmail());
     }
 
     @Test
-    void setEmail() {
+    public void setEmail() {
         u1.setEmail("other@email.com");
         assertEquals("other@email.com", u1.getEmail());
     }
 
     @Test
-    void getPassword() {
+    public void getPassword() {
         assertEquals("password1", u2.getPassword());
     }
 
     @Test
-    void setPassword() {
+    public void setPassword() {
         u2.setPassword("newpassword");
         assertEquals("newpassword", u2.getPassword());
     }
 
     @Test
-    void getName() {
+    public void getName() {
         assertEquals("Jane Doe", u2.getName());
     }
 
     @Test
-    void setName() {
+    public void setName() {
         u2.setName("Jack Doe");
         assertEquals("Jack Doe", u2.getName());
     }
 
     @Test
-    void getType() {
+    public void getType() {
         assertEquals("VISITOR", u1.getType());
         assertEquals("STUDENT", u2.getType());
     }
 
     @Test
-    void setType() {
+    public void setType() {
         u2.setType("FACULTY");
         assertEquals("FACULTY", u2.getType());
     }
 
     @Test
-    void isValidated() {
+    public void isValidated() {
         assertTrue(u1.isValidated());
         assertTrue(u2.isValidated());
     }
 
     @Test
-    void setValidated() {
+    public void setValidated() {
         u1.setValidated(true);
         assertTrue(u1.isValidated());
     }
