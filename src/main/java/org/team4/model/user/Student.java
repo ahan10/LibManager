@@ -26,9 +26,5 @@ public class Student extends User{
     public void setCourses(ArrayList<String> courses) {
         this.courses = courses;
     }
-    
-    @Override
-	public String toString() {
-		return "Student [email=" + getEmail() + ", password=" + getPassword() + ", name=" + getName() + ", type=" + getType() + "]";
-	}
+
 }
