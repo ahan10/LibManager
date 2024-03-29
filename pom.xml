@@ -28,6 +28,7 @@
             </releases>
         </pluginRepository>
     </pluginRepositories>
+
     <repositories>
         <repository>
             <id>central</id>
@@ -68,6 +69,12 @@
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.11</version>
+            <configuration>
+                <excludes>
+                    <exclude>org/team4/controller/**/*</exclude>
+                    <exclude>org/team4/view/**/*</exclude>
+                </excludes>
+            </configuration>
             <executions>
                 <execution>
                     <goals>
@@ -78,6 +85,12 @@
                 <execution>
                     <id>report</id>
                     <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>jacoco-report</id>
                     <goals>
                         <goal>report</goal>
                     </goals>
