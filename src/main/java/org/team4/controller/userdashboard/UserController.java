@@ -1,8 +1,8 @@
 package org.team4.controller.userdashboard;
 
 import org.team4.controller.login.LoginController;
-import org.team4.funtionality.rent.RentalService;
-import org.team4.funtionality.rent.ReturnService;
+import org.team4.functionality.rent.RentalService;
+import org.team4.functionality.rent.ReturnService;
 import org.team4.maintaindb.MaintainBooks;
 import org.team4.maintaindb.MaintainRequests;
 import org.team4.model.items.BookRequest;

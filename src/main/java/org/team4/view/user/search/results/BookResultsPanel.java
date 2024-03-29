@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.stream.Collectors;
 
 import org.team4.controller.results.BookController;
-import org.team4.funtionality.recommendation.*;
+import org.team4.functionality.recommendation.*;
 import org.team4.maintaindb.MaintainBooks;
 import org.team4.model.items.Book;
 import org.team4.model.user.User;

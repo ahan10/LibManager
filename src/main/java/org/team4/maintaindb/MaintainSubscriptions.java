@@ -2,7 +2,7 @@ package org.team4.maintaindb;
 
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
-import org.team4.funtionality.subscriptions.SubscribeNewsletter;
+import org.team4.functionality.subscriptions.SubscribeNewsletter;
 
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;

@@ -1,6 +1,6 @@
 package org.team4.controller.results;
 
-import org.team4.funtionality.rent.RentalService;
+import org.team4.functionality.rent.RentalService;
 import org.team4.maintaindb.MaintainDatabase;
 import org.team4.model.items.Item;
 import org.team4.model.user.User;
