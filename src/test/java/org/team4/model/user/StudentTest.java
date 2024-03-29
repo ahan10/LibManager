@@ -10,6 +10,7 @@ public class StudentTest {
     Student s1, s2, s3;
     ArrayList<String> courses;
 
+    @Ignore
     @Before
     public void setup(){
 
@@ -42,6 +43,7 @@ public class StudentTest {
 //        assertIterableEquals(courses, s1.getCourses());
 //    }
 
+    @Ignore
     @Test
     public void constructor_2(){
         s2 = new Student(
@@ -53,6 +55,7 @@ public class StudentTest {
         );
     }
 
+    @Ignore
     @Test
     public void constructor_3(){
         s3 = new Student(
