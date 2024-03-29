@@ -1,9 +1,9 @@
 package org.team4.controller.purchase;
 
-import org.team4.funtionality.buy.ItemPurchased;
-import org.team4.funtionality.buy.ProcessPayment;
-import org.team4.funtionality.buy.PurchaseComplete;
-import org.team4.funtionality.subscriptions.SubscribeNewsletter;
+import org.team4.functionality.buy.ItemPurchased;
+import org.team4.functionality.buy.ProcessPayment;
+import org.team4.functionality.buy.PurchaseComplete;
+import org.team4.functionality.subscriptions.SubscribeNewsletter;
 import org.team4.maintaindb.*;
 import org.team4.model.items.Book;
 import org.team4.view.purchase.PurchaseFrame;

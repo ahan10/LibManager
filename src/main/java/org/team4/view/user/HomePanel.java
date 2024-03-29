@@ -5,7 +5,7 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-import org.team4.funtionality.rent.RentalService;
+import org.team4.functionality.rent.RentalService;
 import org.team4.maintaindb.MaintainRent;
 import org.team4.model.items.RentedItem;
 import org.team4.model.user.User;

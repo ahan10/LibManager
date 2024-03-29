@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import org.team4.funtionality.buy.ItemToPurchase;
+import org.team4.functionality.buy.ItemToPurchase;
 import org.team4.model.items.Newsletter;
 import org.team4.model.paymentmodes.PaymentModes;
 import org.team4.model.items.Item;
