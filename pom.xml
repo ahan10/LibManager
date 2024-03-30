@@ -74,6 +74,7 @@
                     <exclude>org/team4/controller/**/*</exclude>
                     <exclude>org/team4/view/**/*</exclude>
                     <exclude>org/team4/maintaindb/**/*</exclude>
+                    <exclude>org/team4/functionality/rent/**/*</exclude>
                 </excludes>
             </configuration>
             <executions>
