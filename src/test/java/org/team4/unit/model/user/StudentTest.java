@@ -25,24 +25,24 @@ public class StudentTest {
         s1 = new Student(
                 "email@example.com",
                 "password",
-                "John DOe",
+                "John Doe",
                 "STUDENT",
                 courses
         );
     }
 
-//    @Test
-//    public void getCourses() {
-//        assertIterableEquals(courses, s1.getCourses());
-//    }
+    @Test
+    public void getCourses() {
+        assertEquals(courses, s1.getCourses());
+    }
 
-//    @Test
-//    public void setCourses() {
-//        courses.add("course5");
-//        s1.setCourses(courses);
-//
-//        assertIterableEquals(courses, s1.getCourses());
-//    }
+    @Test
+    public void setCourses() {
+        courses.add("course5");
+        s1.setCourses(courses);
+
+        assertEquals(courses, s1.getCourses());
+    }
 
     @Test
     public void constructor_2(){
@@ -53,6 +53,11 @@ public class StudentTest {
                 "STUDENT",
                 true
         );
+        assertEquals("emailID@example.com", s2.getEmail());
+        assertEquals("password1", s2.getPassword());
+        assertEquals("Jane Doe", s2.getName());
+        assertEquals("STUDENT", s2.getType());
+        assertTrue(s2.isValidated());
     }
 
     @Test
@@ -63,5 +68,31 @@ public class StudentTest {
                 "Jane Doe",
                 "STUDENT"
         );
+        assertEquals("emailID@example.com", s3.getEmail());
+        assertEquals("password1", s3.getPassword());
+        assertEquals("Jane Doe", s3.getName());
+        assertEquals("STUDENT", s3.getType());
+        assertFalse(s3.isValidated());
     }
+
+    @Test
+    public void test_type(){
+        assertEquals("STUDENT", s1.getType());
+    }
+
+    @Test
+    public void test_validated(){
+        assertFalse(s1.isValidated());
+    }
+
+    @Test
+    public void getName() {
+        assertEquals("John Doe", s1.getName());
+    }
+
+    @Test
+    public void getEmail() {
+        assertEquals("email@example.com", s1.getEmail());
+    }
+
 }

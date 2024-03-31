@@ -82,4 +82,10 @@ public class UserTest {
         assertTrue(u1.isValidated());
     }
 
+    @Test
+    public void test_toString(){
+        String actual = "User [email=emailID@example.com, password=password1, name=Jane Doe, type=STUDENT, validated=true]";
+        assertEquals(actual, u2.toString());
+    }
+
 }
