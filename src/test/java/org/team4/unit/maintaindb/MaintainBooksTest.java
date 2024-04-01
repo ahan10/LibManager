@@ -92,8 +92,16 @@ public class MaintainBooksTest {
 		
 		bookMaintainer.addBook(newBook);
 		assertTrue(bookMaintainer.searchExactBook("1234567890123"));
+
+		// Clean CSV
+		bookMaintainer.getAllBooks().remove(newBook);
+		try {
+			bookMaintainer.update();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	@Test
 	public void testAddDuplicateBook() {
 		Book newBook = ((BookBuilder) new BookBuilder()
@@ -112,14 +120,47 @@ public class MaintainBooksTest {
                 .build();
 		
 		bookMaintainer.addBook(newBook);
+		bookMaintainer.addBook(newBook);
 		assertTrue(bookMaintainer.searchExactBook("1234567890123"));
+
+		// Clean CSV
+		bookMaintainer.getAllBooks().remove(newBook);
+		try {
+			bookMaintainer.update();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	@Test
 	public void removeTestBook() {
+		Book newBook = ((BookBuilder) new BookBuilder()
+                .title("This is a test book")
+                .yearPublished(2077)
+                .price(123.45)
+                .ISBN("1234567890123")
+                .quantity(20))
+                .noOfPages(123)
+                .author("Author")
+                .publisher("Publisher")
+                .edition(0)
+                .genre("Genre")
+                .hasHardCopy(false)
+                .hasSoftCopy(false)
+                .build();
+		
+		bookMaintainer.addBook(newBook);
 		int numberOfBooks = bookMaintainer.getAllBooks().size();
 		bookMaintainer.getAllBooks().remove(numberOfBooks-1);
 		assertEquals(numberOfBooks-1, bookMaintainer.getAllBooks().size());
+		
+		// Clean CSV
+		bookMaintainer.getAllBooks().remove(newBook);
+		try {
+			bookMaintainer.update();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
