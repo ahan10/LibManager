@@ -18,7 +18,7 @@ public class PayPal implements PaymentValidator, PaymentModes {
 
     @Override
     public String getMode() {
-        return MODE.get(2);
+        return MODE.get(3);
     }
 
     @Override

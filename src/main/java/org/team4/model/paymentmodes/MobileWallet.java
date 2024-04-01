@@ -13,7 +13,7 @@ public class MobileWallet implements PaymentValidator, PaymentModes {
 
     @Override
     public String getMode() {
-        return MODE.get(3);
+        return MODE.get(2);
     }
 
 }
