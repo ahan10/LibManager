@@ -127,7 +127,6 @@ public class MaintainBooksTest {
 		try {
 			bookMaintainer.update();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertFalse(bookMaintainer.searchExactBook("1234567890123"));

@@ -49,7 +49,6 @@ public class MaintainCourseTest {
 		try {
 			courseMaintainer.update();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
