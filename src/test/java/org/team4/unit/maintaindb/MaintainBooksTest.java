@@ -69,7 +69,7 @@ public class MaintainBooksTest {
 	@Test
 	public void bookNotFountByTitle() {
 		String titleToSearch = "This Book Does Not Exist";
-		Book searchedBook = bookMaintainer.searchExactBookByISBN(titleToSearch);
+		Book searchedBook = bookMaintainer.searchExactBookByTitle(titleToSearch);
 		assertNull(searchedBook);
 	}
 	

@@ -99,6 +99,7 @@ public class MaintainDVDTest {
                 .build();
 
 		dvdMaintainer.addDVD(newBook);
+		dvdMaintainer.addDVD(newBook);
 		assertEquals("This is a test dvd", dvdMaintainer.searchExactDVDByISBN("1234567890123").getTitle());
 
 		// Clean CSV
