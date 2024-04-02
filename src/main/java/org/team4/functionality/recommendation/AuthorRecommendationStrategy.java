@@ -15,7 +15,7 @@ public class AuthorRecommendationStrategy extends Strategy {
 		for (Item item: books) {
 			if (searchedBooks.size() < 3) {
 				Book book = (Book)item;
-				if(book.getGenre().equals(author)) {
+				if(book.getAuthor().equals(author)) {
 					searchedBooks.add(book);
 				}
 			}
