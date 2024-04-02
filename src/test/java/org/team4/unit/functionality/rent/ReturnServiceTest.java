@@ -23,6 +23,7 @@ public class ReturnServiceTest {
     private Book book;
     private DVD dvd;
     private Magazine magazine, overdueMagazine;
+    Item overdueItem ;
 
 
     private RentalService rentalService;
@@ -38,20 +39,22 @@ public class ReturnServiceTest {
         Item item = new Item("Effective Java", 2020, 1, 15.99, "123456789", true, true);
 
 
-         book = new Book(item, "Programming", 384, "Joshua Bloch", "Addison-Wesley", 3, true, false);
+        book = new Book(item, "Programming", 384, "Joshua Bloch", "Addison-Wesley", 3, true, false);
 
         Item dvdItem = new Item("Inception", 2010, 2, 29.99, "987654321", true, true);
         dvd = new DVD(dvdItem, "Science Fiction", 2.5);
 
         Item magazineItem = new Item("National Geographic", 2020, 5, 9.99, "12341234", true, true);
         magazine = new Magazine(magazineItem, "National Geographic Society", 2020 );
-
+        overdueItem  = new Item("National Historic", 2017, 5, 99.99, "414231221233", true, true);
 
 
     }
 
     @After
     public void returnItem() throws Exception {
+
+        rentMaintain.returnRentedItem(user.getEmail(), overdueItem.getISBN());
 
         rentMaintain.update();
     }
@@ -126,7 +129,7 @@ public class ReturnServiceTest {
         rentMaintain.addNewRentedItem(user.getEmail(), "National Historic", "414231221233",
                 new java.sql.Date(System.currentTimeMillis()),
                 new java.sql.Date(pastDueDate.getTimeInMillis()));
-        Item overdueItem = new Item("National Historic", 2017, 5, 99.99, "414231221233", true, true);
+
         overdueMagazine = new Magazine(overdueItem, "National Historic Society", 2021);
 
 
