@@ -78,7 +78,6 @@
                 <excludes>
                     <exclude>org/team4/controller/**/*</exclude>
                     <exclude>org/team4/view/**/*</exclude>
-                    <exclude>org/team4/maintaindb/**/*</exclude>
                 </excludes>
             </configuration>
             <executions>
