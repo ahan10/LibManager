@@ -1,7 +1,6 @@
 package org.team4.unit.functionality.rent;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.team4.functionality.rent.RentalService;

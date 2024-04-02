@@ -5,24 +5,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.team4.functionality.rent.RentalService;
 import org.team4.functionality.rent.ReturnService;
-import org.team4.maintaindb.MaintainBooks;
+
 import org.team4.maintaindb.MaintainRent;
 import org.team4.model.items.*;
 import org.team4.model.user.User;
-import org.mockito.MockedStatic;
-import javax.swing.JOptionPane;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+
 
 public class ReturnServiceTest {
     private ReturnService returnService;
