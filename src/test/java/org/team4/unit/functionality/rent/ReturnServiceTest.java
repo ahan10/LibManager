@@ -7,15 +7,22 @@ import org.team4.functionality.rent.RentalService;
 import org.team4.functionality.rent.ReturnService;
 import org.team4.maintaindb.MaintainBooks;
 import org.team4.maintaindb.MaintainRent;
-import org.team4.model.items.Book;
-import org.team4.model.items.DVD;
-import org.team4.model.items.Item;
-import org.team4.model.items.Magazine;
+import org.team4.model.items.*;
 import org.team4.model.user.User;
+import org.mockito.MockedStatic;
+import javax.swing.JOptionPane;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class ReturnServiceTest {
     private ReturnService returnService;
@@ -23,7 +30,7 @@ public class ReturnServiceTest {
     private Book book;
     private DVD dvd;
     private Magazine magazine, overdueMagazine;
-    Item overdueItem ;
+    Item overdueItem, item ;
 
 
     private RentalService rentalService;
@@ -47,7 +54,7 @@ public class ReturnServiceTest {
         Item magazineItem = new Item("National Geographic", 2020, 5, 9.99, "12341234", true, true);
         magazine = new Magazine(magazineItem, "National Geographic Society", 2020 );
         overdueItem  = new Item("National Historic", 2017, 5, 99.99, "414231221233", true, true);
-
+        item = new Item("Effective Java", 2020, 1, 15.99, "123456789", true, true);
 
     }
 
@@ -57,6 +64,25 @@ public class ReturnServiceTest {
         rentMaintain.returnRentedItem(user.getEmail(), overdueItem.getISBN());
 
         rentMaintain.update();
+    }
+    @Test
+    public void returnNotRentedItem() throws Exception {
+
+        boolean value= rentMaintain.returnRentedItem(user.getEmail(), "4321313124");
+
+        rentMaintain.update();
+
+        assertFalse(value);
+    }
+
+    @Test
+    public void returnNullItem() throws Exception {
+
+        boolean value= rentMaintain.returnRentedItem(user.getEmail(),"null");
+
+        rentMaintain.update();
+
+        assertFalse(value);
     }
 
 
@@ -105,6 +131,8 @@ public class ReturnServiceTest {
     }
     @Test
     public void testReturnItem_WithPenaltyPayment() throws Exception {
+
+
         Calendar pastDueDate = Calendar.getInstance();
         pastDueDate.add(Calendar.DAY_OF_MONTH, -10);
         rentMaintain.addNewRentedItem(user.getEmail(), "National Historic", "414231221233",
@@ -112,7 +140,6 @@ public class ReturnServiceTest {
                 new java.sql.Date(pastDueDate.getTimeInMillis()));
         Item overdueItem = new Item("National Historic", 2017, 5, 99.99, "414231221233", true, true);
         overdueMagazine = new Magazine(overdueItem, "National Historic Society", 2021);
-
 
 
 
@@ -140,6 +167,30 @@ public class ReturnServiceTest {
 
         assertFalse( result);
     }
+
+    @Test
+    public void testReturnItem_WithLostPenalty() throws Exception {
+
+
+        Calendar pastDueDate = Calendar.getInstance();
+        pastDueDate.add(Calendar.DAY_OF_MONTH, -20);
+        rentMaintain.addNewRentedItem(user.getEmail(), "National Historic", "414231221233",
+                new java.sql.Date(System.currentTimeMillis()),
+                new java.sql.Date(pastDueDate.getTimeInMillis()));
+        Item overdueItem = new Item("National Historic", 2017, 5, 99.99, "414231221233", true, true);
+        overdueMagazine = new Magazine(overdueItem, "National Historic Society", 2021);
+
+
+
+        boolean result = returnService.returnItem(user, overdueMagazine);
+
+
+        assertTrue( result);
+    }
+
+
+
+
 
 
 
