@@ -31,45 +31,25 @@ public class RentalServiceTest {
     @Before
     public void setUp() {
         rentalService = new RentalService();
-         user = new User("user@example.com", "password", "John Doe", "MEMBER");
-         item1= new Item("Effective Java", 2020, 10, 15.99, "123456789", true, true);
-         item2= new Item("Harry Potter", 2020, 10, 20.99, "123316789", true, true);
-         item3 = new Item("Unavailable Book", 2011, 0, 100, "987654321", true, true);
-         item4 = new Item("Test 11th Book", 2020, 20, 125.99, "983134143", true, true);
-         overdueItem=  new Item("Overdue Book", 2010, 10, 25.99, "414231221233", true, true);
-         approachingOverdueItem= new Item("Approaching DueDate Book", 2000, 20, 225.99, "9231313414141", true, true);
+        user = new User("user@example.com", "password", "John Doe", "MEMBER");
+        item1= new Item("Effective Java", 2020, 10, 15.99, "123456789", true, true);
+        item2= new Item("Harry Potter", 2020, 10, 20.99, "123316789", true, true);
+        item3 = new Item("Unavailable Book", 2011, 0, 100, "987654321", true, true);
+        item4 = new Item("Test 11th Book", 2020, 20, 125.99, "983134143", true, true);
+        overdueItem=  new Item("Overdue Book", 2010, 10, 25.99, "414231221233", true, true);
+        approachingOverdueItem= new Item("Approaching DueDate Book", 2000, 20, 225.99, "9231313414141", true, true);
 
         returnService = new ReturnService();
         rentMaintain = MaintainRent.getInstance();
     }
 
-
-    @Test
-    public void testItemRentedSuccessfully() throws Exception {
-
-        boolean result = rentalService.rentItem(user, item1);
-
-
-        assertTrue(result);
-
-
-    }
-    @Test
-    public void testRentItemNotAvailable() {
-
-        Exception exception = assertThrows(Exception.class, () -> rentalService.rentItem(user, item3));
-        assertEquals("Item is not available for rent.", exception.getMessage());
-    }
-
-
-
     @After
     public void returnItem() throws Exception {
 
-
-
-         returnService.returnItem(user,item2);
-         returnService.returnItem(user,item3);
+//        rentMaintain.returnRentedItem(user.getEmail(), item1.getISBN());
+        returnService.returnItem(user,item1);
+        returnService.returnItem(user,item2);
+        returnService.returnItem(user,item3);
         for (int i = 0; i < 10; i++) {
             returnService.returnItem(user, new Item("Book " + i, 2010, 1, 15.99, "98231341" + i, true, true));
         }
@@ -81,17 +61,24 @@ public class RentalServiceTest {
             rentMaintain.returnRentedItem(user.getEmail(), "91345" + i);
 
         }
-
-        rentMaintain.returnRentedItem(user.getEmail(), item1.getISBN());
-
-
+        rentMaintain.update();
     }
 
 
+    @Test
+    public void testItemRentedSuccessfully() throws Exception {
+        boolean result = rentalService.rentItem(user, item1);
+        assertTrue(result);
+
+    }
+    @Test
+    public void testRentItemNotAvailable() {
+        Exception exception = assertThrows(Exception.class, () -> rentalService.rentItem(user, item3));
+        assertEquals("Item is not available for rent.", exception.getMessage());
+    }
 
     @Test
     public void testOverdueItemsPenaltyCalculation() {
-
         double penalty = rentalService.calculatePenaltyForItem(user.getEmail(), item1.getISBN());
 
         double expectedPenalty =  0.0;
@@ -99,9 +86,7 @@ public class RentalServiceTest {
     }
     @Test
     public void testRentItemAlreadyRentedByUserThrowsException() throws Exception {
-
         boolean firstResult = rentalService.rentItem(user, item2);
-
 
         Exception exception = assertThrows(Exception.class, () -> rentalService.rentItem(user, item2));
         assertEquals("You have already rented this item.", exception.getMessage());
@@ -118,20 +103,15 @@ public class RentalServiceTest {
     }
 
 
-
     @Test
     public void testCheckOverdueItems() {
-
 
         Calendar pastDueDate = Calendar.getInstance();
         pastDueDate.add(Calendar.DAY_OF_MONTH, -10);
 
-
         rentMaintain.addNewRentedItem(user.getEmail(), "Overdue Book", "414231221233",
                 new java.sql.Date(System.currentTimeMillis()),
                 new java.sql.Date(pastDueDate.getTimeInMillis()));
-
-
 
         List<RentedItem> overdueItems = rentalService.checkOverdue(user.getEmail());
         assertEquals(1, overdueItems.size());
@@ -167,37 +147,15 @@ public class RentalServiceTest {
     }
     @Test
     public void testGetRentalCountForUser() {
-
-
-
         for (int i = 0; i < 5; i++) {
             rentMaintain.addNewRentedItem(user.getEmail(), "Book " + i, "91345" + i,
                     new java.sql.Date(new Date().getTime()),
                     new java.sql.Date(new Date().getTime()));
         }
 
-
         int count = rentalService.getRentalCountForUser(user.getEmail());
-
 
         assertEquals( 5, count);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
