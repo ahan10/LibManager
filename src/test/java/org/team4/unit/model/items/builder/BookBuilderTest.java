@@ -192,4 +192,24 @@ public class BookBuilderTest {
         assertFalse(book.hasHardCopy()); // Default value should be false
         assertFalse(book.hasSoftCopy()); // Default value should be false
     }
+    
+    @Test
+    public void testBuildMethodMissingISBN() {
+        Book book = new BookBuilder()
+                .title("Title")
+                .yearPublished(2022)
+                .quantity(20)
+                .price(29.99)
+                .ISBN("")
+                .build();
+
+        assertNotNull(book);
+        assertEquals("Title", book.getTitle());
+        assertEquals(2022, book.getYearPublished());
+        assertEquals(20, book.getQuantity());
+        assertEquals(29.99, book.getPrice(), 0);
+        assertEquals("", book.getISBN());
+        assertFalse(book.hasHardCopy()); // Default value should be false
+        assertFalse(book.hasSoftCopy()); // Default value should be false
+    }
 }
