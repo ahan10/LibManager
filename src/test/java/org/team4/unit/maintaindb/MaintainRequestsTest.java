@@ -36,6 +36,11 @@ public class MaintainRequestsTest {
 	}
 	
 	@Test
+	public void numberTotal() {
+		assertEquals(4, requestMaintainer.getLowPriorityRequests().size() + requestMaintainer.getHighPriorityRequests().size());
+	}
+	
+	@Test
 	public void update() throws Exception {
 		requestMaintainer.update();
 	}
@@ -43,6 +48,12 @@ public class MaintainRequestsTest {
 	@Test
 	public void addExistingRequest() {
 		BookRequest req = new BookRequest("1", "Title", "Author", "1234567890", 1, "TextBook");
+		requestMaintainer.addRequest(req);
+	}
+	
+	@Test
+	public void addExistingRequestOnlyISBN() {
+		BookRequest req = new BookRequest("new email", "new Title", "new Author", "1234567890", 1, "TextBook");
 		requestMaintainer.addRequest(req);
 	}
 	
