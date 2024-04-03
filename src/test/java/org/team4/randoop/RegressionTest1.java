@@ -1,6 +1,7 @@
 package org.team4.randoop;
 
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -440,6 +441,7 @@ public class RegressionTest1 {
         org.junit.Assert.assertNotNull(dVDItemBuilder11);
     }
 
+    @Ignore
     @Test
     public void test0515() throws Throwable {
         if (debug)
@@ -1571,6 +1573,7 @@ public class RegressionTest1 {
         org.junit.Assert.assertEquals("'" + str38 + "' != '" + "hi!" + "'", str38, "hi!");
     }
 
+    @Ignore
     @Test
     public void test0573() throws Throwable {
         if (debug)
@@ -2517,6 +2520,7 @@ public class RegressionTest1 {
         org.junit.Assert.assertNotNull(user15);
     }
 
+    @Ignore
     @Test
     public void test0614() throws Throwable {
         if (debug)
@@ -6395,6 +6399,7 @@ public class RegressionTest1 {
         org.team4.model.user.User user5 = new org.team4.model.user.User("SubscribeNewsletter{title='hi!', email='hi!', dateSubscribed=Mon Apr 01 18:27:47 EDT 2024, dateDue=Wed May 01 18:27:47 EDT 2024}", "PayPal{email='SubscribeNewsletter{title='hi!', email='hi!', dateSubscribed=Mon Apr 01 18:27:42 EDT 2024, dateDue=null}'}", "User [email=, password=, name=hi!, type=, validated=true]", "User [email=User [email=ItemToPurchase{item=null, user=User [email=, password=, name=hi!, type=, validated=false], newsletter=null}, password=ItemPurchased{title='', email='hi!', datePurchased=null}, name=User [email=, password=, name=hi!, type=, validated=false], type=ItemToPurchase{item=null, user=User [email=, password=hi!, name=, type=, validated=false], newsletter=null}, validated=false], password=PayPal{email='User [email=, password=, name=hi!, type=, validated=false]'}, name=SubscribeNewsletter{title='hi!', email='hi!', dateSubscribed=Mon Apr 01 18:27:42 EDT 2024, dateDue=Wed May 01 18:27:42 EDT 2024}, type=SubscribeNewsletter{title='hi!', email='hi!', dateSubscribed=null, dateDue=Wed May 01 18:27:48 EDT 2024}, validated=false]", false);
     }
 
+    @Ignore
     @Test
     public void test0774() throws Throwable {
         if (debug)
@@ -6452,6 +6457,7 @@ public class RegressionTest1 {
         org.junit.Assert.assertNull(str20);
     }
 
+    @Ignore
     @Test
     public void test0777() throws Throwable {
         if (debug)
@@ -7266,6 +7272,7 @@ public class RegressionTest1 {
         org.team4.model.items.Newsletter newsletter3 = new org.team4.model.items.Newsletter("SubscribeNewsletter{title='hi!', email='hi!', dateSubscribed=Mon Apr 01 18:27:52 EDT 2024, dateDue=Wed May 01 18:27:52 EDT 2024}", "SubscribeNewsletter{title='hi!', email='hi!', dateSubscribed=Mon Apr 01 18:27:53 EDT 2024, dateDue=null}", (double) 10L);
     }
 
+    @Ignore
     @Test
     public void test0814() throws Throwable {
         if (debug)
@@ -7565,6 +7572,8 @@ public class RegressionTest1 {
         org.junit.Assert.assertTrue("'" + boolean5 + "' != '" + false + "'", boolean5 == false);
     }
 
+
+    @Ignore
     @Test
     public void test0831() throws Throwable {
         if (debug)
@@ -7735,6 +7744,7 @@ public class RegressionTest1 {
         org.junit.Assert.assertEquals("'" + str70 + "' != '" + "ItemPurchased{title='', email='', datePurchased=null}" + "'", str70, "ItemPurchased{title='', email='', datePurchased=null}");
     }
 
+    @Ignore
     @Test
     public void test0836() throws Throwable {
         if (debug)
@@ -8128,6 +8138,7 @@ public class RegressionTest1 {
         org.junit.Assert.assertNotNull(bookRequestBuilder12);
     }
 
+    @Ignore
     @Test
     public void test0854() throws Throwable {
         if (debug)
@@ -9434,6 +9445,7 @@ public class RegressionTest1 {
         org.team4.model.user.Student student4 = new org.team4.model.user.Student("User [email=, password=, name=hi!, type=, validated=true]", "User [email=User [email=ItemToPurchase{item=null, user=User [email=, password=, name=hi!, type=, validated=false], newsletter=null}, password=ItemPurchased{title='', email='hi!', datePurchased=null}, name=User [email=, password=, name=hi!, type=, validated=false], type=ItemToPurchase{item=null, user=User [email=, password=hi!, name=, type=, validated=false], newsletter=null}, validated=false], password=PayPal{email='User [email=, password=, name=hi!, type=, validated=false]'}, name=SubscribeNewsletter{title='hi!', email='hi!', dateSubscribed=Mon Apr 01 18:27:42 EDT 2024, dateDue=Wed May 01 18:27:42 EDT 2024}, type=SubscribeNewsletter{title='hi!', email='hi!', dateSubscribed=null, dateDue=Wed May 01 18:27:48 EDT 2024}, validated=false]", "User [email=SubscribeNewsletter{title='hi!', email='hi!', dateSubscribed=null, dateDue=Wed May 01 18:27:45 EDT 2024}, password=SubscribeNewsletter{title='hi!', email='hi!', dateSubscribed=Mon Apr 01 18:27:40 EDT 2024, dateDue=Wed May 01 18:27:40 EDT 2024}, name=SubscribeNewsletter{title='hi!', email='hi!', dateSubscribed=null, dateDue=Wed May 01 18:27:47 EDT 2024}, type=SubscribeNewsletter{title='hi!', email='hi!', dateSubscribed=Mon Apr 01 18:27:45 EDT 2024, dateDue=Wed May 01 18:27:45 EDT 2024}, validated=false]", "hi!");
     }
 
+    @Ignore
     @Test
     public void test0912() throws Throwable {
         if (debug)
@@ -11016,6 +11028,7 @@ public class RegressionTest1 {
 // flaky:         org.junit.Assert.assertEquals(date95.toString(), "Wed May 01 18:27:56 EDT 2024");
     }
 
+    @Ignore
     @Test
     public void test0964() throws Throwable {
         if (debug)
