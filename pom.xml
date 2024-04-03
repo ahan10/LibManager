@@ -61,6 +61,13 @@
     		<artifactId>javacsv</artifactId>
     		<version>2.0</version>
 		</dependency>
+        <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-parent</artifactId>
+            <version>1.15.8</version>
+            <type>pom</type>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -97,6 +104,23 @@
                 </execution>
             </executions>
         </plugin>
+        <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.15.8</version>
+            <configuration>
+                <targetClasses>
+                    <param>org.team4.functionality.*</param>
+                    <param>org.team4.maintaindb.*</param>
+                    <param>org.team4.model.*</param>
+                    <param>org.team4.utils.*</param>
+                </targetClasses>
+                <targetTests>
+                    <param>org.team4.randoop.*</param>
+                </targetTests>
+            </configuration>
+        </plugin>
+
     </plugins>
     </build>
 
