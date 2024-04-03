@@ -52,22 +52,18 @@ public class MaintainNewsletterTest {
 	}
 	
 	@Test
-	public void testAddNewsletter() {
+	public void testAddNewsletter() throws Exception {
 		Newsletter newNewsletter = new Newsletter("Test newsletter", "Test URL", 10.10);
 		newsletterMaintainer.addNewsletter(newNewsletter);
 		assertEquals("Test newsletter", newsletterMaintainer.searchNewslettersbyTitle("Test newsletter").getTitle());
 
 		// Clean CSV
 		newsletterMaintainer.getAllNewsletters().remove(newNewsletter);
-		try {
-			newsletterMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		newsletterMaintainer.update();
 	}
 
 	@Test
-	public void testAddDuplicateNewsletter() {
+	public void testAddDuplicateNewsletter() throws Exception {
 		Newsletter newNewsletter = new Newsletter("Test newsletter", "Test URL", 10.10);
 		newsletterMaintainer.addNewsletter(newNewsletter);
 		newsletterMaintainer.addNewsletter(newNewsletter);
@@ -75,15 +71,11 @@ public class MaintainNewsletterTest {
 
 		// Clean CSV
 		newsletterMaintainer.getAllNewsletters().remove(newNewsletter);
-		try {
-			newsletterMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		newsletterMaintainer.update();
 	}
 
 	@Test
-	public void removeTestNewsletter() {
+	public void removeTestNewsletter() throws Exception {
 		Newsletter newNewsletter = new Newsletter("Test newsletter", "Test URL", 10.10);
 		newsletterMaintainer.addNewsletter(newNewsletter);
 		int numberOfDVDs = newsletterMaintainer.getAllNewsletters().size();
@@ -92,20 +84,12 @@ public class MaintainNewsletterTest {
 
 		// Clean CSV
 		newsletterMaintainer.getAllNewsletters().remove(newNewsletter);
-		try {
-			newsletterMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		newsletterMaintainer.update();
 	}
 
 	@Test
-	public void testUpdate() {
-		try {
-			newsletterMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void testUpdate() throws Exception {
+		newsletterMaintainer.update();
 		assertNull(newsletterMaintainer.searchNewslettersbyTitle("Test newsletter"));
 	}
 

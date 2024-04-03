@@ -74,7 +74,7 @@ public class MaintainBooksTest {
 	}
 	
 	@Test
-	public void testAddBook() {
+	public void testAddBook() throws Exception {
 		Book newBook = ((BookBuilder) new BookBuilder()
                 .title("This is a test book")
                 .yearPublished(2077)
@@ -95,15 +95,11 @@ public class MaintainBooksTest {
 
 		// Clean CSV
 		bookMaintainer.getAllBooks().remove(newBook);
-		try {
-			bookMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		bookMaintainer.update();
 	}
 
 	@Test
-	public void testAddDuplicateBook() {
+	public void testAddDuplicateBook() throws Exception {
 		Book newBook = ((BookBuilder) new BookBuilder()
                 .title("This is a test book")
                 .yearPublished(2077)
@@ -125,15 +121,11 @@ public class MaintainBooksTest {
 
 		// Clean CSV
 		bookMaintainer.getAllBooks().remove(newBook);
-		try {
-			bookMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		bookMaintainer.update();
 	}
 
 	@Test
-	public void removeTestBook() {
+	public void removeTestBook() throws Exception {
 		Book newBook = ((BookBuilder) new BookBuilder()
                 .title("This is a test book")
                 .yearPublished(2077)
@@ -156,20 +148,12 @@ public class MaintainBooksTest {
 		
 		// Clean CSV
 		bookMaintainer.getAllBooks().remove(newBook);
-		try {
-			bookMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		bookMaintainer.update();
 	}
 	
 	@Test
-	public void testUpdate() {
-		try {
-			bookMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void testUpdate() throws Exception {
+		bookMaintainer.update();
 		assertFalse(bookMaintainer.searchExactBook("1234567890123"));
 	}
 

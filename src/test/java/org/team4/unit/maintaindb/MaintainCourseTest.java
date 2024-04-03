@@ -62,13 +62,8 @@ public class MaintainCourseTest {
 	}
 	
 	@Test
-	public void testUpdate() {
-		try {
-			courseMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+	public void testUpdate() throws Exception {
+		courseMaintainer.update();
 	}
 
 }

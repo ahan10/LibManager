@@ -65,7 +65,7 @@ public class MaintainMagazineTest {
 	}
 	
 	@Test
-	public void testAddMagazine() {
+	public void testAddMagazine() throws Exception {
 		Magazine newBook = ((MagazineBuilder) new MagazineBuilder()
 				.title("This is a test magazine")
                 .yearPublished(2077)
@@ -79,15 +79,11 @@ public class MaintainMagazineTest {
 
 		// Clean CSV
 		magazineMaintainer.getAllMagazines().remove(newBook);
-		try {
-			magazineMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		magazineMaintainer.update();
 	}
 
 	@Test
-	public void testAddDuplicateMagazine() {
+	public void testAddDuplicateMagazine() throws Exception {
 		Magazine newBook = ((MagazineBuilder) new MagazineBuilder()
 				.title("This is a test magazine")
                 .yearPublished(2077)
@@ -103,15 +99,11 @@ public class MaintainMagazineTest {
 
 		// Clean CSV
 		magazineMaintainer.getAllMagazines().remove(newBook);
-		try {
-			magazineMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		magazineMaintainer.update();
 	}
 
 	@Test
-	public void removeTestMagazine() {
+	public void removeTestMagazine() throws Exception {
 		Magazine newBook = ((MagazineBuilder) new MagazineBuilder()
 				.title("This is a test magazine")
                 .yearPublished(2077)
@@ -128,20 +120,12 @@ public class MaintainMagazineTest {
 
 		// Clean CSV
 		magazineMaintainer.getAllMagazines().remove(newBook);
-		try {
-			magazineMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		magazineMaintainer.update();
 	}
 
 	@Test
-	public void testUpdate() {
-		try {
-			magazineMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void testUpdate() throws Exception {
+		magazineMaintainer.update();
 		assertNull(magazineMaintainer.searchExactMagazineByISBN("1234567890123"));
 	}
 

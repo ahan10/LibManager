@@ -65,7 +65,7 @@ public class MaintainDVDTest {
 	}
 	
 	@Test
-	public void testAddDVD() {
+	public void testAddDVD() throws Exception {
 		DVD newBook = ((DVDBuilder) new DVDBuilder()
                 .title("This is a test dvd")
                 .yearPublished(2077)
@@ -80,15 +80,11 @@ public class MaintainDVDTest {
 
 		// Clean CSV
 		dvdMaintainer.getAllDVDs().remove(newBook);
-		try {
-			dvdMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		dvdMaintainer.update();
 	}
 
 	@Test
-	public void testAddDuplicateDVD() {
+	public void testAddDuplicateDVD() throws Exception {
 		DVD newBook = ((DVDBuilder) new DVDBuilder()
                 .title("This is a test dvd")
                 .yearPublished(2077)
@@ -104,15 +100,11 @@ public class MaintainDVDTest {
 
 		// Clean CSV
 		dvdMaintainer.getAllDVDs().remove(newBook);
-		try {
-			dvdMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		dvdMaintainer.update();
 	}
 
 	@Test
-	public void removeTestDVD() {
+	public void removeTestDVD() throws Exception {
 		DVD newBook = ((DVDBuilder) new DVDBuilder()
                 .title("This is a test dvd")
                 .yearPublished(2077)
@@ -129,20 +121,12 @@ public class MaintainDVDTest {
 
 		// Clean CSV
 		dvdMaintainer.getAllDVDs().remove(newBook);
-		try {
-			dvdMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		dvdMaintainer.update();
 	}
 
 	@Test
-	public void testUpdate() {
-		try {
-			dvdMaintainer.update();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void testUpdate() throws Exception {
+		dvdMaintainer.update();
 		assertNull(dvdMaintainer.searchExactDVDByISBN("1234567890123"));
 	}
 
