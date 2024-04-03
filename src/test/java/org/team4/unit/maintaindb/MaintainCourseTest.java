@@ -2,6 +2,8 @@ package org.team4.unit.maintaindb;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.*;
 import org.team4.maintaindb.MaintainCourse;
 
@@ -17,6 +19,11 @@ public class MaintainCourseTest {
 	@Test
 	public void testFirstCourse() {
 		assertEquals("course1", courseMaintainer.getCourses().get(0).getCourseName());
+	}
+	
+	@Test
+	public void testLastCourse() {
+		assertEquals("test course 2", courseMaintainer.getCourses().get(courseMaintainer.getCourses().size()-1).getCourseName());
 	}
 	
 	@Test
@@ -42,6 +49,16 @@ public class MaintainCourseTest {
 	@Test
 	public void numberOfCourseByProfessor() {
 		assertEquals(5 ,courseMaintainer.findCourseByProfessor("user4@example.com").size());
+	}
+	
+	@Test
+	public void coursePastDate() {
+		assertTrue(courseMaintainer.findCourse("course2").isEnded(new Date()));
+	}
+	
+	@Test
+	public void courseNotPastDate() {
+		assertFalse(courseMaintainer.findCourse("course1").isEnded(new Date()));
 	}
 	
 	@Test
