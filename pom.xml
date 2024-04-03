@@ -142,6 +142,7 @@
                     <param>org.team4.unit.maintaindb.*</param>
                     <param>org.team4.unit.model.*</param>
                     <param>org.team4.unit.utils.*</param>
+                    <param>org.team4.randoop.*</param>
                 </targetTests>
                 <excludedClasses>
                     <param>org.team4.functionality.rent.ReturnService</param>
