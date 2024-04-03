@@ -66,6 +66,12 @@
             <artifactId>maven-jxr-plugin</artifactId>
             <version>3.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-parent</artifactId>
+            <version>1.15.8</version>
+            <type>pom</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -119,6 +125,33 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jxr-plugin</artifactId>
             <version>3.3.0</version>
+        </plugin>
+        <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.15.8</version>
+            <configuration>
+                <targetClasses>
+                    <param>org.team4.functionality.*</param>
+                    <param>org.team4.maintaindb.*</param>
+                    <param>org.team4.model.*</param>
+                    <param>org.team4.utils.*</param>
+                </targetClasses>
+                <targetTests>
+                    <param>org.team4.unit.functionality.*</param>
+                    <param>org.team4.unit.maintaindb.*</param>
+                    <param>org.team4.unit.model.*</param>
+                    <param>org.team4.unit.utils.*</param>
+                </targetTests>
+                <excludedClasses>
+                    <param>org.team4.functionality.rent.ReturnService</param>
+                    <param>org.team4.maintaindb.MaintainRequests</param>
+                </excludedClasses>
+                <excludedTestClasses>
+                    <param>org.team4.unit.maintaindb.MaintainRequestsTest</param>
+                    <param>org.team4.unit.functionality.rent.ReturnServiceTest</param>
+                </excludedTestClasses>
+            </configuration>
         </plugin>
     </plugins>
     </build>
