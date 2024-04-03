@@ -8,8 +8,6 @@ public class PayPal implements PaymentValidator, PaymentModes {
 
     public PayPal(String email) {
         this.email = email;
-        System.out.println("Email in paypal: ");
-        System.out.println(this.email);
     }
 
     public boolean isValid(){

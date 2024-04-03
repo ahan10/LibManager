@@ -52,19 +52,32 @@ public class ItemPurchasedTest {
     }
 
     @Test
-    public void test_toString(){
+    public void test_toString_1(){
+        assertEquals("ItemPurchased{title='Python Crash Course', email='john.doe@example.com', datePurchased=" + date1.toString() + "}", item1.toString());
+    }
+
+    @Test
+    public void test_toString_2(){
         assertEquals("ItemPurchased{title='To Kill a Mocking Bird', email='jane.doe@example.com', datePurchased=Tue Dec 30 00:00:00 EST 3924}", item2.toString());
     }
 
     @Test
-    public void test_constructor_1(){
+    public void test_constructor_1_1(){
         assertNotNull(item1);
+    }
+
+    @Test
+    public void test_constructor_1_2(){
         assertNotNull(item1.getDatePurchased());
     }
 
     @Test
-    public void test_constructor_2(){
+    public void test_constructor_2_1(){
         assertNotNull(item2);
+    }
+
+    @Test
+    public void test_constructor_2_2(){
         assertNotNull(item2.getDatePurchased());
     }
 

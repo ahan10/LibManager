@@ -95,4 +95,16 @@ public class StudentTest {
         assertEquals("email@example.com", s1.getEmail());
     }
 
+    @Test
+    public void test_setName(){
+        s1.setName("Jane Doe");
+        assertEquals("Jane Doe", s1.getName());
+    }
+
+    @Test
+    public void test_setEmail(){
+        s1.setEmail("emailID1@example.com");
+        assertEquals("emailID1@example.com", s1.getEmail());
+    }
+
 }

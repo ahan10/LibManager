@@ -108,9 +108,13 @@ public class ItemToPurchaseTest {
     }
 
     @Test
-    public void price(){
+    public void price_1(){
         assertEquals(item.getPrice(), itemToPurchase1.getAmount(), 0.0001);
         assertEquals(newsletter.getPrice(), itemToPurchase2.getAmount(), 0.0001);
+    }
+
+    @Test
+    public void price_2_Fine(){
         assertEquals(15.99, itemToPurchase3.getAmount(), 0.0001);
     }
 
