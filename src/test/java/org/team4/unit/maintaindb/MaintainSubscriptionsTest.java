@@ -2,6 +2,8 @@ package org.team4.unit.maintaindb;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.*;
 import org.team4.functionality.subscriptions.SubscribeNewsletter;
 import org.team4.maintaindb.MaintainSubscriptions;
@@ -61,5 +63,15 @@ public class MaintainSubscriptionsTest {
 	@Test
 	public void getSub() {
 		assertEquals(subMaintainer.newsletters.get(1),subMaintainer.getSubscribedNewsletterIfExists("1", "The Hustle"));
+	}
+	
+	@Test
+	public void notDue() {
+		assertTrue(subMaintainer.newsletters.get(0).getDateDue().after(new Date()));
+	}
+	
+	@Test
+	public void properDateInformation() {
+		assertTrue(subMaintainer.newsletters.get(0).getDateSubscribed().before(subMaintainer.newsletters.get(0).getDateDue()));
 	}
 }
