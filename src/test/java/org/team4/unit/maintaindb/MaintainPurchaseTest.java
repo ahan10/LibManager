@@ -22,36 +22,84 @@ public class MaintainPurchaseTest {
 	}
 	
 	@Test
-	public void newPurchase() {
+	public void newPurchase() throws Exception {
 		ItemPurchased item = new ItemPurchased("Test Purchase", "test@test.com", new Date());
 		purchaseMaintainer.add(item);
 		assertFalse(purchaseMaintainer.getAllItemsPurchased().isEmpty());
-		purchaseMaintainer.getAllItemsPurchased().remove(item);
+		purchaseMaintainer.getAllItemsPurchased().clear();
+		purchaseMaintainer.update();
 	}
 	
 	@Test
-	public void newPurchaseEmail() {
+	public void newMultiplePurchase() throws Exception {
+		ItemPurchased item = new ItemPurchased("Test Purchase", "test@test.com", new Date());
+		ItemPurchased item2 = new ItemPurchased("Test Purchase2", "test@test.com", new Date());
+		purchaseMaintainer.add(item);
+		purchaseMaintainer.add(item2);
+		assertEquals(2, purchaseMaintainer.getAllItemsPurchased().size());
+		purchaseMaintainer.getAllItemsPurchased().clear();
+		purchaseMaintainer.update();
+	}
+	
+	@Test
+	public void newMultiplePurchaseEmail() throws Exception {
+		ItemPurchased item = new ItemPurchased("Test Purchase", "test@test.com", new Date());
+		ItemPurchased item2 = new ItemPurchased("Test Purchase2", "test@test.com", new Date());
+		purchaseMaintainer.add(item);
+		purchaseMaintainer.add(item2);
+		assertEquals("test@test.com", purchaseMaintainer.getAllItemsPurchased().get(1).getEmail());
+		purchaseMaintainer.getAllItemsPurchased().clear();
+		purchaseMaintainer.update();
+	}
+	
+	@Test
+	public void newMultiplePurchaseTitle() throws Exception {
+		ItemPurchased item = new ItemPurchased("Test Purchase", "test@test.com", new Date());
+		ItemPurchased item2 = new ItemPurchased("Test Purchase2", "test@test.com", new Date());
+		purchaseMaintainer.add(item);
+		purchaseMaintainer.add(item2);
+		assertEquals("Test Purchase2", purchaseMaintainer.getAllItemsPurchased().get(1).getTitle());
+		purchaseMaintainer.getAllItemsPurchased().clear();
+		purchaseMaintainer.update();
+	}
+	
+	@Test
+	public void newMultiplePurchaseDate() throws Exception {
+		ItemPurchased item = new ItemPurchased("Test Purchase", "test@test.com", new Date());
+		ItemPurchased item2 = new ItemPurchased("Test Purchase2", "test@test.com", new Date());
+		purchaseMaintainer.add(item);
+		purchaseMaintainer.add(item2);
+		assertEquals(0, purchaseMaintainer.getAllItemsPurchased().get(1).getDatePurchased().compareTo((purchaseMaintainer.getAllItemsPurchased().get(0).getDatePurchased())));
+		purchaseMaintainer.getAllItemsPurchased().clear();
+		purchaseMaintainer.update();
+	}
+	
+	@Test
+	public void newPurchaseEmail() throws Exception {
 		ItemPurchased item = new ItemPurchased("Test Purchase", "test@test.com", new Date());
 		purchaseMaintainer.add(item);
 		assertEquals("test@test.com",purchaseMaintainer.getAllItemsPurchased().get(0).getEmail());
-		purchaseMaintainer.getAllItemsPurchased().remove(item);
+		purchaseMaintainer.getAllItemsPurchased().clear();
+		purchaseMaintainer.update();
 	}
 	
 	@Test
-	public void newPurchaseTitle() {
+	public void newPurchaseTitle() throws Exception {
 		ItemPurchased item = new ItemPurchased("Test Purchase", "test@test.com", new Date());
 		purchaseMaintainer.add(item);
 		assertEquals("Test Purchase",purchaseMaintainer.getAllItemsPurchased().get(0).getTitle());
-		purchaseMaintainer.getAllItemsPurchased().remove(item);
+		purchaseMaintainer.getAllItemsPurchased().clear();
+		purchaseMaintainer.update();
 	}
 	
 	@Test
-	public void newPurchaseDate() {
+	public void newPurchaseDate() throws Exception {
 		Date date = new Date();
 		ItemPurchased item = new ItemPurchased("Test Purchase", "test@test.com", date);
 		purchaseMaintainer.add(item);
 		assertEquals(formatter.format(date), formatter.format(purchaseMaintainer.getAllItemsPurchased().get(0).getDatePurchased()));
-		purchaseMaintainer.getAllItemsPurchased().remove(item);
+		purchaseMaintainer.getAllItemsPurchased().clear();
+		purchaseMaintainer.update();
 	}
 	
 	@Test
@@ -59,7 +107,7 @@ public class MaintainPurchaseTest {
 		ItemPurchased item = new ItemPurchased("Test Purchase", "test@test.com", new Date());
 		purchaseMaintainer.add(item);
 		purchaseMaintainer.update();
-		purchaseMaintainer.getAllItemsPurchased().remove(item);
+		purchaseMaintainer.getAllItemsPurchased().clear();
 		purchaseMaintainer.update();
 		assertTrue(purchaseMaintainer.getAllItemsPurchased().isEmpty());
 	}
@@ -69,10 +117,10 @@ public class MaintainPurchaseTest {
 		ItemPurchased item = new ItemPurchased("Test Purchase", "test@test.com", new Date());
 		purchaseMaintainer.add(item);
 		purchaseMaintainer.update();
-		purchaseMaintainer.getAllItemsPurchased().remove(item);
+		purchaseMaintainer.getAllItemsPurchased().clear();
 		purchaseMaintainer.load();
 		assertFalse(purchaseMaintainer.getAllItemsPurchased().isEmpty());
-		purchaseMaintainer.getAllItemsPurchased().remove(0);
+		purchaseMaintainer.getAllItemsPurchased().clear();
 		purchaseMaintainer.update();
 	}
 
