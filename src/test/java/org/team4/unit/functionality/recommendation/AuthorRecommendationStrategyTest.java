@@ -22,9 +22,7 @@ public class AuthorRecommendationStrategyTest {
 
     @Test
     public void testGetRecommendationWithMatchingAuthor() {
-        Item item1 = new Item("Book", 2020, 10, 20.0, "1234567890", true, false);
-        Book book1 = new Book(item1, "Fiction", 300, "John Doe", "ABC Publications", 1, true, false);
-        MaintainBooks.getInstance().addBook(book1);
+        new Item("Book", 2020, 10, 20.0, "1234567890", true, false);
         ArrayList<Book> recommendedBooks = strategy.getRecommendation("John Doe");
         assertEquals(1, recommendedBooks.size());
     }
