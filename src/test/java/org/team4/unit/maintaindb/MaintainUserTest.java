@@ -32,6 +32,26 @@ public class MaintainUserTest {
 	}
 	
 	@Test
+	public void getUserName() {
+		assertEquals("Jane Smith", userMaintainer.findUserByEmail("user2@example.com").getName());
+	}
+	
+	@Test
+	public void getUserPassword() {
+		assertEquals("password2", userMaintainer.findUserByEmail("user2@example.com").getPassword());
+	}
+	
+	@Test
+	public void getUserType() {
+		assertEquals("FACULTY", userMaintainer.findUserByEmail("user2@example.com").getType());
+	}
+	
+	@Test
+	public void getUserValidated() {
+		assertFalse(userMaintainer.findUserByEmail("user2@example.com").isValidated());
+	}
+	
+	@Test
 	public void addExistingUserEmail() {
 		int userCount = userMaintainer.getAllUsers().size();
 		userMaintainer.addUser(new User("2", null, null, "TEST"));
