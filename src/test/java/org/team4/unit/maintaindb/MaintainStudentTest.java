@@ -23,6 +23,16 @@ public class MaintainStudentTest {
 	}
 	
 	@Test
+	public void getFirstStudent() {
+		assertEquals("user1@example.com", studentMaintainer.getStudents().get(0).getEmail());
+	}
+	
+	@Test
+	public void getLastStudent() {
+		assertEquals("1", studentMaintainer.getStudents().get(studentMaintainer.getStudents().size()-1).getEmail());
+	}
+	
+	@Test
 	public void coursesToStringNoStudent() {
 		Student testStudent = new Student("test", "test", "test", "test");
 		testStudent.setCourses(new ArrayList<String>());
@@ -42,6 +52,16 @@ public class MaintainStudentTest {
 	@Test
 	public void findStudent() {
 		assertEquals(studentMaintainer.getStudents().get(0), studentMaintainer.findStudent("user1@example.com"));
+	}
+	
+	@Test
+	public void noNameShouldExistInThisDatabase() {
+		assertNull(studentMaintainer.findStudent("user1@example.com").getName());
+	}
+	
+	@Test
+	public void noPasswordShouldExistInThisDatabase() {
+		assertNull(studentMaintainer.findStudent("user1@example.com").getPassword());
 	}
 	
 	@Test
