@@ -6,7 +6,7 @@ An Open Source app made for libraries to make their system accessible to the pub
 
 The project is based on the Model-View-Controller (MVC) architecture. The front end used for this project is Swing. Here is a sketch of the system diagram:
 
-![System Diagram](LibManager/Assets/ComponentDiagram.png)
+![System Diagram](Assets/ComponentDiagram.png)
 
 ## Getting Started
 
