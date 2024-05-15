@@ -46,7 +46,7 @@ The system is equipped with plugins such as [JaCoCo](https://www.jacoco.org) for
 
 ## Features
 
-*Please refer to wiki for the list of features.*
+*Please refer to [wiki](https://github.com/ahan10/LibManager/wiki) for the list of features.*
 
 ## Author
     Ahan Bhargava
